@@ -1,0 +1,39 @@
+Dorobit navrh konfigurakov 
+  Device cfg port roles - vymysli role portov
+R vs L3SW core
+Urobit skicu fungovanie systemu a ako uzivatel bude s nim pracovat
+Dokoncit IPv6
+Napisat DD
+Rozdelenie R vs SW ci je na mieste
+Prejst prezentacie FIT a FEKT
+  Vybrat zaujimave veci na konfiguraciu
+Prejst CCNA SEC a ostatne veci
+report vystup CSV
+
+checking version vulnerabilities and updates
+vybrat FW a navrhnut GUI
+specify username and password - do not store in yaml/cfg
+specify snmp view or AAA name - store in yaml/cfg
+
+YAML DOC SHORT
+http://blogs.perl.org/users/tinita/2018/03/strings-in-yaml---to-quote-or-not-to-quote.html
+https://rollout.io/blog/yaml-tutorial-everything-you-need-get-started/
+
+
+Otazky co vyriesit:
+
+1. Konfigurovanie novych veci komplikovane
+2. Navrh GUI a ako Urobit
+3. GUI vybrat
+4. Ukladanie password resp. ukladanie vramci spustenej instancie niv v cfg
+5. Ukladanie napr nazov AAA, SNMP view - kam v cfg
+6. Komplikovane zanorenie napr. address families
+7. S jednovecou nastavit viacero pozidaviek, snmp napriklad ACL
+8. ACL ulozit meno a dalsie riadky, nestaci jeden string prikaz
+
+
+
+
+
+
+
