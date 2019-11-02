@@ -1,0 +1,123 @@
+%% Nastavení jazyka při sazbě.
+% Pro sazbu češtiny je použit mezinárodní balíček 'babel', použití
+% národního balíčku 'czech', ve spojení s programy 'cslatex' a
+% 'pdfcslatex' není od verze 3.0 podporován a nedoporučujeme ho.
+\usepackage[
+%%Nastavení balíčku babel (!!! pri zmene jazyka je potreba zkompilovat dvakrat !!!)
+  main=czech,english       % originální jazyk je čeština (výchozí), překlad je anglicky
+  %main=slovak,english      % originální jazyk je slovenčina, překlad je anglicky
+  %main=english,czech       % originální jazyk je angličtina, překlad je česky
+]{babel}    					% Balíček pro sazbu různojazyčných dokumentů; kompilovat (pdf)latexem!
+
+\usepackage{lmodern}	% vektorové fonty Latin Modern, nástupce půvoních Knuthových Computern Modern fontů
+\usepackage{textcomp} % Dodatečné symboly
+\usepackage[LGR,T1]{fontenc}  % Kódování fontu -- mj. kvůli správným vzorům pro dělení slov
+
+\usepackage[
+%% Z následujících voleb lze použít pouze jednu
+  semestral,					%	sazba semestrálního práce (nesází se abstrakty, prohlášení, poděkování)
+  %bachelor,					%	sazba bakalářské práce
+  %diploma,						% sazba diplomové práce
+  %treatise,          % sazba pojednání o dizertační práci
+  %phd,               % sazba dizertační práce
+%% Z následujících voleb lze použít pouze jednu
+% left,               % Rovnice a popisky plovoucich objektů budou %zarovnány vlevo
+  center,             % Rovnice a popisky plovoucich objektů budou zarovnány na střed (vychozi)
+]{thesis}   % Balíček pro sazbu studentských prací
+                      % Musí být vložen až jako poslední, aby
+                      % ostatní balíčky nepřepisovaly jeho příkazy
+
+
+%% Jméno a příjmení autora ve tvaru
+%  [tituly před jménem]{Křestní}{Příjmení}[tituly za jménem]
+% Pokud osoba nemá titul před/za jménem, smažte celý řetězec '[...]'
+\autor[Bc.]{Křestní}{Příjmení}
+
+
+%% Pohlaví autora/autorky
+% Číselná hodnota: 1...žena, 0...muž
+\autorpohlavi{0}
+
+%% Jméno a příjmení vedoucího/školitele včetně titulů
+%  [tituly před jménem]{Křestní}{Příjmení}[tituly za jménem]
+% Pokud osoba nemá titul před/za jménem, smažte celý řetězec '[...]'
+\vedouci[prof.\ Ing.]{Křestní}{Příjmení}[CSc.]
+
+%% Jméno a příjmení oponenta včetně titulů
+%  [tituly před jménem]{Křestní}{Příjmení}[tituly za jménem]
+% Pokud osoba nemá titul před/za jménem, smažte celý řetězec '[...]'
+% Uplatní se pouze v prezentaci k obhajobě;
+% v případě, že nechcete, aby se na titulním snímku prezentace zobrazoval oponent, pouze příkaz zakomentujte;
+% u obhajoby semestrální práce se oponent nezobrazuje
+\oponent[doc.\ Mgr.]{Křestní}{Příjmení}[Ph.D.]
+
+%% Název práce:
+%  První parametr je název v originálním jazyce,
+%  druhý je překlad v angličtině nebo češtině (pokud je originální jazyk angličtina)
+\nazev{Název studentské práce}{Title of Student's Thesis}
+
+%% Označení oboru studia
+% První parametr je obor v originálním jazyce,
+% druhý parametr je překlad v angličtině nebo češtině
+\oborstudia{Teleinformatika}{Teleinformatics}
+
+%% Označení ústavu
+% První parametr je název ústavu v originálním jazyce,
+% druhý parametr je překlad v angličtině nebo češtině
+%\ustav{Ústav automatizace a měřicí techniky}{Department of Control and Instrumentation}
+%\ustav{Ústav biomedicínského inženýrství}{Department of Biomedical Engineering}
+%\ustav{Ústav elektroenergetiky}{Department of Electrical Power Engineering}
+%\ustav{Ústav elektrotechnologie}{Department of Electrical and Electronic Technology}
+%\ustav{Ústav fyziky}{Department of Physics}
+%\ustav{Ústav jazyků}{Department of Foreign Languages}
+%\ustav{Ústav matematiky}{Department of Mathematics}
+%\ustav{Ústav mikroelektroniky}{Department of Microelectronics}
+%\ustav{Ústav radioelektroniky}{Department of Radio Electronics}
+%\ustav{Ústav teoretické a experimentální elektrotechniky}{Department of Theoretical and Experimental Electrical Engineering}
+\ustav{Ústav telekomunikací}{Department of Telecommunications}
+%\ustav{Ústav výkonové elektrotechniky a elektroniky}{Department of Power Electrical and Electronic Engineering}
+
+%% Označení fakulty
+% První parametr je název fakulty v originálním jazyce,
+% druhý parametr je překlad v angličtině nebo v češtině
+%\fakulta{Fakulta architektury}{Faculty of Architecture}
+\fakulta{Fakulta elektrotechniky a~komunikačních technologií}{Faculty of Electrical Engineering and~Communication}
+%\fakulta{Fakulta chemická}{Faculty of Chemistry}
+%\fakulta{Fakulta informačních technologií}{Faculty of Information Technology}
+%\fakulta{Fakulta podnikatelská}{Faculty of Business and Management}
+%\fakulta{Fakulta stavební}{Faculty of Civil Engineering}
+%\fakulta{Fakulta strojního inženýrství}{Faculty of Mechanical Engineering}
+%\fakulta{Fakulta výtvarných umění}{Faculty of Fine Arts}
+
+\logofakulta[loga/FEKT_zkratka_barevne_PANTONE_CZ]{loga/UTKO_color_PANTONE_CZ}
+
+
+%% Rok obhajoby
+\rok{Rok}
+\datum{1.\,1.\,1970} % Datum se uplatní pouze v prezentaci k obhajobě
+
+%% Místo obhajoby
+% Na titulních stránkách bude automaticky vysázeno VELKÝMI písmeny
+\misto{Brno}
+
+%% Abstrakt
+\abstrakt{%
+Abstrakt práce v~originálním jazyce
+}{%
+Překlad abstraktu v~angličtině (nebo češtině pokud je originální jazyk angličtina)
+}
+
+%% Klíčová slova
+\klicovaslova{%
+Klíčová slova v~originálním jazyce
+}{%
+Překlad klíčových slov v~angličtině nebo češtině
+}
+
+%% Poděkování
+\podekovanitext{%
+Rád bych poděkoval vedoucímu diplomové práce panu Ing.~XXX YYY, Ph.D.\ za odborné vedení, konzultace, trpělivost a podnětné návrhy k~práci.
+}%
+
+% Zrušení sazby poděkování projektu SIX, pokud není nutné
+%\renewcommand\vytvorpodekovaniSIX\relax
