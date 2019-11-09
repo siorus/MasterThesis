@@ -1,0 +1,44 @@
+\chapter{Bezpečnostný audit}
+\phantomsection
+\addcontentsline{toc}{chapter}{Bezpečnostný audit}
+
+\section{Manažment rizík}
+Manažment rizík je proces pozostávajúci z analýzy rizík a riadenia rizík\cite{McMillan2018}. Dôležitým faktom je, že riziko nie je možné eliminovať, ale ho iba znížiť.
+
+Pri analýze rizík zisťujeme, aké riziká existujú, ako medzi sebou súvisia a aké škody môžu spôsobiť. Analýza rizík môže byť vykonávaná kvalitatívne a kvantitatívne.\\ 
+\noindent
+Štandard NIST SP 800-30\cite{7TVhmfuQFbsOANAz} definuje nasledujúce kroky pri analýze rizík:
+
+\begin{enumerate}
+	\item Identifikácia informačných aktív a ich význam
+	\item Identifikácia hrozieb
+	\item Identifikácia zraniteľností
+	\item Zistenie pravdepodobnosti
+	\item Identifikovanie dopadu
+	\item Definovanie rizika ako súčinu pravdepodobnosti a dopadu
+\end{enumerate} 
+\vspace{2em}
+Riadenie rizík má za úlohu minimalizáciu potenciálnych škôd odhalených pri analýze rizík s ohľadom na vyváženie nákladov na riadenie rizika. 
+\\\\
+\noindent
+Prístupy k nájdenému riziku\cite{Vyncke2008}\cite{McMillan2018}:
+\begin{itemize}
+	\item Zníženie\,--\,aplikovanie protiopatrenia na odstránenie hrozby alebo zraniteľnosti prípadne zníženie pravdepodobnosti rizika. Nikdy nie je však možné riziko eliminovať.
+	
+	\item Akceptovanie\,--\,v prípade neexistujúceho protiopatrenia alebo veľmi nízkeho rizika
+	
+	\item Presun\,--\,riziko je možné presunúť na inú organizáciu, napr. poistenie v prípade škody spôsobenej nedostatočným zabezpečením.
+	
+	\item Ignorácia\,--\,úplné vypustenie faktu, že dochádza k riziku, tento prístup sa považuje za iracionálny.
+\end{itemize}
+\vspace{2em}
+\noindent
+Na ohodnotenie rizika slúžia rôzne systémy hodnotenia, jedným z nich je  \zkratka{zkCVSS}, ktorý definuje riziká podľa definovaných metrík na základe dosiahnutého skóre do nasledujúcich tried:
+
+\begin{itemize}
+	\item 0: No issue
+	\item 0,1\,--\,3,9: Low
+	\item 4,0\,--\,6,9: Medium
+	\item 7,0\,--\,8,9: High
+	\item 9,0\,--\,10,0: Critical
+\end{itemize} 

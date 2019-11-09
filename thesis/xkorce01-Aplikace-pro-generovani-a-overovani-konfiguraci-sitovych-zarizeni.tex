@@ -4,8 +4,8 @@
 %  draft,    				  % Testovací překlad
   12pt,       				% Velikost základního písma je 12 bodů
   a4paper,    				% Formát papíru je A4
-  %oneside,      			% Jednostranný tisk
-	twoside,      			% Dvoustranný tisk (kapitoly a další důležité části začínají na lichých stranách)
+  oneside,      			% Jednostranný tisk
+	%twoside,      			% Dvoustranný tisk (kapitoly a další důležité části začínají na lichých stranách)
 %% Z následujicich voleb lze použít maximálně jednu:
 %	dvipdfm  						% výstup bude zpracován programem 'dvipdfm' do PDF
 %	dvips	  						% výstup bude zpracován programem 'dvips' do PS
@@ -109,7 +109,7 @@
     {Ž}{{\v{Z}}}1
 }
 
-\usepackage{svg}
+\usepackage{float}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%      Definice informací o dokumentu             %%%%%%%%%%
@@ -208,6 +208,21 @@
 %Pro vkládání kapitol i příloh používejte raději \include než \input
 %% Vložení souboru 'text/uvod.tex' s úvodem
 \include{text/uvod}
+
+%% Vložení souboru 'text/bezpecnost.tex' s úvodem
+\include{text/kyberneticka-bezpecnost}
+
+%% Vložení souboru 'text/bezpecnostny-audit.tex' s úvodem
+\include{text/bezpecnostny-audit}
+
+%% Vložení souboru 'text/bezpecnostne-a-prevadzkove-problemy.tex' s úvodem
+\include{text/bezpecnostne-a-prevadzkove-problemy}
+
+%% Vložení souboru 'text/navrh.tex' s úvodem
+\include{text/navrh}
+
+%% Vložení souboru 'text/implementacia.tex' s úvodem
+\include{text/implementacia}
 
 %% Vložení souboru 'text/zaver' se závěrem
 \include{text/zaver}
