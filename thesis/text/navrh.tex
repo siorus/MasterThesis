@@ -2,13 +2,149 @@
 \phantomsection
 
 \section{Požiadavky na aplikáciu}
-O kĺúčových vlastnostiach
+O kĺúčových vlastnostiach, pridaj este zmienku o kontrole aktualnej verzie. Cisco ma API na to
 
 \section{Existujúce riešenia a odlišnosti}
 
 \section{Zoznam odporúčaní}
- možno do prílohy, určite ako vznikal, rozobrať facility, severity, prečo rozdelenie podľa vrstiev a prečo nie podľa facility
+ určite ako vznikal, rozobrať facility, severity, prečo rozdelenie podľa vrstiev a prečo nie podľa facility, citacie k jednotlivym riadkom, prejst este raz planes a severity, eliminovat viac riadkov s loopback, skratky z tabulky treba vypisat
 
+\scriptsize
+\begin{longtable}{|P{8em}|P{9em}|P{8em}|P{5em}|P{5em}|P{10em}|}
+	\captionsetup{font=normalsize}
+    \hline
+    Útok / Problém & Mitigácia / Konfigurácia typu “Best practise” & Plane \hspace{2em}{[}DATA| CONTROL| \hbox{MANAGEMENT}{]} & Severity {[}\hbox{CRITICAL}| HIGH| MEDIUM| LOW| NOTIFY{]}\cite{McMillan2018} & Facility\hspace{1em}{[}R| L3SW| L2SW{]} & Facility layer \hspace{2em} {[}ACC| DIST| \hbox{CORE/EDGE}| COLALL| \hbox{COLDISTACC}| \hbox{COLCOREDIST}{]} \\ \hline
+    \endhead
+    %
+    Nepovolený prístup k manažovaniu zariadenia & Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v logu prístupy & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Nemožná identifikácia zariadenia & Vytvoriť hostname & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    Nemožnosť vzdialeného prístupu & Vytvoriť doménové meno & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    Neautorizovaný prístup cez nepoužívané a nezabezpečené protokoly na manažment zariadení & Vypnúť nepoužívané protokoly na prístup k manažovaniu zariadení (telnet a pod.) & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Prítup bez požadovaných prístupových údajov & Nakonfigruovanie protokolov na manažment zariadení, aby požadovali prístupové údaje (telnet a pod.) & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k odposluchu & Zapnutie SSH & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Nebezpečná verzia 1 protokolu SSH & SSH verzia 2 & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Útok na krátky RSA kĺúč & Dĺžka RSA kľúča minimálne 2048 bitov & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnemu sedeniu môže viesť k zmene konfigurácie & SSH čas vypršania sedenia & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Hádanie hesla k RSA kľúču & SSH maximálny počet neúspešných pokusov & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Útok hrubou silou na zistenie prihlasovacích údajov & Špecifikovať čas po ktorý nie je možné po N pokusoch sa prihlásiť & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Prihlásenie na zariadenie nie je možné kvôli zablokovaniu pre príliš veľa neúspešných pokusov & Povolenie prístupu administrátorovi na základe IP adresy, keď je protokol na manažovanie zariadení nedostupný kvôli DOS útoku & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnneum sedeniu môže viesť k zmene konfigurácie & Čas vypršania sedenia pre protokol na manažovanie zariadení & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Možné prihlásenie do zariadenia cez telnet keď je prítomné SSH & Zakázať telnet ak je SSH aktívne & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Útočník nie je informovaný o právnych následkoch & Právne upozornenie pri prístupe k zariadeniu & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    Možnosť prečítať heslá z uniknutých konfigurácií & Zašifrovanie hesiel v otvorenej podobe & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Nepovolená zmena konfigurácie zariadenia & Vytvorenie hesla na editovanie konfigurácie zariadenia & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Nepovolený prístup k manažmentu konfigurácie zariadenia & Lokálne zabezpečené účty & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií & Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií & Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Hádanie prístupových údajov & Definovanie maximálneho počtu neúspešných pokusov o prihlásenie a následné zablokovanie účtu & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Prihlásenie bez prihlasovacích údajov & Zakázať záložné prihlásenie bez poskynutia autentizačných prostriedkov & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    AAA používa primárne lokálne účty namiesto centralizovaných na serveri & AAA nesmie používať ako prvú možnosť prihlásenia lokálny účet & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy & Nastavenie AAA autorizácie pre spúštanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu & Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    AAA zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre AAA & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Odpočúvanie SNMP verzie 1 a 2c & Použitie SNMP verie 3 pokiaľ je SNMP používané & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Modifikovanie konffigurácie pomocou SNMP & Obmedzenie SNMP iba na čítanie & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Neoprávnený prístup k SNMP informáciám & Obmedzenie SNMP iba pre vybrané IP adresy & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Administrátor nemá povedomie o problémoch na zariadení & Povolenie asynchrónnych správ SNMP TRAP & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie & Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Sťažená identifikácia SNMP správ z rôznych IP & Definovanie lokácie SNMP serveru & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre SNMP & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Zmeny názvov rozhraní medzi reštartami a nemožnosť monitorovanie pomocou SNMP & SNMP statické nemenné meno rozhrania aj po reštarte zariadenia & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Administrátor nemá povedomie o problémoch na zariadení & Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Neprijímanie všetkých dôležitých incidentov na zariadení z protokolu SYSLOG & Špecifikovanie dôležitosti oznámenií SYSLOG na INFORMATIONAL & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre \hbox{SYSLOG} & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Nedostatočné a neštandardné formáty času v logovacích správach & Definovanie formátu času pre logovacie a ladiace výstupy & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Administrátor nevidí dôležité incidenty pri prihlásení a konfigurovaní cez konzolu & Vypisovanie \hbox{SYSLOG} správ \hbox{CRITICAL} a dôležitejších do terminálu & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Malá vyrovnávacia pamäť pre SYSLOG je dôvodom zahadzovanie správ & Definovanie veľkosti SYSLOG buffera dôležitosti oznámení na INFORMATIONAL & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ & Definovanie dočasného úložiska SYSLOG správ v prípade nedostupnosti servera & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Skenovanie a zistenie informácií o sieti za pomoci protokolu CDP a využitie bezpečnostných chýb & Zakázanie protokolu CDP & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Skenovanie a zistenie informácií o sieti za pomoci protokolu LLDP a využitie bezpečnostných chýb & Zakázanie protokolu LLDP & Management & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Nekonzistencia časov v logoch a problém pričlenenia logov k relevantným incidentom & Nastavenie NTP serveru pre aktuálny čas v logoch & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Pripojenie servera s rovnakou IP adresou, ale falošným časom & Nastavenie NTP autentizácie & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    NTP zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre NTP & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Väčšia bezpečnosť (pub/priv key) NTP a podpora IPv6 & Použitie NTP verzie 4 & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Falošný čas od podvrhnutého NTP zdroja & Nastavenie NTP peer s inými sieťovými zariadeniami na krížovú validáciu času a záložný zdroj času & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Útočník s fyzickým prístupom k zariadeniu alebo portu môže odpočúvať alebo posielať škodlivý obsah & Explicitne zakázať nepoužívané porty & Data & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Zdrojové rozhranie pre management a control protokoly & Vytvorť Loopback rozhranie s IP adresou & Control & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Identifikácia pravidla v ACL & Popis každého pravidla v ACL pre lepšiu identifikáciu & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    Indentifikácia rozhrania & Popis každého rozhrania & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    SSH zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre SSH & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    DOS útok na štandardný SSH port 22 & Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie port knocking & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Nepovolený prístup k manažmentu konfigurácie zariadenia & Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.) & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Odpočuvanie konfigurácií zariadení pri zálohe & Zapnutie zabezpečenej zálohy na server (SFTP, SCP) & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Vymazanie konfigurácie & Zapnutie ochrany pred výmazom konfigurácie & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Možnosť urobiť diff zmien konfigurácií a jej návrat & Periodické zálohovanie konfigurácie a logovanie jej zmien & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    DOS útok alebo pokus o prístup k tomu, čo nie je povolené & Logovanie pravidiel zahodenia paketov v ACL & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Nízky stav voľnej pamäte & Nastavenie notifikácie pri dochádzaní pamäte & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Logovacie správy nemôžu byť zaznamenané kvôli nedostatku pamäte & Rezervovanie pamäte pre kritické notifikácie pri nedostatku pamäte & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Vysoké zaťaženie CPU & Nastavenie notifikácie vysokom zaťažení CPU & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Vysoké zaťaženie zariadenia spôsobilo nemožnosť prihlásenia k nemu & Rezervovanie pamäte preprotokoly na manažment zariadení pri nedostatku pamäte & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Pretečenie pamäte & Povoliť mechanizmy na detekciu pretečenia pamäte & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Načítanie škodlivej konfigurácie zo siete počas bootovania & Vypnutie načítania operačného systému alebo konfigurácie zo siete pokiaľ to nie je nutné & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Proxy ARP môže viesť k obídeniu PVLAN a rozširuje broadcast doménu & Vypnutie Proxy ARP & Control & CRITICAL & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    DOS útok na stanicu, cez ktorú bola špecifikovaná cesta a teda nemožnosť komunikácie s koncovým bodom. Alebo zosnovanie MITM útoku & Vypnutie IP source routing & Control & CRITICAL & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    DOS útok pomocou podvrhnutej IP adresy alebo vzdialený útok na smerovací protokol & Zapnutie reverse path forwarding strict/loose mode & Control & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely & Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte & Záleží na výrobcovi a zariadení & HIGH & Záleží na výrobcovi a zariadení & Záleží na výrobcovi a zariadení \\ \hline
+    Útočník môže zistiť, že IP adresa, na ktorú skušal ping je nesprávna & Vypnutie spáv ICMP Unreachable & Data & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Útočník môže zistiť masku podsiete pomocou ICMP Mask reply & Vypnutie spáv ICMP Mask reply & Data & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Umožňuje DOS Smurf útok, mapovanie siete pomocou ping na broadcast adresu vzdialenej siete & Vypnutie ICMP echo správ na broadcast adresu, vypnutie directed broadcasts & Data & CRITICAL & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Útočník môže zistiť smerovacie informácie alebo vyťažiť CPU & Vypnutie spáv ICMP Redirects & Data & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Nekonzistenia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom & Povolit súčasne iba jednému administrátorovi vykonávanie zmien v konfigurácii & Management & HIGH & VŠETKY & VŠETKY \\ \hline
+    Problém identifikácie SYSLOG správ s rovnakou časovou značkou & Pridanie sekvenčného čísla ku každej syslog správe & Management & LOW & VŠETKY & VŠETKY \\ \hline
+    Nemožnosť prihlásenia pri zaseknutom TCP spojení & Terminovanie zaseknutého TCP spojenia & Management & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Vloženie a manipulácia so smerovacími informáciami & Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe) & Control & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    OSPF virtuálne linky degradujú výkon & Vypnutie virtuálnych liniek pre OSPF & Control & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Koncové zariadenie, užívateľ a útočník môžu vidiet smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy & Špecifikovanie rozhraní, ktoré nebudú prijímať routovacie informácie & Control & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Nemožnosť sprevádzkovať procesy smerovacích protokolov v určitých prípadoch pri použití IPv6 & Špecifikovanie identifikátorov smerovacích protokolov pre každý router (router ID) & Control & MEDIUM & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Vysledovateľnosť nefunkčnosti routovacieho protokolu a nesprávneho nastavenia & Zaznamenie zmeny v logu pri zmenách v smerovaní & Control & MEDIUM & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Škodlivé vloženie smerovacích informácií informácií, vzdialený útok & TTL security & Control & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Nesprávne smerovanie kvôli sumarizácií & Vypnutie automatickej sumarizácie smerovacích protokolov & Control & HIGH & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Packety budú spracovávané v CPU, ktoré môže byť preťažené a môže byť zmenené smerovanie na obídenie bezpečnostnej kontroly & Zahadzovanie IPv4 paketov s rozšírenou hlavičkou (IP Options filtering) & Control & CRITICAL & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Odpočúvanie komunikácie  cez nezabezpečené tunely & Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely & Data & CRITICAL & R, L3SW & CORE/EDGE, DIST, COLCOREDIST, COLDISTACC, \hbox{COLALL} \\ \hline
+    Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám & Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám & Control & NOTICE & VŠETKY & VŠETKY \\ \hline
+    IP spoofing & Špecifikácia ACL na zakázanie a logovanie privátnych a špeciálnych IP adries z RFC 1918, RFC 3330 & Control & CRITICAL & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+    IP spoofing & Špecifikácia ACL na zakázanie a logovanie špeciálnych IPv6 adries z RFC 5156 & Control & CRITICAL & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+    Rogue root bridge & Rogue root bridge protection (root guard) & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Pripojenie pripínaču na koncový prístupový port & BPDU protection (BPDU guard) & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Rýchlosť konvergencie & Prístupové porty by sa nemali podielať na STP procese & Control & HIGH & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Unidirectional communication between switches can lead to loop topology/ Jednosmerná komunikácia medzi prepínačmi môźe viesť k topoógií so slučkami & Špeciálne konfigurácie zaisťujúce bezslučkovú topológiu pomocou STP keď nastane jednosmerná komunikácia (Loop Guard) & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Nemožnosť identifikácie účelu VLAN & Pridanie mena k VLAN & Control & LOW & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov & Vytvorenie separátnej VLAN pre manažment & Control & MEDIUM & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Útočníkovi s fyzickým prístupom k portu môže byť pridelený prístup do časti siete, ktorá zodpovedá príslušnej VLAN & Vytvorenie špeciálnej black hole VLAN pre nevyužité porty & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Predvolenej VLAN je povolené prepnute na akýkoľvek port, VLAN hopping, double tagging & Odobrať všetky porty z predvolenej VLAN & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Predvolenej VLAN je povolené byť prepnutá na akýkoľvek port, VLAN hopping, double tagging & Vytvorenie natívnej VLAN rozdielnej ako predvolená, priradeni k trunk portu a povolenie iba potrebných portov & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    DTP útok, Switch spoofing útok & Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    MAC Spoofing, MAC Flooding & Definovanie maximálne 1 MAC adresy na port, priradenie MAC adresy na port & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    MAC Spoofing, MAC Flooding & Nastavenie režimu narušenia, ktorý vypne port alebo informuje správcu o pripojení nepovoleného zariadenia & Control & HIGH & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Nový prepínač s vyšším číslom revízie, ale s nesprávnou VLAN databázou môže šíriť falošné VLAN identifikátory a spôsobiť nefunkčnosť siete, veľa možnćh VTP útokov kvǒli zraniteľnostiam & Vypnutie MVRP. MRP, GARP, VTP po úspešnej propagácií VLAN & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    VTP musí byť používané & Use VTP v3 with set password and enable VTP prunning when VTP must be enabled/ Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Vysoké zaťaženie linky & Poslanie notifikácie pri prekročení prahovej hodnoty zaťaženia linky & Control & MEDIUM & VŠETKY & VŠETKY \\ \hline
+    Využívanie siete nepovolenými používateľmi & Zapnutie 802.1x & Control & HIGH & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Útok hrubou silou hádaním prístupových údajov pre 802.1x & Limitovanie maximálneho počtu neúspešných pokusov o autentizáciu 802.1x & Control & HIGH & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    IPv6 ND Spoofing & IPv6 ND Inspection & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Rogue RARA FloodRoute Information Option injectionRA RouterLifeTime=0 & RA Guard & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    DHCP spoofing & DHCP snooping, IPv6 Snooping, DHCPv6 Guard & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Příliš veľa DHCP paketov, zaplavenie DHCP paketmi & Odmedziť počet DHCP paketov na nedôverihodných rozhraniach & Control & MEDIUM & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    ARP Spoofing & Dynamic ARP Inspection & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    IP spoofing & IPv4/IPv6 Source Guard & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    IPv6 Next Header  a IPv6 Fragmentation útok & ACL blokujúce nerozpoznateľne rozšírené hlavičky & Control & CRITICAL & VŠETKY & VŠETKY \\ \hline
+    Mapovanie sete pomocou pingu na multicast adresu všetkých uzlov a MLD Query Overload a Smurf útok & ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD Query na prístupových portoch & Control & MEDIUM & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Mobilné zariadenia pripojené bezdôtovo spotrebovávajú veľa energie kvôli častým RA správam & RA Throttling & Control & LOW & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete & Povolenie FHRP s autentizáciou a aktuálnou verziou & Control & MEDIUM & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+    Vyčerpanie cache susedov & Statický záznam pre kritické zariadenia (servery) spájajúce IP a MAC adresu a VLAN & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Vyčerpanie cache susedov & Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povolujeme iba komunikáciu s cieľovými IPv6 adresami, ktoré sa nachádzajú v našej sieti & Control & CRITICAL & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+    Vyčerpanie cache susedov & IP destination Guard (First Hop Security) & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Vyčerpanie cache susedov & Limitovanie počtu IPv6 adries v cache susedov & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Vyčerpanie cache susedov & Limitovanie času IPv6 adresy v cache susedov & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Vyčerpanie cache susedov & Skrátenie IPv6 prefixu, aplikovateľné iba pr použití DHCPv6 & Control & CRITICAL & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+    SYN Flood & Nastavenie zachytávanie firewallom pre útok flagu SYN & Control & CRITICAL & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+    Komplexné bezpečnostné hrozby a narušenie bezpečnosti & Nastavenie IDS/IPS & Control & HIGH & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
+		
+	\caption{Zoznam bezpečnostných a prevádzkových problémov a odporúčaní}
+	\label{checklist}\\
+\end{longtable}
+
+ 
 \section{Rozdelenie príkazov}
  pavuk na GDRIVE z draw.io, krátke príklady k jednotlivym prvkom pavuka a vysvetliť komplikácie  
 

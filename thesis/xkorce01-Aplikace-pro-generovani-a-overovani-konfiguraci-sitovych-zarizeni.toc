@@ -1,0 +1,53 @@
+\babel@toc {slovak}{}
+\babel@toc {slovak}{}
+\contentsline {chapter}{\IeC {\'U}vod}{9}{section*.6}% 
+\contentsline {chapter}{\numberline {1}Kybernetick\IeC {\'a} bezpe\IeC {\v c}nos\IeC {\v t}}{10}{chapter.7}% 
+\contentsline {section}{\numberline {1.1}Vybran\IeC {\'e} pojmy z kybernetickej bezpe\IeC {\v c}nosti}{10}{section.9}% 
+\contentsline {section}{\numberline {1.2}Ciele sie\IeC {\v t}ovej bezpe\IeC {\v c}nosti}{11}{section.11}% 
+\contentsline {subsection}{\numberline {1.2.1}Tri\IeC {\'a}da CIA}{12}{subsection.12}% 
+\contentsline {section}{\numberline {1.3}Pas\IeC {\'\i }vne a akt\IeC {\'\i }vne \IeC {\'u}toky}{13}{section.14}% 
+\contentsline {chapter}{\numberline {2}Bezpe\IeC {\v c}nostn\IeC {\'y} audit}{16}{chapter.20}% 
+\contentsline {section}{\numberline {2.1}Mana\IeC {\v z}ment riz\IeC {\'\i }k}{17}{section.33}% 
+\contentsline {chapter}{\numberline {3}Prev\IeC {\'a}dzka a bezpe\IeC {\v c}nos\IeC {\v t} siet\IeC {\'\i }}{19}{chapter.43}% 
+\contentsline {section}{\numberline {3.1}Sie\IeC {\v t}ov\IeC {\'e} prvky}{19}{section.45}% 
+\contentsline {section}{\numberline {3.2}Hierarchick\IeC {\'y} model siet\IeC {\'\i }}{20}{section.47}% 
+\contentsline {section}{\numberline {3.3}\IeC {\'U}rovne sie\IeC {\v t}ov\IeC {\'y}ch prvkov}{21}{section.49}% 
+\contentsline {section}{\numberline {3.4}Riadenie a zneu\IeC {\v z}itie pr\IeC {\'\i }stup}{22}{section.51}% 
+\contentsline {section}{\numberline {3.5}Smerovacie protokoly}{22}{section.52}% 
+\contentsline {section}{\numberline {3.6}Identifik\IeC {\'a}cia zariaden\IeC {\'\i }, pravidiel a nastaven\IeC {\'\i }}{23}{section.53}% 
+\contentsline {section}{\numberline {3.7}\IeC {\v S}ifrovanie hesiel}{23}{section.54}% 
+\contentsline {section}{\numberline {3.8}Logovanie}{23}{section.55}% 
+\contentsline {section}{\numberline {3.9}Synchroniz\IeC {\'a}cia \IeC {\v c}asu}{23}{section.56}% 
+\contentsline {section}{\numberline {3.10}Z\IeC {\'a}loha a zabezpe\IeC {\v c}enie konfigur\IeC {\'a}ci\IeC {\'\i }}{23}{section.57}% 
+\contentsline {section}{\numberline {3.11}Spr\IeC {\'a}vanie pri vysokom za\IeC {\v t}a\IeC {\v z}en\IeC {\'\i }}{23}{section.58}% 
+\contentsline {section}{\numberline {3.12}Monitorovanie v\IeC {\'y}konu siete}{23}{section.59}% 
+\contentsline {section}{\numberline {3.13}Probl\IeC {\'e}my vrstvy L2}{23}{section.60}% 
+\contentsline {section}{\numberline {3.14}First Hop Security}{23}{section.61}% 
+\contentsline {section}{\numberline {3.15}First Hop Redundancy Protocols}{24}{section.62}% 
+\contentsline {section}{\numberline {3.16}Tunely}{24}{section.63}% 
+\contentsline {section}{\numberline {3.17}Mapovanie siete a objavovanie zariaden\IeC {\'\i }}{24}{section.64}% 
+\contentsline {section}{\numberline {3.18}Nepou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} a nebezpe\IeC {\v c}n\IeC {\'e} slu\IeC {\v z}by}{24}{section.65}% 
+\contentsline {section}{\numberline {3.19}Ostatn\IeC {\'e}}{24}{section.66}% 
+\contentsline {chapter}{\numberline {4}N\IeC {\'a}vrh}{25}{chapter.67}% 
+\contentsline {section}{\numberline {4.1}Po\IeC {\v z}iadavky na aplik\IeC {\'a}ciu}{25}{section.69}% 
+\contentsline {section}{\numberline {4.2}Existuj\IeC {\'u}ce rie\IeC {\v s}enia a odli\IeC {\v s}nosti}{25}{section.70}% 
+\contentsline {section}{\numberline {4.3}Zoznam odpor\IeC {\'u}\IeC {\v c}an\IeC {\'\i }}{25}{section.71}% 
+\contentsline {section}{\numberline {4.4}Rozdelenie pr\IeC {\'\i }kazov}{37}{section.73}% 
+\contentsline {section}{\numberline {4.5}Rozdelenie sie\IeC {\v t}ov\IeC {\'y}ch prvkov}{37}{section.74}% 
+\contentsline {section}{\numberline {4.6}Hierarchick\IeC {\'a} \IeC {\v s}trukt\IeC {\'u}ra}{37}{section.75}% 
+\contentsline {chapter}{\numberline {5}Implement\IeC {\'a}cia}{38}{chapter.76}% 
+\contentsline {section}{\numberline {5.1}Pou\IeC {\v z}it\IeC {\'e} technol\IeC {\'o}gie}{38}{section.78}% 
+\contentsline {subsection}{\numberline {5.1.1}Python}{38}{subsection.79}% 
+\contentsline {subsection}{\numberline {5.1.2}YAML}{38}{subsection.80}% 
+\contentsline {subsection}{\numberline {5.1.3}Regul\IeC {\'a}rne v\IeC {\'y}razy}{38}{subsection.81}% 
+\contentsline {section}{\numberline {5.2}Konfigura\IeC {\v c}n\IeC {\'e} s\IeC {\'u}bory}{38}{section.82}% 
+\contentsline {subsection}{\numberline {5.2.1}S\IeC {\'u}bor popisuj\IeC {\'u}ci zariadenie}{38}{subsection.83}% 
+\contentsline {subsection}{\numberline {5.2.2}S\IeC {\'u}bor popisuj\IeC {\'u}ci modul}{38}{subsection.84}% 
+\contentsline {section}{\numberline {5.3}Moduly}{38}{section.85}% 
+\contentsline {chapter}{Z\IeC {\'a}ver}{39}{section*.87}% 
+\contentsline {chapter}{Literat\'{u}ra}{40}{section*.89}% 
+\contentsline {chapter}{Zoznam symbolov, veli\v {c}\'{\i }n a skratiek}{43}{section*.91}% 
+\contentsline {chapter}{Zoznam pr\'{i}loh}{44}{section*.93}% 
+\contentsline {chapter}{\numberline {A}Zdrojov\IeC {\'e} s\IeC {\'u}bory }{45}{chapter.94}% 
+\contentsline {section}{\numberline {A.1}Konfigura\IeC {\v c}n\IeC {\'e} s\IeC {\'u}bory }{45}{section.95}% 
+\contentsline {chapter}{\numberline {B}Checklist }{46}{chapter.96}% 

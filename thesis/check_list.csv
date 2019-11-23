@@ -1,0 +1,1126 @@
+"Checked
+Overené","Commands
+Príkazy","Mittigation / Best practice configuration
+Mitigácia / Konfigurácia typu “Best practice”","Attack / Issue
+Útok / Problém","Plane [DATA|CONTROL
+|MANAGEMENT]","Protocol
+Protokol","Severity
+Závažnosť
+[CRITICAL|HIGH
+|MEDIUM|LOW|NOTIFY]
+CCNA SEC STUDY GUIDE","Facility
+Zariadenie
+[R/L3SW|L2SW]","Facility layer
+Zariadenie operujúce na vrstve
+[ACC/DIST/CORE]","Source(s)
+Zdroj(e)","Prerequisite
+Prerekvizita
+","Ports
+Porty","Comments
+Komentáre","MY Comment"
+,"hostname <hostname>","Set hostname / Vytvoriť hostname","Unable to identify device / Nemožná identifikácia zariadenia","Management","NONE","LOW","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"ip domain-name <domain>","Set domain name / Vytvoriť doménové meno","NONE / NIE JE","Management","NONE","LOW","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"ip access-list standard ACL_NAME
+ remark permit specifi ip and log
+ permit <ip address> <mask> log-input
+ remark deny other and log
+ deny any log-input
+
+ipv6 access-list ACL_NAME
+ remark permit specifi ip and log
+ permit <ipv6 address>/<prefix> any log-input
+ remark deny other and log
+ deny any any log-input
+
+OR in global config 
+
+login on-failure log-input
+login on-failure trap
+login on-failure
+login on-success log-input
+login on-success trap
+login on-success","Set and apply ACL for OOB, Telnet, SSH, etc. and log access / Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v logu prístupy","Unauthorized access to management of device/Nepovolený prístup k manažovaniu zariadenia","Management","NONE","CRITICAL","ALL","ALL","Hardening Cisco Routers
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,"LOG ON SUCCESS CAN BE SUPRESS WHEN AAA IS USED
+https://community.cisco.com/t5/other-security-subjects/how-to-log-failed-telnet-attempts/td-p/1400439"
+,"line vty <num> <num>
+ ip access-class <acl name> in
+ ipv6 access-class <acl name> in
+
+line tty <num> <num>
+ ip access-class <acl name> in
+ ipv6 access-class <acl name> in
+
+line con <num>
+ ip access-class <acl name> in
+ ipv6 access-class <acl name> in
+
+line aux <num>
+ ip access-class <acl name> in
+ ipv6 access-class <acl name> in","Set and apply ACL for OOB, Telnet, SSH, etc. and log access / Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v logu prístupy","Unauthorized access to management of device/Nepovolený prístup k manažovaniu zariadenia","Management","NONE","CRITICAL","ALL","ALL","Hardening Cisco Routers
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,"treba aj console port?"
+,"line aux 0
+ no exec
+ transport input none","Disable unused management connections / Vypnúť nepoužívané protokoly na prístup k manažovaniu zariadení (telnet a pod.)","Unauthorized access through unsecured and unused management connections / Neautorizovaný prístup cez nepoužívané a nezabezpečené protokoly na manažment zariadení","Management","NONE","HIGH","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"line vty <num> <num>
+ password
+ login| login local
+
+line tty <num> <num>
+ password
+ login| login local
+
+line con <num>
+ password
+ login| login local
+
+line aux <num>
+ password
+ login| login local","Configure management connections to ask for credentials / Nakonfigruovanie protokolov na manažment zariadení, aby požadovali prístupové údaje (telnet a pod.)","Access without credentials / Prítup bez požadovaných prístupových údajov","Management","NONE","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,"CANNOT HAVE “no login”"
+,"line vty <num> <num>
+  login local
+  transport input ssh","SSH enable / Zapnutie SSH","Not using secured management connections can lead to  eavesdropping / Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k odposluchu","Management","SSH","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,"Prequrities – local user, created domain and hostname, generated rsa. 
+username cisco secret ciscopsswd
+ip domain-name my_domain
+crypto key generate rsa modulus 1024
+ip ssh version 2
+line vty 0 15
+  login local
+  transport input ssh"
+,"ip ssh version 2","SSH version 2 / SSH verzia 2","Unsecured SSH v1 / Nebezpečná verzia 1 protokolu SSH","Management","SSH","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+",,,,
+,"ip ssh timeout <timeout seconds>","SSH timeout / SSH čas vypršania sedenia","Long inactive sessions can be stolen or physical access to device which is not lock can be used to manipulate with configurations / Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnemu sedeniu môže viesť k zmene konfigurácie","Management","SSH","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,"NOT SURE WHAT IS APPLIED EXEC-TIMEOUT OR SSH TIMEOUT"
+,"crypto key generate rsa modulus 2048","Set RSA key length >= 2048 / Dĺžka RSA kľúča minimálne 2048 bitov","Short RSA key attack/Útok na krátky RSA kĺúč","Management","SSH","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+NIST
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf",,,,
+,"ip ssh authentication-retries <max num>","SSH auth max retries / SSH maximálny počet neúspešných pokusov","Guessing RSA key passphrase / Hádanie hesla k RSA kľúču","Management","SSH","HIGH","ALL","ALL","https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_ssh/configuration/15-s/sec-usr-ssh-15-s-book/sec-usr-ssh-sec-shell.html",,,,
+,"login block-for 60 attempts 3 within 30","Wait for specific time to allow another access after N unsuccessful login attempts / Špecifikovať čas po ktorý nie je možné po N pokusoch sa prihlásiť","Brute force attack to guess credentials / Útok hrubou silou na zistenie prihlasovacích údajov","Management","NONE","HIGH","ALL","ALL","Cisco router configuration handbook
+https://www.samuraj-cz.com/clanek/cisco-ios-23-autentizace-uzivatele-na-switchi-vuci-active-directory/",,,,
+,"login quiet-mode access-class <acl name>","Allow admin to access from IP when unsuccessful logins disabled management connection due to DOS guessing / Povolenie prístupu administrátorovi na základe IP adresy, keď je protokol na manažovanie zariadení nedostupný kvôli DOS útoku","Login in to device is not possible due many unsuccessful logins due to DOS / Prihlásenie na zariadenie nie je možné kvôli zablokovaniu pre príliš veľa neúspešných pokusov","Management","NONE","MEDIUM","ALL","ALL","Cisco router configuration handbook
+https://www.samuraj-cz.com/clanek/cisco-ios-23-autentizace-uzivatele-na-switchi-vuci-active-directory/",,,,
+,"NO
+line vty <num> <num>
+ transport input all
+ transport input telnet
+
+line tty <num> <num>
+ transport input all
+ transport input telnet
+
+line con <num>
+ transport input all
+ transport input telnet
+
+line aux <num>
+ transport input all
+ transport input telnet","Do not allow telnet when SSH is enabled / Zakázať telnet ak je SSH aktívne","Possible access to device through telnet when SSH is present / Možné prihlásenie do zariadenia cez telnet keď je prítomné SSH","Management","NONE","CRITICAL","ALL","ALL",,,,,
+,"banner motd
+banner login
+banner exec","Legal messages notice / Právne upozornenie pri prístupe k zariadeniu","NONE / NIE JE","Management","NONE","LOW","ALL","ALL","CCNA SECURITY STUDY GUIDE
+CIS https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"line vty <num> <num>
+ exec-timeout 5
+
+line tty <num> <num>
+ exec-timeout 5
+
+line con <num>
+ exec-timeout 5
+
+line aux <num>
+ exec-timeout 5","Management connection maximum timeout / Čas vypršania sedenia pre protokol na manažovanie zariadení","Long inactive sessions can be stolen or physical access to device which is not lock can be used to manipulate with configurations / Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnneum sedeniu môže viesť k zmene konfigurácie","Management","NONE","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening
+Cisco SAFE Reference Guide
+",,,,
+,"service password-encryption","Encrypt passwords in clear text / Zašifrovaniee hesiel v otvorenej podobe","Read passwords from stolen configurations / Možnosť prečítať heslá z uniknutých konfigurácií","Management","NONE","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,"POOR SECURITY, PASSWORD CAN BE EASILY CRACKED"
+,"enable secret <secret password>","Set password for editing device configuration / Vytvorenie hesla na editovanie konfigurácie zariadenia","Unauthorized editing of device configuration / Nepovolená zmena konfigurácie zariadenia","Management","NONE","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,"Cisco router hardening a CIS je poznamka, ze type 7 je napadnutelny a aj typ sifry"
+,"NO enable password <password>","Set password for editing device configuration / Vytvorenie hesla na editovanie konfigurácie zariadenia","Unauthorized editing of device configuration / Nepovolená zmena konfigurácie zariadenia","Management","NONE","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,"Cisco router hardening a CIS je poznamka, ze type 7 je napadnutelny a aj typ sifry"
+,"username secret <username> <secret password>","Local secured accounts / Lokálne zabezpečené účty","Unauthorized access to management of device / Nepovolený prístup k manažmentu konfigurácie zariadenia","Management","NONE","CRITICAL","ALL","ALL","
+Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"NO username password  <username> <password>","Local secured accounts / Lokálne zabezpečené účty","Unauthorized access to management of device / Nepovolený prístup k manažmentu konfigurácie zariadenia","Management","NONE","CRITICAL","ALL","ALL","
+Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"aaa new-model
+radius server <radius server name>
+  address ipv4 <ip adddress> / address ipv6 <ipv6 adddress>
+  key <password>
+
+or 
+
+radius-server host <ip adddress>
+radius-server key <password>
+
+aaa group server radius <radius group>
+  server name <radius server name>
+aaa authentication login default / <radius login> group <radius group> local enable
+
+line tty <num> <num>
+  login authentication default / <radius login>
+line vty <num> <num>
+  login authentication default / <radius login>
+line con <num>
+  login authentication default / <radius login>
+line aux <num>
+  login authentication default / <radius login>","Define and enable AAA server for login with fallback mechanism / Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia","Traceability of administrators and confiiguration they made, centralization / Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL","Hardening Cisco Routers
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+CCNA SECURITY STUDY GUIDE
+Cisco Router Hardening",,,,"Pozri aj SLSP konfiguracie, tam sa to nastavuje trosku inak, niekde  som nasiel aj jednoriackovy cmd, v GNS nejde radius-server host 10.0.0.10 auth-port 1645 acct-port 1646 key 1234567890
+Xca3-08 xca4 switch ch07"
+,"aaa new-model
+tacacs server <tacacs server name>
+  address ipv4 <ip adddress> / address ipv6 <ipv6 adddress>
+  key <password>
+
+or 
+
+tacacs-server host <ip adddress>
+tacacs-server key <password>
+
+aaa group server tacacs <tacacs group>
+  server name <tacacs server name>
+aaa authentication login default / <tacacs login> group <tacacs group> local enable
+
+line tty <num> <num>
+  login authentication default / <tacacs login>
+line vty <num> <num>
+  login authentication default / <tacacs login>
+line con <num>
+  login authentication default / <tacacs login>
+line aux <num>
+  login authentication default / <tacacs login>","Define and enable AAA server for login with fallback mechanism / Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia","Traceability of administrators and confiiguration they made, centralization / Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL","Hardening Cisco Routers
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+CCNA SECURITY STUDY GUIDE
+Cisco Router Hardening",,,,"Pozri aj SLSP konfiguracie, tam sa to nastavuje trosku inak – r11veterna1
+TODO KERBEROS"
+,"aaa authentication enable default group <radius group> enable
+","Define and enable AAA for editing configuration with fallback mechanism / Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia","Traceability of administrators and confiiguration they made, centralization / Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií","Management","RADIUS/TACACS+/KERBEROS","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"NO aaa authentication enable default enable","Define and enable AAA for editing configuration with fallback mechanism / Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia","Traceability of administrators and confiiguration they made, centralization / Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií","Management","RADIUS/TACACS+/KERBEROS","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,"AAA is not contacted, local enable password is used"
+,"aaa authentication attempts login 3","Set max authentication attempts after which account will be blocked / Definovanie maximálneho počtu neúspešných pokusov o prihlásenie a následné zablokovanie účtu","Guessing credentials / Hádanie prístupových údajov","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"avoid aaa authentication login.*none.*","Disable fallback method in AAA to be no authentication / Zakázať záložné prihlásenie bez poskynutia autentizačných prostriedkov","Login without credentiials / Prihlásenie bez prihlasovacích údajov","Management","RADIUS/TACACS+/KERBEROS","CRITICAL","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"avoid aaa authentication login default local","AAA must not use local account as first login choice / AAA nesmie používať ako prvú možnosť prihlásenia lokálny účet ","AAA primarily uses local accounts instead of centralized on server / AAA používa primárne lokálne účty namiesto centralizovaných na serveri","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL",,,,,
+,"aaa authorization exec <radius login> group <radius group> local if-authenticated","Setup AAA authorization for commands execution. When AAA server stop working and fallback method is present, user is authenticated via it / Nastavenie AAA autorizácie pre spúštanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo","User logged in to device through AAA can execute all commands / Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL","Auditing Device Configurations to Ensure Compliance
+https://www.cisco.com/c/en/us/td/docs/net_mgmt/prime/infrastructure/3-1-5/user/guide/pi_ug/compliance.pdf
+Cisco Router Hardening
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,"https://community.cisco.com/t5/policy-and-access/difference-between-if-authenticated-and-none-keyword/td-p/1270499"
+,"aaa authorization commands 15 <radius login> group <radius group> local if-authenticated ","Setup AAA authorization for commands execution. When AAA server stop working and fallback method is present, user is authenticated via it / Nastavenie AAA autorizácie pre spúštanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo","User logged in to device through AAA can execute all commands / Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL","Auditing Device Configurations to Ensure Compliance
+https://www.cisco.com/c/en/us/td/docs/net_mgmt/prime/infrastructure/3-1-5/user/guide/pi_ug/compliance.pdf
+Cisco Router Hardening
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,"https://community.cisco.com/t5/policy-and-access/difference-between-if-authenticated-and-none-keyword/td-p/1270499"
+,"aaa accounting connection
+aaa accounting commands
+aaa accounting exec
+","Setup AAA accounting of executed commands and connections to device / Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov","Administrator can issue bad command which is hard to find after a time / Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu","Management","RADIUS/TACACS+/KERBEROS","HIGH","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"NO snmp-server community
+NO snmp-server host  version 1/2c
+snmp-server group <group name> v3 priv ","Use SNMP version 3  when SNMP is enabled / Použitie SNMP verie 3 pokiaľ je SNMP používané","Eavesdropping of SNMP v1 and v2c  / Odpočúvanie SNMP verzie 1 a 2c","Management","SNMP","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"ip radius source interface loopback <id>
+ip tacacs source interface loopback <id>","Specify loopback source interface for AAA connections / Definovanie loopback zdrojového rozhrania pre AAA","AAA source interface is not same on every boot / AAA zdrojové rozhranie nie je rovnaké pri každom reštarte","Management","RADIUS/TACACS+/KERBEROS","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"snmp-server view <view name> iso included
+snmp-server group <group name> v3 priv read <view name>","Restrict SNMP view for read-only / Obmedzenie SNMP iba na čítanie","Modify configuration of device by SNMP / Modifikovanie konffigurácie pomocou SNMP","Management","SNMP","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening
+NIST
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf
+CIS Cisco IOS 15 Benchmark v4.0.0  https://www.cisecurity.org/cis-benchmarks/#cisco
+Hardening Cisco Routers",,,,
+,"ip access-list standard <acl name>
+ remark permit only this IP 
+ permit <ip address> <wildcard mask>
+ deny any log-input
+ipv6 access-list <acl name>
+ remark permit only this IP 
+ permit <ipv6 address>/<prefix> any
+ remark deny other
+ deny any any log-input
+snmp-server group <group name> v3 priv read <view name>  access <acl name>","Restrict SNMP only for specific IP addresses with ACL / Obmedzenie SNMP iba pre vybrané IP adresy","Unauthorized access to SNMP informations / Neoprávnený prístup k SNMP informáciám","Management","SNMP","HIGH","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"snmp-server host <ip adddress> traps version 3 priv <user>
+snmp-server host <ip adddress> version 3 priv <user>","Enable SNMP server traps / Povolenie asynchrónnych správ SNMP TRAP","NONE / NIE JE","Management","SNMP","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening
+NIST
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf
+CIS Cisco IOS 15 Benchmark v4.0.0  https://www.cisecurity.org/cis-benchmarks/#cisco
+Hardening Cisco Routers",,,,
+,"snmp-server user <user> <group name> v3 auth sha <password> pri aes 128 <password>","Setup SNMP v3 user with at least 128bit AES encryption and SHA hash function / Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA","Eavesdropping SNMP  session due to weak encryption and  hash / Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie","Management","SNMP","CRITICAL","ALL","ALL","NIST
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf
+CIS Cisco IOS 15 Benchmark v4.0.0  https://www.cisecurity.org/cis-benchmarks/#cisco
+Hardening Cisco Routers",,,,
+,"snmp-server location <location>","Specify SNMP server location / Definovanie lokácie SNMP serveru","NONE / NIE JE","Management","SNMP","LOW","ALL","ALL",,,,,
+,"snmp-server trap-source loopback <id>","Specify loopback source interface for SNMP /  Definovanie loopback zdrojového rozhrania pre SNMP","SNMP source interface is not same on every boot / SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte","Management","SNMP","MEDIUM","ALL","ALL",,,,,
+,"snmp-server ifindex persist","SNMP persistent name of interfaces after reboot / SNMP statické nemenné meno rozhrania aj po reštarte zariadenia","Changing name of interfece between reboots and unable to monitor through SNMP / Zmeny názvov rozhraní medzi reštartami a nemožnosť monitorovanie pomocou SNMP","Management","SNMP","HIGH","ALL","ALL",,,,,"xca3-08, https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst6500/ios/12-2SX/configuration/guide/book/ifindx.html"
+,"logging on
+logging host <ip adddress>","Enable SYSLOG logging and set SYSLOG server / Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru","Administrator does not know about issues sourcing on device / Administrátor nemá povedomie o problémoch na zariadení","Management","SYSLOG","HIGH","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"logging trap informational","Setup SYSLOG logging severity to INFORMATIONAL / Špecifikovanie dôležitosti oznámenií SYSLOG na INFORMATIONAL","NONE / NIE JE","Management","SYSLOG","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"logging source-interface loopback <id>","Specify loopback source interface for SYSLOG /  Definovanie loopback zdrojového rozhrania pre SYSLOG","SYSLOG source interface is not same on every boot / SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte","Management","SYSLOG","MEDIUM","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"service timestamp log datetime
+service timestamp debug datetime","Setup time format for logging and debugging information / Definovanie formátu času pre logovacie a ladiace výstupy","NONE / NIE JE","Management","SYSLOG","MEDIUM","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"logging console critical","Display SYSLOG messages with severity CRITICAL and greater to console / Vypisovanie SYSLOG správ CRITICAL a dôležitejších do terminálu","NONE / NIE JE","Management","SYSLOG","MEDIUM","ALL","ALL","
+Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"logging buffered 64000 6","Set SYSLOG buffer to enough size and appropriate severity / Definovanie veľkosti SYSLOG buffera dôležitosti oznámení na INFORMATIONAL","Small SYSLOG buffer drops important messages / Malá vyrovnávacia pamäť pre SYSLOG je dôvodom zahadzovanie správ","Management","SYSLOG","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"logging persistent url flash:/syslog","Setup backup logging location when SYSLOG server is not  accessible / Definovanie dočasného úložiska SYSLOG správ v prípade nedostupnosti servera","Inaccesible SYSLOG server leads to not saving important messages / Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ","Management","SYSLOG","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"no CDP run 
+no cdp enable","Disable discovery protocol CDP / Zakázanie protokolu CDP","Network scan and information about network by management protocol CDP or usage of their security bugs / Skenovanie a zistenie informácií o sieti za pomoci protokolu CDP a využitie bezpečnostných chýb","Management","CDP","CRITICAL","ALL","ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"no LLDP run 
+no lldp receive 
+no lldp transmit","Disable discovery protocol LLDP / Zakázanie protokolu LLDP","Network scan and information about network by management protocol LLDP or usage of their security bugs / Skenovanie a zistenie informácií o sieti za pomoci protokolu LLDP a využitie bezpečnostných chýb","Management","LLDP","CRITICAL","ALL","ALL","Cisco CCNA Security Study Guide",,,,
+,"ntp server <ip adddress>","Setup NTP to have accurate time for logs / Nastavenie NTP serveru pre aktuálny čas v logoch","Inconsistency of logs time and hard to associate them with relevant incidents / Nekonzistencia časov v logoch a problém pričlenenia logov k relevantným incidentom","Management","NTP","HIGH","ALL","ALL","Network Security Auditing
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"ntp authenticate
+ntp authentication-key 1 md5 <password>
+trusted-key 1","Setup NTP authentication / Nastavenie NTP autentizácie","Connecting server with same allowed IP address but wrong time / Pripojenie servera s rovnakou IP adresou, ale falošným časom","Management","NTP","HIGH","ALL","ALL","Network Security Auditing
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"ntp source loopback <id>","Specify loopback source interface for NTP /  Definovanie loopback zdrojového rozhrania pre NT","NTP source interface is not same on every boot / NTP zdrojové rozhranie nie je rovnaké pri každom reštarte","Management","NTP","MEDIUM","ALL","ALL","Network Security Auditing
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"ntp server <ip adddress> version 4","Use NTP v4 / Použitie NTP verzie 4","NTP stronger security (pub/priv key) and IPv6 support / Väčšia bezpečnosť (pub/priv key) NTP a podpora IPv6","Management","NTP","MEDIUM","ALL","ALL","https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/bsm/configuration/15-2mt/ip6-ntpv4.html#GUID-DEEA332A-22EC-4742-8A68-94D5DFDB9BFA",,,,
+,"ntp peer <ip adddress>
+ip access-list standard <acl name>
+ remark permit only this IP 
+ permit <ip adddress> <wildcard mask>
+ remark deny other 
+ deny any log-input
+ntp access-group serve-only <acl name>
+interface <interface name> <interface id>
+ ntp disable","Setup NTP peer relationship to have cross validation of time and backup source / Nastavenie NTP peer s inými sieťovými zariadeniami na krížovú validáciu času a záložný zdroj času","NONE / NIE JE","Management","NTP","MEDIUM","ALL","ALL","Hardening Cisco Routers",,,,"https://blog.ine.com/2008/07/28/ntp-access-control, https://www.ccexpert.us/global-configuration/configuring-ntp-access-restrictions.html, http://www.n-cg.net/CiscoNTP.htm, https://mrncciew.com/2013/04/28/ntp-basics/, https://community.cisco.com/t5/routing/ntp-access-group/td-p/1253447 https://blog.noblinkyblinky.com/2019/08/02/configuring-ntp-on-a-cisco-device/"
+,"interface <interface name> <interface id>
+ shutdown","Explicit shutdown unused interfaces / Explicitne zakázať nepoužívané porty","Attacker with physical access to device or port can connect to device and can eavesdrop or send malicious content / Útočník s fyzickým prístupom k zariadeniu alebo portu môže odpočúvať alebo posielať škodlivý obsah","Data","NONE","CRITICAL","ALL","ALL","Cisco Router Hardening
+Network Security Auditing",,,,
+,"interface loopback <id>
+ip address <ip paddress>","Create Loopback interface with IP address / Vytvorť Loopback rozhranie s IP adresou","Source interface for management and control plane protocols / Zdrojové rozhranie pre management a control protokoly","Management / Control","NONE","MEDIUM","ALL","ALL","
+Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"ip access-list standard <acl name>
+  remark Deny SNMP from VLAN 20
+  deny ip <ip address> <wildcard mask>
+
+ipv6 access-list <acl name>
+  remark Deny SNMP from VLAN 20
+  deny <ipv6 address> <prefix> any","Description of every ACL member to better identification / Popis každého pravidla v ACL pre lepšiu identifikáciu","ACL rule identification / Identifikácia pravidla v ACL","Management","NONE","LOW","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"interface <interface name> <interface id>
+ description PRODUCTION_SERVER","Descption of every interface / Popis každého rozhrania","Interface identification / Indentifikácia rozhrania","Management","NONE","LOW","ALL","ALL",,,,,
+,"ip ssh source-interface loopback <id>","Specify loopback source interface for SSH /  Definovanie loopback zdrojového rozhrania pre SSH","SSH source interface is not same on every boot / SSH zdrojové rozhranie nie je rovnaké pri každom reštarte","Management","SSH","MEDIUM","ALL","ALL",,,,,
+,"ip ssh port 2223
+
+OR
+
+ip access-list extended <acl name>
+ remark *** KNOCK ***
+ permit udp any any eq 65535 log-input
+ remark *** TRUSTED ***
+ permit tcp any any established
+ remark *** DENIED ***
+ deny   tcp any any log input
+ remark *** PERMITED ***
+ permit ip any any
+ 
+!! WAN Interface !!
+ 
+interface <interface name> <interface id>
+ ip access-group <acl name>
+ ipv6 traffic-filter <acl name>
+ 
+!! KNOCK_ACL env Variable !!
+ 
+event manager environment <env name> <acl name>
+ 
+!! Port Knocking EEM applet !!
+ 
+event manager applet KNOCK
+ event syslog pattern ""%SEC-6-IPACCESSLOGP: list $KNOCK_ACL permitted *""
+ action 1.0 regexp ""[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+"" $_syslog_msg ADDR
+ action 1.1 regexp ""\([0-9]+\),"" ""$_syslog_msg"" PORT
+ action 1.2 regexp ""[0-9]+"" ""$PORT"" PORT 
+ action 2.0 syslog msg ""Received a knock from $ADDR on port $PORT...""
+ action 2.1 syslog msg ""Adding $ADDR to the $KNOCK_ACL ACL""
+ action 3.0 cli command ""enable""
+ action 3.1 cli command ""configure terminal""
+ action 3.2 cli command ""ip access-list extended $KNOCK_ACL""
+ action 3.3 cli command ""1 permit tcp host $ADDR any eq 22""
+ action 4.0 WAIT 15
+ action 5.0 syslog msg ""Removing $ADDR to the $KNOCK_ACL ACL""
+ action 6.0 cli command ""no permit tcp host $ADDR any eq 22""
+ action 6.1 cli command ""exit""","Specify different port for SSH or apply port knocking / Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie port knocking","DOS on standard SSH port 22 / DOS útok na štandardný SSH port 22","Management","SSH","HIGH","ALL","ALL",,,,,
+,"line vty <num> <num>
+ transport output none
+line tty <num> <num>
+ transport output none
+line con <num>
+ transport output none
+line aux <num>
+ transport output none","Disable outbound management connections when not used (telnet, etc.)/ Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)","Unauthorized access to management of device  / Nepovolený prístup k manažmentu konfigurácie zariadenia","Management","TELNET
+SSH","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"ip scp server enable
+copy startup-config scp://<username>@<ip address>/backup","Enable backup secure server backup (SFTP, SCP)/ Zapnutie zabezpečenej zálohy na server (SFTP, SCP)","Eavesdropping of device configurations during backup / Odpočuvanie konfigurácií zariadení pri zálohe","Management","NONE","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_ssh/configuration/xe-3s/sec-usr-ssh-xe-3s-book/sec-usr-ssh-sec-copy.pdf",,,,"Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_ssh/configuration/xe-3s/sec-usr-ssh-xe-3s-book/sec-usr-ssh-sec-copy.pdf"
+,,,,,,,,,,,,,
+,"secure boot config","Enable protection to deletion of configuration / Zapnutie ochrany pred výmazom konfigurácie","Deletion of configuration / Vymazanie konfigurácie","Management","NONE","HIGH","ALL","ALL","CCNA SECURITY STUDY GUIDE",,,,
+,"archive
+write-memory
+time-period <num>
+log changes
+log config
+logging enable
+logging size <num>
+hidekeys
+notify syslog
+maximum <num>","Periodically save configuration for easy rollback, log changes of it / Periodické zálohovanie konfigurácie a logovanie jej zmien","Ability to get diff of changes of configuration and rollback / Možnosť urobiť diff zmien konfigurácií a jej návrat","Management","NONE","MEDIUM","ALL","ALL","CCNA SECURITY STUDY GUIDE
+Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,"Xca3-08 + xca5"
+,"ip access-list standard <acl name>
+ deny any log-input
+
+ipv6 access-list <acl name>
+ deny any any log-input","Log Deny rules from ACL / Logovanie pravidiel zahodenia paketov v ACL","DOS attack or trying to access what is not permited  / DOS útok alebo pokus o prístup k tomu, čo nie je povolené","Management","NONE","MEDIUM","ALL","ALL","Hardening Cisco Routers",,,,
+,"memory free low-watermark processor <threshold>
+memory free low-watermark io <threshold>","Setup notification when memory is running low / Nastavenie notifikácie pri dochádzaní pamäte","Memory is running low / Nízky stav voľnej pamäte","Management","NONE","MEDIUM","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco SAFE Reference Guide",,,,
+,"memory reserve critical <value> ","Reserve memory for critical notifications when memory is running low / Rezervovanie pamäte pre kritické notifikácie pri nedostatku pamäte","Log notifications cannot be logged when memory is running low / Logovacie správy nemôžu byť zaznamenané kvôli nedostatku pamäte","Management","NONE","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco SAFE Reference Guide",,,,
+,"snmp-server enable traps cpu threshold
+snmp-server host <ip adddress> version 3 priv <user> cpu
+process cpu threshold type <type> rising <percentage> interval <seconds>
+process cpu statistics limit entry-percentage 
+
+","Setup notification when CPU is high loaded  / Nastavenie notifikácie vysokom zaťažení CPU","CPU is load is high / Vysoké zaťaženie CPU","Management","NONE","MEDIUM","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco SAFE Reference Guide",,,,
+,"memory reserve console 4096","Reserve memory for management connection when memory is running low / Rezervovanie pamäte preprotokoly na manažment zariadení pri nedostatku pamäte","High load of device caused inability to log into it / Vysoké zaťaženie zariadenia spôsobilo nemožnosť prihlásenia k nemu","Management","NONE","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"exception memory ignore overflow io
+exception memory ignore overflow processor
+exception crashinfo maximum files <number-of-files>","Enable mechanisms for memory leak detection / Povoliť mechanizmy na detekciu pretečenia pamäte","Memory leak / Pretečenie pamäte","Management","NONE","MEDIUM","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"no boot network
+no service config","Prevent loading operating system image or configuration files from network places when it it not necessary / Vypnutie načítania operačného systému alebo konfigurácie zo siete pokiaľ to nie je nutné","Loading malicious configuration from network while booting / Načítanie škodlivej konfigurácie zo siete počas bootovania","Management","NONE","MEDIUM","ALL","ALL","Hardening Cisco Routers",,,,
+,"no proxy-arp","Disable Proxy ARP / Vypnutie Proxy ARP","Proxy ARP can allow PVLAN to be bypassed and extends broadcast domain / Proxy ARP môže viesť k obídeniu PVLAN a rozširuje broadcast doménu","Control","ARP","CRITICAL","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco Router Hardening",,,,
+,"no ip source-route","Disable IP source routing / Vypnutie IP source routing","DOS to one of node which was specified in header as path to network, unable to communicate, establish MITM attack / DOS útok na stanicu, cez ktorú bola špecifikovaná cesta a teda nemožnosť komunikácie s koncovým bodom. Alebo zosnovanie MITM útoku","Control","IPv4","CRITICAL","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+",,,,"ip source-route is a completely different thing to policy routing.Policy routing allows you to route according to various parameters, not just destination IP address. It is often used for routing by IP source address. IP source-route is a little-used option that allows the originator of a packet to decide which routers he should go through to get to his destination. He does this by supplying the full path of routers on the options header of the IP packet. IP source routing is extremely dangerous, and most NetAdmins disable it in live networks. When you route by the source address,your gateway or first router will place a header that tells every router along the way which route to take, if a route goes down, the original router may not know the route went down, and continue sending traffic into a black hole."
+,"ip verify unicast source reachable-via rx","Enable Unicast reverse path forwarding strict mode / Zapnutie reverse path forwarding strict/loose mode","DOS attack through spoofed IP addresses or remote attack to routing protocol / DOS útok pomocou podvrhnutej IP adresy alebo vzdialený útok na smerovací protokol","Control","IPv4","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","OSPF Security: Attacks and Defenses
+https://www.sanog.org/resources/sanog28/SANOG28-Tutorial_OSPF-Security-Attacks-and-Defences-Manjul.pdf
+Network Security Auditing
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+",,,,
+,,,,,,,,,,,,,
+,"No ip bootp server","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"no service pad","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"No Ip identd","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"no vstack","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,"smart install cisco vulnerability – disable it or ACL block tcp port 4786"
+,"no ip http server
+no ip http secure server","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"no service tcp-small-server","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"no service udp-small-server","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"no service finger","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"int FastEthernet 0/1
+ no mop enabled","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,"L3SW not responding this command in gns3"
+,"no ip domain lookup","Disable unused services due to potential security issue and saving memory and CPU / Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte ","Old, unused an unsecured services can be used malicious purpose / Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","HIGH","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST","VARY – SEE SPECIFIC VENDOR CHECKLIST",,,,
+,"interface <interface name> <interface id>
+ no ip unreachables","Disable ICMP Unreachable message / Vypnutie spáv ICMP Unreachable","Attacker can find out that IP which he tried to ping is incorrect / Útočník môže zistiť, že IP adresa, na ktorú skušal ping je nesprávna","Data","ICMP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco IOS features that you should disable or restrict https://networklessons.com/uncategorized/cisco-ios-features-that-you-should-disable-or-restrictCisco ",,,,
+,"interface <interface name> <interface id>
+ no ip mask-reply","Disable ICMP Mask reply message / Vypnutie spáv ICMP Mask reply","Attacker can find out subnet mask by ICMP Mask reply / Útočník môže zistiť masku podsiete pomocou ICMP Mask reply","Data","ICMP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Hardening Cisco Routers
+Cisco IOS features that you should disable or restrict
+https://networklessons.com/uncategorized/cisco-ios-features-that-you-should-disable-or-restrict
+",,,,
+,"interface <interface name> <interface id>
+ no ip directed-broadcast","Disable ICMP echo message to broacast addresses, disable directed broadcasts / Vypnutie ICMP echo správ na broadcast adresu, vypnutie directed broadcasts","Allows DOS Smurf attack, mapping network by pinging broadcast address of remote network  / Umožňuje DOS Smurf útok, mapovanie siete pomocou ping na broadcast adresu vzdialenej siete","Data","IPv4","CRITICAL","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Router Hardening
+Hardening Cisco Routers
+Cisco IOS features that you should disable or restrict
+https://networklessons.com/uncategorized/cisco-ios-features-that-you-should-disable-or-restrict",,,,"Default in config"
+,"interface <interface name> <interface id>
+ no ip redirects","Disable ICMP Redirects message / Vypnutie spáv ICMP Redirects","Attacker can find out informations such as routes and paths or utilize CPU to high value / Útočník môže zistiť smerovacie informácie alebo vyťažiť CPU","Data","ICMP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco IOS features that you should disable or restrict https://networklessons.com/uncategorized/cisco-ios-features-that-you-should-disable-or-restrictCisco ",,,,"It improves security because if someone inserts another router on the network that the admins may not know about, it will not send the devices traffic to the other questionable device. The questionable device may have routes to outside networks that aren't approved, or doing other things wih the packets it receives. Turning off redirects (and proxy-arp) enforces routing policy also.
+Xca3-08 and all other services which should be disabled are described thre really good"
+,"configuration mode exclusive auto","Allow only one administrator to change configuration of device simultaneously / Povolit súčasne iba jednému administrátorovi vykonávanie zmien v konfigurácii","Inconsistency when more than one administrator changes configuration / Nekonzistenia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom","Management","NONE","HIGH","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"service sequence-numbers","Add sequence number to every syslog message / Pridanie sekvenčného čísla ku každej syslog správe","NONE / NIE JE","Management","NONE","LOW","ALL","ALL","Hardening Cisco Routers",,,,
+,"service tcp-keepalives-in
+service tcp-keepalives-out","Drop broken and hung TCP session / Terminovanie zaseknutého TCP spojenia","Unable to log in when TCP session hangs / Nemožnosť prihlásenia pri zaseknutom TCP spojení","Management","TCP","MEDIUM","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"router bgp 65200
+ neighbor 80.80.80.80 password cisco   ","Authentication of routing protocols updates and peers (not in clear text) / Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)","Injecting poisoned routes / Vloženie a manipulácia so smerovacími informáciami","Control","RIP
+EIGRP
+OSPF
+BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco CCNA Security Study GuideCIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco CCNA Security Study Guide",,,,
+,"key chain <chain name>
+ key<id>
+  key-string <password>
+interface <interface name> <interface id>
+ ip authentication mode eigrp <as> md5
+ ip authentication keyc-chain eigrp <as> <chain name>
+ ipv6 authentication mode eigrp <as> md5
+ ipv6 authentication keyc-chain eigrp <as> <chain name>
+","Authentication of routing protocols updates and peers (not in clear text) / Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)","Injecting poisoned routes / Vloženie a manipulácia so smerovacími informáciami","Control","RIP
+EIGRP
+OSPF
+BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco CCNA Security Study GuideCIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco CCNA Security Study Guide",,,,"TODO ADDRESS FAMILIES
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_eigrp/configuration/15-s/ire-15-s-book/ire-rte-auth.html"
+,"key chain <chain name>
+ key<id>
+  key-string <password>
+router ospf <process id>
+ area <ared id> authentication message-digest
+ area <area id> authentication key-chain <chain name>
+ipv6 router ospf <process id>
+ area <area id> authentication message-digest
+interface <interface name> <interface id>
+ ip ospf message-digest-key <key id> md5|sha <password>
+ ip ospf authentication message-digest
+ ospfv3 authentication md5 0 27576134094768132473302031209727
+ no ip ospf authentication-key OPENKEY
+  ","Authentication of routing protocols updates and peers (not in clear text) / Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)","Injecting poisoned routes / Vloženie a manipulácia so smerovacími informáciami","Control","RIP
+EIGRP
+OSPF
+BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco CCNA Security Study GuideCIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco CCNA Security Study Guide",,,,"TODO ADDRESS FAMILIES, check md5 and if sha is supported, check ipsec auth  ospf v3 ipsec auth
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/command/iro-cr-book/ospf-a1.html"
+,"key chain <chain name>
+ key <id>
+  key-string <password>
+interface <interface name> <interface id>
+ ip rip authentication key-chain <chain name>
+ ip rip authentication mode md5","Authentication of routing protocols updates and peers (not in clear text) / Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)","Injecting poisoned routes / Vloženie a manipulácia so smerovacími informáciami","Control","RIP
+EIGRP
+OSPF
+BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+Cisco CCNA Security Study GuideCIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco CCNA Security Study Guide",,,,"TODO RIPNG AUTH"
+,"NO area <area id> virtual-link <ip address>","Disable OSPF virtual links / Vypnutie virtuálnych liniek pre OSPF","OSPF Virtual links degradates performance of network / OSPF virtuálne linky degradujú výkon","Control","OSPF","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL",,,,,
+,"router rip
+ passive-interface default
+ no passive-interface <interface name> <interface id>
+
+router ospf <process>
+ passive-interface default
+ no passive-interface <interface name> <interface id>
+
+router eigrp <as>
+ passive-interface default
+ no passive-interface <interface name> <interface id>","Specify passive interfaces which do not receive dynamic routing protocols updates / Špecifikovanie rozhraní, ktoré nebudú prijímať routovacie informácie","Host, devices, users and attackers can see routing updates and network topology or connect malicious device to send and receive updates / Koncové zariadenie, užívateľ a útočník môžu vidiet smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy","Control","RIP EIGRP OSPF BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","OSPF Security: Attacks and Defenses
+https://www.sanog.org/resources/sanog28/SANOG28-Tutorial_OSPF-Security-Attacks-and-Defences-Manjul.pdf",,,,
+,"router ospf 1|eigrp1|bgp
+  router-id <ip-address> 
+ipv6 router ospf  <process-id>
+  router-id <ip-address> ","Specify routing protocol identification number for each router (router ID) / Špecifikovanie identifikátorov smerovacích protokolov pre každý router (router ID)","Inability to start routing protocol processes in some uses cases with IPv6 / Nemožnosť sprevádzkovať procesy smerovacích protokolov v určitých prípadoch pri použití IPv6","Control","RIP EIGRP OSPF BGP","MEDIUM","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL",,,,,"TODO ADDRESS FAMILIES, ipv6 ospfv3 – can be add isntead of ipv6 router ospf"
+,"router eigrp <as>
+ (eigrp) log-neighbor-changes","Log routing protocols update changes / Zaznamenie zmeny v logu pri zmenách v smerovaní","Traceability of routing protocol misconfiguration and malfunction / Vysledovateľnosť nefunkčnosti routovacieho protokolu a nesprávneho nastavenia","Control","RIP EIGRP OSPF BGP","MEDIUM","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco SAFE Reference Guide
+OSPF Link-State Database Overload Protection https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/configuration/15-sy/iro-15-sy-book/iro-lk-state-db.pdf",,,,
+,"router ospf <process>
+ log-neighbor-changes","Log routing protocols update changes / Zaznamenie zmeny v logu pri zmenách v smerovaní","Traceability of routing protocol misconfiguration and malfunction / Vysledovateľnosť nefunkčnosti routovacieho protokolu a nesprávneho nastavenia","Control","RIP EIGRP OSPF BGP","MEDIUM","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco SAFE Reference Guide
+OSPF Link-State Database Overload Protection https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/configuration/15-sy/iro-15-sy-book/iro-lk-state-db.pdf",,,,
+,"router bgp <as>
+ log-neighbor-changes","Log routing protocols update changes / Zaznamenie zmeny v logu pri zmenách v smerovaní","Traceability of routing protocol misconfiguration and malfunction / Vysledovateľnosť nefunkčnosti routovacieho protokolu a nesprávneho nastavenia","Control","RIP EIGRP OSPF BGP","MEDIUM","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco SAFE Reference Guide
+OSPF Link-State Database Overload Protection https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/configuration/15-sy/iro-15-sy-book/iro-lk-state-db.pdf",,,,
+,"neighbor <ip address> ttl-security hops <hop count>
+
+router ospf <id>
+ ttl security all-interfaces hops <hop count>
+
+interface tunnel <number>
+ ip ospf ttl-security hops <hop count>
+
+","TTL security","Malicious injected routing information, remote attack /  Škodlivé vloženie smerovacích informácií informácií, vzdialený útok","Control","BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","OSPF Security: Attacks and Defenses
+https://www.sanog.org/resources/sanog28/SANOG28-Tutorial_OSPF-Security-Attacks-and-Defences-Manjul.pdf
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"router rip
+ no auto-summary
+
+router eigrp <as>
+ no auto-summary
+
+router bgp <as>
+ no auto-summary","Turn off automatic route summarization / Vypnutie automatickej sumarizácie smerovacích protokolov","Incorrect routing due to summarization / Nesprávne smerovanie kvôli sumarizácií","Control","RIP EIGRP OSPF BGP","HIGH","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL",,,,,
+,"ip options drop","Drop IPv4 packets with IP Options field / Zahadzovanie IPv4 paketov s rozšírenou hlavičkou (IP Options filtering)","Packets will be process switched which leads to CPU overload or manipulation with routing to bypass security control / Packety budú spracovávané v CPU, ktoré môže byť preťažené a môže byť zmenené smerovanie na obídenie bezpečnostnej kontroly","Control","IPv4","CRITICAL","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"crypto isakmp policy <policy id>
+ encryption aes
+ authentication pre-shared
+ group <group id>
+crypto isakmp key <key> address <ip address> 
+crypto ipsec transform-set <set name> esp-aes esp-sha-hmac
+ crypto map <map name> 10 ipsec-isakmp
+  set peer <peer ip>
+  set transform <set name> 
+  match address <acl name>
+ip access-list extended <acl name>
+  permit ip <source ip> <wildcard mask> <destination ip> < wildcard mask>
+interface <interface name>
+ crypto map <map name>
+
+interface tunnel <number>
+ ip address <ip address> <mask>
+ tunnel source <ip address> <mask>
+ tunnel destination <ip address> <mask>","Disable tunnels which are not secured or setup secure tunnels / Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely","Eavesdropping communication through unsecured tunnels / Odpočúvanie komunikácie  cez nezabezpečené tunely","Data","IPv4
+IPv6","CRITICAL","R, L3SW","CORE/EDGE
+DISTRIBUTION
+COLLAPSED COREDIST
+COLLAPSED DISTACC
+COLLAPSED ALL","CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco
+Cisco router configuration handbook",,,,"xca3 lab 7.1 TODO"
+,"ip flow-export version 9
+ip flow-export destination <ip address> <port>
+interface <interface name> <interface id>
+ ip flow ingress
+ ip flow egress","Network performance monitoring and collecting traffic due to legal reasons  / Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám","Potential eavesdropping can be setup when traffic monitoring is used, monitoring due to legal reasons / Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám","Control","ALL","NOTICE","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"monitor session <session id> source <interface name> <interface id> 
+monitor session <session id> destination <interface name> <interface id>","Network performance monitoring and collecting traffic due to legal reasons  / Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám","Potential eavesdropping can be setup when traffic monitoring is used, monitoring due to legal reasons / Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám","Control","ALL","NOTICE","ALL","ALL","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html",,,,
+,"ip access-list standard <acl name>
+ remark BLOCK_ADDRESSES RFC 1918
+ deny <ip address> <wildcard mask> log-input
+
+interface <interface name> <interface id>
+ ip access-group <acl name> in","ACL to forbid and log private and special IP addresses from RFC 1918, RFC 3330 / Špecifikácia ACL na zakázanie a logovanie privátnych a špeciálnych IP adries z RFC 1918, RFC 3330","IP spoofing","Control","IP","CRITICAL","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Network Security Auditing
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"
+ipv6 access-list <acl name>
+ remark BLOCK_ADDRESSES RFC 5156
+ deny <ipv6 address> <prefix> any log-input
+
+interface <interface name> <interface id>
+ ipv6 traffic-filter <acl name> in","ACL to forbid and log IPv6 special addresses from RFC 5156 / Špecifikácia ACL na zakázanie a logovanie špeciálnych IPv6 adries z RFC 5156","IP spoofing","Control","IPv6","CRITICAL","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Network Security Auditing
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+CIS Cisco IOS 15 Benchmark v4.0.0 
+https://www.cisecurity.org/cis-benchmarks/#cisco",,,,
+,"interface <interface name> <interface id>
+ spanning-tree rootguard
+ spanning-tree guard root","Rogue root bridge protection (root guard)","Rogue root bridge ","Control","STP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security",,,,"dodatocny show prikaz, kto je root, na ktore porty a devices"
+,"spanning-tree portfast bpduguard default
+
+or
+
+interface <interface name> <interface id>
+  spanning-tree bpduguard enable
+
+avoid 
+
+spanning-tree portfast bpdufilter enable
+
+interface <interface name> <interface id>
+  spanning-tree bpdufilter enable
+
+","BPDU protection (BPDU guard)","Connecting switch to edge port / Pripojenie pripínaču na koncový prístupový port","Control","STP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security",,,,"preq portfast must be enabled"
+,"spanning-tree portfast default
+
+or
+
+interface <interface name> <interface id>
+ spanning-tree portfast","Access ports should not participate in STP process / Prístupové porty by sa nemali podielať na STP procese","Speed of convergence / Rýchlosť konvergencie","Control","STP","HIGH","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security",,,,
+,"spanning-tree loopguard default
+
+or 
+
+interface <interface name> <interface id>
+ spanning-tree guard loop","Access ports should not participate in STP process / Prístupové porty by sa nemali podielať na STP procese","Speed of convergence / Rýchlosť konvergencie","Control","STP","HIGH","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security",,,,
+,"vlan <id>
+ name <name>","Add name for each VLAN / Pridanie mena k VLAN","Unable to identify purpose of VLAN / Nemožnosť identifikácie účelu VLAN","Control","NONE","LOW","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS",,,,,
+,"vlan <id>  
+name MANAGEMENT_VLAN","Create management VLAN / Vytvorenie separátnej VLAN pre manažment","Separate VLAN for management to restrict access for administrators / Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov","Control","NONE","MEDIUM","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS",,,,,
+,"vlan <id>  
+name BLACKHOLE_VLAN","Create special black hole VLAN for unused ports/ Vytvorenie špeciálnej black hole VLAN pre nevyužité porty","Attacker with physical acces to port can have access to part of network corresponding to VLAN / Útočníkovi s fyzickým prístupom k portu môže byť pridelený prístup do časti siete, ktorá zodpovedá príslušnej VLAN ","Control","NONE","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Cisco SAFE Reference Guide",,,,
+,"interface <interface name> <interface id>
+ switchport mode access
+ switchport access vlan <id>","Unassign all ports from default VLAN / Odobrať všetky porty z predvolenej VLAN","Default VLAN is allowed to be switches to every port, VLAN hopping, double tagging / Predvolenej VLAN je povolené prepnute na akýkoľvek port, VLAN hopping, double tagging","Control","NONE","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Cisco SAFE Reference Guide",,,,
+,"vlan <id>  
+name NATIVE_VLAN
+
+interface <interface name> <interface id>
+ switchport mode trunk
+ switchport trunk native vlan <id>
+ switchport trunk allowed vlan <id>","Create native VLAN other than default, assign it to trunk and allow only necessary VLANs / Vytvorenie natívnej VLAN rozdielnej ako predvolená, priradeni k trunk portu a povolenie iba potrebných portov","Default VLAN is allowed to be switches to every port, VLAN hopping, double tagging / Predvolenej VLAN je povolené byť prepnutá na akýkoľvek port, VLAN hopping, double tagging","Control","NONE","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Cisco SAFE Reference Guide",,,,
+,"
+interface <interface name> <interface id>
+ switchport mode trunk
+ no switchport mode dynamic desirable
+ no switchport mode dynamic auto
+ switchport nonegotiate
+","Turn of dynamic trunking protocol and explicitly set access and trunk ports / Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk","DTP attack, Switch spoofing attack / DTP útok, Switch spoofing útok","Control","DTP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Cisco SAFE Reference Guide",,,,
+,"
+interface <interface name> <interface id>
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ or
+ switchport port-security mac-address static <mac address>
+ switchport port-security","Define maximum 1 MAC address to port, assign MAC address to port / Definovanie maximálne 1 MAC adresy na port, priradenie MAC adresy na port","MAC Spoofing, MAC Flooding ","Control","LLC","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS",,,,,
+,"interface <interface name> <interface id>
+ switchport port-security violation mode shutdown
+ switchport port-security violation mode restrict
+ no switchport port-security violation mode protect","Setup violation mode that shut down the port or inform administrator when not allowed device is connected / Nastavenie režimu narušenia, ktorý vypne port alebo informuje správcu o pripojení nepovoleného zariadenia","MAC Spoofing, MAC Flooding ","Control","LLC","HIGH","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS",,,,,
+,"vtp mode transparent
+
+or
+
+vtp off","Disable MVRP. MRP, GARP, VTP after successful VLAN propagation / Vypnutie MVRP. MRP, GARP, VTP po úspešnej propagácií VLAN","New switch with higher revision number but improper VLAN database can propagate false VLAN IDs and break network, many VTP attacks due to vulnerabilities / Nový prepínač s vyšším číslom revízie, ale s nesprávnou VLAN databázou môže šíriť falošné VLAN identifikátory a spôsobiť nefunkčnosť siete, veľa možnćh VTP útokov kvǒli zraniteľnostiam ","Control","VTP
+MVRP
+MRP
+GARP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security",,,,
+,"vtp version 3
+vtp password <password> hidden
+vtp prunning","Use VTP v3 with set password and enable VTP prunning when VTP must be enabled/ Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté","VTP must be used / VTP musí byť používané","Control","VTP
+MVRP
+MRP
+GARP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security",,,,
+,"storm-control unicast level <top level> <down level>
+storm-control broadcast level <top level> <down level>
+storm-control multicast level <top level> <down level>
+storm-control action trap","Send notification message when link reaches load threshold / Poslanie notifikácie pri prekročení prahovej hodnoty zaťaženia linky","High load of link / Vysoké zaťaženie linky","Control","NONE","MEDIUM","ALL","ALL","Cisco SAFE Reference Guide",,,,"see commands.odt
+can be pps or link load in percentage"
+,"dot1x system-auth-control
+identity profile default
+interface <interface name> <interface id>
+  dot1x port-control auto
+  
+  or
+
+  access-session port-control auto
+
+  or
+
+  authentication port-control auto
+  dot1x pae authenticator|supplicant 
+
+  no dot1x port-control force-authorized
+
+  or
+  
+  no access-session port-control force-authorized
+
+  or
+
+  no authentication port-control force-authorized
+","Enable 802.1x  / Zapnutie 802.1x ","Unauthorized users use network / Využívanie siete nepovolenými používateľmi","Control","EAP
+PEAP
+EAPOL","HIGH","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security
+Cisco IOS 11 - IEEE 802.1x, autentizace k portu, MS IAS
+https://www.samuraj-cz.com/clanek/cisco-ios-11-ieee-802-1x-autentizace-k-portu-ms-ias/Cisco IOS 12 - IEEE 802.1x a pokročilejší funkce  https://www.samuraj-cz.com/clanek/cisco-ios-12-ieee-802-1x-a-pokrocilejsi-funkce/","Enabled AAA and defined Radius server / Zapnuté AAA a definovaný Radius server",,,
+,"dot1x auth-fail max-attempts <number>","Limit maximal failed 802.1x authentication attempts / Limitovanie maximálneho počtu neúspešných pokusov o autentizáciu 802.1x","Brute force guessing credentials for 802.1x / Útok hrubou silou hádaním prístupových údajov pre 802.1x ","Control","EAP
+PEAP
+EAPOL","HIGH","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Cisco IOS 11 - IEEE 802.1x, autentizace k portu, MS IAS
+https://www.samuraj-cz.com/clanek/cisco-ios-11-ieee-802-1x-autentizace-k-portu-ms-ias/Cisco IOS 12 - IEEE 802.1x a pokročilejší funkce  https://www.samuraj-cz.com/clanek/cisco-ios-12-ieee-802-1x-a-pokrocilejsi-funkce/",,,,
+,"ipv6 nd inspection policy <policy name>
+ drop unsecure
+ device-role monitor
+ tracking disable stale-lifetime infinite
+ trusted-port
+interface <interface name> <interface id>
+ ipv6 nd inspection attach-policy  <policy name>","IPv6 ND Inspection","IPv6 ND Spoofing","Control","IPv6
+NDP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","
+Bezpečné IPv6: zkrocení zlých směrovačů
+https://www.root.cz/clanky/bezpecne-ipv6-zkroceni-zlych-smerovacu/
+Bezpečné IPv6 : směrovač se hlásí
+https://www.root.cz/clanky/bezpecne-ipv6-smerovac-se-hlasi/
+IPv6 First-Hop Security Configuration Guide","IPv6 support
+IPv6 enabled",,,"ND Snooping/ND Inspection – Partially
+SEND – FULL
+DHCPv6 Snooping
+
+neviem preco vsade je device-role monitor, mozno router a host sa vvztahuje k RA guard, kde dava zmysel
+neviem co znamena trusted port v tomto ponimani, napisat CISCO. asi spravit dve politiky jedna trusted/port ddruah uuntrusted
+glean si nie som clekom isty, suvbis s DHCPv6
+
+ ipv6 nd inspection attach-policy  <policy name> for all vlans
+
+ND SNOOPING – TOFU
+Nasazení tohoto obranného mechanismu paradoxně otevírá vrátka pro útočníky, kteří pak mohou ostatním uživatelům zablokovat přístup do sítě tím, že si počkají až se jejich zařízení odpojí a pak si jeho adresu “zaregistrují” na svůj port. Pokud se zařízení s původní adresou opět připojí do sítě, nebude mu to umožněno, jelikož jeho adresu má již útočník v databázi IP - MAC zaregistrovanou pro jiný port. Díky tomu, že pakety budou zahozeny, neproběhne ani kontrola duplicity adresy. Zařízení si tedy ani nemůže vygenerovat novou adresu, jelikož neví, že danou adresu již v síti někdo používá. V principu se tomu nedá zabránit, protože se využívají zcela legitimních vlastností protokolu IPv6: a) rozhraní může mít více IPv6 adres; b) IPv6 adresu lze generovat nahodile; c) přepínač nemá při bezstavové konfiguraci žádnou autoritativní odpověď, jako měl u IPv4 při použití DHCP. Přepínač tudíž nemůže rozlišit, kdo má pravdu a kdo ne."
+,"ipv6 nd raguard policy <polic name>
+ device-role host|router
+ hop-limit maximu <number>
+ managed-config-flag on|off
+ other-config-flag on|off
+ match ipv6 access-list <acl name>
+ match ra prefix-list <prefix list name>
+ trusted-port
+interface <interface name> <interface id>
+ ipv6 nd raguard attach-policy <policy name>","RA Guard","Rogue RA
+RA Flood
+Route Information Option injection
+RA RouterLifeTime=0
+","Control","IPv6
+NDP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","
+Bezpečné IPv6: zkrocení zlých směrovačů
+https://www.root.cz/clanky/bezpecne-ipv6-zkroceni-zlych-smerovacu/
+Bezpečné IPv6 : směrovač se hlásí
+https://www.root.cz/clanky/bezpecne-ipv6-smerovac-se-hlasi/
+IPv6 First-Hop Security Configuration Guide",,,,"RA FLOOD – There can be legitimate RA in filtered advert messages 
+Route Information Option – More routes can be inject by one RA messages
+RA RouterLifeTime=0 – Route can bedeleted by RA message where route life time is zero, no default gateway is present
+
+
+ak ostatne nedam trusted-port su implicitne untrusted?"
+,"ip dhcp snooping
+ip dhcp snooping vlan <vlan-id> 
+interface <interface name> <interface id>
+ ip dhcp snooping trust
+ no ip dhcp snooping trust","DHCP snooping, IPv6 Snooping, DHCPv6 Guard","DHCP spoofing","Control","DHCP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+IPv6 First-Hop Security Configuration Guide",,,,"in case dhcp relay see https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst6500/ios/12-2SX/configuration/guide/book/snoodhcp.html"
+,"ipv6 snooping policy <policy name>
+  ipv6 snooping attach-policy <policy name>
+  prefix-glean","DHCP snooping, IPv6 Snooping, DHCPv6 Guard","DHCP spoofing","Control","DHCP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+IPv6 First-Hop Security Configuration Guide",,,,
+,"ipv6 access-list <acl name>
+ permit host <ipv6 address> any
+ipv6 prefix-list <prefix list name> permit <ipv6 address>  le 128
+ipv6 dhcp guard policy <policy name>
+ device-role server|client
+ match server access-list <acl name>
+ match reply prefix-list <prefix list name>
+ trusted-port
+interface <interface name> <interface id>
+ ipv6 dhcp guard attach-policy <policy name>","DHCP snooping, IPv6 Snooping, DHCPv6 Guard","DHCP spoofing","Control","DHCP","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Lan Switch Security
+Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+IPv6 First-Hop Security Configuration Guide","IPv6 Snooping",,,"trusted-port je tuna trusted
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6_fhsec/configuration/xe-3s/ip6f-xe-3s-book/ip6-src-guard.html
+nie moc dobra podpora na lacnych SW
+https://insinuator.net/2014/01/configuring-ipv6-snooping-and-dhcpv6-guard-on-cisco-ios/"
+,"ip dhcp snooping limit rate 100 ","Limit DHCP packet  on untrusted interfaces / Odmedziť počet DHCP paketov na nedôverihodných rozhraniach","Too many DHCP packets, DHCP Flood / Příliš veľa DHCP paketov, zaplavenie DHCP paketmi","Control","DHCP","MEDIUM","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Configuring DHCP Snooping
+https://www.cisco.com/en/US/docs/general/Test/dwerblo/broken_guide/snoodhcp.html","DHCP Snooping",,,
+,"ip arp inspection vlan <vlan id> 
+ip arp inspection validate src-mac dst-mac ip
+
+on uplink
+
+ip arp inspection trust
+
+
+","Dynamic ARP Inspection","ARP Spoofing","Control","LLC","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","CCNA SECURITY STUDY GUIDE","DHCP Snooping",,,
+,"ip verify source port-security
+ip verify source
+ip verify source vlan dhcp-snooping
+ip verify source vlan dhcp-snooping port-security
+
+ipv6 source-guard policy <policy name>
+ permit link-local
+ deny global-autoconf
+ trusted
+interface <interface name> <interface id>
+ ipv6 source-guard attach-policy <policy name>","IPv4/IPv6 Source Guard","IP spoofing","Control","IPv4
+IPv6","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Cisco Guide to Harden Cisco IOS Devices
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+IPv6 First-Hop Security Configuration Guide","DHCP Snooping
+DHCPv6 Snooping
+IPv6 Snooping",,,"https://community.cisco.com/t5/switching/ip-arp-inspection-vs-ip-verify-source/td-p/1864717
+https://networklessons.com/cisco/ccie-routing-switching-written/ipv6-source-guard, https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipv6_fhsec/configuration/xe-3s/ip6f-xe-3s-book/ip6-src-guard.html, "
+,"ipv6 access-list <acl name>
+ remark deny undetermined next headers
+ deny any any undetermined-transport log-input","ACL to block unrecognizable extended headers / ACL blokujúce nerozpoznateľne rozšírené hlavičky","IPv6 Next Header and IPv6 Fragmentation attack / IPv6 Next Header  a IPv6 Fragmentation útok","Control","IPv6","CRITICAL","ALL","ALL","Bezpečné IPv6: trable s hlavičkami
+https://www.root.cz/clanky/bezpecne-ipv6-trable-s-hlavickami/Bezpečné IPv6: vícehlavý útočník https://www.root.cz/clanky/bezpecne-ipv6-vicehlavy-utocnik/RFC7113",,,,"Otazka ci na vsetkych zariadeniach
+ACL – Partially (legitime traffic can be dropped, L2 can ignore ACL)
+ACL – deny undetermined transport, unrecognised headers will be dropped
+RA disable next header and fragmentation
+
+
+avoid filtering  mechanisms because packet is too big to be stored in TCAM, some devices forward it (could void filtering rules), some drop it (new heaaders cannot be processed), OSes drop packets with RA which contains next header, when packet is not recognised by ASIC it is forwarded to CPU which is slow so congestion DDOS can be issued or totally trick filtering and send packet which would be filtered. A lot of ISPs or stransit ASes drops IPv6 packets with Next Header 
+combines with previous nextheader, so that protocol of high level is in last fragment, all previous fragments are forwarded, most of ASCII (on Switches) cannot reassamble fragments, RFC 6980 does not allow to use fragmentation in RA,NA. Next header must be in forst fragment (RFC 7112)"
+,"ip access-list extended <acl name>
+ remark deny all node ipv4 address
+ deny icmp any host 224.0.0.1 echo log-input
+
+ipv6 access-list <acl name>
+ remark deny all node ipv6 address
+ deny icmp any host ff02::1 echo-request log-input
+ remark deny mld query
+ deny icmp any any mld-query","ACL to block ICMP echo request on multicast all node address and MLD Query on access ports/  ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD Query na prístupových portoch","Network map by ping  multicast all node address and MLD Query Overload and Smurf attack / Mapovanie sete pomocou pingu na multicast adresu všetkých uzlov a MLD Query Overload a Smurf útok","Control","IPv4
+IPv6","MEDIUM","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Bezpečné IPv6: trable s multicastem
+https://www.root.cz/clanky/bezpecne-ipv6-trable-s-multicastem/MLD Considered Harmful
+https://ripe72.ripe.net/presentations/74-ERNW_RIPE72_MLD_Considered_Harmful_v1_light_web.pdf
+",,,,
+,"ipv6 nd ra-throttle policy <policy name>
+ allow at-least <value> at-most <value>
+ interval-option inherit
+ max-through <value>
+ media-type wired|access-point|wire|wifi
+ throttle-period <value>
+vlan configuration <vlan id>
+ ipv6 nd ra-throttle attach-policy <policy name>
+
+or 
+
+interface <interface name> <interface id>
+ ipv6 nd ra-throttle policy <policy name>","RA Throttling","Mobile devices connected through wireless consumes a lot of energy by frequent RA messages / Mobilné zariadenia pripojené bezdôtovo spotrebovávajú veľa energie kvôli častým RA správam","Control","IPv6","LOW","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Bezpečné IPv6: trable s multicastem
+https://www.root.cz/clanky/bezpecne-ipv6-trable-s-multicastem/
+ND on wireless links and/or with sleeping nodes   
+https://www.ipv6council.be/IMG/pdf/20141212-08_vyncke_-_ipv6_multicast_issues-pptx.pdf",,,,
+,"key chain <key chain>
+ key <id>
+  key-string <key string>
+track <value> interface <interface name> <interface id> line-protocol
+fhrp version vrrp 3
+interface <interface name> <interface id>
+ vrrp <group id> ip <ip  address>
+ vrrp priority <value>
+ vrrp <group id> track <value> decrement <value>
+ vrrp <group id> authentication md5 key-string <key>
+
+ or
+
+ <group id> authentication md5 key-chain <key chain>","Enable FHRP with authentication and current version/ Povolenie FHRP s autentizáciou a aktuálnou verziou","Failing device or link would lead to network malfunction / Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete ","Control","VRRP
+HSRP
+GLBP","MEDIUM","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"key chain <key chain>
+ key <id>
+  key-string <key string>
+interface <interface name> <interface id>
+ standby <group id> ip <ip address>
+ standby <group id> priority <value>
+ standby <group id> preempt
+ standby version 2
+ standby <group id> authentication md5 key-string <key>
+ 
+ or
+ 
+ standby <group id> authentication md5 key-chain <key chain>
+
+track <id>  interface <interface name> <interface id>
+interface <interface name> <interface id>
+  standby <group id> track <id> decrement <value>
+ ","Enable FHRP with authentication and current version/ Povolenie FHRP s autentizáciou a aktuálnou verziou","Failing device or link would lead to network malfunction / Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete ","Control","VRRP
+HSRP
+GLBP","MEDIUM","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"key chain <key chain>
+ key <id>
+  key-string <key string>
+track <value> interface <interface name> <interface id> line-protocol
+interface <interface name> <interface id>
+ glbp <group id> ip <ip  address>
+ glbp <group id> priority <value>
+ glbp <group id> preempt
+ glbp <group id> weighting <value> lower <value> upper <value> 
+ glbp <group id> weighting track <value> decrement <value>
+ glbp <group id> authentication md5 key-string <key>
+
+ or
+
+ glbp <group id> authentication md5 key-chain <key chain>","Enable FHRP with authentication and current version/ Povolenie FHRP s autentizáciou a aktuálnou verziou","Failing device or link would lead to network malfunction / Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete ","Control","VRRP
+HSRP
+GLBP","MEDIUM","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"ipv6 neighbor <ipv6 address> vlan <vlan id> <mac address>","Static records for critical devices (servers) sticking together IP and MAC address and VLAN / Statický záznam pre kritické zariadenia (servery) spájajúce IP a MAC adresu a VLAN
+","Neighbor cache exhaustion / Vyčerpanie cache susedov","Control","IPv6","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"ipv6 access-list <acl name>
+ remark permit only this ip  
+ permit any <ipv6>/<prefix>
+ remark deny other
+ deny ipv6 any any 
+
+interface <interface name> <interface id>
+ ipv6 traffic-filter <acl name> in","To mitigate a remote on neighbor cache attack from internet, setup ACL to permit only our destination IPv6  connected networks / Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povolujeme iba komunikáciu s cieľovými IPv6 adresami, ktoré sa nachádzajú v našej sieti","Neighbor cache exhaustion / Vyčerpanie cache susedov","Control","IPv6","CRITICAL","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"ipv6 destination-guard policy <policy name>
+  enforcement always
+interface <interface name> <interface id>
+ ipv6 destination-guard attach-policy <policy name>
+
+","IP destination Guard (First Hop Security)
+
+
+","Neighbor cache exhaustion / Vyčerpanie cache susedov","Control","IPv6","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+","IPv6 Snooping",,,
+,"interface <interface name> <interface id>
+ ipv6 neighbors max-learning-num <num>","Limit number of IPv6 addresses in neighbor cache / Limitovanie počtu IPv6 adries v cache susedov","Neighbor cache exhaustion / Vyčerpanie cache susedov","Control","IPv6","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"ipv6 nd cache expire <time in seconds>","Limit time for IPv6 address in neighbor cache / Limitovanie času IPv6 adresy v cache susedov","Neighbor cache exhaustion / Vyčerpanie cache susedov","Control","IPv6","CRITICAL","L3SW, L2SW","DISTRIBUTION, COLLAPSED DISTACC, ACCESS","Bezpečné IPv6: když dojde keš
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes/
+Bezpečné IPv6: když dojde keš – obrana
+https://www.root.cz/clanky/bezpecne-ipv6-kdyz-dojde-kes-obrana/
+",,,,
+,"ip tcp intercept list <acl name>
+ip tcp intercept mode intercept|watch
+ip tcp intercept drop-mode oldest|random
+ip tcp intercept watch-timeout <seconds>
+ip tcp intercept finrst-timeout <second>
+ip tcp intercept connection-timeout <seconds>
+ip tcp intercept max-incomplete high|low <number>
+ip tcp intercept one-minute high|low <number>","Setup Firewall interception for SYN attack / Nastavenie zachytávanie firewallom pre útok flagu SYN","SYN Flood ","Control","TCP","CRITICAL","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Cisco router configuration handbook",,,,
+,"ip ips sdf location <signature location>
+ip ips fail  open|close
+ip ips <signature name> list <alc name>
+ip ips <signature name> in|out","Setup IDS/IPS / Nastavenie IDS/IPS","Complex security threats and policy violations / Komplexné bezpečnostné hrozby a narošenie bezpečnosti","Control","NONE","HIGH","R, L3SW","CORE/EDGE, COLLAPSED COREDIST, COLLAPSED ALL","Cisco router configuration handbook",,,,
