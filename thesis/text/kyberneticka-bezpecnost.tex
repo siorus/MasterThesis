@@ -49,7 +49,7 @@ Na obrázku \ref{sec-cycle} je možné vidieť vzájomnú interakciu medzi pojma
 Bezpečnosť počítačovej siete, tak ako aj iných podoblastí kybernetickej bezpečnosti je založená na troch základných princípoch známych ako \zkratka{zkCIA}. Bezpečnosť musí pokryť všetky tri aspekty popísané týmto modelom, pričom narušenie čo i len jednej zložky má za následok nesplnenie celkového zabezpečenia \cite{Vyncke2008}. 
 
 \subsection{Triáda CIA}
-Tri8da CIA pozostáva z nasledujúcich častí \cite{McMillan2018}: 
+Triáda CIA pozostáva z nasledujúcich častí \cite{McMillan2018}: 
 \begin{itemize}
 	\item Confidentiality (Dôvernosť)\,--\,zabránenie prístupu k dátam alebo informáciám neoprávneným osobám. Na zaistenie tejto požiadavky sa najčastejšie používa šifrovanie, ale aj autentizácia a autorizácia. Jej strata vedie k neoprávnenému zverejnenie informácií. 
 	
@@ -124,6 +124,8 @@ Pri pasívnom útoku, ktorý je znázornený na obrázku \ref{passive-attack} id
 	\caption[Aktívny útok prehratím]{Príklad aktívneho útoku prehratím, pri ktorom príde uzlu Eva legitímna správa (označená modro) a následne po určitom čase aj odchytená správa od útočníka, ktorá je pozmenená (označená červeno) \cite{Stallings2011}}
 	\label{active-attack-reply}
 \end{figure}
+
+%TODO AMPLIFIKACNY UTOK, REFLEXIVNY UTOK
 
 Aktívne útoky sú sofistikovanejšie ako pasívne, modifikujú dáta alebo vytvárajú falošné, o ktorých prijímateľ predpokladá, že prišli od zdroja, s ktorým pôvodne komunikoval. Hrozby, ktoré môžu týmito útokmi nastať sú strata integrity, teda modifikácia dát a ohrozenie dostupnosti pričom vždy dochádza ku škode na systéme alebo infraštruktúre. Maškaráda je prvým z aktívnych útokov, kde ako je možné vidieť na obrázku \ref{active-attack-masq}, útočník vytvára falošnú správu, ktorú zasiela obeti a tá sa domnieva, že komunikuje s pôvodným zdrojom, v našom prípade Bobom. Použitím osobných certifikátov na oboch stranách by bolo možné odhaliť, že správa nepochádza od zdroja, ale od útočníka. Príkladom aktívneho útoku je aj útok odoprenia služby \ref{active-attack-dos}, kde sa vytvárajú falošné dáta generované vysokou frekvenciou za účelom odstaviť systém alebo infraštruktúru, ktorá nezvláda spracovanie toľkých požiadaviek, keďže nebola na takúto záťaž dimenzovaná. Tretím aktívnym útokom \ref{active-attack-mod} je modifikácia správy útočníkom pri prechode komunikačným kanálom, ktorý sa realizuje rôznymi technikami podvrhnutia zdroja alebo identity. Komunikácia v tomto prípade prebieha cez útočníka, ktorý tento útok mohol uskutočniť napríklad podvrhnutím smerovania. Posledným útokom je útok prehratím \ref{active-attack-reply}, čo je útok veľmi podobný predchádzajúcemu, akurát obeť obdrží najprv pôvodnú nepozmenenú správu a následne po určitom čase aj modifikovanú správu od útočníka. Takéto správy môžu byť generované aj ako nežiadúca sieťová prevádzka pri zahltení prvkov alebo pri zlom nastavení smerovania. Citlivé sú najmä tranzakčné systémy napríklad databáze. Zabrániť tomuto útoku je možné pomocou časových pečiatok a jednoznačných identifikátorov. 
 

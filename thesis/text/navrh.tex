@@ -2,12 +2,94 @@
 \phantomsection
 
 \section{Požiadavky na aplikáciu}
+
+
 O kĺúčových vlastnostiach, pridaj este zmienku o kontrole aktualnej verzie. Cisco ma API na to
 
 \section{Existujúce riešenia a odlišnosti}
 
+\section{Rozdelenie príkazov}
+Na zariadeniach od firmy Cisco s operačným systémom IOS bol vykonaný rozbor možných príkazov a ich foriem zápisu a početnosti výskytu v konfigurácií. Tento rozbor bol spravený z dôvodu, že niektoré príkazy sa môžu opakovať a zároveň jeden druh príkazu môže byť konfigurovaný v rôznych kontextoch a teda neprítomnosť v jednom kontexte automaticky neznamená nedostatok v konfigurácií. Na základe rozboru boli rozdelené príkazy na konfiguráciu sieťových zariadení do nasledujúcich štyroch kategórií:
+\\
+\begin{enumerate}
+	\item Maximálne s jedným výskytom v konfigurácii\,--\,príkladom môže byť verzia protokolu \zk{zkSSH}.
+	
+\begin{minipage}{\linewidth}		
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia verzie protokolu SSH},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,]
+Router(config)#ssh version 2
+\end{lstlisting}
+\end{minipage}
+	
+	\item \vspace{2em} Viacnásobný výskyt viazaný na rozhranie\,--\,typickým príkladom je zabezpečenie portu s definovaním maximálneho počtu povolených \zkratka{zkMAC} adries.
+	
+\begin{minipage}{\linewidth}		
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia maximálneho počtu povolených MAC adries na porte},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
+Router(config)#interface FastEthernet0/1
+Router(config-if)#switchport port-security mac address maximum 1
+\end{lstlisting}
+\end{minipage}
+
+	\item \vspace{2em} Viacnásobný výskyt v konfigurácii\,--\,tieto príkazy konfigurujú rôzne služby, napríklad autentizáciu správ \zkratka{zkOSPF}.
+
+\begin{minipage}{\linewidth}		
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia autentizácie OSPF na porte alebo v proccese},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
+Router(config)#interface FastEthernet0/1
+Router(config-if)#ip ospf message-digest-key 1 md5 heslo
+Router(config-if)#ip ospf authentication message-digest
+
+Router(config)#router ospf 1
+Router(config)#area 0 authentication message-digest
+Router(config)#area 0 authentication key-chain 1
+\end{lstlisting}
+\end{minipage}
+	
+	
+	\item \vspace{2em} Všeobecný príkaz pre celé zariadenie a zároveň viacnásobný výskyt viazaný na rozhranie\,--\,s týmto nastavením je možné sa stretnúť pri protokole \zkratka{zkLLDP}, ktorý je možné zapnúť pre všetky porty globálne a následne selektovať porty, na ktorých nebude bežať.
+	
+\begin{minipage}{\linewidth}		
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia protokolu LLDP a vypnutie protokolu pre jeden port},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
+Router(config)#lldp run
+Router(config)#interface FastEthernet0/1
+Router(config-if)#no lldp receive
+Router(config-if)#no lldp transmit
+		
+
+\end{lstlisting}
+\end{minipage}
+	
+\end{enumerate}
+
+\section{Rozdelenie sieťových prvkov}
+Sieť je dnes navrhovaná zväčša podľa hierarchického modelu opísaného v kapitole \ref{hierarchicky-model}. Preto sa aj problémy a útoky v návrhu zatrieďujú podľa vrstvy, ktorú ovplyvňujú. V praxi sa však v menších sieťach funkcie jednotlivých vrstiev zlučujú, a preto boli okrem štandardných vrstiev nad rámec hierarchického modelu definované nasledujúce:
+
+\begin{itemize}
+	\item CORE/EDGE\,--\,core vrstva, prípadne s funkciou hraničného prvku.
+	\item DIST\,--\,distribučná vrstva.
+	\item ACC\,--\,prístupová vrstva.
+	\item COLALL\,--\,všetky vyššie zmienené vrstvy zlúčené do jednej.
+	\item COLDISTACC\,--\,zlúčená distribučná a prístupová vrstva.
+	\item COLCOREDIST\,--\,zlúčená core a distribučná vrstva.
+\end{itemize}
+
+
 \section{Zoznam odporúčaní}
- určite ako vznikal, rozobrať facility, severity, prečo rozdelenie podľa vrstiev a prečo nie podľa facility, citacie k jednotlivym riadkom, prejst este raz planes a severity, eliminovat viac riadkov s loopback, skratky z tabulky treba vypisat
+ TODO: citacie k jednotlivym riadkom, prejst este raz planes a severity, eliminovat viac riadkov s loopback, skratky z tabulky treba vypisat                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+V súčasnej dobe existuje mnoho odporúčaní, štandardov a benchmarkov, ktoré sa zaoberajú bezpečnosťou a správnou konfiguráciou sieťových zariadení. V mnohých prípadoch sú buď príliš všeobecné a teda sieťoví inžinieri majú problém zistiť, čo daným odporúčaním autor myslel a ako ho implementovať, alebo sú určené iba pre zariadenia od jedného výrobcu. Problémom je taktiež, že väčšina odporúčaní, štandardov a benchmarkov sa nie úplne prekrývajú, a teda je potrebné pri nastavovaní a audite zariadení čerpať s mnohých naraz. Výsledná tabuľka obsahuje odporúčania z odbornej literatúry a štandardov a benchmarkov verejne dostupných a používaných v produkčnom nasadení. Výhodou je aj fakt, že obsahuje odporúčania vychádzajúce z problémov IPv6, ktoré nie sú často v štandardoch a benchmarkoch dostupné. Podrobná tabuľka s mapovaním odporúčaní na príkazy pre zariadenia Cisco s operačným systémom IOS je v prílohe TODO priloha %TODO priloha.
+
+Zariadenia Cisco boli pre túto prácu vybrané z dôvodu, že spoločnosť Cisco je lídrom ktorý udáva trend, ich zariadenia sú celosvetovo v korporáciách veľmi rozšírené a mnoho literatúry a benchmarkov sa odvoláva na nastavenia týchto prístrojov s udávanými príkladmi konfigurácie. Taktiež sú tieto zariadenia dobrým referenčným príkladom pre hľadanie alternatívy v zariadeniach od iných výrobcov.
+
+V tabuľke \ref{checklist} je možné vidieť, že odporúčania sú rozdelené podľa viacerých kritérií. V prvom rade sú to roviny (plane), ktoré nie sú dôležité pre následnú automatickú konfiguráciu a odhaľovanie problémov, ale na vytvorenie si obrazu, ktorá časť rovín je kritická a postihnuteľná najviac. 
+
+Stĺpec závažnosť (severity) vznikol odhadom na základe znalostí a skúseností. Tento atribút bude možné zmeniť v konfiguračnom súbore každého modulu v závislosti na riziku, ktoré sa pre danú topológiu a firmu vyhodnotí za pomoci manažmentu rizík opísaného v kapitole \ref{bezpecnostny-audit}. Tento atribút sa nenachádza v žiadnom štandarde ani benchmarku, z ktorého vytvorený zoznam odporúčaní čerpal, no je veľmi dôležitý z hľadiska, že nie všetky nedostatky sú rovnako závažné a nemajú rovnaký dopad. Hodnoty, ktoré nadobúda sú prebrané zo štandardu \zk{zkCVSS}, pričom posledný interval \texttt{none} reprezentujúci nulové riziko respektíve závažnosť je zamenený za kľúčové slovo \texttt{notify}. K tejto zmene prišlo z dôvodu, že problémy s nulovým rizikom nie sú súčasťou návrhu a nemá zmysel ich riešiť. V prípade, že bude nález falošne pozitívny alebo riziko bude akceptované, tak sa táto skutočnosť uloží do konfiguračného súboru. Závažnosť \texttt{notify} bude použitá v prípade prítomnosti monitorovania portu pomocou zrkadlenia portu alebo NetFlow/sFlow. Jedná sa totiž o technológie potrebné na monitorovanie prevádzky z legislatívnych alebo bezpečnostných dôvodov. Riziko existuje iba pri nesprávnom nastavení zdrojov monitorovania a cieľu pre zber dát, a preto je dobré vedieť pri audite o prítomnosti tohto nastavenia.
+ 
+
+Ďalším atribútom tabuľky je stĺpec zariadenie (facility), ktorý rozlišuje ktorých zariadení sa problém alebo útok týka. Zariadenia sú rozdelené na smerovač (R), prepínač (L2SW) a L3 prepínač (L3SW). Rozdelenie na prvky z L2 a L3 vrstvy môže byť vykonané automaticky na základe rozpoznania v konfigurácií.
+
+Posledným rozdelením je vrstva, na ktorej zariadenie pracuje (facility layer), nakoľko rozdelenie podľa zariadení nie je dostatočné, pretože napríklad L3 prepínač môže byť použitý na ktorejkoľvek vrstve hierarchického modelu a každá vrstva má určité špecifiká, ktoré neobsahuje iná vrstva. Každý konfiguračný súbor popisujúci zariadenie bude obsahovať informáciu, do ktorej vrstvy patrí a na základe toho bude môcť program rozhodnúť, ktoré moduly zodpovedné za nájdenie problému a jeho vyriešenie budú na zariadení spustené. Taktiež bude možné meniť, dopĺňať a zakázať spúšťanie modulov pre jednotlivé zariadenia, pokiaľ by v danej topológii nevyhovovalo rozdelenie z tabuľky \ref{checklist}. 
+
+Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa odporúčanie a opatrenie týka nie sú súčasťou žiadneho kontrolného zoznamu, benchmarku ani štandardu, z ktorého bolo čerpané. Sieťový administrátor preto musí sám vyvodiť záver, ktoré odporúčania a postupy bude aplikovať na jednotlivé zariadenia a vrstvy hierarchického modelu. Preto vytvorená tabuľka odporúčaní už obsahuje aj zoznam zariadení, ktorých sa opatrenie týka.
+
 
 \scriptsize
 \begin{longtable}{|P{8em}|P{9em}|P{8em}|P{5em}|P{5em}|P{10em}|}
@@ -145,11 +227,6 @@ O kĺúčových vlastnostiach, pridaj este zmienku o kontrole aktualnej verzie. 
 \end{longtable}
 
  
-\section{Rozdelenie príkazov}
- pavuk na GDRIVE z draw.io, krátke príklady k jednotlivym prvkom pavuka a vysvetliť komplikácie  
-
-\section{Rozdelenie sieťových prvkov}
-
 \section{Hierarchická štruktúra}
 Stromová štruktúra a koncept fungovania, Možno fungovanie cez nejaký UML diagram (sekvenčný?) alebo skôr niečo zjednodušené
 
