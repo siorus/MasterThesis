@@ -212,7 +212,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
     ARP Spoofing & Dynamic ARP Inspection & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
     IP spoofing & IPv4/IPv6 Source Guard & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
     IPv6 Next Header  a IPv6 Fragmentation útok & ACL blokujúce nerozpoznateľne rozšírené hlavičky & Control & CRITICAL & VŠETKY & VŠETKY \\ \hline
-    Mapovanie sete pomocou pingu na multicast adresu všetkých uzlov a MLD Query Overload a Smurf útok & ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD Query na prístupových portoch & Control & MEDIUM & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
+    Mapovanie sete pomocou pingu na multicast adresu všetkých uzlov a MLD/IGMP Query Overload a Smurf útok & ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD/IGMP Query na prístupových portoch & Control & MEDIUM & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
     Mobilné zariadenia pripojené bezdôtovo spotrebovávajú veľa energie kvôli častým RA správam & RA Throttling & Control & LOW & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
     Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete & Povolenie FHRP s autentizáciou a aktuálnou verziou & Control & MEDIUM & R, L3SW & CORE/EDGE, COLCOREDIST, \hbox{COLALL} \\ \hline
     Vyčerpanie cache susedov & Statický záznam pre kritické zariadenia (servery) spájajúce IP a MAC adresu a VLAN & Control & CRITICAL & L3SW, L2SW & DIST, COLDISTACC, ACC \\ \hline
