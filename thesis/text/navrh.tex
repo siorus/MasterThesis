@@ -25,7 +25,7 @@ Router(config)#ssh version 2
 	\item \vspace{2em} Viacnásobný výskyt viazaný na rozhranie\,--\,typickým príkladom je zabezpečenie portu s definovaním maximálneho počtu povolených \zkratka{zkMAC} adries.
 	
 \begin{minipage}{\linewidth}		
-\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia maximálneho počtu povolených MAC adries na porte},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia maximálneho počtu povolených MAC adries na porte},label=lst:mac-max,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
 Router(config)#interface FastEthernet0/1
 Router(config-if)#switchport port-security mac address maximum 1
 \end{lstlisting}
@@ -34,7 +34,7 @@ Router(config-if)#switchport port-security mac address maximum 1
 	\item \vspace{2em} Viacnásobný výskyt v konfigurácii\,--\,tieto príkazy konfigurujú rôzne služby, napríklad autentizáciu správ \zkratka{zkOSPF}.
 
 \begin{minipage}{\linewidth}		
-\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia autentizácie OSPF na porte alebo v proccese},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia autentizácie OSPF na porte alebo v proccese},label=lst:ospf-auth,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
 Router(config)#interface FastEthernet0/1
 Router(config-if)#ip ospf message-digest-key 1 md5 heslo
 Router(config-if)#ip ospf authentication message-digest
@@ -49,7 +49,7 @@ Router(config)#area 0 authentication key-chain 1
 	\item \vspace{2em} Všeobecný príkaz pre celé zariadenie a zároveň viacnásobný výskyt viazaný na rozhranie\,--\,s týmto nastavením je možné sa stretnúť pri protokole \zkratka{zkLLDP}, ktorý je možné zapnúť pre všetky porty globálne a následne selektovať porty, na ktorých nebude bežať.
 	
 \begin{minipage}{\linewidth}		
-\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia protokolu LLDP a vypnutie protokolu pre jeden port},label=lst:ver-ssh,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfigurácia protokolu LLDP a vypnutie protokolu pre jeden port},label=lst:lldp,basicstyle=\ttfamily\small, keywordstyle=\color{black}\bfseries\underbar,language=,breaklines=true]
 Router(config)#lldp run
 Router(config)#interface FastEthernet0/1
 Router(config-if)#no lldp receive
@@ -73,6 +73,10 @@ Sieť je dnes navrhovaná zväčša podľa hierarchického modelu opísaného v 
 	\item COLCOREDIST\,--\,zlúčená core a distribučná vrstva.
 \end{itemize}
 
+\section{Princíp fungovania}
+vyvojovy diagram plus slovny opis
+\subsection*{Hierarchická štruktúra}
+Stromová štruktúra a koncept fungovania, Možno fungovanie cez nejaký UML diagram (sekvenčný?) alebo skôr niečo zjednodušené
 
 \section{Zoznam odporúčaní}
  TODO: citacie k jednotlivym riadkom, prejst este raz planes a severity, eliminovat viac riadkov s loopback, skratky z tabulky treba vypisat                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -83,7 +87,7 @@ Zariadenia Cisco boli pre túto prácu vybrané z dôvodu, že spoločnosť Cisc
 
 V tabuľke \ref{checklist} je možné vidieť, že odporúčania sú rozdelené podľa viacerých kritérií. V prvom rade sú to roviny (plane), ktoré nie sú dôležité pre následnú automatickú konfiguráciu a odhaľovanie problémov, ale na vytvorenie si obrazu, ktorá časť rovín je kritická a postihnuteľná najviac. 
 
-Stĺpec závažnosť (severity) vznikol odhadom na základe znalostí a skúseností. Tento atribút bude možné zmeniť v konfiguračnom súbore každého modulu v závislosti na riziku, ktoré sa pre danú topológiu a firmu vyhodnotí za pomoci manažmentu rizík opísaného v kapitole \ref{bezpecnostny-audit}. Tento atribút sa nenachádza v žiadnom štandarde ani benchmarku, z ktorého vytvorený zoznam odporúčaní čerpal, no je veľmi dôležitý z hľadiska, že nie všetky nedostatky sú rovnako závažné a nemajú rovnaký dopad. Hodnoty, ktoré nadobúda sú prebrané zo štandardu \zk{zkCVSS}, pričom posledný interval \texttt{none} reprezentujúci nulové riziko respektíve závažnosť je zamenený za kľúčové slovo \texttt{notify}. K tejto zmene prišlo z dôvodu, že problémy s nulovým rizikom nie sú súčasťou návrhu a nemá zmysel ich riešiť. V prípade, že bude nález falošne pozitívny alebo riziko bude akceptované, tak sa táto skutočnosť uloží do konfiguračného súboru. Závažnosť \texttt{notify} bude použitá v prípade prítomnosti monitorovania portu pomocou zrkadlenia portu alebo NetFlow/sFlow. Jedná sa totiž o technológie potrebné na monitorovanie prevádzky z legislatívnych alebo bezpečnostných dôvodov. Riziko existuje iba pri nesprávnom nastavení zdrojov monitorovania a cieľu pre zber dát, a preto je dobré vedieť pri audite o prítomnosti tohto nastavenia.
+Stĺpec závažnosť (severity) vznikol na základe predpokladaných závažností. Tento atribút bude možné zmeniť v konfiguračnom súbore každého modulu v závislosti na riziku, ktoré sa pre danú topológiu a firmu vyhodnotí za pomoci manažmentu rizík opísaného v kapitole \ref{bezpecnostny-audit}. Tento atribút sa nenachádza v žiadnom štandarde ani benchmarku, z ktorého vytvorený zoznam odporúčaní čerpal, no je veľmi dôležitý z hľadiska, že nie všetky nedostatky sú rovnako závažné a nemajú rovnaký dopad. Hodnoty, ktoré nadobúda sú prebrané zo štandardu \zk{zkCVSS}, pričom posledný interval \texttt{none} reprezentujúci nulové riziko respektíve závažnosť je zamenený za kľúčové slovo \texttt{notify}. K tejto zmene prišlo z dôvodu, že problémy s nulovým rizikom nie sú súčasťou návrhu a nemá zmysel ich riešiť. V prípade, že bude nález falošne pozitívny alebo riziko bude akceptované, tak sa táto skutočnosť uloží do konfiguračného súboru. Závažnosť \texttt{notify} bude použitá v prípade prítomnosti monitorovania portu pomocou zrkadlenia portu alebo NetFlow/sFlow. Jedná sa totiž o technológie potrebné na monitorovanie prevádzky z legislatívnych alebo bezpečnostných dôvodov. Riziko existuje iba pri nesprávnom nastavení zdrojov monitorovania a cieľu pre zber dát, a preto je dobré vedieť pri audite o prítomnosti tohto nastavenia.
  
 
 Ďalším atribútom tabuľky je stĺpec zariadenie (facility), ktorý rozlišuje ktorých zariadení sa problém alebo útok týka. Zariadenia sú rozdelené na smerovač (R), prepínač (L2SW) a L3 prepínač (L3SW). Rozdelenie na prvky z L2 a L3 vrstvy môže byť vykonané automaticky na základe rozpoznania v konfigurácií.
@@ -91,6 +95,70 @@ Stĺpec závažnosť (severity) vznikol odhadom na základe znalostí a skúseno
 Posledným rozdelením je vrstva, na ktorej zariadenie pracuje (facility layer), nakoľko rozdelenie podľa zariadení nie je dostatočné, pretože napríklad L3 prepínač môže byť použitý na ktorejkoľvek vrstve hierarchického modelu a každá vrstva má určité špecifiká, ktoré neobsahuje iná vrstva. Každý konfiguračný súbor popisujúci zariadenie bude obsahovať informáciu, do ktorej vrstvy patrí a na základe toho bude môcť program rozhodnúť, ktoré moduly zodpovedné za nájdenie problému a jeho vyriešenie budú na zariadení spustené. Taktiež bude možné meniť, dopĺňať a zakázať spúšťanie modulov pre jednotlivé zariadenia, pokiaľ by v danej topológii nevyhovovalo rozdelenie z tabuľky \ref{checklist}. 
 
 Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa odporúčanie a opatrenie týka nie sú súčasťou žiadneho kontrolného zoznamu, benchmarku ani štandardu, z ktorého bolo čerpané. Sieťový administrátor preto musí sám vyvodiť záver, ktoré odporúčania a postupy bude aplikovať na jednotlivé zariadenia a vrstvy hierarchického modelu. Preto vytvorená tabuľka odporúčaní už obsahuje aj zoznam zariadení, ktorých sa opatrenie týka.
+
+\newpage
+
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+	\footnotesize
+\begin{longtable}[htbp]{|C{2em}L{5.43em}L{5.43em}C{6em}C{5.43em}C{5.43em}C{5.43em}|}
+	\hline
+	\centering
+		Číslo & {Útok / Problém} & Mitigácia / Nastavenie & Plane & Severity & Facility & Facility layer \\ \hline
+
+		1 & Odpoèúvanie SNMP verzie 1 a 2c & Použitie SNMP verie 3 pokia¾ je SNMP používané & Management & CRITICAL & VŠETKY & VŠETKY \\
+		\rowcolor[rgb]{ .933,  .933,  .933} 2 & Modifikovanie konfigurácie pomocou SNMP & Obmedzenie SNMP iba na èítanie & Management & CRITICAL & VŠETKY & VŠETKY \\
+		3     & Neoprávnený prístup k SNMP informáciám & Obmedzenie SNMP iba pre vybrané IP adresy & Management & HIGH  & VŠETKY & VŠETKY \\
+		\rowcolor[rgb]{ .933,  .933,  .933} 4     & Administrátor nemá povedomie o problémoch na zariadení & Povolenie asynchrónnych správ SNMP TRAP & Management & MEDIUM & VŠETKY & VŠETKY \\
+		5     & Odpoèúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie & Vytvorenie SNMP verzie 3 užívate¾a s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA & Management & CRITICAL & VŠETKY & VŠETKY \\
+		\rowcolor[rgb]{ .933,  .933,  .933} 6     & Sťažená identifikácia SNMP správ z rôznych IP & Definovanie lokácie SNMP serveru & Management & LOW   & VŠETKY & VŠETKY \\
+		7     & SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre SNMP & Management & MEDIUM & VŠETKY & VŠETKY \\
+		\rowcolor[rgb]{ .933,  .933,  .933} 8     & Zmeny názvov rozhraní medzi reštartami a nemožnosť monitorovanie pomocou SNMP & SNMP statické nemenné meno rozhrania aj po reštarte zariadenia & Management & HIGH  & VŠETKY & VŠETKY \\
+%	\caption{Add caption}
+	\label{tab:addlabel1}%
+\end{longtable}%
+
+\newpage
+
+%>{\columncolor[rgb]{ .933,  .933,  .933}}
+% Table generated by Excel2LaTeX from sheet 'Hárok1'
+\begin{longtable}[htbp]{|C{2.5em}L{8em}L{8em}p{5.6em}p{4.7em}p{6.57em}|}
+	\hline
+	\centering
+	
+	Číslo riadku & Útok / Problém & Mitigácia / Konfigurácia & Plane & Severity & Facility layer \\
+	\hline
+	1 & Odpočúvanie SNMP verzie 1 a 2c & Použitie SNMP verie 3 pokiaľ je SNMP používané & Management & CRITICAL & VŠETKY \\
+	\rowcolor[rgb]{ .933,  .933,  .933} 2 & Modifikovanie konffigurácie pomocou SNMP & Obmedzenie SNMP iba na čítanie & Management & CRITICAL & VŠETKY \\
+	3 & Neoprávnený prístup k SNMP informáciám & Obmedzenie SNMP iba pre vybrané IP adresy & Management & HIGH & VŠETKY \\
+	\rowcolor[rgb]{ .933,  .933,  .933} 4 & Administrátor nemá povedomie o problémoch na zariadení & Povolenie asynchrónnych správ SNMP TRAP & Management & MEDIUM & VŠETKY \\
+	5 & Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie & Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA & Management & CRITICAL & VŠETKY \\
+	\rowcolor[rgb]{ .933,  .933,  .933} 6 & Sťažená identifikácia SNMP správ z rôznych IP & Definovanie lokácie SNMP serveru & Management & LOW & VŠETKY \\
+	7 & SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre SNMP & Management & MEDIUM & VŠETKY \\
+	\rowcolor[rgb]{ .933,  .933,  .933} 8 & Zmeny názvov rozhraní medzi reštartami a nemožnosť monitorovanie pomocou SNMP & SNMP statické nemenné meno rozhrania aj po reštarte zariadenia & Management & HIGH & VŠETKY \\ \hline
+	\caption{Add caption}
+	\label{tab:addlabel}%
+\end{longtable}%
+
+\newpage
+% Table generated by Excel2LaTeX from sheet 'Hárok1'
+\begin{longtable}[htbp]{|C{2.5em}>{\columncolor[rgb]{ .933,  .933,  .933}}L{8em}L{8em}>{\columncolor[rgb]{ .933,  .933,  .933}}p{5.6em}p{4.7em}>{\columncolor[rgb]{ .933,  .933,  .933}}p{6.57em}|}
+	\hline
+	\centering
+	
+	Číslo riadku & Útok / Problém & Mitigácia / Konfigurácia & Plane & Severity & Facility layer \\
+	\hline
+	1 & Odpočúvanie SNMP verzie 1 a 2c & Použitie SNMP verie 3 pokiaľ je SNMP používané & Management & CRITICAL & VŠETKY \\
+	2 & Modifikovanie konffigurácie pomocou SNMP & Obmedzenie SNMP iba na čítanie & Management & CRITICAL & VŠETKY \\
+	3 & Neoprávnený prístup k SNMP informáciám & Obmedzenie SNMP iba pre vybrané IP adresy & Management & HIGH & VŠETKY \\
+	4 & Administrátor nemá povedomie o problémoch na zariadení & Povolenie asynchrónnych správ SNMP TRAP & Management & MEDIUM & VŠETKY \\
+	5 & Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie & Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA & Management & CRITICAL & VŠETKY \\
+	6 & Sťažená identifikácia SNMP správ z rôznych IP & Definovanie lokácie SNMP serveru & Management & LOW & VŠETKY \\
+	7 & SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte & Definovanie loopback zdrojového rozhrania pre SNMP & Management & MEDIUM & VŠETKY \\
+	8 & Zmeny názvov rozhraní medzi reštartami a nemožnosť monitorovanie pomocou SNMP & SNMP statické nemenné meno rozhrania aj po reštarte zariadenia & Management & HIGH & VŠETKY \\ \hline
+	\caption{Add caption}
+	\label{tab:addlabel}%
+\end{longtable}%
+
 
 
 \scriptsize
@@ -229,8 +297,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 \end{longtable}
 
  
-\section{Hierarchická štruktúra}
-Stromová štruktúra a koncept fungovania, Možno fungovanie cez nejaký UML diagram (sekvenčný?) alebo skôr niečo zjednodušené
+
 
 
 

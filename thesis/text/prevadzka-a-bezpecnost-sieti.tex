@@ -33,13 +33,14 @@ Siete sú spravidla delené do 3 vrstiev s definovanými funkciami \cite{Lammle2
 	\end{center}
 	\vspace{-11em}
 	\caption[Hierarchické rozdelenie siete na vrstvy]{Hierarchické rozdelenie siete na vrstvy}
-	\label{fig:net-devices}
+	\label{fig:net-hierarchy}
 \end{figure} 
 
 \noindent
 \vspace{2em}
 V menších sieťach prevažne malých firiem sa využíva zlučovanie vrstiev nazývaných ako collapsed core, ktoré zlučujú distribučnú a core vrstvu, prípadne zlučujú všetky tri vrstvy dokopy. 
 
+\noindent
 Cieľom hierarchického modelu a dobre navrhnutej siete je dosiahnutie nasledujúcich vlastností:
 
 \begin{itemize}
@@ -70,7 +71,7 @@ Rovina management je zodpovedná za konfiguráciu a správu zariadení a riadeni
 \section{Prevázkové a bezpečnostné postupy}
 
 \subsection*{Riadenie a zneužitie prístupu k manažmentu zariadenia}
-Kritickým miestom často absentujúcim zabezpečenie je prístup ku konfigurácií zariadenia. Typickým príkladom je využitie protokolu \texttt{Telnet}, ktorý nešifruje spojenie a je teda ľahko odpočúvateľný. Preto sa odporúča využívať protokol \zk{zkSSH}, naviac je dobré využiť bezpečnú verziu 2 s rozumnou dĺžkou kľúča odpovedajúcou aktuálnym odporúčaniam. Jedným z opatrení na zabezpečenie SSH prístupu je zmena portu, na ktorom obvykle počúva z dôvodu, že útočník skúša periodicky útoky hrubou silou na \zkratka{zkTCP} port 22. Alternatívou na zabezpečenie SSH prístupu môže byť port knocking, ktorý na základe autorizácie dynamicky povolí záznam v ACL k portu, na ktorom počúva SSH.
+Kritickým miestom často absentujúcim zabezpečenie je prístup ku konfigurácií zariadenia. Typickým príkladom je využitie protokolu Telnet, ktorý nešifruje spojenie a je teda ľahko odpočúvateľný. Preto sa odporúča využívať protokol \zk{zkSSH}, naviac je dobré využiť bezpečnú verziu 2 s rozumnou dĺžkou kľúča odpovedajúcou aktuálnym odporúčaniam \cite{CIS_DrTLsgXv24lxeIIM} \cite{Barker2019}. Jedným z opatrení na zabezpečenie SSH prístupu je zmena portu, na ktorom obvykle počúva z dôvodu, že útočník skúša periodicky útoky hrubou silou na \zkratka{zkTCP} port 22. Alternatívou na zabezpečenie SSH prístupu môže byť port knocking, ktorý na základe autorizácie dynamicky povolí záznam v ACL k portu, na ktorom počúva SSH.
 
 Pri pokusoch o prihlásenie sa často využíva hádanie hesiel, preto je dobré určiť maximálny počet neúspešných pokusov a definovať čas po ktorý bude prihlásenie zablokované.
 
@@ -78,7 +79,7 @@ Riadenie prístupu k manažmentu zariadení by malo byť výhradne z obmedzenéh
 
 V prípade konfigurácie viacerými administrátormi naraz môže vzniknúť konflikt, a preto je dobré zabezpečiť, aby v jednom okamihu mohol zmeny vykonávať iba jeden administrátor. Problémom môžu byť aj dlhé aktívne pripojenie k manažmentu zariadenia, ktoré môže byť zneužité pri odblokovanom počítači administrátora. 
 
-Pri pokuse o prihlásenie alebo zmene nastavení je dobré informovať oznámením alebo správou potenciálneho útočníka s následkami, ktoré mu hrozia v prípade zneužitia zariadenia. 
+Pri pokuse o prihlásenie alebo zmene nastavení je dobré informovať oznámením alebo správou potenciálneho útočníka s následkami, ktoré mu hrozia v prípade zneužitia zariadenia \cite{CIS_DrTLsgXv24lxeIIM}. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -107,7 +108,7 @@ Najlepším riešením pre riadenie prístupu k manažmentu zariadenia a účtov
 111,112
 \section*{Smerovacie protokoly}
 %TODO virtual link, auto summary
-Používaním dynamických smerovacích protokolov prichádza sieť o určitú časť bezpečnosti a to vysielaním informácií o pripojených a naučených sieťach a cestách, ktoré môže útočník odchytávať. K tomu sa ešte môže pridať vloženie falošnej informácie a teda zaistenie smerovania cez útočníka. Našťastie obrana proti týmto útokom existuje, aj keď nie je vždy ideálna. V prípade vloženia informácie alebo cesty do správ, ktoré si vymieňajú dynamické smerovacie protokoly je možnou obranou autentizácia správ poslaných medzi smerovačmi. Pri zasielaní sa používa hash hesla a to sa pri prijatí druhým smerovačom porovná s vopred definovaným. Na obrázku \ref{fig:passive-int} je vidno, že informácie dynamického smerovacieho protokolu sú zastavené na pasívnom rozhraní, a teda užívatelia alebo útočník nemá možnosť sa tieto údaje dozvedieť.
+Používaním dynamických smerovacích protokolov prichádza sieť o určitú časť bezpečnosti a to vysielaním informácií o pripojených a naučených sieťach a cestách, ktoré môže útočník odchytávať. K tomu sa ešte môže pridať vloženie falošnej informácie a teda zaistenie smerovania cez útočníka. Našťastie obrana proti týmto útokom existuje, aj keď nie je vždy ideálna. V prípade vloženia informácie alebo cesty do správ, ktoré si vymieňajú dynamické smerovacie protokoly je možnou obranou autentizácia správ poslaných medzi smerovačmi \cite{McMillan2018} \cite{Singh2018} \cite{CIS_DrTLsgXv24lxeIIM}. Pri zasielaní sa používa hash hesla a to sa pri prijatí druhým smerovačom porovná s vopred definovaným. Na obrázku \ref{fig:passive-int} je vidno, že informácie dynamického smerovacieho protokolu sú zastavené na pasívnom rozhraní \cite{Khandelwal2016}, a teda užívatelia alebo útočník nemá možnosť sa tieto údaje dozvedieť.
 
 \begin{figure}[H]
 	\begin{center}
@@ -117,9 +118,9 @@ Používaním dynamických smerovacích protokolov prichádza sieť o určitú �
 	\label{fig:passive-int}
 \end{figure} 
 
-Bezpečnostnou hrozbou môže byť aj smerovanie na základe zdrojove adresy, pri ktorej si zdroj určí cestu, ktorou bude paket prechádzať namiesto aby túto skutočnosť prenechal na rozhodnutí smerovačov po ceste k cieľu. Táto funkcia využíva pole \texttt{IP Options}, ktoré býva však často ignorované prípadne pakety s týmto polom zahadzované z bezpečnostných dôvodov. Existujú dva módy, a to Strict a Loose, v prvom prípade musí paket prejsť všetkými definovanými bodmi a žiadnym iným. Naopak mód Loose definuje uzly ,ktoré je potreba navštíviť, no zároveň môžu byť navštívené aj iné uzly po ceste.  
+Bezpečnostnou hrozbou môže byť aj smerovanie na základe zdrojove adresy, pri ktorej si zdroj určí cestu, ktorou bude paket prechádzať namiesto aby túto skutočnosť prenechal na rozhodnutí smerovačov po ceste k cieľu \cite{CIS_DrTLsgXv24lxeIIM}. Táto funkcia využíva pole \texttt{IP Options}, ktoré býva však často ignorované prípadne pakety s týmto polom zahadzované z bezpečnostných dôvodov. Existujú dva módy, a to Strict a Loose, v prvom prípade musí paket prejsť všetkými definovanými bodmi a žiadnym iným. Naopak mód Loose definuje uzly ,ktoré je potreba navštíviť, no zároveň môžu byť navštívené aj iné uzly po ceste.  
 
-Podvrhnutie IP adresy, tzv. IP spoofing je jedným z útokov, ktorým musia smerovače čeliť. Dá sa mu zbrániť pomocou \zkratka{zkURPF}, ktorý funguje buď v Strict alebo Loose móde a zisťuje prítomnosť zdrojovej zdrojovej IP adresy. Ako už názov napovedá, tak mód Strict je prísnejší, pretože zahadzuje pakety, ktorej zdrojová adresa sa nenachádza v smerovacej tabuľke a zároveň testuje či zdrojová adresa je dosiahnuteľná cez rozhranie, na ktorom bol paket prijatý. Tento mód je preto nevhodný pri asymetrickom smerovaní. Mód Loose testuje prítomnosť zdrojovej adresy iba v smerovacej tabuľke. 
+Podvrhnutie IP adresy, tzv. IP spoofing je jedným z útokov, ktorým musia smerovače čeliť. Dá sa mu zbrániť pomocou \zkratka{zkURPF} \cite{Jackson2010}, ktorý funguje buď v Strict alebo Loose móde a zisťuje prítomnosť zdrojovej zdrojovej IP adresy. Ako už názov napovedá, tak mód Strict je prísnejší, pretože zahadzuje pakety, ktorej zdrojová adresa sa nenachádza v smerovacej tabuľke a zároveň testuje či zdrojová adresa je dosiahnuteľná cez rozhranie, na ktorom bol paket prijatý. Tento mód je preto nevhodný pri asymetrickom smerovaní. Mód Loose testuje prítomnosť zdrojovej adresy iba v smerovacej tabuľke. 
 
 Protokol \zkratka{zkBGP} okrem autentizácie obsahuje aj ďalšiu ochranu a to \zkratka{zkTTL} security \cite{AlHFaPbj6IbKzbuv}. Pri tomto prístupe sa porovnáva hodnota poľa TTL v pakete, ktorý dorazí do smerovača a známy počet skokov, ktorý sa nakonfiguruje medzi našim smerovačom a zdrojom. Mohlo by sa zdať, že priamo pripojené siete, teda susedné autonómne systémy týmto problémom netrpia, no pole TTL sa dá zmeniť tak, aby po príchode na smerovač obete malo toto pole hodnotu 1, čo je predvolené TTL, ktoré zasiela BGP, viď obrázok \ref{fig:ttl-sec}. Z tohto dôvodu sa používa obrátená forma kontroly, a to testovanie voči maximálnej hodnote TTL, čo je hodnota 255. To znamená, že všetky pakety od priamo pripojených BGP susedov budú mať po príchode na náš smerovač hodnotu TTL 255, tie ktoré to nebudú splňovať sú brané ako nelegitímne pakety, viď \ref{fig:ttl-sec}. Treba dodať, že v prípade že routery nie su priamo pripojené, tak je možné použiť aj definovanie vzdialenosti medzi smerovačmi, teda počet skokov, aby susedný smerovač dostal BGP správu. Bezpečnejšie je však použiť TTL security, tak že sa od čísla 255 odpočíta počet skokov medzi dvoma autonómnymi systémami a voči tejto hodnote sa bude robiť kontrola.
 
@@ -140,16 +141,16 @@ Dôležitým prvkom sú komentáre k pravidlám v \zk{zkACL}, ktoré by mali nie
 Komentáre s popisom je dobré pridávať aj na rozhrania sieťových zariadení, napríklad s popisom, k akému zariadeniu dané rozhranie vedie. Posledným, ale nemenej dôležitým je pomenovanie \zk{zkVLAN} pre ich ľahšiu identifikáciu.
 
 \subsection*{Šifrovanie hesiel}
-Pri úniku konfigurácií môže dôjsť k odhaleniu hesiel uložených v nich, preto by mali byť v konfiguračnom súbore všetky heslá zahašované pomocou čo najpokročilejších hašovacích funkcií, ktoré dané zariadenie podporuje.
+Pri úniku konfigurácií môže dôjsť k odhaleniu hesiel uložených v nich, preto by mali byť v konfiguračnom súbore všetky heslá zahašované pomocou čo najpokročilejších hašovacích funkcií, ktoré dané zariadenie podporuje \cite{CIS_DrTLsgXv24lxeIIM}.
 
 \subsection*{Logovanie}
 Záznam činnosti zariadenia patrí k základným prvkom monitorovania sieťovej infraštruktúry spolu s notifikovaním o vzniknutých incidentoch. Na tieto účely sa používa prevažne dva protokoly, a to \zkratka{zkSNMP} a Syslog. 
 
-Protokol SNMP využíva databázu MIB buď štandardizovanú, alebo rozšírenú daným výrobcom zariadenia. Jednotlivé monitorované objekty sú v tejto databáze organizované v stromovej štruktúre. V súčasnosti sa využívajú prevažne SNMP verzie 2c a 3. Je vysoko odporúčané využívať verziu 3, ktorá zabezpečuje ako integritu, tak aj dôvernosť a autentizáciu. Protokol SNMP umožňuje pomocou jednotlivých objektov meniť nastavenia zariadení, túto funkciu je však dobré vypnúť a povoliť iba čítanie objektov z presne definovaných IP adries pomocou ACL a asynchrónne správy TRAP.   
+Protokol SNMP využíva databázu MIB buď štandardizovanú, alebo rozšírenú daným výrobcom zariadenia. Jednotlivé monitorované objekty sú v tejto databáze organizované v stromovej štruktúre. V súčasnosti sa využívajú prevažne SNMP verzie 2c a 3. Je vysoko odporúčané využívať verziu 3, ktorá zabezpečuje ako integritu, tak aj dôvernosť a autentizáciu \cite{CIS_DrTLsgXv24lxeIIM} \cite{Graesser2001}. Protokol SNMP umožňuje pomocou jednotlivých objektov meniť nastavenia zariadení, túto funkciu je však dobré vypnúť a povoliť iba čítanie objektov z presne definovaných IP adries pomocou ACL a asynchrónne správy TRAP.   
 
-Druhou možnosťou monitorovania a notifikovania o incidentoch je protokol Syslog. Typicky sa nastavuje Syslog server, ktorý zbiera správy z viacerých zariadení, ktoré môžu byť následne spracovávané špeciálnymi programami a vizualizované v dohľadových centrách. Protokol Syslog pozná 8 úrovní dôležitosti (severity), pričom čím nižšie číslo dôležitosti, tým ide o závažnejší problém. Pri výpadku Syslog serveru je nutné záznamy ponechať na zariadení a preto mať dostatočné množstvo pamäte. V niektorých prípadoch môžu zariadenia vygenerovať väčšie množstvo správ, ktoré majú rovnaký čas a z tohto dôvodu by mali mať jednotlivé správy s rovnakým časom vzniku jednoznačné sekvenčné číslo, aby bolo možné zistiť postupnosť, v akom vznikli incidenty, napríklad zmeny v susedstvách dynamických smerovacích protokoloch.
+Druhou možnosťou monitorovania a notifikovania o incidentoch je protokol Syslog. Typicky sa nastavuje Syslog server, ktorý zbiera správy z viacerých zariadení, ktoré môžu byť následne spracovávané špeciálnymi programami a vizualizované v dohľadových centrách. Protokol Syslog pozná 8 úrovní dôležitosti (severity), pričom čím nižšie číslo dôležitosti, tým ide o závažnejší problém. Pri výpadku Syslog serveru je nutné záznamy ponechať na zariadení a preto mať dostatočné množstvo pamäte \cite{Singh2018} \cite{uYLsMtQInofenpV3}. V niektorých prípadoch môžu zariadenia vygenerovať väčšie množstvo správ, ktoré majú rovnaký čas a z tohto dôvodu by mali mať jednotlivé správy s rovnakým časom vzniku jednoznačné sekvenčné číslo, aby bolo možné zistiť postupnosť, v akom vznikli incidenty, napríklad zmeny v susedstvách dynamických smerovacích protokoloch.
 
-Veľa útokov mieri práve na protokol SNMP, a preto ho mnohí odporúčajú vypínať, na druhej strane protokol Syslog nezabezpečuje žiadnu časť z triády CIA.   
+Veľa útokov mieri práve na protokol SNMP, a preto ho mnohí odporúčajú vypínať \cite{CIS_DrTLsgXv24lxeIIM}, na druhej strane protokol Syslog nezabezpečuje žiadnu časť z triády CIA.   
 
 
 \subsection*{Synchronizácia času}
@@ -164,16 +165,60 @@ Správny a aktuálny čas je dôležitý hlavne pre správne fungovanie certifik
 \end{figure} 
 
 \subsection*{Záloha a zabezpečenie konfigurácií}
-Konfigurácie zariadení a ich záloha sú veľmi dôležitým faktorom, ktorým sa treba zaoberať pri správe infraštruktúry. Pokiaľ sú prítomné aktuálne konfigurácie zariadení, tak pri výpadku hardware je možné ho vymeniť za nový a aplikovať fungujúcu konfiguráciu z poškodeného zariadenia zo zálohy. Zároveň by sa konfigurácia mala dostatočne zabezpečiť proti výmazu zo zariadenia a zálohovaného úložiska a dostatočne zabezpečiť. Zabezpečenie je dôležité, aby nedošlo k úniku konfigurácie útočníkom a nepovolaným osobám a následnému zneužitiu. Záloha konfigurácií by sa mala robiť cez zabezpečený kanál najlepšie pomocou protokolov podporujúcich šifrovanie, napríklad \zkratka{zkSCP} alebo \zkratka{zkSFTP} a nie pomocou \zkratka{zkTFTP}. Vhodná je aj prítomnosť záznamu zmien v konfigurácií v čase.
+Konfigurácie zariadení a ich záloha sú veľmi dôležitým faktorom, ktorým sa treba zaoberať pri správe infraštruktúry. Pokiaľ sú prítomné aktuálne konfigurácie zariadení, tak pri výpadku hardware je možné ho vymeniť za nový a aplikovať fungujúcu konfiguráciu z poškodeného zariadenia zo zálohy. Zároveň by sa konfigurácia mala dostatočne zabezpečiť proti výmazu zo zariadenia a zálohovaného úložiska a dostatočne zabezpečiť \cite{McMillan2018}. Zabezpečenie je dôležité, aby nedošlo k úniku konfigurácie útočníkom a nepovolaným osobám a následnému zneužitiu. Záloha konfigurácií by sa mala robiť cez zabezpečený kanál najlepšie pomocou protokolov podporujúcich šifrovanie, napríklad \zkratka{zkSCP} alebo \zkratka{zkSFTP} a nie pomocou \zkratka{zkTFTP} \cite{Singh2018}. Vhodná je aj prítomnosť záznamu zmien v konfigurácií v čase \cite{McMillan2018}.
 
 \subsection*{Správanie pri vysokom zaťažení}
-V priebehu prevádzky sa môže vyskytnúť kratší alebo aj dlhý časový okamih, kedy je zariadenie vysoko zaťažené a nezvláda spracovávať požiadavky. Toto môže byť spôsobené útokom (D)DOS alebo nedostatočným dimenzovaním a zlou architektúrou siete. Aj napriek tomuto stavu by však malo byť zariadenie schopné odosielať chybové správy a notifikovať o problémoch. Zároveň by mali byť nastavené prahové hodnoty, ktoré budú indikovať stav, že môže dôjsť k nadmernému vyťaženiu procesoru, pamäti alebo linky či už pomocou Syslog správ alebo protokolu SNMP.
+V priebehu prevádzky sa môže vyskytnúť kratší alebo aj dlhý časový okamih, kedy je zariadenie vysoko zaťažené a nezvláda spracovávať požiadavky. Toto môže byť spôsobené útokom (D)DOS alebo nedostatočným dimenzovaním a zlou architektúrou siete. Aj napriek tomuto stavu by však malo byť zariadenie schopné odosielať chybové správy a notifikovať o problémoch. Zároveň by mali byť nastavené prahové hodnoty, ktoré budú indikovať stav, že môže dôjsť k nadmernému vyťaženiu procesoru, pamäti alebo linky či už pomocou Syslog správ alebo protokolu SNMP \cite{uYLsMtQInofenpV3} \cite{Singh2018}.
 
 \subsection*{Monitorovanie výkonu siete}
-Monitorovanie siete nie je len o chybových a operačných správach zariadení, ale aj o prevádzke, ktorá v sieti prebieha. Toto monitorovanie prevádzky musí byť vykonávané často z legislatívnych dôvodov a aplikuje sa u poskytovateľov pripojenia. Monitorovanie prevádzky sa však vykonáva aj v lokálnych sieťach, napríklad zrkadlením portov na analýzu útokov pre IDS alebo pre štatistické informácie a informácie o zaťažení pomocou protokolov sFlow a NetFlow.
+Monitorovanie siete nie je len o chybových a operačných správach zariadení, ale aj o prevádzke, ktorá v sieti prebieha. Toto monitorovanie prevádzky musí byť vykonávané často z legislatívnych dôvodov a aplikuje sa u poskytovateľov pripojenia. Monitorovanie prevádzky sa však vykonáva aj v lokálnych sieťach, napríklad zrkadlením portov \cite{Singh2018} na analýzu útokov pre IDS alebo pre štatistické informácie a informácie o zaťažení pomocou protokolov sFlow a NetFlow.
 
 \subsection*{Problémy vrstvy L2}
-access, max, hopping, double tagging, blackhole, default access a trunk, dtp, spanning tree, dot1x, vtp
+Prístupová vrstva hierarchického modelu alebo vrstva L2 modelu ISO/OSI je časť siete, do ktorej sa pripájajú zväčsa koncové zariadenia. Vzniká tu preto mnoho problémov či už bezpečnostných alebo prevádzkových, na ktoré je nutné myslieť.
+
+Protokolom pracujúcim na vrstve L2 je \zkratka{zkSTP}, zaisťujúci bezslučkovú topológiu aj v prípade cyklického zapojenia prepínačov z dôvodu redundancie \cite{Lammle2013}. Existuje mnoho implementácií STP protokolu, každé však zabezpečuje logické vypnutie alebo zakázanie portu aj pri existujúcom fyzickom pripojení. Pre urýchlenie výpočtu kostry a konvergencie siete sa vylučujú z výpočtu porty, na ktoré sú pripojené koncové zariadenia a teda nepredpokladá sa na týchto portoch pripojený prepínač. Tento fakt môže na druhej strane spôsobiť slučky v prípade zapojenie prepínača do takéhoto portu. Z tohto dôvodu existuje tzv. BPDU Guard \cite{Lammle2013}, čo je ochrana, kedy pri prijatí rámca s BPDU označeným červeno na obrázku  \ref{fig:bpdu-guard} na port vyradený z výpočtu kostry grafu je port zablokovaný a neumožňuje preposielať rámce. Ďalšou ochranou je Root Guard \cite{Vyncke2008}, ktorý zabraňuje novo pripojeným prepínačom prebrať rolu hlavného prepínača pre danú podsieť alebo VLAN. Jeho úžitok zobrazuje nasledujúci obrázok \ref{fig:root-guard}, kde po pripojení nedovoleného prepínača označeného červeno príde nepríde k zvoleniu nového Root Bridge kvôli ochrane Root Guard. Existuje ešte ochrana Loop Guard \cite{Vyncke2008}, ktorá zabezpečuje, že pri poruche a jednosmernej komunikácií medzi prepínačmi nedôjde k vytvoreniu slučiek. Táto ochrana je však výhradne u zariadení od spoločnosti Cisco. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.75]{obrazky/root-guard.pdf}
+	\end{center}
+	\caption[Zabránenie prebratia role Root Bridge pomocou Root Guard]{Zabránenie prebratia role Root Bridge pomocou Root Guard, kde pri pripojení nedovoleného prepínača (označený červeno) s nižšou MAC adresou nebude prepínač zvolený za Root Bridge}
+	\label{fig:root-guard}
+\end{figure} 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.75]{obrazky/bpdu-guard.pdf}
+	\end{center}
+	\caption[Zabránenie vyhlásenie koncového portu ako portu k prepínáču pomocou BPDU Guard]{Zabránenie vyhlásenie koncového portu ako portu k prepínáču pomocou BPDU Guard, kde po prijatí rámcu s BPDU označeným červeno, príde k zablokovaniu portu}
+	\label{fig:bpdu-guard}
+\end{figure} 
+
+Referenčná príručka bezpečnosti \cite{uYLsMtQInofenpV3} definuje nižšie popísané útoky na vrstve L2 a obranu na ne. V predvolenom stave sú zväčša všetky porty v jednej VLAN, ktorá je implicitne povolená na všetkých trunk portoch respektíve portoch, kadiaľ prechádza tagovaná prevádzka. Preto je dobré všetky aj nepoužívané porty odobrať z predvolenej VLAN a nepripojené porty prideliť nikam nesmerovanej VLAN. Taktiež by sa predvolená VLAN nemala používať na tagovanú prevádzku a to aj z dôvodu, že pri zabudnutí odstránenia prístupových portov z predvolenej VLAN môže dôjsť k útokom VLAN hopping za pomoci Double tagging. Na tagovaných trunk portoch by mala byť povolená prevádzka iba takých VLAN, ktoré sú potrebné a zakázaná pre VLAN, do ktorej sú umiestnené nevyužívané porty. Útoku double tagging sa dá zabrániť špecifikovaním VLAN na prístupových portoch a definovaním separátnej VLAN na tagovaných trunk portoch.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.75]{obrazky/double-tagging.pdf}
+	\end{center}
+	\caption[VLAN Hopping s Double Tagging]{Útok Double tagging, pri ktorom útočník zasiela rámec s dvoma VLAN ID, kde prvé bude odstránené na prvým prepínačom, keďže trunk má tagovanú prevádzku na VLAN 100, tak dôjde k preposlaniu rámcu až k obeti \cite{srOo9OPXJxHjPBgo}}
+	\label{fig:double-tagging}
+\end{figure} 
+
+Predstieranie, že koncové zariadenie je prepínač sa dá zneužitím protokolu \zkratka{zkDTP} \cite{uYLsMtQInofenpV3}. Pri tomto útoku s názvom Switch spoofing, prepínač aktívne alebo pasívne čaká na odpoveď, že na druhej strane prístupového portu je prepínač. Ak mu dôjde od koncového zariadenia takáto správa, tak sa prepne pôvodne prístupový port na port typu trunk. Z tohto dôvodu je dobrou zásadou tento protokol nevyužívať a porty konfigurovať ručne ako prístupové alebo trunk.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.75]{obrazky/switch-spoofing.pdf}
+	\end{center}
+	\caption[Útok Switch spoofing pomocou protokolu DTP]{Útok Switch spoofing pomocou protokolu DTP, prepínač aktívne čaká na správu DTP alebo stav portu trunk, útočník zasiela správu (označenú červeno) žiadajúcu o vytvorenie trunk portu, trunk bude nakoniec vytvorený}
+	\label{fig:switch-spoofing}
+\end{figure} 
+
+Prístupové porty, ktoré sa využívajú na pripojenie klientských staníc zväčša absentujú akoukoľvek identifikáciou pripojeného zariadenia. Najjednoduchším spôsobom je definovanie maximálne jednej povolenej MAC adresy na porte. Tento typ obrany naviac zamedzí útoku MAC flooding, kde dochádza k zaplaveniu portu náhodnými MAC adresami za účelom preťažiť CAM tabuľku prepínača a donútiť ho posielať všetko ako broadcast. Pri prekročení limitu počtu adries na port by mal byť notifikovaný administrátor a port by mal pozastaviť preposielanie rámcov.
+
+Napriek vyššie zmienenému opatreniu, nič nebráni útočníkovi zmeniť MAC adresu na útočiacom zariadení, aby mu bol povolený prístup do lokálnej siete, tento typ zneužitia sa volá MAC spoofing. Naviac takéto nastavenie zamedzí využívanie prípojky legitímnymi užívateľmi. Z tohto dôvodu vznikol štandard 802.1x, ktorý definuje akým spôsobom bude užívateľ na porte autentizovaný
+
+dot1x, vtp, shutdown
 \subsection*{First Hop Security}
 130 - 138 140 144-148 aj mac spoof a mac floof, teda spanning tree prikazy!!!
 http://isp-servis.com/?p=191
@@ -206,5 +251,3 @@ Sieťové zariadenia sa často predávajú s rôznymi spustenými službami a ti
 
 \subsection*{Ostatné}
 Pre korektné fungovanie viacerých protokol je vhodné využívať ako zdroj Loopback rozhranie. Preto je dobrým zvykom definovať jedno Loopback rozhranie na zariadení, ktoré je dostupné hneď po štarte, nie ako fyzické rozhrania a môže byť užitočné ako identifikátor zariadenia pre viaceré protokoly. Toto rozhranie respektíve IP adresa sa používa ako zdrojová pri protokoloch \zkratka{zkNTP}, RADIUS, Tacacs+, \zk{zkSNMP}, Syslog, \zk{zkSSH} a tiež k identifikácií staníc dynamických smerovacích protokolov.
-
-shutdown
