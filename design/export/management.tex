@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane 	&Severity	&Facility layer	&Zdroj	&\\
+1	&Nepovolený prístup k manažovaniu zariadenia	&Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v logu prístupy	&M	&C	&A	&Hardening Cisco Routers
+CIS Cisco IOS 15 Benchmark	&\\
+2	&Neautorizovaný prístup cez nepoužívané a nezabezpečené protokoly na manažment zariadení	&Vypnúť nepoužívané protokoly na prístup k manažovaniu zariadení (telnet a pod.)	&M	&H	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Guide to Harden Cisco IOS Devices
+	&\\
+3	&Nepovolený prístup k manažmentu konfigurácie zariadenia	&Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices	&\\
+4	&Prítup bez požadovaných prístupových údajov	&Nakonfigruovanie protokolov na manažment zariadení, aby požadovali prístupové údaje (telnet a pod.)	&M	&C	&A	&CIS Cisco IOS 15 Benchmark	&\\
+5	&Nekonzistenia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povolit súčasne iba jednému administrátorovi vykonávanie zmien v konfigurácii	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices	&\\
+6	&Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k odposluchu	&Zapnutie SSH	&M	&C	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+7	&Nebezpečná verzia 1 protokolu SSH	&SSH verzia 2	&M	&C	&A	&Cisco CCNA Security Study Guide	&\\
+8	&Útok na krátky RSA kĺúč	&Dĺžka RSA kľúča minimálne 2048 bitov	&M	&C	&A	&CIS Cisco IOS 15 Benchmark
+Transitioning the Use of Cryptographic Algorithms and Key Lengths 
+	&\\
+9	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnemu sedeniu môže viesť k zmene konfigurácie	&SSH čas vypršania sedenia	&M	&M	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+10	&Hádanie hesla k RSA kľúču	&SSH maximálny počet neúspešných pokusov	&M	&H	&A	&Cisco router configuration handbook
+ Cisco IOS 23 - Autentizace uživatele na switchi vůči Active Directory	&\\
+11	&Útok hrubou silou na zistenie prihlasovacích údajov	&Špecifikovať čas po ktorý nie je možné po N pokusoch sa prihlásiť	&M	&H	&A	&Cisco router configuration handbook
+ Cisco IOS 23 - Autentizace uživatele na switchi vůči Active Directory	&\\
+12	&Prihlásenie na zariadenie nie je možné kvôli zablokovaniu pre príliš veľa neúspešných pokusov	&Povolenie prístupu administrátorovi na základe IP adresy, keď je protokol na manažovanie zariadení nedostupný kvôli DOS útoku	&M	&M	&A	&Cisco router configuration handbook
+ Cisco IOS 23 - Autentizace uživatele na switchi vůči Active Directory	&\\
+13	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnneum sedeniu môže viesť k zmene konfigurácie	&Čas vypršania sedenia pre protokol na manažovanie zariadení	&M	&M	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening
+Cisco SAFE Reference Guide
+	&\\
+14	&Možné prihlásenie do zariadenia cez telnet keď je prítomné SSH	&Zakázať telnet ak je SSH aktívne	&M	&C	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+15	&Útočník nie je informovaný o právnych následkoch	&Právne upozornenie pri prístupe k zariadeniu	&M	&L	&A	&Cisco CCNA Security Study Guide
+CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+16	&Nepovolená zmena konfigurácie zariadenia	&Vytvorenie hesla na editovanie konfigurácie zariadenia	&M	&C	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+17	&Nepovolený prístup k manažmentu konfigurácie zariadenia	&Lokálne zabezpečené účty	&M	&C	&A	&Cisco Guide to Harden Cisco IOS Devices
+CIS Cisco IOS 15 Benchmark	&\\
+18	&Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia	&M	&H	&A	&Hardening Cisco Routers
+CIS Cisco IOS 15 Benchmark 
+CIsco CCNA Security Study Guide
+Cisco Router Hardening	&\\
+19	&Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&M	&M	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+20	&Hádanie prístupových údajov	&Definovanie maximálneho počtu neúspešných pokusov o prihlásenie a následné zablokovanie účtu	&M	&H	&A	&CIS Cisco IOS 15 Benchmark 
+Cisco Router Hardening	&\\
+21	&Prihlásenie bez prihlasovacích údajov	&Zakázať záložné prihlásenie bez poskynutia autentizačných prostriedkov	&M	&C	&A	&Cisco Guide to Harden Cisco IOS Devices	&\\
+22	&AAA používa primárne lokálne účty namiesto centralizovaných na serveri	&AAA nesmie používať ako prvú možnosť prihlásenia lokálny účet 	&M	&H	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening	&\\
+23	&Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúštanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&M	&H	&A	&Cisco Router Hardening
+Cisco Guide to Harden Cisco IOS Devices	&\\
+24	&Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu	&Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov	&M	&H	&A	&CIS Cisco IOS 15 Benchmark	&\\
+25	&AAA zdrojové rozhranie nie je rovnaké pri každom reštarte	&Definovanie loopback zdrojového rozhrania pre AAA	&M	&M	&A	&CIS Cisco IOS 15 Benchmark	&\\
+26	&SSH zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SSH	&M	&M	&A	&CIS Cisco IOS 15 Benchmark	&\\
+27	&DOS útok na štandardný SSH port 22	&Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie port knocking	&M	&H	&A	&Port Knocking	&\\

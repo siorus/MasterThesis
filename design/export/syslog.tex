@@ -1,0 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane 	&Severity	&Facility layer	&Zdroj\\
+1	&Administrátor nemá povedomie o problémoch na zariadení	&Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru	&M	&H	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening\\
+2	&Neprijímanie všetkých dôležitých incidentov na zariadení z protokolu SYSLOG	&Špecifikovanie dôležitosti oznámenií SYSLOG na INFORMATIONAL	&M	&M	&A	&CIS Cisco IOS 15 Benchmark\\
+3	&SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SYSLOG	&M	&M	&A	&Cisco Guide to Harden Cisco IOS Devices
+CIS Cisco IOS 15 Benchmark\\
+4	&Insufficient and non-standard  time format in logging messages/ Nedostatočné a neštandardné formáty času pri logovacích správach	&Definovanie formátu času pre logovacie a ladiace výstupy	&M	&M	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening\\
+5	&Administrátor nevidí dôležité incidenty pri prihlásení a konfigurovaní cez konzolu	&Vypisovanie SYSLOG správ CRITICAL a dôležitejších do terminálu	&M	&M	&A	&Cisco Guide to Harden Cisco IOS Devices
+CIS Cisco IOS 15 Benchmark\\
+6	&Malá vyrovnávacia pamäť pre SYSLOG je dôvodom zahadzovanie správ	&Definovanie veľkosti SYSLOG buffera dôležitosti oznámení na INFORMATIONAL	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices\\
+7	&Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ	&Definovanie dočasného úložiska SYSLOG správ v prípade nedostupnosti servera	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices\\
+8	&Problém identifikácie SYSLOG správ s rovnakou časovou značkou	&Pridanie sekvenčného čísla ku každej syslog správe	&M	&L	&A	&Hardening Cisco Routers\\

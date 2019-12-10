@@ -1,0 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane 	&Severity	&Facility layer	&Zdroj\\
+1	&Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov	&Vytvorenie separátnej VLAN pre manažment	&C	&M	&DIST, COLDISTACC, ACC	&CCNA Routing and Switching Study Guide\\
+2	&Útočníkovi s fyzickým prístupom k portu môže byť pridelený prístup do časti siete, ktorá zodpovedá príslušnej VLAN 	&Vytvorenie špeciálnej black hole VLAN pre nevyužité porty	&C	&C	&DIST, COLDISTACC, ACC	&Cisco SAFE Reference Guide\\
+3	&Predvolenej VLAN je povolené prepnute na akýkoľvek port, VLAN hopping, double tagging	&Odobrať všetky porty z predvolenej VLAN	&C	&C	&DIST, COLDISTACC, ACC	&Cisco SAFE Reference Guide\\
+4	&Predvolenej VLAN je povolené byť prepnutá na akýkoľvek port, VLAN hopping, double tagging	&Vytvorenie natívnej VLAN rozdielnej ako predvolená, priradeni k trunk portu a povolenie iba potrebných portov	&C	&C	&DIST, COLDISTACC, ACC	&Cisco SAFE Reference Guide\\
+5	&DTP útok, Switch spoofing útok	&Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk	&C	&C	&DIST, COLDISTACC, ACC	&Cisco SAFE Reference Guide\\
+6	&Nový prepínač s vyšším číslom revízie, ale s nesprávnou VLAN databázou môže šíriť falošné VLAN identifikátory a spôsobiť nefunkčnosť siete, veľa možnćh VTP útokov kvǒli zraniteľnostiam 	&Vypnutie MVRP. MRP, GARP, VTP po úspešnej propagácií VLAN	&C	&C	&DIST
+COLDISTACC
+ACC	&Lan Switch Security\\
+7	&VTP musí byť používané	&Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté	&C	&C	&DIST
+COLDISTACC
+ACC	&Lan Switch Security\\
+8	&Vysoké zaťaženie linky	&Poslanie notifikácie pri prekročení prahovej hodnoty zaťaženia linky	&C	&M	&A	&Cisco SAFE Reference Guide\\

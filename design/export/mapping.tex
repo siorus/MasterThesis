@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane 	&Severity	&Facility layer	&Zdroj\\
+1	&Skenovanie a zistenie informácií o sieti za pomoci protokolu CDP a využitie bezpečnostných chýb	&Zakázanie protokolu CDP	&M	&C	&A	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening\\
+2	&Skenovanie a zistenie informácií o sieti za pomoci protokolu LLDP a využitie bezpečnostných chýb	&Zakázanie protokolu LLDP	&M	&C	&A	&CIsco CCNA Security Study Guide\\
+3	&Proxy ARP môže viesť k obídeniu PVLAN a rozširuje broadcast doménu	&Vypnutie Proxy ARP	&C	&C	&CORE/EDGE
+DIST
+COLCOREDIST
+COLDISTACC
+COLALL	&CIS Cisco IOS 15 Benchmark
+Cisco Router Hardening\\
+4	&Útočník môže zistiť, že IP adresa, na ktorú skušal ping je nesprávna	&Vypnutie spáv ICMP Unreachable	&D	&H	&CORE/EDGE
+DIST
+COLCOREDIST
+COLDISTACC
+COLALL	&Cisco Guide to Harden Cisco IOS Devices
+\\
+5	&Útočník môže zistiť masku podsiete pomocou ICMP Mask reply	&Vypnutie spáv ICMP Mask reply	&D	&H	&CORE/EDGE
+DIST
+COLCOREDIST
+COLDISTACC
+COLALL	&Hardening Cisco Routers
+\\
+6	&Umožňuje DOS Smurf útok, mapovanie siete pomocou ping na broadcast adresu vzdialenej siete	&Vypnutie ICMP echo správ na broadcast adresu, vypnutie directed broadcasts	&D	&C	&CORE/EDGE
+DIST
+COLCOREDIST
+COLDISTACC
+COLALL	&Cisco Router Hardening
+Hardening Cisco Routers
+\\
+7	&Útočník môže zistiť smerovacie informácie alebo vyťažiť CPU	&Vypnutie spáv ICMP Redirects	&D	&H	&CORE/EDGE
+DIST
+COLCOREDIST
+COLDISTACC
+COLALL	&Cisco Guide to Harden Cisco IOS Devices
+\\
+8	&Mapovanie sete pomocou pingu na multicast adresu všetkých uzlov a MLD/IGMP Query Overload a Smurf útok	& ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD/IGMP Query na prístupových portoch	&C	&M	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: trable s multicastem
+MLD Considered Harmful
+\\

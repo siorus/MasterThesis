@@ -1,0 +1,80 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%  This is a LaTeX2e table fragment exported from Gnumeric.        %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane 	&Severity	&Facility layer	&Zdroj\\
+1	&MAC Spoofing, MAC Flooding 	&Definovanie maximálne 1 MAC adresy na port, priradenie MAC adresy na port	&C	&C	&DIST
+COLDISTACC
+ACC	&CCNA Routing and Switching Study Guide\\
+2	&MAC Spoofing, MAC Flooding 	&Nastavenie režimu narušenia, ktorý vypne port alebo informuje správcu o pripojení nepovoleného zariadenia	&C	&H	&DIST,
+COLDISTACC
+ACC	&CCNA Routing and Switching Study Guide\\
+3	&Využívanie siete nepovolenými používateľmi	&Zapnutie 802.1x 	&C	&H	&DIST
+COLDISTACC
+ACC	&Lan Switch Security
+Cisco IOS 11 - IEEE 802.1x, autentizace k portu, MS IAS
+Cisco IOS 12 - IEEE 802.1x a pokročilejší funkce \\
+4	&Útok hrubou silou hádaním prístupových údajov pre 802.1x 	&Limitovanie maximálneho počtu neúspešných pokusov o autentizáciu 802.1x	&C	&H	&DIST
+COLDISTACC
+ACC	&Lan Switch Security
+Cisco IOS 11 - IEEE 802.1x, autentizace k portu, MS IAS
+Cisco IOS 12 - IEEE 802.1x a pokročilejší funkce \\
+5	&DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&C	&C	&DIST
+COLDISTACC
+ACC	&Lan Switch Security
+Cisco Guide to Harden Cisco IOS Devices IPv6 First-Hop Security Configuration Guide\\
+6	&Příliš veľa DHCP paketov, zaplavenie DHCP paketmi	&Odmedziť počet DHCP paketov na nedôverihodných rozhraniach	&C	&M	&DIST
+COLDISTACC
+ACC	&Lan Switch Security
+Cisco Guide to Harden Cisco IOS Devices
+IPv6 First-Hop Security Configuration Guide\\
+7	&ARP Spoofing	&Dynamic ARP Inspection	&C	&C	&DIST
+COLDISTACC
+ACC	&CIsco CCNA Security Study Guide\\
+8	&IP spoofing	&IPv4/IPv6 Source Guard	&C	&C	&DIST
+COLDISTACC
+ACC	&Cisco Guide to Harden Cisco IOS Devices
+IPv6 First-Hop Security Configuration Guide\\
+9	&IPv6 ND Spoofing	&IPv6 ND Inspection	&C	&C	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: zkrocení zlých směrovačů
+Bezpečné IPv6 : směrovač se hlásí
+IPv6 First-Hop Security Configuration Guide\\
+10	&Rogue RA
+RA Flood
+Route Information Option injection
+RA RouterLifeTime=0
+	&RA Guard	&C	&C	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: zkrocení zlých směrovačů
+Bezpečné IPv6 : směrovač se hlásí
+IPv6 First-Hop Security Configuration Guide\\
+11	&Mobilné zariadenia pripojené bezdôtovo spotrebovávajú veľa energie kvôli častým RA správam	&RA Throttling	&C	&L	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: trable s multicastem
+ND on wireless links and/or with sleeping nodes\\
+12	&Vyčerpanie cache susedov	&Statický záznam pre kritické zariadenia (servery) spájajúce IP a MAC adresu a VLAN
+	&C	&C	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: když dojde keš
+Bezpečné IPv6: když dojde keš – obrana
+\\
+13	&Vyčerpanie cache susedov	&Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povolujeme iba komunikáciu s cieľovými IPv6 adresami, ktoré sa nachádzajú v našej sieti	&C	&C	&CORE/EDGE
+COLCOREDIST
+COLALL	&Bezpečné IPv6: když dojde keš
+Bezpečné IPv6: když dojde keš – obrana
+\\
+14	&Vyčerpanie cache susedov	&IP destination Guard (First Hop Security)
+
+
+	&C	&C	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: když dojde keš
+Bezpečné IPv6: když dojde keš – obrana
+\\
+15	&Vyčerpanie cache susedov	&Limitovanie počtu IPv6 adries v cache susedov	&C	&C	&DIST
+COLDISTACC
+ACC	&Bezpečné IPv6: když dojde keš
+Bezpečné IPv6: když dojde keš – obrana
+\\
