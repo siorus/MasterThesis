@@ -3,13 +3,37 @@
 
 \section{Požiadavky na aplikáciu a existujúce riešenia}
 %TODO api cisco verzie problemy
-Kľúčovou vlastnosťou je modularita navrhovanej aplikácie, vďaka ktorej bude možné pridávať a definovať nové moduly na základe zmien v syntaxi a sémantike príkazov. Modularita taktiež umožňuje vytvorenie a podporu ďalších výrobcov a operačných systémov sieťových zariadení. Existujúce riešenia sú zväčša zamerané iba na jedného výrobcu a operačný systém, pričom program je jeden zdrojový súbor, ktorý bez dobrej znalosti kódu je problematické upraviť a rozšíriť. Preto jednotlivé overovania odporúčaní a ich následná oprava bude každé v separátnom module, ktorý budú musieť dodržať určité vstupy a výstupy, teda akési \zkratka{zkAPI}. Existujúce riešenia nedisponujú žiadnym generovaním opravnej konfigurácie na základe nálezu nedostatku, preto vzniknutá aplikácia bude podporovať aj vygenerovanie nápravy.
+Kľúčovou vlastnosťou je modularita navrhovanej aplikácie, vďaka ktorej bude možné pridávať a definovať nové moduly na odhaľovanie a opravu nedostatkov alebo meniť existujúce pri zmene syntaxe a sémantike príkazov. Modularita taktiež umožňuje vytvorenie a podporu ďalších výrobcov a operačných systémov sieťových zariadení. Existujúce riešenia sú zväčša zamerané iba na jedného výrobcu a operačný systém, pričom program je jeden zdrojový súbor, ktorý bez dobrej znalosti kódu je problematické upraviť a rozšíriť. Preto jednotlivé overovania odporúčaní a ich následná oprava bude každé v separátnom module, ktorý budú musieť dodržať určité vstupy a výstupy, teda akési \zkratka{zkAPI}. Existujúce riešenia nedisponujú žiadnym generovaním opravnej konfigurácie na základe nálezu nedostatku, preto vzniknutá aplikácia bude podporovať aj vygenerovanie nápravy.
 
-Príkladom open-source riešenia je \texttt{Cisco Config Analysis Tool}, ktorý čerpá odporúčania z jednej z kníh \cite{Singh2018}, pomocou ktorej boli vytvorené aj odporúčania v tejto práci. V tomto riešení však chýba veľa dôležitých prevádzkových a bezpečnostných odporúčaní z dôvodu, že námetom na kontrolný zoznam pri zostavovaní aplikácie bola iba jedna kniha. Taktiež podporuje iba jedného výrobcu sieťových zariadení a chýba mu modularita, nerozlišuje odporúčania a kontrolu ich prítomnosti na základe umiestnenia sieťového zariadenia v hierarchickom modeli. Nástrojom s podobnými vlasnosťami a nedostatkami je aj \texttt{Router Auditing Tool}, ktorý má naviac aj \zkratka{zkGUI}. Existuje niekoľko rozšírení aj pre nástroj \texttt{Nessus}, ktoré overujú dodržiavanie odporúčaní a podľa zistení čerpajú z CIS Benchmarku \cite{CIS_DrTLsgXv24lxeIIM} prípadne z ekvivalentu benchmarku pre zariadenia od výrobcu Juniper. Taktiež však nepodporujú zjednanie nápravy a ignorujú umiestnenie zariadenia v topológii.     
+Príkladom open-source riešenia je \texttt{Cisco Config Analysis Tool} \cite{AU81CvNW4q8RGnqM}, ktorý čerpá odporúčania z jednej z kníh \cite{Singh2018}, pomocou ktorej boli vytvorené aj odporúčania v tejto práci. V tomto riešení však chýba veľa dôležitých prevádzkových a bezpečnostných odporúčaní z dôvodu, že námetom na kontrolný zoznam pri zostavovaní aplikácie bola iba jedna kniha. Taktiež podporuje iba jedného výrobcu sieťových zariadení a chýba mu modularita, nerozlišuje odporúčania a kontrolu ich prítomnosti na základe umiestnenia sieťového zariadenia v hierarchickom modeli. Existujúci nástroj \texttt{Cisco Config Analysis Tool} obsahuje kontrolu iba na niektoré bezpečnostné nastavenie pre protokol IPv6. Nástrojom s podobnými vlasnosťami a nedostatkami je aj \texttt{Router Auditing Tool} \cite{OniomAfGpef53LHq}, ktorý má naviac aj \zkratka{zkGUI}. Existuje niekoľko rozšírení aj pre nástroj \texttt{Nessus}, ktoré overujú dodržiavanie odporúčaní a podľa zistení čerpajú z CIS Benchmarku \cite{CIS_DrTLsgXv24lxeIIM} prípadne z ekvivalentu benchmarku pre zariadenia od výrobcu Juniper. Taktiež však nepodporujú zjednanie nápravy a ignorujú umiestnenie zariadenia v topológii.     
 
-Výhodou výsledného programu je aj, že kontrolný zoznam vznikol z viacerých knižných odporúčaní a benchmarkov organizácií zaoberajúcimi sa danou problematikou. Program bude umožňovať spúšťanie modulov zodpovedných za nájdenie a odstránenie nedostatkov na základe definovaného umiestnenia zariadenia v hierarchickom modely siete. Tým sa zamedzí generovaniu falošne pozitívnych správ, ktoré by vznikli v dôsledku overovania nerelevantných požiadavkov na zariadenie v danej vrstve modelu. V neposlednom rade bude riešenie zdarma s možnosťou nahliadnuť a modifikovať respektíve rozšíriť kód.
+Výhodou výsledného programu je aj, že kontrolný zoznam vznikol z viacerých knižných odporúčaní a benchmarkov organizácií zaoberajúcimi sa danou problematikou. Program bude umožňovať spúšťanie modulov zodpovedných za nájdenie a odstránenie nedostatkov na základe definovaného umiestnenia zariadenia v hierarchickom modely siete. Tým sa zamedzí generovaniu falošne pozitívnych správ, ktoré by vznikli v dôsledku overovania nerelevantných požiadavkov na zariadenie v danej vrstve modelu. V neposlednom rade bude riešenie zdarma s možnosťou nahliadnuť a modifikovať respektíve rozšíriť kód. Program bude umožňovať kontrolu odporúčaní aj pre protokol IPv6, ktorým sa príliš nezaoberá väčšina odporúčaní a benchmarkov.
 
+\newpage
+\noindent
+\\
+Kľúčové vlastnosti:
 
+\begin{itemize}
+	\item Modularita\,--\,každé overenie a náprava bude v zvlášť súbore prihliadajúc na na výrobcu a operačný systém pre ktoré je určené.
+	\vspace{0.5em}
+	\item Prispôsobenie na ďalších výrobcov\,--\,definovanie API pre moduly na budúcu podporu pre zariadenia od viacerých výrobcov a ich operačných systémov.
+	\vspace{0.5em}
+	\item Zjednanie nápravy\,--\,pri nájdení nedostatku vygenerovanie opravného nastavenia.
+	\vspace{0.5em}
+	\item Podpora IPv6\,--\,detekcia zlého alebo chýbajúceho nastavenia a následná náprava pre protokol IPv6.
+	\vspace{0.5em}
+	\item Hierarchický model\,--\,skenovanie nedostatkov typických pre jednotlivé vrstvy, v ktorých sa zariadenia nachádzajú a tým zníženie falošne pozitívnych varovaní.\vspace{0.5em}
+	\item Definuje závažnosti\,--\,každý nájdený nedostatok je hodnotený na 4 stupňovej škále.
+	\vspace{0.5em}
+	\item Personalizácia\,--\,definovanie modulov, ktoré sa spustia pre jednotlivé vrstvy, zmena závažnosti nájdených nedostatkov v konfiguračných súboroch
+	\vspace{0.5em}
+	\item Zoznam útokov a problémov verzie operačného systému
+	\vspace{0.5em}
+	\item Vygenerovanie správy s nedostatkami
+\end{itemize}
+
+\newpage
 \section{Rozdelenie príkazov}
 Na zariadeniach od firmy Cisco s operačným systémom IOS bol vykonaný rozbor možných príkazov a ich foriem zápisu a početnosti výskytu v konfigurácií. Tento rozbor bol spravený z dôvodu, že niektoré príkazy sa môžu opakovať a zároveň jeden druh príkazu môže byť konfigurovaný v rôznych kontextoch a teda neprítomnosť v jednom kontexte automaticky neznamená nedostatok v konfigurácií. Na základe rozboru boli rozdelené príkazy na konfiguráciu sieťových zariadení do nasledujúcich štyroch kategórií:
 \\
@@ -62,6 +86,7 @@ Router(config-if)#no lldp transmit
 \end{enumerate}
 
 \section{Rozdelenie sieťových prvkov}
+\label{hierarchydesign}
 Sieť je dnes navrhovaná zväčša podľa hierarchického modelu opísaného v kapitole \ref{hierarchicky-model}. Preto sa aj problémy a útoky v návrhu zatrieďujú podľa vrstvy, ktorú ovplyvňujú. V praxi sa však v menších sieťach funkcie jednotlivých vrstiev zlučujú, a preto boli okrem štandardných vrstiev nad rámec hierarchického modelu definované nasledujúce:
 
 \begin{itemize}
@@ -74,25 +99,39 @@ Sieť je dnes navrhovaná zväčša podľa hierarchického modelu opísaného v 
 \end{itemize}
 
 \section{Princíp fungovania}
-vyvojovy diagram plus slovny opis
+
+TODO slovny opis
+
+
+\begin{figure}[H]
+	\begin{center}
+		\vspace*{-1cm}\includegraphics[scale=0.8]{obrazky/flowchart.pdf}
+	\end{center}
+	\caption[Vývojový diagram opisujúci prácu s programom a tok dát v programe]{Vývojový diagram opisujúci prácu s programom a tok dát v programe}
+	\label{workflow}
+\end{figure}
+
+ 
+
 \subsection*{Hierarchická štruktúra}
 Stromová štruktúra a koncept fungovania, Možno fungovanie cez nejaký UML diagram (sekvenčný?) alebo skôr niečo zjednodušené
 
 \section{Zoznam odporúčaní}
- TODO: citacie k jednotlivym riadkom, prejst este raz planes a severity, eliminovat viac riadkov s loopback, skratky z tabulky treba vypisat                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
-V súčasnej dobe existuje mnoho odporúčaní, štandardov a benchmarkov, ktoré sa zaoberajú bezpečnosťou a správnou konfiguráciou sieťových zariadení. V mnohých prípadoch sú buď príliš všeobecné a teda sieťoví inžinieri majú problém zistiť, čo daným odporúčaním autor myslel a ako ho implementovať, alebo sú určené iba pre zariadenia od jedného výrobcu. Problémom je taktiež, že väčšina odporúčaní, štandardov a benchmarkov sa nie úplne prekrývajú, a teda je potrebné pri nastavovaní a audite zariadení čerpať s mnohých naraz. Výsledná tabuľka obsahuje odporúčania z odbornej literatúry a štandardov a benchmarkov verejne dostupných a používaných v produkčnom nasadení. Výhodou je aj fakt, že obsahuje odporúčania vychádzajúce z problémov IPv6, ktoré nie sú často v štandardoch a benchmarkoch dostupné. Podrobná tabuľka s mapovaním odporúčaní na príkazy pre zariadenia Cisco s operačným systémom IOS je v prílohe TODO priloha %TODO priloha.
+V súčasnej dobe existuje mnoho odporúčaní, štandardov a benchmarkov, ktoré sa zaoberajú bezpečnosťou a správnou konfiguráciou sieťových zariadení. V mnohých prípadoch sú buď príliš všeobecné a teda sieťoví inžinieri majú problém zistiť, čo daným odporúčaním autor myslel a ako ho implementovať, alebo sú určené iba pre zariadenia od jedného výrobcu. Problémom je taktiež, že väčšina odporúčaní, štandardov a benchmarkov sa nie úplne prekrývajú, a teda je potrebné pri nastavovaní a audite zariadení čerpať s mnohých naraz. Nižšie uvedené výsledné tabuľky obsahujú odporúčania z odbornej literatúry, štandardov a benchmarkov verejne dostupných a používaných v produkčnom nasadení. Výhodou je aj fakt, že obsahujú odporúčania vychádzajúce z problémov IPv6, ktoré nie sú často v štandardoch a benchmarkoch dostupné. Podrobná tabuľka s mapovaním odporúčaní na príkazy pre zariadenia Cisco s operačným systémom IOS je v prílohe TODO priloha %TODO priloha.
 
 Zariadenia Cisco boli pre túto prácu vybrané z dôvodu, že spoločnosť Cisco je lídrom ktorý udáva trend, ich zariadenia sú celosvetovo v korporáciách veľmi rozšírené a mnoho literatúry a benchmarkov sa odvoláva na nastavenia týchto prístrojov s udávanými príkladmi konfigurácie. Taktiež sú tieto zariadenia dobrým referenčným príkladom pre hľadanie alternatívy v zariadeniach od iných výrobcov.
 
-V tabuľke \ref{checklist} je možné vidieť, že odporúčania sú rozdelené podľa viacerých kritérií. V prvom rade sú to roviny (plane), ktoré nie sú dôležité pre následnú automatickú konfiguráciu a odhaľovanie problémov, ale na vytvorenie si obrazu, ktorá časť rovín je kritická a postihnuteľná najviac. 
+Tabuľky sú rozdelené do skupín podľa protokolu prípadne okruhu problému, ktyorému sa venujú. V tabuľkách je možné vidieť, že odporúčania sú zatriedené podľa viacerých kritérií. V prvom rade sú to roviny (plane), ktoré nie sú dôležité pre následnú automatickú konfiguráciu a odhaľovanie problémov, ale na vytvorenie si obrazu, ktorá časť rovín je kritická a postihnuteľná najviac. 
 
 Stĺpec závažnosť (severity) vznikol na základe predpokladaných závažností. Tento atribút bude možné zmeniť v konfiguračnom súbore každého modulu v závislosti na riziku, ktoré sa pre danú topológiu a firmu vyhodnotí za pomoci manažmentu rizík opísaného v kapitole \ref{bezpecnostny-audit}. Tento atribút sa nenachádza v žiadnom štandarde ani benchmarku, z ktorého vytvorený zoznam odporúčaní čerpal, no je veľmi dôležitý z hľadiska, že nie všetky nedostatky sú rovnako závažné a nemajú rovnaký dopad. Hodnoty, ktoré nadobúda sú prebrané zo štandardu \zk{zkCVSS}, pričom posledný interval \texttt{none} reprezentujúci nulové riziko respektíve závažnosť je zamenený za kľúčové slovo \texttt{notify}. K tejto zmene prišlo z dôvodu, že problémy s nulovým rizikom nie sú súčasťou návrhu a nemá zmysel ich riešiť. V prípade, že bude nález falošne pozitívny alebo riziko bude akceptované, tak sa táto skutočnosť uloží do konfiguračného súboru. Závažnosť \texttt{notify} bude použitá v prípade prítomnosti monitorovania portu pomocou zrkadlenia portu alebo NetFlow/sFlow. Jedná sa totiž o technológie potrebné na monitorovanie prevádzky z legislatívnych alebo bezpečnostných dôvodov. Riziko existuje iba pri nesprávnom nastavení zdrojov monitorovania a cieľu pre zber dát, a preto je dobré vedieť pri audite o prítomnosti tohto nastavenia.
  
 
 Posledným rozdelením je vrstva, na ktorej zariadenie pracuje (facility layer), nakoľko rozdelenie podľa zariadení nie je dostatočné, pretože napríklad L3 prepínač môže byť použitý na ktorejkoľvek vrstve hierarchického modelu a každá vrstva má určité špecifiká, ktoré neobsahuje iná vrstva. Každý konfiguračný súbor popisujúci zariadenie bude obsahovať informáciu, do ktorej vrstvy patrí a na základe toho bude môcť program rozhodnúť, ktoré moduly zodpovedné za nájdenie problému a jeho vyriešenie budú nad konfiguračným súborom zariadenia spustené. Taktiež bude možné meniť, dopĺňať a zakázať spúšťanie modulov pre jednotlivé zariadenia, pokiaľ by v danej topológii nevyhovovalo rozdelenie z tabuliek uvedených nižšie. 
 
-Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa odporúčanie a opatrenie týka nie sú súčasťou žiadneho kontrolného zoznamu, benchmarku ani štandardu, z ktorého bolo čerpané. Sieťový administrátor preto musí sám vyvodiť záver, ktoré odporúčania a postupy bude aplikovať na jednotlivé zariadenia a vrstvy hierarchického modelu. Preto vytvorená tabuľka odporúčaní už obsahuje aj zoznam zariadení, ktorých sa opatrenie týka.
+Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa odporúčanie a opatrenie týka nie sú súčasťou žiadneho kontrolného zoznamu, benchmarku ani štandardu, z ktorého bolo čerpané. Sieťový administrátor by preto musel sám vyvodiť záver, ktoré odporúčania a postupy bude aplikovať na jednotlivé zariadenia a vrstvy hierarchického modelu. Preto vytvorená tabuľka odporúčaní už obsahuje aj zoznam zariadení, ktorých sa opatrenie týka.
+
+Z dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severity skrátené na iniciály slov reprezentujúce tieto hodnoty. Ich celé názvy je možné nájsť v kapitole \ref{hierarchydesign} respektíve \ref{riskmanagement}. Stĺpec Facility layer naviac obsahuje hodnotu \texttt{A}, ktorej význam znamená, že toto odporúčanie sa vzťahuje na všetky zariadenia bez ohľadu, na akej vrstve operujú.  
 
 \newpage
 
@@ -132,6 +171,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	Cisco Router Hardening \cite{Graesser2001}	\\
 	10	&Hádanie hesla k RSA kľúču	&SSH maximálny počet neúspešných pokusov	&M	&H	&A	&Cisco router configuration handbook \cite{Hucaby2010}
+	
 	Cisco IOS 23 - Autentizace uživatele na switchi vůči Active Directory \cite{Bouska2009}	\\
 	\rowcolor[rgb]{ .933,  .933,  .933} 11	&Útok hrubou silou na zistenie prihlasovacích údajov	&Špecifikovať čas po ktorý nie je možné po N pokusoch sa prihlásiť	&M	&H	&A	&Cisco router configuration handbook \cite{Hucaby2010}
 	
@@ -140,7 +180,9 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	Cisco IOS 23 - Autentizace uživatele na switchi vůči Active Directory \cite{Bouska2009}	\\
 	\rowcolor[rgb]{ .933,  .933,  .933} 13	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnneum sedeniu môže viesť k zmene konfigurácie	&Čas vypršania sedenia pre protokol na manažovanie zariadení	&M	&M	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}
+	
 	Cisco Router Hardening \cite{Graesser2001}
+	
 	Cisco SAFE Reference Guide \cite{uYLsMtQInofenpV3}
 	\\
 	14	&Možné prihlásenie do zariadenia cez telnet keď je prítomné SSH	&Zakázať telnet ak je SSH aktívne	&M	&C	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}
@@ -673,7 +715,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\rowcolor[rgb]{ .933,  .933,  .933} 1	&Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete 	&Povolenie FHRP s autentizáciou a aktuálnou verziou	&C	&M	&CORE/EDGE
 	COLCOREDIST
 	COLALL	&CCNA Routing and Switching Study Guide \cite{Lammle2013}\\
-	2	&Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	& \footnotemark &H	&\footnotemark&Cisco IOS features that you should disable or restrict \cite{yDzYjF1hoACahpg1}\\
+	2	&Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	& {\normalsize*}\footnotemark &H	&{\normalsize*}\footnotemark[\value{footnote}] &Cisco IOS features that you should disable or restrict \cite{yDzYjF1hoACahpg1}\\
 	\rowcolor[rgb]{ .933,  .933,  .933} 3	&Odpočúvanie komunikácie  cez nezabezpečené tunely	&Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely	&D	&C	&CORE/EDGE
 	DIST
 	COLCOREDIST
