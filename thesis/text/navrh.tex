@@ -62,7 +62,6 @@ Router(config-if)#switchport port-security mac address maximum 1
 Router(config)#interface FastEthernet0/1
 Router(config-if)#ip ospf message-digest-key 1 md5 heslo
 Router(config-if)#ip ospf authentication message-digest
-
 Router(config)#router ospf 1
 Router(config)#area 0 authentication message-digest
 Router(config)#area 0 authentication key-chain 1
@@ -100,7 +99,7 @@ Sieť je dnes navrhovaná zväčša podľa hierarchického modelu opísaného v 
 
 \section{Princíp fungovania}
 
-TODO slovny opis
+Vstup programu počíta s predpripravenými konfiguráciami v textovej podobe, tie sú často dostupné z pravidelných záloh. Môže sa stať, že nie všetky nastavenia potrebné na dôsledné oskenovanie sú k dispozícií a preto je možné vyexportovať potrebné výstupy zo zariadenia pomocou skriptu, ktorý by bol spustiteľný na zariadení. Program umožní automaticky vyplniť polia v konfiguračnom súbore pre zariadenie \texttt{device.yaml}, no v prípade nedostačujúcich informácií zo stiahnutých konfigurácií je potreba manuálne vyplniť niektoré parametre, napríklad vrstvu, na ktorej zariadenie pracuje. Po úspešnom oskenovaní bude možné označiť nálezy ako falošne pozitívne a okomentovať tento dôvod, následne po takomto označení nebude generovaná náprava na nález na danom zariadení. Výstupom bude správa v CSV formáte s nedostatkami, informáciou o zjednanej náprave alebo označení falošne pozitívneho nálezu. Aplikovanie nápravy bude zjednané manuálne nakopírovaním tejto nápravy na zariadenie prípadne pomocou programov na hromadné nasadenie ako napríklad Ansible. 
 
 
 \begin{figure}[H]
@@ -114,8 +113,54 @@ TODO slovny opis
  
 
 \subsection*{Hierarchická štruktúra}
-Stromová štruktúra a koncept fungovania, Možno fungovanie cez nejaký UML diagram (sekvenčný?) alebo skôr niečo zjednodušené
+Nasledujúca štruktúra súborov s komentármi vyobrazuje hierarchiu uloženia potrebných súborov na vykonávanie skenovania nedostatkov a zjednanie náprav. Súbor \texttt{hostname1\_fix\_hash} obsahuje namiesto slova ``hash`` skutočný hash súboru \texttt{hostname1\_config.txt}, aby bolo zrejmé, ku ktorej verzii konfigurácie zariadenia patrí a v prípade aktualizovania a pridania novej konfigurácie do \texttt{init\_configs} nedošlo k nejednoznačnosti. Nové konfigurácie stiahnuté zo zariadenia sa schválne nedávajú do zložky \texttt{device\_configs}, keďže táto zložka môže obsahovať už nejakú nápravu a správu k predchádzajúcej konfigurácie, a preto by mohol vzniknúť konflikt a nebolo by jasné ku ktorej verzii konfigurácie  výstupy programu patria. Program bude uchovávať taktiež históriu jednotlivých skenovaní a náprav, pričom pri iniciovaní nového skenovania a prítomnosti novej verzie konfigurácie zariadenia, príde k premiestneniu aktuálnych výstupov do podzložky s hashom prisluchajúcim konfigurácií \texttt{hostname1\_old\_hash}. 
+\newpage   
+{\small
+	%
+	\dirtree{%.
+		.1 /\DTcomment{koreňový adresár programu}.
+		.2 netsec.py\DTcomment{hlavný program}.
+		.2 modules\DTcomment{adresár so šablónami konfiguračných súborov}.
+		.3 cisco\DTcomment{výrobca sieťového zariadenia}.
+		.4 ios\DTcomment{operačný systém bežiaci na zariadení}.
+		.5 device.yaml\DTcomment{šalóna na uloženie základných informácií o zaridení}.
+		.5 aaa.
+		.6 aaa.py\DTcomment{modul zodpovedný za skenovanie a nápravu}.
+		.6 aaa.yaml\DTcomment{šablóna konfiguračného súboru k modulu}.
+		.5 cdp.
+		.6 cdp.py.
+		.6 cdp.yaml.
+		.5 modules\_by\_facility.yaml\DTcomment{súbor s definíciou, ktoré moduly  budú spustené pre zariadenia na konkrétnej vrstve modelu}.
+		.3 hp.
+		.3 juniper.
+		.4 junos.
+		.2 device\_configs\DTcomment{adresár s výstupmi, konfiguráciami a súbormi na ich nápravu}.
+		.3 workspace1\DTcomment{adresár jednej topológie/siete}.
+		.4 summary\_report\DTcomment{správa s mapovaním nedostatok-zariadenie}.
+		.4 hostname1.
+		.5 device.yaml\DTcomment{základané informácie o konkrétnom zariadení}.
+		.5 aaa.yaml\DTcomment{konfiguračný súbor k modulu s nájdenými nedostatkami}.
+		.5 cdp.yaml.
+		.5 report\_hostname1.csv\DTcomment{detailnejšia správa pre konkrétne zariadenie}.
+		.5 version\DTcomment{informácie o verzii operačného systému a jeho chýb}.
+		.5 hostname1\_config.txt\DTcomment{aktuálne skenovaná konfigurácia}.
+		.5 hostname1\_fix\_hash\DTcomment{súbor s nápravnou konfiguráciou}.
+		.5 hostname1\_old\_hash\DTcomment{predchádzajúce konfigurácie, zistenie a nápravy}.
+		.4 hostname2.
+		.3 workspace2.
+		.2 init\_configs\DTcomment{adresár s novými skopírovanými konfiguráciami zariadení}.
+		.3 workspace1.
+		.4 version.
+		.4 hostname1\_config.txt.
+		.4 hostname2\_config.txt.
+		.3 workspace2.
+		.2 current\_output\DTcomment{aktuálne správy a nápravy na jednom mieste}.
+		.3 workspace1\_hostname1\_fixhash.
+		.3 workspace1\_report\_hostname1.csv.
+	}
+}
 
+\newpage
 \section{Zoznam odporúčaní}
 
 V súčasnej dobe existuje mnoho odporúčaní, štandardov a benchmarkov, ktoré sa zaoberajú bezpečnosťou a správnou konfiguráciou sieťových zariadení. V mnohých prípadoch sú buď príliš všeobecné a teda sieťoví inžinieri majú problém zistiť, čo daným odporúčaním autor myslel a ako ho implementovať, alebo sú určené iba pre zariadenia od jedného výrobcu. Problémom je taktiež, že väčšina odporúčaní, štandardov a benchmarkov sa nie úplne prekrývajú, a teda je potrebné pri nastavovaní a audite zariadení čerpať s mnohých naraz. Nižšie uvedené výsledné tabuľky obsahujú odporúčania z odbornej literatúry, štandardov a benchmarkov verejne dostupných a používaných v produkčnom nasadení. Výhodou je aj fakt, že obsahujú odporúčania vychádzajúce z problémov IPv6, ktoré nie sú často v štandardoch a benchmarkoch dostupné. Podrobná tabuľka s mapovaním odporúčaní na príkazy pre zariadenia Cisco s operačným systémom IOS je v prílohe TODO priloha %TODO priloha.
