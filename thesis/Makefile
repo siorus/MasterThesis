@@ -25,6 +25,13 @@ pack:
 # Pozor, vlna neresi vse (viz popis.txt) / Warning - vlna is not solving all problems (see description.txt)
 vlna:
 	vlna -l $(CO).tex
+	vlna -l text/implementacia.tex
+	vlna -l text/kyberneticka-bezpecnost.tex
+	vlna -l text/navrh.tex
+	vlna -l text/prevadzka-a-bezpecnost-sieti.tex
+	vlna -l text/prilohy.tex
+	vlna -l text/uvod.tex
+	vlna -l text/zaver.tex
 
 # Spocita normostrany / Count of standard pages
 normostrany:
