@@ -196,13 +196,13 @@ Z~dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severi
 	Cisco Guide to Harden Cisco IOS Devices \cite{Singh2018}
 	\\
 	\rowcolor[rgb]{ .933,  .933,  .933} 3	&Nepovolený prístup k~manažmentu konfigurácie zariadenia	&Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices \cite{Singh2018}	\\
-	4	&Prístup bez požadovaných prístupových údajov	&Nakonfigruovanie protokolov na manažment zariadení, aby požadovali prístupové údaje (telnet a pod.)	&M	&C	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}	\\
-	\rowcolor[rgb]{ .933,  .933,  .933} 5	&Nekonzistenia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povolit súčasne iba jednému administrátorovi vykonávanie zmien v~konfigurácii	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices \cite{Singh2018}	\\
+	4	&Prístup bez požadovaných prístupových údajov	&Nakonfigurovanie protokolov na manažment zariadení, aby požadovali prístupové údaje (telnet a pod.)	&M	&C	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}	\\
+	\rowcolor[rgb]{ .933,  .933,  .933} 5	&Nekonzistencia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povoliť súčasne iba jednému administrátorovi vykonávanie zmien v~konfigurácii	&M	&H	&A	&Cisco Guide to Harden Cisco IOS Devices \cite{Singh2018}	\\
 	6	&Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k~odposluchu	&Zapnutie SSH	&M	&C	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	Cisco Router Hardening \cite{Graesser2001}	\\
 	\rowcolor[rgb]{ .933,  .933,  .933} 7	&Nebezpečná verzia 1 protokolu SSH	&SSH verzia 2	&M	&C	&A	&Cisco CCNA Security Study Guide \cite{McMillan2018}	\\
-	8	&Útok na krátky RSA kĺúč	&Dĺžka RSA kľúča minimálne 2048 bitov	&M	&C	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}
+	8	&Útok na krátky RSA kľúč	&Dĺžka RSA kľúča minimálne 2048 bitov	&M	&C	&A	&CIS Cisco IOS 15 Benchmark \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	Transitioning the Use of Cryptographic Algorithms and Key Lengths \cite{Barker2019} 
 	\\
@@ -290,7 +290,7 @@ Z~dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severi
 	COLCOREDIST
 	COLDISTACC
 	COLALL	&Designing Cisco network service architectures \cite{Tiso2012}\\
-	\rowcolor[rgb]{ .933,  .933,  .933} 3	&Koncové zariadenie, užívateľ a útočník môžu vidieť smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy	&Špecifikovanie rozhraní, ktoré nebudú prijímať routovacie informácie	&C	&H	&CORE/EDGE
+	\rowcolor[rgb]{ .933,  .933,  .933} 3	&Koncové zariadenie, užívateľ a útočník môžu vidieť smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy	&Špecifikovanie rozhraní, ktoré nebudú prijímať smerovacie informácie	&C	&H	&CORE/EDGE
 	DIST
 	COLCOREDIST
 	COLDISTACC
@@ -302,7 +302,7 @@ Z~dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severi
 	COLALL	&Protocol-Independent Routing Properties Feature Guide \cite{q7WZuvqA1fZEsYyL}
 	
 	CCNA Routing and Switching Study Guide \cite{Lammle2013}\\
-	\rowcolor[rgb]{ .933,  .933,  .933} 5	&Vysledovateľnosť nefunkčnosti routovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v~logu pri zmenách v~smerovaní	&C	&M	&CORE/EDGE
+	\rowcolor[rgb]{ .933,  .933,  .933} 5	&Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v~logu pri zmenách v~smerovaní	&C	&M	&CORE/EDGE
 	DIST
 	COLCOREDIST
 	COLDISTACC
@@ -450,7 +450,7 @@ Z~dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severi
 	COLDISTACC
 	COLALL	&Cisco Guide to Harden Cisco IOS Devices \cite{Singh2018}
 	\\
-	8	&Mapovanie sete pomocou pingu na multicast adresu všetkých uzlov a MLD/IGMP Query Overload a Smurf útok	& ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD/IGMP Query na prístupových portoch	&C	&M	&DIST
+	8	&Mapovanie siete pomocou pingu na multicast adresu všetkých uzlov a MLD/IGMP Query Overload a Smurf útok	& ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD/IGMP Query na prístupových portoch	&C	&M	&DIST
 	COLDISTACC
 	ACC	&Bezpečné IPv6: trable s~multicastem \cite{Podermanski532015}
 	
@@ -792,5 +792,5 @@ Z~dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severi
 
 
 \restoregeometry 
-
+\normalsize
 

@@ -25,6 +25,7 @@ pack:
 # Pozor, vlna neresi vse (viz popis.txt) / Warning - vlna is not solving all problems (see description.txt)
 vlna:
 	vlna -l $(CO).tex
+	vlna -l text/bezpecnostny-audit.tex
 	vlna -l text/implementacia.tex
 	vlna -l text/kyberneticka-bezpecnost.tex
 	vlna -l text/navrh.tex
