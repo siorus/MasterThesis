@@ -1,21 +1,29 @@
-\chapter{Kontrolný zoznam odporúčaní pre zariadenia CISCO}
-DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
-
 \newgeometry{left=2.5cm,bottom=3.4cm, top=2.5cm}
+\chapter{Kontrolný zoznam odporúčaní pre zariadenia CISCO}
+
 
 \scriptsize
-\begin{longtable}[!htbp]{|L{10em}L{10em}L{34em}|}
+
+\begin{longtable}[!htbp]{|L{10em}L{10em}>{\fontfamily{qcr}\selectfont}L{34em}|}
+	\caption{Rozpracovaná tabuľka s príkazmi na konfiguráciu pre zariadenia od spoločnosti Cisco}
+	\label{tab:cisco_table}\\ \hline
+	\centering 
+	
+	\centering{\hspace{-3em}\vspace{1em}Útok / Problém} & Mitigácia / Nastavenie&{\fontfamily{lmr}\selectfont Príkazy}\\ \hhline{===}
+	\endfirsthead
 	
 	
 	\hline
 	\centering 
+	\centering{\hspace{-3em}\vspace{2em}Útok / Problém} & Mitigácia / Nastavenie&{\fontfamily{lmr}\selectfont Príkazy}\\ \hhline{===}
+	\endhead
 	
-	\centering{\hspace{-3em}\vspace{1em}Útok / Problém} & Mitigácia / Nastavenie&Príkazy\\ \hline
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nemožná identifikácia zariadenia	&Vytvoriť hostname	&hostname $<$hostname$>$\\
+	
+	\rowcolor[rgb]{ .97,  .97,  .97} Nemožná identifikácia zariadenia	&Vytvoriť hostname	&hostname $<$hostname$>$\\
 	Nemožnosť vzdialeného prístupu	&Vytvoriť doménové meno	&ip domain-name $<$domain$>$\\
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepovolený prístup k manažovaniu zariadenia	&Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v logu prístupy	&ip access-list standard $<$acl name$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepovolený prístup k manažovaniu zariadenia	&Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v logu prístupy	&ip access-list standard $<$acl name$>$
 	
 	\hspace{0.5em}remark permit specifi ip and log
 	
@@ -38,7 +46,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	\hspace{0.5em}deny any any log-input
 	
 	\vspace{0.5em}
-	alebo v global config 
+	{\fontfamily{lmr}\selectfont alebo v global config }
 	\vspace{0.5em}
 	
 	login on-failure log-input
@@ -61,7 +69,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	\hspace{0.5em}ip access-class $<$acl name$>$ in
 	
 	\hspace{0.5em}ipv6 access-class $<$acl name$>$ in
-
+	
 	\vspace{0.5em}line tty $<$num$>$ $<$num$>$
 	
 	\hspace{0.5em}ip access-class $<$acl name$>$ in
@@ -72,10 +80,10 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933}Neautorizovaný prístup cez nepoužívané a nezabezpečené protokoly na manažment zariadení	&Vypnúť nepoužívané protokoly na prístup k manažovaniu zariadení (telnet a pod.)	&line aux 0
+	\rowcolor[rgb]{ .97,  .97,  .97}Neautorizovaný prístup cez nepoužívané a nezabezpečené protokoly na manažment zariadení	&Vypnúť nepoužívané protokoly na prístup k manažovaniu zariadení (telnet a pod.)	&line aux 0
 	
 	\hspace{0.5em}no exec
-
+	
 	\hspace{0.5em}transport input none\\
 	
 	
@@ -102,16 +110,16 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	\vspace{0.5em}line aux $<$num$>$
 	
 	\hspace{0.5em}password
-
+	
 	\hspace{0.5em}login | login local\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933}Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k odposluchu	&Zapnutie SSH	&line vty $<$num$>$ $<$num$>$
+	\rowcolor[rgb]{ .97,  .97,  .97}Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k odposluchu	&Zapnutie SSH	&line vty $<$num$>$ $<$num$>$
 	
 	\hspace{0.5em}login local
-
+	
 	\hspace{0.5em}transport input ssh\\
 	
 	
@@ -121,7 +129,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933}Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnemu sedeniu môže viesť k zmene konfigurácie	&SSH čas vypršania sedenia	&ip ssh timeout $<$timeout seconds$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97}Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k aktívnemu sedeniu môže viesť k zmene konfigurácie	&SSH čas vypršania sedenia	&ip ssh timeout $<$timeout seconds$>$\\
 	
 	
 	
@@ -131,7 +139,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933}Hádanie hesla k RSA kľúču	&SSH maximálny počet neúspešných pokusov	&ip 
+	\rowcolor[rgb]{ .97,  .97,  .97}Hádanie hesla k RSA kľúču	&SSH maximálny počet neúspešných pokusov	&ip 
 	ssh authentication-retries $<$max num$>$\\
 	
 	
@@ -142,7 +150,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Prihlásenie na zariadenie nie je možné kvôli zablokovaniu pre príliš veľa neúspešných pokusov	&Povolenie prístupu administrátorovi na základe IP adresy, keď je protokol na manažovanie zariadení nedostupný kvôli DOS útoku	&login quiet-mode access-class $<$acl name$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Prihlásenie na zariadenie nie je možné kvôli zablokovaniu pre príliš veľa neúspešných pokusov	&Povolenie prístupu administrátorovi na základe IP adresy, keď je protokol na manažovanie zariadení nedostupný kvôli DOS útoku	&login quiet-mode access-class $<$acl name$>$\\
 	
 	
 	
@@ -176,7 +184,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Útočník nie je informovaný o právnych následkoch	&Právne upozornenie pri prístupe k zariadeniu	&banner motd
+	\rowcolor[rgb]{ .97,  .97,  .97} Útočník nie je informovaný o právnych následkoch	&Právne upozornenie pri prístupe k zariadeniu	&banner motd
 	
 	banner login
 	
@@ -206,7 +214,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Možnosť prečítať heslá z uniknutých konfigurácií	&Zašifrovanie hesiel v otvorenej podobe	&service password-encryption\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Možnosť prečítať heslá z uniknutých konfigurácií	&Zašifrovanie hesiel v otvorenej podobe	&service password-encryption\\
 	
 	
 	
@@ -216,7 +224,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepovolená zmena konfigurácie zariadenia	&Vytvorenie hesla na editovanie konfigurácie zariadenia	&no enable password $<$password$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepovolená zmena konfigurácie zariadenia	&Vytvorenie hesla na editovanie konfigurácie zariadenia	&no enable password $<$password$>$\\
 	
 	
 	
@@ -224,7 +232,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepovolený prístup k manažmentu konfigurácie zariadenia	&Lokálne zabezpečené účty	&no username password  $<$username$>$ $<$password$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepovolený prístup k manažmentu konfigurácie zariadenia	&Lokálne zabezpečené účty	&no username password  $<$username$>$ $<$password$>$\\
 	
 	
 	
@@ -237,7 +245,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	\hspace{0.5em}key $<$password$>$
 	\vspace{0.5em}
 	
-	alebo
+	{\fontfamily{lmr}\selectfont alebo}
 	
 	\vspace{0.5em}
 	radius-server host $<$ip adddress$>$
@@ -272,7 +280,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia	&aaa new-model
+	\rowcolor[rgb]{ .97,  .97,  .97} Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia	&aaa new-model
 	
 	tacacs server $<$tacacs server name$>$
 	
@@ -281,7 +289,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	\hspace{0.5em}key $<$password$>$
 	\vspace{0.5em}
 	
-	alebo
+	{\fontfamily{lmr}\selectfont alebo}
 	
 	\vspace{0.5em}
 	tacacs-server host $<$ip adddress$>$
@@ -321,7 +329,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&no aaa authentication enable default enable\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&no aaa authentication enable default enable\\
 	
 	
 	
@@ -331,17 +339,17 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Prihlásenie bez prihlasovacích údajov	&Zakázať záložné prihlásenie bez poskytnutia autentizačných prostriedkov	&vyhnúť sa aaa authentication login.*none.*\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Prihlásenie bez prihlasovacích údajov	&Zakázať záložné prihlásenie bez poskytnutia autentizačných prostriedkov	&{\fontfamily{lmr}\selectfont vyhnúť sa} aaa authentication login.*none.*\\
 	
 	
 	
 	
-	AAA používa primárne lokálne účty namiesto centralizovaných na serveri	&AAA nesmie používať ako prvú možnosť prihlásenia lokálny účet 	&vyhnúť sa authentication login default local\\
+	AAA používa primárne lokálne účty namiesto centralizovaných na serveri	&AAA nesmie používať ako prvú možnosť prihlásenia lokálny účet 	&{\fontfamily{lmr}\selectfont vyhnúť sa} authentication login default local\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&aaa authorization exec $<$radius login$>$ group $<$radius group$>$ local if-authenticated\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&aaa authorization exec $<$radius login$>$ group $<$radius group$>$ local if-authenticated\\
 	
 	
 	
@@ -351,7 +359,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu	&Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov	&aaa accounting connection
+	\rowcolor[rgb]{ .97,  .97,  .97} Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu	&Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov	&aaa accounting connection
 	aaa accounting commands
 	aaa accounting exec\\
 	
@@ -366,7 +374,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} AAA zdrojové rozhranie nie je rovnaké pri každom reštarte	&Definovanie loopback zdrojového rozhrania pre AAA	&ip radius source interface loopback $<$id$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} AAA zdrojové rozhranie nie je rovnaké pri každom reštarte	&Definovanie loopback zdrojového rozhrania pre AAA	&ip radius source interface loopback $<$id$>$
 	
 	ip tacacs source interface loopback $<$id$>$\\
 	
@@ -380,12 +388,12 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Neoprávnený prístup k SNMP informáciám	&Obmedzenie SNMP iba pre vybrané IP adresy	&ip access-list standard $<$acl name$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Neoprávnený prístup k SNMP informáciám	&Obmedzenie SNMP iba pre vybrané IP adresy	&ip access-list standard $<$acl name$>$
 	
 	\hspace{0.5em}remark permit only this IP 
 	
 	\hspace{0.5em}permit $<$ip address$>$ $<$wildcard mask$>$
-
+	
 	\hspace{0.5em}deny any log-input
 	\vspace{0.5em}
 	
@@ -411,7 +419,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie	&Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA	&snmp-server user $<$user$>$ $<$group name$>$ v3 auth sha $<$password$>$ pri aes 128 $<$password$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie	&Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA	&snmp-server user $<$user$>$ $<$group name$>$ v3 auth sha $<$password$>$ pri aes 128 $<$password$>$\\
 	
 	
 	
@@ -421,7 +429,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SNMP	&snmp-server trap-source loopback $<$id$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SNMP	&snmp-server trap-source loopback $<$id$>$\\
 	
 	
 	
@@ -431,7 +439,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Administrátor nemá povedomie o problémoch na zariadení	&Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru	&logging on
+	\rowcolor[rgb]{ .97,  .97,  .97} Administrátor nemá povedomie o problémoch na zariadení	&Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru	&logging on
 	logging host $<$ip adddress$>$\\
 	
 	
@@ -442,7 +450,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SYSLOG	&logging source-interface loopback $<$id$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SYSLOG	&logging source-interface loopback $<$id$>$\\
 	
 	
 	
@@ -452,30 +460,38 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Administrátor nevidí dôležité incidenty pri prihlásení a konfigurovaní cez konzolu	&Vypisovanie SYSLOG správ CRITICAL a dôležitejších do terminálu	&logging console critical\\
-
-
-
-
+	\rowcolor[rgb]{ .97,  .97,  .97} Administrátor nevidí dôležité incidenty pri prihlásení a konfigurovaní cez konzolu	&Vypisovanie SYSLOG správ CRITICAL a dôležitejších do terminálu	&logging console critical\\
+	
+	
+	
+	
 	Malá vyrovnávacia pamäť pre SYSLOG je dôvodom zahadzovanie správ	&Definovanie veľkosti SYSLOG buffera dôležitosti oznámení na INFORMATIONAL	&logging buffered 64000 6\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ	&Definovanie dočasného úložiska SYSLOG správ v prípade nedostupnosti servera	&logging persistent url flash:/syslog\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ	&Definovanie dočasného úložiska SYSLOG správ v prípade nedostupnosti servera	&logging persistent url flash:/syslog\\
 	
 	
 	
 	
-	Skenovanie a zistenie informácií o sieti za pomoci protokolu CDP a využitie bezpečnostných chýb	&Zakázanie protokolu CDP	&no CDP run 
-	no cdp enable\\
+	Skenovanie a zistenie informácií o sieti za pomoci protokolu CDP a využitie bezpečnostných chýb	&Zakázanie protokolu CDP	&no cdp run
+	
+	
+	interface $<$interface name$>$ $<$interface id$>$ 
+	
+	\hspace{0.5em}no cdp enable\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Skenovanie a zistenie informácií o sieti za pomoci protokolu LLDP a využitie bezpečnostných chýb	&Zakázanie protokolu LLDP	&no LLDP run 
-	no lldp receive 
-	no lldp transmit\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Skenovanie a zistenie informácií o sieti za pomoci protokolu LLDP a využitie bezpečnostných chýb	&Zakázanie protokolu LLDP	&no lldp run
+	
+	interface $<$interface name$>$ $<$interface id$>$	
+	
+	\hspace{0.5em}no lldp receive 
+	
+	\hspace{0.5em}no lldp transmit\\
 	
 	
 	
@@ -485,8 +501,10 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Pripojenie servera s rovnakou IP adresou, ale falošným časom	&Nastavenie NTP autentizácie	&ntp authenticate
+	\rowcolor[rgb]{ .97,  .97,  .97} Pripojenie servera s rovnakou IP adresou, ale falošným časom	&Nastavenie NTP autentizácie	&ntp authenticate
+	
 	ntp authentication-key 1 md5 $<$password$>$
+	
 	trusted-key 1\\
 	
 	
@@ -497,7 +515,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933}Väčšia bezpečnosť (pub/priv key) NTP a podpora IPv6	&Použitie NTP verzie 4	&ntp server $<$ip adddress$>$ version 4\\
+	\rowcolor[rgb]{ .97,  .97,  .97}Väčšia bezpečnosť (pub/priv key) NTP a podpora IPv6	&Použitie NTP verzie 4	&ntp server $<$ip adddress$>$ version 4\\
 	
 	
 	
@@ -506,11 +524,11 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	ip access-list standard $<$acl name$>$
 	
 	\hspace{0.5em}remark permit only this IP 
-
+	
 	\hspace{0.5em}permit $<$ip adddress$>$ $<$wildcard mask$>$
 	
 	\hspace{0.5em}remark deny other 
-
+	
 	\hspace{0.5em}deny any log-input
 	
 	ntp access-group serve-only $<$acl name$>$
@@ -522,7 +540,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Útočník s fyzickým prístupom k zariadeniu alebo portu môže odpočúvať alebo posielať škodlivý obsah	&Explicitne zakázať nepoužívané porty	&interface $<$interface name$>$ $<$interface id$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Útočník s fyzickým prístupom k zariadeniu alebo portu môže odpočúvať alebo posielať škodlivý obsah	&Explicitne zakázať nepoužívané porty	&interface $<$interface name$>$ $<$interface id$>$
 	
 	\hspace{0.5em}shutdown\\
 	
@@ -536,7 +554,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Identifikácia pravidla v ACL	&Popis každého pravidla v ACL pre lepšiu identifikáciu	&ip access-list standard $<$acl name$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Identifikácia pravidla v ACL	&Popis každého pravidla v ACL pre lepšiu identifikáciu	&ip access-list standard $<$acl name$>$
 	
 	\hspace{0.5em}remark Deny SNMP from VLAN 20
 	
@@ -544,7 +562,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	\vspace{0.5em}
 	
 	ipv6 access-list $<$acl name$>$
-
+	
 	\hspace{0.5em}remark Deny SNMP from VLAN 20
 	
 	\hspace{0.5em}deny $<$ipv6 address$>$ $<$prefix$>$ any\\
@@ -553,143 +571,195 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	Identifikácia rozhrania	&Popis každého rozhrania	&interface $<$interface name$>$ $<$interface id$>$
-	description PRODUCTION\_SERVER\\
+	
+	\hspace{0.5em}description PRODUCTION\_SERVER\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} SSH zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SSH	&ip ssh source-interface loopback $<$id$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97}SSH zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SSH	&ip ssh source-interface loopback $<$id$>$\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} DOS útok na štandardný SSH port 22	&Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie port knocking	&ip ssh port 2223
+	DOS útok na štandardný SSH port 22	&Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie port knocking	&ip ssh port 2223
 	
-	alebo
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
 	
 	ip access-list extended $<$acl name$>$
-	remark *** KNOCK ***
-	permit udp any any eq 65535 log-input
-	remark *** TRUSTED ***
-	permit tcp any any established
-	remark *** DENIED ***
-	deny   tcp any any log input
-	remark *** PERMITED ***
-	permit ip any any
 	
-	!! WAN Interface !!
+	\hspace{0.5em}remark *** KNOCK ***
+	
+	\hspace{0.5em}permit udp any any eq 65535 log-input
+	
+	\hspace{0.5em}remark *** TRUSTED ***
+	
+	\hspace{0.5em}permit tcp any any established
+	
+	\hspace{0.5em}remark *** DENIED ***
+	
+	\hspace{0.5em}deny   tcp any any log input
+	
+	\hspace{0.5em}remark *** PERMITED ***
+	
+	\hspace{0.5em}permit ip any any
+	
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip access-group $<$acl name$>$
-	ipv6 traffic-filter $<$acl name$>$
 	
-	!! KNOCK\_ACL env Variable !!
+	\hspace{0.5em}ip access-group $<$acl name$>$
+	
+	\hspace{0.5em}ipv6 traffic-filter $<$acl name$>$
 	
 	event manager environment $<$env name$>$ $<$acl name$>$
 	
-	!! Port Knocking EEM applet !!
-	
 	event manager applet KNOCK
-	event syslog pattern "\%SEC-6-IPACCESSLOGP: list \$KNOCK\_ACL permitted *"
-	action 1.0 regexp "[0-9]+$\backslash$.[0-9]+$\backslash$.[0-9]+$\backslash$.[0-9]+" \$\_syslog\_msg ADDR
-	action 1.1 regexp "$\backslash$([0-9]+$\backslash$)," "\$\_syslog\_msg" PORT
-	action 1.2 regexp "[0-9]+" "\$PORT" PORT 
-	action 2.0 syslog msg "Received a knock from \$ADDR on port \$PORT..."
-	action 2.1 syslog msg "Adding \$ADDR to the \$KNOCK\_ACL ACL"
-	action 3.0 cli command "enable"
-	action 3.1 cli command "configure terminal"
-	action 3.2 cli command "ip access-list extended \$KNOCK\_ACL"
-	action 3.3 cli command "1 permit tcp host \$ADDR any eq 22"
-	action 4.0 WAIT 15
-	action 5.0 syslog msg "Removing \$ADDR to the \$KNOCK\_ACL ACL"
-	action 6.0 cli command "no permit tcp host \$ADDR any eq 22"
-	action 6.1 cli command "exit"\\
+	
+	\hspace{0.5em}event syslog pattern "\%SEC-6-IPACCESSLOGP: list \$KNOCK\_ACL
+	
+	\hspace{1em}permitted *"
+	
+	\hspace{0.5em}action 1.0 regexp "[0-9]+$\backslash$.[0-9]+$\backslash$.[0-9]+$\backslash$.[0-9]+" \$\_syslog\_msg ADDR
+	
+	\hspace{0.5em}action 1.1 regexp "$\backslash$([0-9]+$\backslash$)," "\$\_syslog\_msg" PORT
+	
+	\hspace{0.5em}action 1.2 regexp "[0-9]+" "\$PORT" PORT 
+	
+	\hspace{0.5em}action 2.0 syslog msg "Received a knock from \$ADDR on port \$PORT..."
+	
+	\hspace{0.5em}action 2.1 syslog msg "Adding \$ADDR to the \$KNOCK\_ACL ACL"
+	
+	\hspace{0.5em}action 3.0 cli command "enable"
+	
+	\hspace{0.5em}action 3.1 cli command "configure terminal"
+	
+	\hspace{0.5em}action 3.2 cli command "ip access-list extended \$KNOCK\_ACL"
+	
+	\hspace{0.5em}action 3.3 cli command "1 permit tcp host \$ADDR any eq 22"
+	
+	\hspace{0.5em}action 4.0 WAIT 15
+	
+	\hspace{0.5em}action 5.0 syslog msg "Removing \$ADDR to the \$KNOCK\_ACL ACL"
+	
+	\hspace{0.5em}action 6.0 cli command "no permit tcp host \$ADDR any eq 22"
+	
+	\hspace{0.5em}action 6.1 cli command "exit"\\
 	
 	
 	
-	Nepovolený prístup k manažmentu konfigurácie zariadenia	&Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)	&line vty $<$num$>$ $<$num$>$
-	transport output none
+	\rowcolor[rgb]{ .97,  .97,  .97}Nepovolený prístup k manažmentu konfigurácie zariadenia	&Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)	&line vty $<$num$>$ $<$num$>$
+	
+	\hspace{0.5em}transport output none
+	
 	line tty $<$num$>$ $<$num$>$
-	transport output none
+	
+	\hspace{0.5em}transport output none
+	
 	line con $<$num$>$
-	transport output none
+	
+	\hspace{0.5em}transport output none
+	
 	line aux $<$num$>$
-	transport output none\\
+	
+	\hspace{0.5em}transport output none\\
 	
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Odpočúvanie konfigurácií zariadení pri zálohe	&Zapnutie zabezpečenej zálohy na server (SFTP, SCP)	&ip scp server enable
+	Odpočúvanie konfigurácií zariadení pri zálohe	&Zapnutie zabezpečenej zálohy na server (SFTP, SCP)	&ip scp server enable
+	
 	copy startup-config scp://$<$username$>$@$<$ip address$>$/backup\\
 	
 	
 	
 	
-	Vymazanie konfigurácie	&Zapnutie ochrany pred výmazom konfigurácie	&secure boot config\\
+	\rowcolor[rgb]{ .97,  .97,  .97}Vymazanie konfigurácie	&Zapnutie ochrany pred výmazom konfigurácie	&secure boot config\\
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Možnosť urobiť diff zmien konfigurácií a jej návrat	&Periodické zálohovanie konfigurácie a logovanie jej zmien	&archive
+	Možnosť urobiť diff zmien konfigurácií a jej návrat	&Periodické zálohovanie konfigurácie a logovanie jej zmien	&archive
 	write-memory
+	
 	time-period $<$num$>$
+	
 	log changes
+	
 	log config
+	
 	logging enable
+	
 	logging size $<$num$>$
+	
+	
 	hidekeys
+	
 	notify syslog
+	
 	maximum $<$num$>$\\
 	
 	
 	
 	
-	DOS útok alebo pokus o prístup k tomu, čo nie je povolené	&Logovanie pravidiel zahodenia paketov v ACL	&ip access-list standard $<$acl name$>$
-	deny any log-input
+	\rowcolor[rgb]{ .97,  .97,  .97} DOS útok alebo pokus o prístup k tomu, čo nie je povolené	&Logovanie pravidiel zahodenia paketov v ACL	&ip access-list standard $<$acl name$>$
+	
+	\hspace{0.5em}deny any log-input
 	
 	ipv6 access-list $<$acl name$>$
-	deny any any log-input\\
+	
+	\hspace{0.5em}deny any any log-input\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nízky stav voľnej pamäte	&Nastavenie notifikácie pri dochádzaní pamäte	&memory free low-watermark processor $<$threshold$>$
+	Nízky stav voľnej pamäte	&Nastavenie notifikácie pri dochádzaní pamäte	&memory free low-watermark processor $<$threshold$>$
+	
 	memory free low-watermark io $<$threshold$>$\\
 	
 	
 	
 	
-	Logovacie správy nemôžu byť zaznamenané kvôli nedostatku pamäte	&Rezervovanie pamäte pre kritické notifikácie pri nedostatku pamäte	&memory reserve critical $<$value$>$ \\
+	\rowcolor[rgb]{ .97,  .97,  .97}Logovacie správy nemôžu byť zaznamenané kvôli nedostatku pamäte	&Rezervovanie pamäte pre kritické notifikácie pri nedostatku pamäte	&memory reserve critical $<$value$>$ \\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vysoké zaťaženie CPU	&Nastavenie notifikácie vysokom zaťažení CPU	&snmp-server enable traps cpu threshold
+	Vysoké zaťaženie CPU	&Nastavenie notifikácie vysokom zaťažení CPU	&snmp-server enable traps cpu threshold
+	
 	snmp-server host $<$ip adddress$>$ version 3 priv $<$user$>$ cpu
+	
 	process cpu threshold type $<$type$>$ rising $<$percentage$>$ interval $<$seconds$>$
+	
 	process cpu statistics limit entry-percentage\\
 	
 	
 	
-	Vysoké zaťaženie zariadenia spôsobilo nemožnosť prihlásenia k nemu	&Rezervovanie pamäte pre protokoly na manažment zariadení pri nedostatku pamäte	&memory reserve console 4096\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Vysoké zaťaženie zariadenia spôsobilo nemožnosť prihlásenia k nemu	&Rezervovanie pamäte pre protokoly na manažment zariadení pri nedostatku pamäte	&memory reserve console 4096\\
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Pretečenie pamäte	&Povoliť mechanizmy na detekciu pretečenia pamäte	&exception memory ignore overflow io
+	Pretečenie pamäte	&Povoliť mechanizmy na detekciu pretečenia pamäte	&exception memory ignore overflow io
+	
 	exception memory ignore overflow processor
+	
 	exception crashinfo maximum files $<$number-of-files$>$\\
 	
 	
 	
 	
-	Načítanie škodlivej konfigurácie zo siete počas bootovania	&Vypnutie načítania operačného systému alebo konfigurácie zo siete pokiaľ to nie je nutné	&no boot network
+	\rowcolor[rgb]{ .97,  .97,  .97}Načítanie škodlivej konfigurácie zo siete počas bootovania	&Vypnutie načítania operačného systému alebo konfigurácie zo siete pokiaľ to nie je nutné	&no boot network
 	no service config\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Proxy ARP môže viesť k obídeniu PVLAN a rozširuje broadcast doménu	&Vypnutie Proxy ARP	&no proxy-arp\\
-	DOS útok na stanicu, cez ktorú bola špecifikovaná cesta a teda nemožnosť komunikácie s koncovým bodom. Alebo zosnovanie MITM útoku	&Vypnutie IP source routing	&no ip source-route\\
+	Proxy ARP môže viesť k obídeniu PVLAN a rozširuje broadcast doménu	&Vypnutie Proxy ARP	&no proxy-arp\\
+	
+	
+	
+	\rowcolor[rgb]{ .97,  .97,  .97}DOS útok na stanicu, cez ktorú bola špecifikovaná cesta a teda nemožnosť komunikácie s koncovým bodom. Alebo zosnovanie MITM útoku	&Vypnutie IP source routing	&no ip source-route\\
 	
 	
 	
@@ -698,7 +768,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no ip bootp server\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no ip bootp server\\
 	
 	
 	
@@ -708,7 +778,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no ip identd\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no ip identd\\
 	
 	
 	
@@ -716,7 +786,8 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no ip http server
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no ip http server
+	
 	no ip http secure server\\
 	
 	
@@ -726,7 +797,7 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no service udp-small-server\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&no service udp-small-server\\
 	
 	
 	
@@ -735,8 +806,9 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&int FastEthernet 0/1
-	no mop enabled\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z bezpečnostných dôvodov a na šetrenie CPU a pamäte 	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em} no mop enabled\\
 	
 	
 	
@@ -744,30 +816,34 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Útočník môže zistiť, že IP adresa, na ktorú skúšal ping je nesprávna	&Vypnutie správ ICMP Unreachable	&interface $<$interface name$>$ $<$interface id$>$
-	no ip unreachables\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Útočník môže zistiť, že IP adresa, na ktorú skúšal ping je nesprávna	&Vypnutie správ ICMP Unreachable	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}no ip unreachables\\
 	
 	
 	
 	
 	Útočník môže zistiť masku podsiete pomocou ICMP Mask reply	&Vypnutie správ ICMP Mask reply	&interface $<$interface name$>$ $<$interface id$>$
-	no ip mask-reply\\
+	
+	\hspace{0.5em}no ip mask-reply\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Umožňuje DOS Smurf útok, mapovanie siete pomocou ping na broadcast adresu vzdialenej siete	&Vypnutie ICMP echo správ na broadcast adresu, vypnutie directed broadcasts	&interface $<$interface name$>$ $<$interface id$>$
-	no ip directed-broadcast\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Umožňuje DOS Smurf útok, mapovanie siete pomocou ping na broadcast adresu vzdialenej siete	&Vypnutie ICMP echo správ na broadcast adresu, vypnutie directed broadcasts	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}no ip directed-broadcast\\
 	
 	
 	
 	
 	Útočník môže zistiť smerovacie informácie alebo vyťažiť CPU	&Vypnutie správ ICMP Redirects	&interface $<$interface name$>$ $<$interface id$>$
-	no ip redirects\\
+	
+	\hspace{0.5em}no ip redirects\\
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nekonzistencia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povoliť súčasne iba jednému administrátorovi vykonávanie zmien v konfigurácii	&configuration mode exclusive auto\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Nekonzistencia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povoliť súčasne iba jednému administrátorovi vykonávanie zmien v konfigurácii	&configuration mode exclusive auto\\
 	
 	
 	
@@ -777,53 +853,78 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nemožnosť prihlásenia pri zaseknutom TCP spojení	&Terminovanie zaseknutého TCP spojenia	&service tcp-keepalives-in
+	\rowcolor[rgb]{ .97,  .97,  .97} Nemožnosť prihlásenia pri zaseknutom TCP spojení	&Terminovanie zaseknutého TCP spojenia	&service tcp-keepalives-in
+	
 	service tcp-keepalives-out\\
 	
 	
 	
 	
-	Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&router bgp 65200
-	neighbor 80.80.80.80 password cisco   \\
+	Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&router bgp $<$as number$>$
+	
+	\hspace{0.5em}neighbor $<$ip address$>$ password $<$password$>$  \\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&key chain $<$chain name$>$
-	key$<$id$>$
-	key-string $<$password$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&key chain $<$chain name$>$
+	
+	\hspace{0.5em}key$<$id$>$
+	
+	\hspace{1em}key-string $<$password$>$
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip authentication mode eigrp $<$as$>$ md5
-	ip authentication keyc-chain eigrp $<$as$>$ $<$chain name$>$
-	ipv6 authentication mode eigrp $<$as$>$ md5
-	ipv6 authentication keyc-chain eigrp $<$as$>$ $<$chain name$>$\\
+	
+	\hspace{0.5em}ip authentication mode eigrp $<$as$>$ md5
+	
+	\hspace{0.5em}ip authentication keyc-chain eigrp $<$as$>$ $<$chain name$>$
+	
+	\hspace{0.5em}ipv6 authentication mode eigrp $<$as$>$ md5
+	
+	\hspace{0.5em}ipv6 authentication keyc-chain eigrp $<$as$>$ $<$chain name$>$\\
 	
 	
 	
 	
 	Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&key chain $<$chain name$>$
-	key$<$id$>$
-	key-string $<$password$>$
+	
+	\hspace{0.5em}key$<$id$>$
+	\hspace{1em}key-string $<$password$>$
+	
 	router ospf $<$process id$>$
-	area $<$ared id$>$ authentication message-digest
-	area $<$area id$>$ authentication key-chain $<$chain name$>$
+	
+	\hspace{0.5em}area $<$ared id$>$ authentication message-digest
+	
+	\hspace{0.5em}area $<$area id$>$ authentication key-chain $<$chain name$>$
+	
 	ipv6 router ospf $<$process id$>$
-	area $<$area id$>$ authentication message-digest
+	
+	\hspace{0.5em}area $<$area id$>$ authentication message-digest
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip ospf message-digest-key $<$key id$>$ md5|sha $<$password$>$
-	ip ospf authentication message-digest
-	ospfv3 authentication md5 0 27576134094768132473302031209727
-	no ip ospf authentication-key OPENKEY\\
+	
+	\hspace{0.5em}ip ospf message-digest-key $<$key id$>$ md5|sha $<$password$>$
+	
+	\hspace{0.5em}ip ospf authentication message-digest
+	
+	\hspace{0.5em}ospfv3 authentication md5 0 27576134094768132473302031209727
+	
+	\hspace{0.5em}no ip ospf authentication-key OPENKEY\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&key chain $<$chain name$>$
-	key $<$id$>$
-	key-string $<$password$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Vloženie a manipulácia so smerovacími informáciami	&Autentizácia smerovacích protokolov (nie heslá v otvorenej podobe)	&key chain $<$chain name$>$
+	
+	\hspace{0.5em}key $<$id$>$
+	
+	\hspace{1em}key-string $<$password$>$
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip rip authentication key-chain $<$chain name$>$
-	ip rip authentication mode md5\\
+	
+	\hspace{0.5em}ip rip authentication key-chain $<$chain name$>$
+	
+	\hspace{0.5em}ip rip authentication mode md5\\
 	
 	
 	
@@ -832,41 +933,41 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Koncové zariadenie, užívateľ a útočník môžu vidieť smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy	&Špecifikovanie rozhraní, ktoré nebudú prijímať smerovacie informácie	&router rip
-	passive-interface default
-	no passive-interface $<$interface name$>$ $<$interface id$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Koncové zariadenie, užívateľ a útočník môžu vidieť smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy	&Špecifikovanie rozhraní, ktoré nebudú prijímať smerovacie informácie	&router rip
+	
+	\hspace{0.5em}passive-interface default
+	
+	\hspace{0.5em}no passive-interface $<$interface name$>$ $<$interface id$>$
 	
 	router ospf $<$process$>$
-	passive-interface default
-	no passive-interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}passive-interface default
+	
+	\hspace{0.5em}no passive-interface $<$interface name$>$ $<$interface id$>$
 	
 	router eigrp $<$as$>$
-	passive-interface default
-	no passive-interface $<$interface name$>$ $<$interface id$>$\\
+	
+	\hspace{0.5em}passive-interface default
+	
+	\hspace{0.5em}no passive-interface $<$interface name$>$ $<$interface id$>$\\
 	
 	
 	
 	
-	Nemožnosť sprevádzkovať procesy smerovacích protokolov v určitých prípadoch pri použití IPv6	&Špecifikovanie identifikátorov smerovacích protokolov pre každý router (router ID)	&router ospf 1|eigrp1|bgp
-	router-id $<$ip-address$>$ 
+	Nemožnosť sprevádzkovať procesy smerovacích protokolov v určitých prípadoch pri použití IPv6	&Špecifikovanie identifikátorov smerovacích protokolov pre každý router (router ID)	&router ospf $<$process id$>$|eigrp1$<$as number$>$|bgp$<$as$>$
+	
+	\hspace{0.5em}router-id $<$ip-address$>$ 
+	
 	ipv6 router ospf  $<$process-id$>$
-	router-id $<$ip-address$>$ \\
+	
+	\hspace{0.5em} router-id $<$ip-address$>$ \\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v logu pri zmenách v smerovaní	&router eigrp $<$as$>$
-	(eigrp) log-neighbor-changes\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v logu pri zmenách v smerovaní	&router eigrp $<$as$>$|ospf $<$process id$>$|bgp $<$as$>$
 	
-	
-	
-	Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v logu pri zmenách v smerovaní	&router ospf $<$process$>$
-	log-neighbor-changes\\
-	
-	
-	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v logu pri zmenách v smerovaní	&router bgp $<$as$>$
-	log-neighbor-changes\\
+	\hspace{0.5em}log-neighbor-changes\\
 	
 	
 	
@@ -874,14 +975,17 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nesprávne smerovanie kvôli sumarizácií	&Vypnutie automatickej sumarizácie smerovacích protokolov	&router rip
-	no auto-summary
+	\rowcolor[rgb]{ .97,  .97,  .97} Nesprávne smerovanie kvôli sumarizácií	&Vypnutie automatickej sumarizácie smerovacích protokolov	&router rip
+	
+	\hspace{0.5em}no auto-summary
 	
 	router eigrp $<$as$>$
-	no auto-summary
+	
+	\hspace{0.5em}no auto-summary
 	
 	router bgp $<$as$>$
-	no auto-summary\\
+	
+	\hspace{0.5em}no auto-summary\\
 	
 	
 	
@@ -891,101 +995,147 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Odpočúvanie komunikácie  cez nezabezpečené tunely	&Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely	&crypto isakmp policy $<$policy id$>$
-	encryption aes
-	authentication pre-shared
-	group $<$group id$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Odpočúvanie komunikácie  cez nezabezpečené tunely	&Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely	&crypto isakmp policy $<$policy id$>$
+	
+	\hspace{0.5em}encryption aes
+	
+	\hspace{0.5em}authentication pre-shared
+	
+	\hspace{0.5em}group $<$group id$>$
+	
 	crypto isakmp key $<$key$>$ address $<$ip address$>$ 
+	
 	crypto ipsec transform-set $<$set name$>$ esp-aes esp-sha-hmac
-	crypto map $<$map name$>$ 10 ipsec-isakmp
-	set peer $<$peer ip$>$
-	set transform $<$set name$>$ 
-	match address $<$acl name$>$
+	
+	\hspace{0.5em}crypto map $<$map name$>$ 10 ipsec-isakmp
+	
+	\hspace{1em}set peer $<$peer ip$>$
+	
+	\hspace{1em}set transform $<$set name$>$ 
+	
+	\hspace{1em}match address $<$acl name$>$
+	
 	ip access-list extended $<$acl name$>$
-	permit ip $<$source ip$>$ $<$wildcard mask$>$ $<$destination ip$>$ $<$ wildcard mask$>$
+	
+	\hspace{0.5em}permit ip $<$source ip$>$ $<$wildcard mask$>$ $<$destination ip$>$ $<$ wildcard mask$>$
+	
 	interface $<$interface name$>$
-	crypto map $<$map name$>$
+	
+	\hspace{0.5em}crypto map $<$map name$>$
 	
 	interface tunnel $<$number$>$
-	ip address $<$ip address$>$ $<$mask$>$
-	tunnel source $<$ip address$>$ $<$mask$>$
-	tunnel destination $<$ip address$>$ $<$mask$>$\\
+	
+	\hspace{0.5em}ip address $<$ip address$>$ $<$mask$>$
+	
+	\hspace{0.5em}tunnel source $<$ip address$>$ $<$mask$>$
+	
+	\hspace{0.5em}tunnel destination $<$ip address$>$ $<$mask$>$\\
 	
 	
 	
 	
 	Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám	&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&ip flow-export version 9
+	
+	
 	ip flow-export destination $<$ip address$>$ $<$port$>$
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip flow ingress
-	ip flow egress\\
+	
+	\hspace{0.5em}ip flow ingress
+	
+	\hspace{0.5em}ip flow egress\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám	&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&monitor session $<$session id$>$ source $<$interface name$>$ $<$interface id$>$ 
+	\rowcolor[rgb]{ .97,  .97,  .97} Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám	&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&monitor session $<$session id$>$ source $<$interface name$>$ $<$interface id$>$
+	
 	monitor session $<$session id$>$ destination $<$interface name$>$ $<$interface id$>$\\
 	
 	
 	
 	
 	IP spoofing	&Špecifikácia ACL na zakázanie a logovanie privátnych a špeciálnych IP adries z RFC 6890, RFC 8190	&ip access-list standard $<$acl name$>$
-	remark BLOCK\_ADDRESSES RFC 1918
-	deny $<$ip address$>$ $<$wildcard mask$>$ log-input
+	
+	\hspace{0.5em}remark BLOCK\_ADDRESSES RFC 1918, 6890, 8190
+	
+	\hspace{0.5em}deny $<$ip address$>$ $<$wildcard mask$>$ log-input
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip access-group $<$acl name$>$ in\\
+	
+	\hspace{0.5em}ip access-group $<$acl name$>$ in\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} IP spoofing	&Špecifikácia ACL na zakázanie a logovanie špeciálnych IPv6 adries z RFC 6890, RFC 8190, RFC 5156	&
+	\rowcolor[rgb]{ .97,  .97,  .97} IP spoofing	&Špecifikácia ACL na zakázanie a logovanie špeciálnych IPv6 adries z RFC 6890, RFC 8190, RFC 5156	&
 	ipv6 access-list $<$acl name$>$
-	remark BLOCK\_ADDRESSES RFC 5156
-	deny $<$ipv6 address$>$ $<$prefix$>$ any log-input
+	
+	\hspace{0.5em}remark BLOCK\_ADDRESSES RFC 5156,6890,8190
+	
+	\hspace{0.5em}deny $<$ipv6 address$>$ $<$prefix$>$ any log-input
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 traffic-filter $<$acl name$>$ in\\
+	
+	\hspace{0.5em}ipv6 traffic-filter $<$acl name$>$ in\\
+	
+	
+	
 	Rogue root bridge 	&Rogue root bridge protection (root guard)	&interface $<$interface name$>$ $<$interface id$>$
-	spanning-tree rootguard
-	spanning-tree guard root\\
+	
+	\hspace{0.5em}spanning-tree rootguard
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
+	
+	\hspace{0.5em}spanning-tree guard root\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Pripojenie prepínaču na koncový prístupový port	&BPDU protection (BPDU guard)	&spanning-tree portfast bpduguard default
+	\rowcolor[rgb]{ .97,  .97,  .97} Pripojenie prepínaču na koncový prístupový port	&BPDU protection (BPDU guard)	&spanning-tree portfast bpduguard default
 	
-	alebo
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	spanning-tree bpduguard enable
 	
-	vyhnúť sa
+	\hspace{0.5em}spanning-tree bpduguard enable
 	
-	spanning-tree portfast bpdufilter enable
+	{\fontfamily{lmr}\selectfont vyhnúť sa} spanning-tree portfast bpdufilter enable
+	
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	spanning-tree bpdufilter enable\\
+	
+	{\fontfamily{lmr}\selectfont \hspace{0.5em}vyhnúť sa} spanning-tree bpdufilter enable\\
 	
 	
 	
 	
 	Rýchlosť konvergencie	&Prístupové porty by sa nemali podieľať na STP procese	&spanning-tree portfast default
 	
-	alebo
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	spanning-tree portfast\\
+	
+	\hspace{0.5em}spanning-tree portfast\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Jednosmerná komunikácia medzi prepínačmi môže viesť k topológii so slučkami	& Špeciálne konfigurácie zaisťujúce bezslučkovú topológiu pomocou STP keď nastane jednosmerná komunikácia (Loop Guard)	&spanning-tree loopguard default
+	\rowcolor[rgb]{ .97,  .97,  .97} Jednosmerná komunikácia medzi prepínačmi môže viesť k topológii so slučkami	& Špeciálne konfigurácie zaisťujúce bezslučkovú topológiu pomocou STP keď nastane jednosmerná komunikácia (Loop Guard)	&spanning-tree loopguard default
 	
-	alebo 
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo }
+	\vspace{0.5em}
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	spanning-tree guard loop\\
+	
+	\hspace{0.5em}spanning-tree guard loop\\
 	
 	
 	
@@ -996,21 +1146,25 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov	&Vytvorenie separátnej VLAN pre manažment	&vlan $<$id$>$  
-	name MANAGEMENT\_VLAN\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov	&Vytvorenie separátnej VLAN pre manažment	&vlan $<$id$>$
+	
+	\hspace{0.5em}name MANAGEMENT\_VLAN\\
 	
 	
 	
 	
-	Útočníkovi s fyzickým prístupom k portu môže byť pridelený prístup do časti siete, ktorá zodpovedá príslušnej VLAN 	&Vytvorenie špeciálnej black hole VLAN pre nevyužité porty	&vlan $<$id$>$  
-	name BLACKHOLE\_VLAN\\
+	Útočníkovi s fyzickým prístupom k portu môže byť pridelený prístup do časti siete, ktorá zodpovedá príslušnej VLAN 	&Vytvorenie špeciálnej black hole VLAN pre nevyužité porty	&vlan $<$id$>$ 
+	
+	\hspace{0.5em}name BLACKHOLE\_VLAN\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Predvolenej VLAN je povolené prepnuté na akýkoľvek port, VLAN hopping, double tagging	&Odobrať všetky porty z predvolenej VLAN	&interface $<$interface name$>$ $<$interface id$>$
-	switchport mode access
-	switchport access vlan $<$id$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Predvolenej VLAN je povolené prepnuté na akýkoľvek port, VLAN hopping, double tagging	&Odobrať všetky porty z predvolenej VLAN	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em} switchport mode access
+	
+	\hspace{0.5em} switchport access vlan $<$id$>$\\
 	
 	
 	
@@ -1019,319 +1173,465 @@ DOKONCIT, FARBY RIADKOV, CMDs TO NEWLINE
 	name NATIVE\_VLAN
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	switchport mode trunk
-	switchport trunk native vlan $<$id$>$
-	switchport trunk allowed vlan $<$id$>$\\
+	
+	\hspace{0.5em}switchport mode trunk
+	
+	\hspace{0.5em}switchport trunk native vlan $<$id$>$
+	
+	\hspace{0.5em}switchport trunk allowed vlan $<$id$>$\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} DTP útok, Switch spoofing útok	&Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk	&
+	\rowcolor[rgb]{ .97,  .97,  .97} DTP útok, Switch spoofing útok	&Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk	&
 	interface $<$interface name$>$ $<$interface id$>$
-	switchport mode trunk
-	no switchport mode dynamic desirable
-	no switchport mode dynamic auto
-	switchport nonegotiate\\
+	
+	\hspace{0.5em}switchport mode trunk
+	
+	\hspace{0.5em}no switchport mode dynamic desirable
+	
+	\hspace{0.5em}no switchport mode dynamic auto
+	
+	\hspace{0.5em}switchport nonegotiate\\
 	
 	
 	
 	MAC Spoofing, MAC Flooding 	&Definovanie maximálne 1 MAC adresy na port, priradenie MAC adresy na port	&
 	interface $<$interface name$>$ $<$interface id$>$
-	switchport port-security maximum 1
-	switchport port-security mac-address sticky
 	
-	alebo
+	\hspace{0.5em}switchport port-security maximum 1
 	
-	switchport port-security mac-address static $<$mac address$>$
-	switchport port-security\\
-	MAC Spoofing, MAC Flooding 	&Nastavenie režimu narušenia, ktorý vypne port alebo informuje správcu o pripojení nepovoleného zariadenia	&interface $<$interface name$>$ $<$interface id$>$
-	switchport port-security violation mode shutdown
-	switchport port-security violation mode restrict
-	no switchport port-security violation mode protect\\
+	\hspace{0.5em}switchport port-security mac-address sticky
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
+	
+	\hspace{0.5em}switchport port-security mac-address static $<$mac address$>$
+	
+	\hspace{0.5em}switchport port-security\\
+	
+	
+	
+	\rowcolor[rgb]{ .97,  .97,  .97} MAC Spoofing, MAC Flooding 	&Nastavenie režimu narušenia, ktorý vypne port alebo informuje správcu o pripojení nepovoleného zariadenia	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}switchport port-security violation mode shutdown
+	
+	\hspace{0.5em}switchport port-security violation mode restrict
+	
+	\hspace{0.5em}no switchport port-security violation mode protect\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Nový prepínač s vyšším číslom revízie, ale s nesprávnou VLAN databázou môže šíriť falošné VLAN identifikátory a spôsobiť nefunkčnosť siete, veľa možných VTP útokov kvôli zraniteľnostiam 	&Vypnutie MVRP. MRP, GARP, VTP, GVRP po úspešnej propagácií VLAN	&vtp mode transparent
+	Nový prepínač s vyšším číslom revízie, ale s nesprávnou VLAN databázou môže šíriť falošné VLAN identifikátory a spôsobiť nefunkčnosť siete, veľa možných VTP útokov kvôli zraniteľnostiam 	&Vypnutie MVRP. MRP, GARP, VTP, GVRP po úspešnej propagácií VLAN	&vtp mode transparent
 	
-	alebo
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
 	
 	vtp off\\
 	
 	
 	
 	
-	VTP musí byť používané	&Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté	&vtp version 3
+	\rowcolor[rgb]{ .97,  .97,  .97}VTP musí byť používané	&Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté	&vtp version 3
+	
 	vtp password $<$password$>$ hidden
+	
 	vtp prunning\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vysoké zaťaženie linky	&Poslanie notifikácie pri prekročení prahovej hodnoty zaťaženia linky	&storm-control unicast level $<$top level$>$ $<$down level$>$
-	storm-control broadcast level $<$top level$>$ $<$down level$>$
-	storm-control multicast level $<$top level$>$ $<$down level$>$
-	storm-control action trap\\
+	Vysoké zaťaženie linky	&Poslanie notifikácie pri prekročení prahovej hodnoty zaťaženia linky	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}storm-control unicast level $<$top level$>$ $<$down level$>$
+	
+	\hspace{0.5em}storm-control broadcast level $<$top level$>$ $<$down level$>$
+	
+	\hspace{0.5em}storm-control multicast level $<$top level$>$ $<$down level$>$
+	
+	\hspace{0.5em}storm-control action trap\\
 	
 	
 	
 	
-	Využívanie siete nepovolenými používateľmi	&Zapnutie 802.1x 	&dot1x system-auth-control
+	\rowcolor[rgb]{ .97,  .97,  .97} Využívanie siete nepovolenými používateľmi	&Zapnutie 802.1x 	&dot1x system-auth-control
 	identity profile default
+	
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	dot1x port-control auto
 	
-	alebo
+	\hspace{0.5em}dot1x port-control auto
 	
-	access-session port-control auto
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\hspace{0.5em}
 	
-	alebo
+	\hspace{0.5em}access-session port-control auto
 	
-	authentication port-control auto
-	dot1x pae authenticator|supplicant 
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
 	
-	no dot1x port-control force-authorized
+	\hspace{0.5em}authentication port-control auto
 	
-	alebo
+	\hspace{0.5em}dot1x pae authenticator|supplicant 
 	
-	no access-session port-control force-authorized
+	\hspace{0.5em}no dot1x port-control force-authorized
 	
-	alebo
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
 	
-	no authentication port-control force-authorized\\
+	\hspace{0.5em}no access-session port-control force-authorized
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
+	
+	\hspace{0.5em}no authentication port-control force-authorized\\
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Útok hrubou silou hádaním prístupových údajov pre 802.1x 	&Limitovanie maximálneho počtu neúspešných pokusov o autentizáciu 802.1x	&dot1x auth-fail max-attempts $<$number$>$\\
+	Útok hrubou silou hádaním prístupových údajov pre 802.1x 	&Limitovanie maximálneho počtu neúspešných pokusov o autentizáciu 802.1x	&dot1x auth-fail max-attempts $<$number$>$\\
 	
 	
 	
 	
-	IPv6 ND Spoofing	&IPv6 ND Inspection	&ipv6 nd inspection policy $<$policy name$>$
-	drop unsecure
-	device-role monitor
-	tracking disable stale-lifetime infinite
-	trusted-port
+	\rowcolor[rgb]{ .97,  .97,  .97}IPv6 ND Spoofing	&IPv6 ND Inspection	&ipv6 nd inspection policy $<$policy name$>$
+	
+	\hspace{0.5em}drop unsecure
+	
+	\hspace{0.5em}device-role monitor
+	
+	\hspace{0.5em}tracking disable stale-lifetime infinite
+	
+	\hspace{0.5em}trusted-port
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 nd inspection attach-policy  $<$policy name$>$\\
+	
+	\hspace{0.5em}ipv6 nd inspection attach-policy  $<$policy name$>$\\
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Rogue RA
+	Rogue RA
 	RA Flood
 	Route Information Option injection
 	RA RouterLifeTime=0
 	&RA Guard	&ipv6 nd raguard policy $<$polic name$>$
 	device-role host|router
-	hop-limit maximu $<$number$>$
-	managed-config-flag on|off
-	other-config-flag on|off
-	match ipv6 access-list $<$acl name$>$
-	match ra prefix-list $<$prefix list name$>$
-	trusted-port
+	
+	\hspace{0.5em}hop-limit maximu $<$number$>$
+	
+	\hspace{0.5em}managed-config-flag on|off
+	
+	\hspace{0.5em}other-config-flag on|off
+	
+	\hspace{0.5em}match ipv6 access-list $<$acl name$>$
+	
+	\hspace{0.5em}match ra prefix-list $<$prefix list name$>$
+	
+	\hspace{0.5em}trusted-port
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 nd raguard attach-policy $<$policy name$>$\\
+	
+	\hspace{0.5em}ipv6 nd raguard attach-policy $<$policy name$>$\\
 	
 	
 	
 	
-	DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&ip dhcp snooping
+	\rowcolor[rgb]{ .97,  .97,  .97}DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&ip dhcp snooping
 	ip dhcp snooping vlan $<$vlan-id$>$ 
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ip dhcp snooping trust
-	no ip dhcp snooping trust\\
+	
+	\hspace{0.5em}ip dhcp snooping trust
+	
+	\hspace{0.5em}no ip dhcp snooping trust\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&ipv6 snooping policy $<$policy name$>$
-	ipv6 snooping attach-policy $<$policy name$>$
-	prefix-glean\\
+	DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&ipv6 snooping policy $<$policy name$>$
+	
+	\hspace{0.5em}ipv6 snooping attach-policy $<$policy name$>$
+	\hspace{0.5em}prefix-glean\\
 	
 	
 	
-	DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&ipv6 access-list $<$acl name$>$
-	permit host $<$ipv6 address$>$ any
+	\rowcolor[rgb]{ .97,  .97,  .97} DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&ipv6 access-list $<$acl name$>$
+	
+	\hspace{0.5em}permit host $<$ipv6 address$>$ any
+	
 	ipv6 prefix-list $<$prefix list name$>$ permit $<$ipv6 address$>$  le 128
+	
 	ipv6 dhcp guard policy $<$policy name$>$
-	device-role server|client
-	match server access-list $<$acl name$>$
-	match reply prefix-list $<$prefix list name$>$
-	trusted-port
+	
+	\hspace{0.5em}device-role server|client
+	
+	\hspace{0.5em}match server access-list $<$acl name$>$
+	
+	\hspace{0.5em}match reply prefix-list $<$prefix list name$>$
+	
+	\hspace{0.5em}trusted-port
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 dhcp guard attach-policy $<$policy name$>$\\
+	
+	\hspace{0.5em}ipv6 dhcp guard attach-policy $<$policy name$>$\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Príliš veľa DHCP paketov, zaplavenie DHCP paketmi	&Obmedziť počet DHCP paketov na nedôveryhodných rozhraniach	&ip dhcp snooping limit rate 100 \\
+	Príliš veľa DHCP paketov, zaplavenie DHCP paketmi	&Obmedziť počet DHCP paketov na nedôveryhodných rozhraniach	&ip dhcp snooping limit rate 100 \\
 	
 	
 	
-	ARP Spoofing	&Dynamic ARP Inspection	&ip arp inspection vlan $<$vlan id$>$ 
-	ip arp inspection validate src-mac dst-mac ip
+	\rowcolor[rgb]{ .97,  .97,  .97} ARP Spoofing	&Dynamic ARP Inspection	&ip arp inspection vlan $<$vlan id$>$ 
+	ip arp inspection validate src-mac dst-mac 
 	
-	na uplink
+	\hspace{0.5em}ip
 	
-	ip arp inspection trust\\
+	{\fontfamily{lmr}\selectfont na uplink}
+	
+	interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}ip arp inspection trust\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} IP spoofing	&IPv4/IPv6 Source Guard	&ip verify source port-security
+	IP spoofing	&IPv4/IPv6 Source Guard	&ip verify source port-security
+	
 	ip verify source
+	
 	ip verify source vlan dhcp-snooping
+	
 	ip verify source vlan dhcp-snooping port-security
 	
 	ipv6 source-guard policy $<$policy name$>$
-	permit link-local
-	deny global-autoconf
-	trusted
+	
+	\hspace{0.5em}permit link-local
+	
+	\hspace{0.5em}deny global-autoconf
+	
+	\hspace{0.5em}trusted
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 source-guard attach-policy $<$policy name$>$\\
+	
+	\hspace{0.5em}ipv6 source-guard attach-policy $<$policy name$>$\\
 	
 	
 	
 	
-	IPv6 Next Header  a IPv6 Fragmentation útok	&ACL blokujúce nerozpoznateľné rozšírené hlavičky	&ipv6 access-list $<$acl name$>$
-	remark deny undetermined next headers
-	deny any any undetermined-transport log-input\\
+	\rowcolor[rgb]{ .97,  .97,  .97}IPv6 Next Header  a IPv6 Fragmentation útok	&ACL blokujúce nerozpoznateľné rozšírené hlavičky	&ipv6 access-list $<$acl name$>$
+	
+	\hspace{0.5em}remark deny undetermined next headers
+	
+	\hspace{0.5em}deny any any undetermined-transport log-input\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Mapovanie siete pomocou pingu na multicast adresu všetkých uzlov a MLD/IGMP Query Overload a Smurf útok	& ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD/IGMP Query na prístupových portoch	&ip access-list extended $<$acl name$>$
-	remark deny all node ipv4 address
-	deny icmp any host 224.0.0.1 echo log-input
+	Mapovanie siete pomocou pingu na multicast adresu všetkých uzlov a MLD/IGMP Query Overload a Smurf útok	& ACL blokujúce ICMP echo request na multicast adresu všetkých uzlov a MLD/IGMP Query na prístupových portoch	&ip access-list extended $<$acl name$>$
+	
+	\hspace{0.5em}remark deny all node ipv4 address
+	
+	\hspace{0.5em}deny icmp any host 224.0.0.1 echo log-input
+	
 	
 	ipv6 access-list $<$acl name$>$
-	remark deny all node ipv6 address
-	deny icmp any host ff02::1 echo-request log-input
-	remark deny mld query
-	deny icmp any any mld-query\\
+	
+	\hspace{0.5em}remark deny all node ipv6 address
+	
+	\hspace{0.5em}deny icmp any host ff02::1 echo-request log-input
+	
+	\hspace{0.5em}remark deny mld query
+	
+	\hspace{0.5em}deny icmp any any mld-query\\
 	
 	
 	
 	
-	Mobilné zariadenia pripojené bezdrôtovo spotrebovávajú veľa energie kvôli častým RA správam	&RA Throttling	&ipv6 nd ra-throttle policy $<$policy name$>$
-	allow at-least $<$value$>$ at-most $<$value$>$
-	interval-option inherit
-	max-through $<$value$>$
-	media-type wired|access-point|wire|wifi
-	throttle-period $<$value$>$
+	\rowcolor[rgb]{ .97,  .97,  .97}Mobilné zariadenia pripojené bezdrôtovo spotrebovávajú veľa energie kvôli častým RA správam	&RA Throttling	&ipv6 nd ra-throttle policy $<$policy name$>$
+	allow at-least $<$value$>$ at-most 
+	
+	\hspace{0.5em}$<$value$>$
+	
+	\hspace{0.5em}interval-option inherit
+	
+	\hspace{0.5em}max-through $<$value$>$
+	
+	\hspace{0.5em}media-type wired|access-point|wire|wifi
+	
+	\hspace{0.5em}throttle-period $<$value$>$
+	
 	vlan configuration $<$vlan id$>$
-	ipv6 nd ra-throttle attach-policy $<$policy name$>$
 	
-	alebo 
+	\hspace{0.5em}ipv6 nd ra-throttle attach-policy $<$policy name$>$
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo }
+	\vspace{0.5em}
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 nd ra-throttle policy $<$policy name$>$\\
+	
+	\hspace{0.5em}ipv6 nd ra-throttle policy $<$policy name$>$\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete 	&Povolenie FHRP s autentizáciou a aktuálnou verziou	&key chain $<$key chain$>$
-	key $<$id$>$
-	key-string $<$key string$>$
-	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$ line-protocol
-	fhrp version vrrp 3
-	interface $<$interface name$>$ $<$interface id$>$
-	vrrp $<$group id$>$ ip $<$ip  address$>$
-	vrrp priority $<$value$>$
-	vrrp $<$group id$>$ track $<$value$>$ decrement $<$value$>$
-	vrrp $<$group id$>$ authentication md5 key-string $<$key$>$
-	
-	alebo
-	
-	$<$group id$>$ authentication md5 key-chain $<$key chain$>$\\
 	Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete 	&Povolenie FHRP s autentizáciou a aktuálnou verziou	&key chain $<$key chain$>$
-	key $<$id$>$
-	key-string $<$key string$>$
+	
+	\hspace{0.5em}key $<$id$>$
+	
+	\hspace{1em}key-string $<$key string$>$
+	
+	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$ line-protocol
+	
+	fhrp version vrrp 3
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	standby $<$group id$>$ ip $<$ip address$>$
-	standby $<$group id$>$ priority $<$value$>$
-	standby $<$group id$>$ preempt
-	standby version 2
-	standby $<$group id$>$ authentication md5 key-string $<$key$>$
 	
-	alebo
+	\hspace{0.5em}vrrp $<$group id$>$ ip $<$ip  address$>$
 	
-	standby $<$group id$>$ authentication md5 key-chain $<$key chain$>$
+	\hspace{0.5em}vrrp priority $<$value$>$
+	
+	\hspace{0.5em}vrrp $<$group id$>$ track $<$value$>$ decrement $<$value$>$
+	
+	\hspace{0.5em}vrrp $<$group id$>$ authentication md5 key-string $<$key$>$
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
+	
+	\hspace{0.5em}vrrp $<$group id$>$ authentication md5 key-chain $<$key chain$>$\\
+	
+	
+	\rowcolor[rgb]{ .97,  .97,  .97} Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete 	&Povolenie FHRP s autentizáciou a aktuálnou verziou	&key chain $<$key chain$>$
+	
+	\hspace{0.5em}key $<$id$>$
+	
+	\hspace{0.5em}key-string $<$key string$>$
 	
 	track $<$id$>$  interface $<$interface name$>$ $<$interface id$>$
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	standby $<$group id$>$ track $<$id$>$ decrement $<$value$>$\\
+	
+	\hspace{0.5em}standby $<$group id$>$ ip $<$ip address$>$
+	
+	\hspace{0.5em}standby $<$group id$>$ priority $<$value$>$
+	
+	\hspace{0.5em}standby $<$group id$>$ preempt
+	
+	\hspace{0.5em}standby version 2
+	
+	\hspace{0.5em}standby $<$group id$>$ track $<$id$>$ decrement $<$value$>$
+	
+	\hspace{0.5em}standby $<$group id$>$ authentication md5 key-string $<$key$>$
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
+	
+	\hspace{0.5em}standby $<$group id$>$ authentication md5 key-chain $<$key chain$>$\\	
 	
 	
 	
+	Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete 	&Povolenie FHRP s autentizáciou a aktuálnou verziou	&key chain $<$key chain$>$
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Zlyhanie zariadenia alebo linky môže viest k nefunkčnosti siete 	&Povolenie FHRP s autentizáciou a aktuálnou verziou	&key chain $<$key chain$>$
-	key $<$id$>$
-	key-string $<$key string$>$
+	\hspace{0.5em}key $<$id$>$
+	
+	\hspace{1em}key-string $<$key string$>$
+	
 	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$ line-protocol
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	glbp $<$group id$>$ ip $<$ip  address$>$
-	glbp $<$group id$>$ priority $<$value$>$
-	glbp $<$group id$>$ preempt
-	glbp $<$group id$>$ weighting $<$value$>$ lower $<$value$>$ upper $<$value$>$ 
-	glbp $<$group id$>$ weighting track $<$value$>$ decrement $<$value$>$
-	glbp $<$group id$>$ authentication md5 key-string $<$key$>$
 	
-	alebo
+	\hspace{0.5em}glbp $<$group id$>$ ip $<$ip  address$>$
 	
-	glbp $<$group id$>$ authentication md5 key-chain $<$key chain$>$\\
+	\hspace{0.5em}glbp $<$group id$>$ priority $<$value$>$
+	
+	\hspace{0.5em}glbp $<$group id$>$ preempt
+	
+	\hspace{0.5em}glbp $<$group id$>$ weighting $<$value$>$ lower $<$value$>$ upper $<$value$>$ 
+	
+	\hspace{0.5em}glbp $<$group id$>$ weighting track $<$value$>$ decrement $<$value$>$
+	
+	\hspace{0.5em}glbp $<$group id$>$ authentication md5 key-string $<$key$>$
+	
+	\vspace{0.5em}
+	{\fontfamily{lmr}\selectfont alebo}
+	\vspace{0.5em}
+	
+	\hspace{0.5em}glbp $<$group id$>$ authentication md5 key-chain $<$key chain$>$\\
 	
 	
 	
 	
-	Vyčerpanie cache susedov	&Statický záznam pre kritické zariadenia (servery) spájajúce IP a MAC adresu a VLAN
+	\rowcolor[rgb]{ .97,  .97,  .97}Vyčerpanie cache susedov	&Statický záznam pre kritické zariadenia (servery) spájajúce IP a MAC adresu a VLAN
 	&ipv6 neighbor $<$ipv6 address$>$ vlan $<$vlan id$>$ $<$mac address$>$\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vyčerpanie cache susedov	&Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povoľujeme iba komunikáciu s cieľovými IPv6 adresami, ktoré sa nachádzajú v našej sieti	&ipv6 access-list $<$acl name$>$
-	remark permit only this ip  
-	permit any $<$ipv6$>$/$<$prefix$>$
-	remark deny other
-	deny ipv6 any any 
+	Vyčerpanie cache susedov	&Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povoľujeme iba komunikáciu s cieľovými IPv6 adresami, ktoré sa nachádzajú v našej sieti	&ipv6 access-list $<$acl name$>$
+	
+	\hspace{0.5em}remark permit only this ip  
+	
+	\hspace{0.5em}permit any $<$ipv6$>$/$<$prefix$>$
+	
+	\hspace{0.5em}remark deny other
+	
+	\hspace{0.5em}deny ipv6 any any 
 	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 traffic-filter $<$acl name$>$ in\\
+	
+	\hspace{0.5em}ipv6 traffic-filter $<$acl name$>$ in\\
 	
 	
 	
 	
-	Vyčerpanie cache susedov	&IP destination Guard (First Hop Security)
+	\rowcolor[rgb]{ .97,  .97,  .97} Vyčerpanie cache susedov	&IP destination Guard (First Hop Security)
 	
 	
 	&ipv6 destination-guard policy $<$policy name$>$
-	enforcement always
+	
+	\hspace{0.5em}enforcement always
+	
 	interface $<$interface name$>$ $<$interface id$>$
-	ipv6 destination-guard attach-policy $<$policy name$>$\\
+	
+	\hspace{0.5em}ipv6 destination-guard attach-policy $<$policy name$>$\\
 	
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Vyčerpanie cache susedov	&Limitovanie počtu IPv6 adries v cache susedov	&interface $<$interface name$>$ $<$interface id$>$
-	ipv6 neighbors max-learning-num $<$num$>$\\
+	Vyčerpanie cache susedov	&Limitovanie počtu IPv6 adries v cache susedov	&interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}ipv6 neighbors max-learning-num $<$num$>$\\
 	
 	
 	
-	Vyčerpanie cache susedov	&Limitovanie času IPv6 adresy v cache susedov	&ipv6 nd cache expire $<$time in seconds$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Vyčerpanie cache susedov	&Limitovanie času IPv6 adresy v cache susedov	&ipv6 nd cache expire $<$time in seconds$>$\\
 	
 	
 	
-	\rowcolor[rgb]{ .933,  .933,  .933} Komplexné bezpečnostné hrozby a narušenie bezpečnosti	&Nastavenie IDS/IPS	&ip ips sdf location $<$signature location$>$
+	Komplexné bezpečnostné hrozby a narušenie bezpečnosti	&Nastavenie IDS/IPS	&ip ips sdf location $<$signature location$>$
+	
 	ip ips fail  open|close
+	
 	ip ips $<$signature name$>$ list $<$alc name$>$
+	
 	ip ips $<$signature name$>$ in|out\\
 	
 	
 	\hline
-\caption{Odporúčania na identifikáciu zariadení a nastavení}
-\label{tab:cisco_table}%
+	
 \end{longtable}%
+
+
+
 \restoregeometry
 \normalsize
 
