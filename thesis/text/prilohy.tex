@@ -1,11 +1,11 @@
 \newgeometry{left=2.5cm,bottom=3.4cm, top=2.5cm}
 \chapter{Kontrolný zoznam odporúčaní pre zariadenia CISCO}
-
+\label{apendix:cisco_cmd}
 
 \scriptsize
 
 \begin{longtable}[!htbp]{|L{10em}L{10em}>{\fontfamily{qcr}\selectfont}L{34em}|}
-	\caption{Rozpracovaná tabuľka s príkazmi na konfiguráciu pre zariadenia od spoločnosti Cisco}
+	\caption{Rozpracovaná tabuľka s príkazmi na konfiguráciu zariadení od spoločnosti Cisco}
 	\label{tab:cisco_table}\\ \hline
 	\centering 
 	
@@ -15,7 +15,7 @@
 	
 	\hline
 	\centering 
-	\centering{\hspace{-3em}\vspace{2em}Útok / Problém} & Mitigácia / Nastavenie&{\fontfamily{lmr}\selectfont Príkazy}\\ \hhline{===}
+	\centering{\hspace{-3em}Útok / Problém} & Mitigácia / Nastavenie&{\fontfamily{lmr}\selectfont Príkazy}\\ \hhline{===}
 	\endhead
 	
 	
@@ -258,7 +258,9 @@
 	
 	\hspace{0.5em}server name $<$radius server name$>$
 	
-	aaa authentication login default / $<$radius login$>$ group $<$radius group$>$ local enable
+	aaa authentication login default / $<$radius login$>$ group 
+	
+	\hspace{0.5em}$<$radius group$>$ local enable
 	
 	line tty $<$num$>$ $<$num$>$
 	
@@ -302,7 +304,9 @@
 	
 	\hspace{0.5em}server name $<$tacacs server name$>$
 	
-	aaa authentication login default / $<$tacacs login$>$ group $<$tacacs group$>$ local enable
+	aaa authentication login default / $<$tacacs login$>$ group 
+	
+	\hspace{0.5em}$<$tacacs group$>$ local enable
 	
 	line tty $<$num$>$ $<$num$>$
 	
@@ -324,7 +328,9 @@
 	
 	
 	
-	Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&aaa authentication enable default group $<$radius group$>$ enable\\
+	Centrálna správa prihlásení a dohľadateľnosť zmien v konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&aaa authentication enable default group 
+	
+	\hspace{0.5em}$<$radius group$>$ enable\\
 	
 	
 	
@@ -349,18 +355,24 @@
 	
 	
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&aaa authorization exec $<$radius login$>$ group $<$radius group$>$ local if-authenticated\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&aaa authorization exec $<$radius login$>$ group $<$radius group$>$ 
+	
+	\hspace{0.5em}local if-authenticated\\
 	
 	
 	
 	
-	Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&aaa authorization commands 15 $<$radius login$>$ group $<$radius group$>$ local if-authenticated \\
+	Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&aaa authorization commands 15 $<$radius login$>$ group
+	
+	\hspace{0.5em} $<$radius group$>$ local if-authenticated \\
 	
 	
 	
 	
 	\rowcolor[rgb]{ .97,  .97,  .97} Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu	&Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov	&aaa accounting connection
+	
 	aaa accounting commands
+	
 	aaa accounting exec\\
 	
 	
@@ -419,7 +431,9 @@
 	
 	
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie	&Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA	&snmp-server user $<$user$>$ $<$group name$>$ v3 auth sha $<$password$>$ pri aes 128 $<$password$>$\\
+	\rowcolor[rgb]{ .97,  .97,  .97} Odpočúvanie SNMP sedenie z dôvodu slabého šifrovania a hashovacej  funkcie	&Vytvorenie SNMP verzie 3 užívateľa s minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA	&snmp-server user $<$user$>$ $<$group name$>$ v3 auth sha 
+	
+	\hspace{0.5em}$<$password$>$ pri aes 128 $<$password$>$\\
 	
 	
 	
@@ -455,6 +469,7 @@
 	
 	
 	Nedostatočné a neštandardné formáty času pri logovacích správach	&Definovanie formátu času pre logovacie a ladiace výstupy	&service timestamp log datetime
+	
 	service timestamp debug datetime\\
 	
 	
@@ -730,7 +745,9 @@
 	
 	snmp-server host $<$ip adddress$>$ version 3 priv $<$user$>$ cpu
 	
-	process cpu threshold type $<$type$>$ rising $<$percentage$>$ interval $<$seconds$>$
+	process cpu threshold type $<$type$>$ rising 
+	
+	\hspace{0.5em}$<$percentage$>$ interval $<$seconds$>$
 	
 	process cpu statistics limit entry-percentage\\
 	
@@ -907,7 +924,7 @@
 	
 	\hspace{0.5em}ip ospf authentication message-digest
 	
-	\hspace{0.5em}ospfv3 authentication md5 0 27576134094768132473302031209727
+	\hspace{0.5em}ospfv3 authentication md5 0 2757613409476813242031209727
 	
 	\hspace{0.5em}no ip ospf authentication-key OPENKEY\\
 	
@@ -1017,7 +1034,9 @@
 	
 	ip access-list extended $<$acl name$>$
 	
-	\hspace{0.5em}permit ip $<$source ip$>$ $<$wildcard mask$>$ $<$destination ip$>$ $<$ wildcard mask$>$
+	\hspace{0.5em}permit ip $<$source ip$>$ $<$wildcard mask$>$ $<$destination ip$>$ 
+	
+	\hspace{1em}$<$ wildcard mask$>$
 	
 	interface $<$interface name$>$
 	
@@ -1048,9 +1067,13 @@
 	
 	
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám	&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&monitor session $<$session id$>$ source $<$interface name$>$ $<$interface id$>$
+	\rowcolor[rgb]{ .97,  .97,  .97} Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám	&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&monitor session $<$session id$>$ source $<$interface name$>$ 
 	
-	monitor session $<$session id$>$ destination $<$interface name$>$ $<$interface id$>$\\
+	\hspace{0.5em}$<$interface id$>$
+	
+	monitor session $<$session id$>$ destination $<$interface name$>$ 
+	
+	\hspace{0.5em}$<$interface id$>$\\
 	
 	
 	
@@ -1365,7 +1388,9 @@
 	
 	\hspace{0.5em}permit host $<$ipv6 address$>$ any
 	
-	ipv6 prefix-list $<$prefix list name$>$ permit $<$ipv6 address$>$  le 128
+	ipv6 prefix-list $<$prefix list name$>$ permit $<$ipv6 address$>$  
+	
+	\hspace{0.5em}le 128
 	
 	ipv6 dhcp guard policy $<$policy name$>$
 	
@@ -1388,10 +1413,11 @@
 	
 	
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} ARP Spoofing	&Dynamic ARP Inspection	&ip arp inspection vlan $<$vlan id$>$ 
+	\rowcolor[rgb]{ .97,  .97,  .97} ARP Spoofing	&Dynamic ARP Inspection	&ip arp inspection vlan $<$vlan id$>$
+	 
 	ip arp inspection validate src-mac dst-mac 
 	
-	\hspace{0.5em}ip
+	\hspace{0.5em}
 	
 	{\fontfamily{lmr}\selectfont na uplink}
 	
@@ -1455,9 +1481,8 @@
 	
 	
 	\rowcolor[rgb]{ .97,  .97,  .97}Mobilné zariadenia pripojené bezdrôtovo spotrebovávajú veľa energie kvôli častým RA správam	&RA Throttling	&ipv6 nd ra-throttle policy $<$policy name$>$
-	allow at-least $<$value$>$ at-most 
 	
-	\hspace{0.5em}$<$value$>$
+	\hspace{0.5em}allow at-least $<$value$>$ at-most $<$value$>$
 	
 	\hspace{0.5em}interval-option inherit
 	
@@ -1488,7 +1513,9 @@
 	
 	\hspace{1em}key-string $<$key string$>$
 	
-	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$ line-protocol
+	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$ 
+	
+	\hspace{0.5em}line-protocol
 	
 	fhrp version vrrp 3
 	
@@ -1535,7 +1562,9 @@
 	{\fontfamily{lmr}\selectfont alebo}
 	\vspace{0.5em}
 	
-	\hspace{0.5em}standby $<$group id$>$ authentication md5 key-chain $<$key chain$>$\\	
+	\hspace{0.5em}standby $<$group id$>$ authentication md5 key-chain $<$key 
+	
+	\hspace{1em}chain$>$\\	
 	
 	
 	
@@ -1545,7 +1574,9 @@
 	
 	\hspace{1em}key-string $<$key string$>$
 	
-	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$ line-protocol
+	track $<$value$>$ interface $<$interface name$>$ $<$interface id$>$
+	
+	\hspace{0.5em}line-protocol
 	
 	interface $<$interface name$>$ $<$interface id$>$
 	
@@ -1605,11 +1636,7 @@
 	\hspace{0.5em}ipv6 destination-guard attach-policy $<$policy name$>$\\
 	
 	
-	
-	
-	Vyčerpanie cache susedov	&Limitovanie počtu IPv6 adries v cache susedov	&interface $<$interface name$>$ $<$interface id$>$
-	
-	\hspace{0.5em}ipv6 neighbors max-learning-num $<$num$>$\\
+
 	
 	
 	

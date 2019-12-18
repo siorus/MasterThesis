@@ -17,7 +17,7 @@ Audit sa skladá z~piatich pilierov \cite{Jackson2010}:
 
 \vspace{1em}
 \noindent
-Pri posudzovaní si je potreba klásť otázky či sú prístupové práva dostatočne špecifikované, aká je pravdepodobnosť útoku na zraniteľnosť a podobne. Prevencia nespočíva iba v~technológiách ako firewall prípadne \zk{zkIDS} a \zk{zkIPS}, ale aj v~politikách, procesoch a povedomí o~probléme. Detekcia a reakcia spolu úzko súvisia a je potrebné skrátiť dobu medzi týmito dvoma bodmi, bez dôkladnej detekcie nie je možné vykonať reakciu.	Mnohé reakcie na detekciu problému sú už rôznymi technológiami implementované automatizovane. Posledný článkom je zotavenie, ktoré je dôležité pri službách vysokej dostupnosti. Výborným príkladom detekcie, reakcie a zotavenia z~problému sú protokoly z~rodiny \zkratka{zkFHRP}.
+Pri posudzovaní si je potreba klásť otázky či sú prístupové práva dostatočne špecifikované, aká je pravdepodobnosť útoku na zraniteľnosť a podobne. Prevencia nespočíva iba v~technológiách ako firewall prípadne \zk{zkIDS} a \zk{zkIPS}, ale aj v~politikách, procesoch a povedomí o~probléme. Detekcia a reakcia spolu úzko súvisia a je potrebné skrátiť dobu medzi týmito dvoma bodmi. Bez dôkladnej detekcie nie je možné vykonať reakciu.	Mnohé reakcie na detekciu problému sú už rôznymi technológiami implementované automatizovane. Posledný článkom je zotavenie, ktoré je dôležité pri službách vysokej dostupnosti. Výborným príkladom detekcie, reakcie a zotavenia z~problému sú protokoly z~rodiny \zkratka{zkFHRP}.
 
 \vspace{1em}
 \noindent
@@ -35,9 +35,9 @@ Proces auditu pozostáva z~niekoľkých fáz: \cite{Jackson2010}
 \noindent
 Typy auditov podľa zistení, hĺbky a rozsahu auditu:
 \begin{itemize}
-	\item Bezpečnostná kontrola\,--\,je najzákladnejšia forma analýzy bezpečnosti, na základe ktorej sa následne formujú ďalšie aktivity na zaistenie bezpečnosti. Do tejto kategórie spadajú automatizované nástroje na skenovanie zraniteľností a penetračné nástroje, ktoré generujú zoznam potenciálnych zraniteľností, ale je potrebné ďalšie podrobnejšie preskúmanie výsledkov a zistení a stanovenie, ako sa k~ním zachovať. Patria sem nástroje ako napríklad Nmap, Nessus a podobne. Za bezpečnostnú kontrolu možno považovať preskúmanie politík alebo architektúry daného systému a infraštruktúry. Dá sa povedať, že ide o~akýsi rýchly náhľad na bezpečnosť, ktorého výstupom je poznanie a identifikovanie problému.
+	\item Bezpečnostná kontrola\,--\,je najzákladnejšia forma analýzy bezpečnosti, na základe ktorej sa následne formujú ďalšie aktivity na zaistenie bezpečnosti. Do tejto kategórie spadajú automatizované nástroje na skenovanie zraniteľností a penetračné nástroje, ktoré generujú zoznam potenciálnych zraniteľností. Výsledky je potrebné podrobnejšie preskúmať a stanoviť si, ako sa k~ním zachovať. Patria sem nástroje ako napríklad Nmap, Nessus a podobne. Za bezpečnostnú kontrolu možno považovať preskúmanie politík alebo architektúry daného systému a infraštruktúry. Dá sa povedať, že ide o~akýsi rýchly náhľad na bezpečnosť, ktorého výstupom je poznanie a identifikovanie problému.
 	\item Hodnotenie bezpečnosti\,--\,je ďalším stupňom, pričom ide o~podrobnejší pohľad na problém z~profesionálnejšieho hľadiska. Kvalifikuje sa riziko k~jednotlivým zisteniam a stanovuje sa relevantnosť a kritickosť týchto zistení na konkrétnu organizáciu a prípad použitia.
-	\item Bezpečnostný audit\,--\,je štandardizovanou a najdôkladnejšou formou posúdenia bezpečnosti. Bezpečnosť sa porovnáva so štandardmi alebo benchmarkmi, v~niektorých prípadoch aj s~predpismi dohliadajúcich orgánov. Výsledkom je posúdenie, na koľko je organizácia alebo skúmaný objekt v~zhode s~porovnávaným štandardom. Typickým príkladom štandardov sú ISO27001 a COBIT.
+	\item Bezpečnostný audit\,--\,je štandardizovanou a najdôkladnejšou formou posúdenia bezpečnosti. Bezpečnosť sa porovnáva so štandardmi alebo benchmarkmi, v~niektorých prípadoch aj s~predpismi dohliadajúcich orgánov. Výsledkom je posúdenie, na koľko je organizácia alebo skúmaný objekt v~zhode s~porovnávaným štandardom. Typickým príkladom štandardov sú ISO27001, ITIL, COBIT.
 \end{itemize}
 
 \section{Manažment rizík}
@@ -68,7 +68,7 @@ Prístupy k~nájdenému riziku \cite{Vyncke2008}\cite{McMillan2018}\cite{Jackson
 \begin{itemize}
 	\item Vyhnutie sa riziku\,--\,je uplatnené ak prítomnosť a funkčnosť informačného aktíva nestojí za podstúpenie rizika, a teda toto aktívum vôbec nepoužijeme. Napríklad vypnutie menej bezpečných a nevyužívaných sieťových služieb.  
 	
-	\item Zníženie\,--\,aplikovanie protiopatrenia na odstránenie hrozby alebo zraniteľnosti prípadne zníženie pravdepodobnosti rizika. Nikdy nie je však možné riziko eliminovať. Príkladom môže byť obmedzenie prístupu k~sieťovému prvku.
+	\item Zníženie\,--\,aplikovanie protiopatrenia na odstránenie hrozby alebo zraniteľnosti, prípadne zníženie pravdepodobnosti rizika. Nikdy nie je však možné riziko eliminovať. Príkladom môže byť obmedzenie prístupu k~sieťovému prvku.
 	
 	\item Akceptovanie\,--\,v prípade neexistujúceho protiopatrenia alebo veľmi nízkeho rizika. Častokrát ide o~bezpečnostnú chybu softvéru v~službe, ktorú využívame a nie je možné ju vypnúť ani aplikovať protiopatrenie.
 	

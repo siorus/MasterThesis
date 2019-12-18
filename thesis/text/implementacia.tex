@@ -3,21 +3,21 @@
 
 \section{Použité technológie}
  \subsection{Python}
- Python \cite{B4mfUgNUpPnXbiEr} je objektovo orientovaný, interpretovaný programovací jazyk vytvorený holanďanom Guidom van Rossom. Radí sa k~vysokoúrovňovým programovacím jazykom a umožňuje automatickú správu pamäte, teda programátor nie je nútený explicitne potrebnú pamäť alokovať a uvolňovať. Jeho výhodou je práve fakt, že je interpretovaný a teda programy napísané v~ňom nemusia byť preložené pre danú platformu, ale postačuje spustenie zdrojového kódu pomocou interpretu nainštalovaného na danom systéme. Interpret jazyka Python je dostupný pre Microsoft Windows, GNU/Linux, macOS a mnoho ďalších vstavaných a exotickejších systémov. Syntax jazyku Python je založená na syntaxi jazyku C, no zdrojový kód je čitateľnejší a na vymedzenie funkčných blokov využíva odsadenie, vďaka čomu je kód čitateľnejší. V~súčasnosti sa využíva syntax a interpret dvoch verzií, a to verzie 2.x a 3.x, ktoré sú vzájomne nekompatibilné, z~dôvodu rozdielnych syntaktických konštrukcií. Prvá zo zmienených verzií však čoskoro prestane byť podporovaná. Z~tohto dôvodu je vhodnejšie použiť na novo vyvíjané programy verziu 3.x. Prednosťou je 
+ Python \cite{B4mfUgNUpPnXbiEr} je objektovo orientovaný, interpretovaný programovací jazyk vytvorený holanďanom Guidom van Rossom. Radí sa k~vysokoúrovňovým programovacím jazykom a umožňuje automatickú správu pamäte, teda programátor nie je nútený explicitne potrebnú pamäť alokovať a uvolňovať. Jeho výhodou je práve fakt, že je interpretovaný a teda programy napísané v~ňom nemusia byť preložené pre danú platformu, ale postačuje spustenie zdrojového kódu pomocou interpretu nainštalovaného na danom systéme. Interpret jazyka Python je dostupný pre Microsoft Windows, GNU/Linux, macOS a mnoho ďalších vstavaných a exotickejších systémov. Syntax jazyku Python je založená na syntaxi jazyku C, no zdrojový kód je čitateľnejší a na vymedzenie funkčných blokov využíva odsadenie, vďaka čomu je kód čitateľnejší. V~súčasnosti sa využíva syntax a interpret dvoch verzií, a to verzie 2.x a 3.x, ktoré sú vzájomne nekompatibilné, z~dôvodu rozdielnych syntaktických konštrukcií. Prvá zo zmienených verzií však čoskoro prestane byť podporovaná. Z~tohto dôvodu je vhodnejšie použiť na novo vyvíjané programy verziu 3.x. 
   
- Práve pre vyššie zmienené výhody a to najmä dobrú čitateľnosť kódu, rozšíriteľnosť  medzi programátormi, ako aj spustenie na rôznych platformách bol Python zvolený za programovací jazyk pre túto diplomovú prácu.
+ Práve pre vyššie zmienené výhody, a to najmä dobrú čitateľnosť kódu, rozšíriteľnosť  medzi programátormi, ako aj spustenie na rôznych platformách bol Python zvolený za programovací jazyk pre túto diplomovú prácu.
  \subsection{YAML}
  YAML \cite{Jd4UTaVyTULvXDoN} je jazyk na serializáciu dát vo forme veľmi dobre čitateľnej pre človeka. Bol inšpirovaný konceptami a syntaxou jazykov C a Python. Dovoľuje definovať primitíva z~týchto programovacích jazykov ako zoznamy, asociatívne polia, reťazce a zároveň v~jednom súbore dovoľuje definovať viac dokumentov.
  
- Pre konfiguračné súbory boli spočiatku uvažované tri metódy. Prvou možnosťou na serializáciu dát bol jazyk XML, tento formát však nie je tak dobre čitateľný pre človeka a je tu väčšia pravdepodobnosť zanesenia chýb z~dôvodu uzatvárania značiek. Druhou možnosťou bolo využitie syntaxe jazyka JSON, no problémom je, že nepodporuje vkladanie komentárov, preto nie je vhodný na konfiguračné súbory. Poslednou možnosťou bolo vytvorenie vlastnej syntaxi a vlastného analyzátoru, to je však pre potreby diplomovej práce zbytočné a hotové riešenie v~podobe YAML je dostatočné a eliminuje všetky nedostatky vyššie zmienených jazykov určených na serializáciu dát. Použitý jazyk Python naviac disponuje viacerými knižnicami na prácu s~jazykom YAML.  
+ Pre konfiguračné súbory na túto diplomovú prácu boli spočiatku uvažované tri metódy. Prvou možnosťou na serializáciu dát bol jazyk XML, tento formát však nie je tak dobre čitateľný pre človeka a je tu väčšia pravdepodobnosť zanesenia chýb z~dôvodu uzatvárania značiek. Druhou možnosťou bolo využitie syntaxe jazyka JSON, no problémom je, že nepodporuje vkladanie komentárov, preto nie je vhodný na konfiguračné súbory. Poslednou možnosťou bolo vytvorenie vlastnej syntaxe a vlastného analyzátoru, to je však pre potreby diplomovej práce zbytočné a hotové riešenie v~podobe YAML je dostatočné a eliminuje všetky nedostatky vyššie zmienených jazykov určených na serializáciu dát. Použitý jazyk Python naviac disponuje viacerými knižnicami na prácu s~jazykom YAML.  
  \subsection{Regulárne výrazy}
  %nejaký obkec okolo (krátko), prečo sú vhodné, ako budú použité
- Regulárnym výrazom sa rozumie sekvencia znakov, ktorá definuje určitý vzor \cite{sBBUt3Q3bPUfAMue}. Často sa namiesto dlhého názvu využíva skratka ``regex``. Regulárne výrazy sa používajú na vyhľadávanie alebo výmenu reťazcov v~texte pričom na to využívajú znaky s~vopred definovanou sémantikou. V~diplomovej práci budú použité na vyhľadávanie prítomnosti alebo absencii nastavení v~konfigurácií zariadení. 
+ Regulárnym výrazom sa rozumie sekvencia znakov, ktorá definuje určitý vzor \cite{sBBUt3Q3bPUfAMue}. Regulárne výrazy sa používajú na vyhľadávanie alebo výmenu reťazcov v~texte pričom na to využívajú znaky s~vopred definovanou sémantikou. V~diplomovej práci budú použité na vyhľadávanie prítomnosti alebo absencii nastavení v~konfigurácií zariadení. 
  \newpage
 \section{Konfiguračné súbory}
 %možno do implementácie, automaticke zistovaine niektorych atributov
 \subsection{Súbor popisujúci zariadenie}
-\begin{lstlisting}[frame=single,numbers=right,caption={Konfiguračný súbor device.yaml ktorý popisuje základné informácie o~jednom konkrétnom zariadení},label=lst:lldp,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfiguračný súbor device.yaml, ktorý popisuje základné informácie o~jednom konkrétnom zariadení},label=lst:lldp,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
 ---
 # Hostname of device
 hostname: "sw1-access"
@@ -31,8 +31,8 @@ version: "12.2(55)SE12"
 # L3 protocols which are used 
 # not only available but literally used and enabled
 l3_protocols:
-- "ipv4"
-- "ipv6"
+  - "ipv4"
+  - "ipv6"
 
 # Manufacturer of device
 # Same directory name has to be created inside 
@@ -57,15 +57,15 @@ facility-layer: "access"
 # "modules_by_facility.yaml" for specific 
 # "facility-layer" you do not want to be used
 excluded-modules:
-- "dot1x.py"
+  - "dot1x.py"
 
 # Include modules which are not 
 # part of  specific "facility-layer"
 # in file "modules_by_facility.yaml" 
 # and you want to use them.
 include-modules: 
-- "cdp.py"
-- "portsec-max-mac.py"
+  - "cdp.py"
+  - "portsec-max-mac.py"
 
 # All available interfaces, roles of interfaces
 # can be specified, roles such as "access" or "trunk"
@@ -78,8 +78,8 @@ interfaces:
 - FastEthernet 0/2: "access-datacenter"
 - FastEthernet 0/3: "access"
 - FastEthernet 0/4: 
-- "trunk"
-- "to-core-layer"
+  - "trunk"
+  - "to-core-layer"
 
 # SHA1 hash of input configuration of device
 input-config-hash: "12975910C3E6352B5B2BDEE81FA2FC4653A5BD59"
@@ -91,7 +91,7 @@ fix-hash: "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8"
  \newpage
 \subsection{Súbor popisujúci modul}
 
-\begin{lstlisting}[frame=single,numbers=right,caption={Konfiguračný súbor cdp\_module.yaml ktorý pobsahuje informácie na nájdenie problému, jeho odstránenie a informácie do správy},label=lst:lldp,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfiguračný súbor cdp\_module.yaml, ktorý obsahuje informácie na nájdenie problému, jeho odstránenie a informácie do správy},label=lst:lldp,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
 ---
 # Module name, it will be seen in report output
 name: "CDP disabled"
@@ -118,23 +118,23 @@ default-facility-layer: "all"
 # Run only when module(s) below have found an error
 # means security problem or missing configuration
 run-if-error-returned: 
-- "none"
+  - "none"
 
 # Run only when module(s) below have not find an error
 # means configuration which module(s) looking for is present
 run-if-error-returned: 
-- "none"
+  - "none"
 
 # Variables needed for generating configuration fix
 # e.g. - snmp-user: "administrator1"
 instance-public-vars:
-- "none"
+  - "none"
 
 # Variable that holds secret until configuration fix is generated
 # after that it is cleared due to security
 # e.g. - password: "" 
 instance-secret-vars:
-- "none"
+  - "none"
 
 #------------------------------------------------------------
 # GENERAL CMD CONFIG
@@ -213,8 +213,8 @@ regex-cmd-affected-ports-match-status: "False"
 
 # List of ports where issue is found when variable "type" is "i" or "b"
 affected-ports:
-- FastEthernet 0/1
-- FastEthernet 0/2
+  - FastEthernet 0/1
+  - FastEthernet 0/2
 
 # Command to resolve problem on interfaces
 # String when one line command, for multiple command setup a list
@@ -254,8 +254,8 @@ user-cmd-explicit-ignored-ports-severity: "none"
 
 # List of ports which should be ignored when "type" is "i" or "b"
 explicit-ignored-ports:
-- FastEthernet 0/3
-- FastEthernet 0/4
+  - FastEthernet 0/3
+  - FastEthernet 0/4
 
 # Command to resolve problem on interfaces which are ignored
 # Can be blank when you want just ignore ports, some commands

@@ -5,7 +5,7 @@ S~čoraz na väčšou informatizáciou naprieč všetkými odvetviami života, j
  
 Podľa zistení z~roku 2018 \cite{Milkovich3122018} takmer polovica útokov smeruje na malé firmy, ktoré bezpečnosť riešia iba minimálne alebo vôbec. Predpokladá sa \cite{Milkovich3122018}, že pre rok 2019 bude na kybernetickú bezpečnosť minutých 6 miliárd dolárov, naopak škody spôsobené kybernetickými útokmi presiahnu jednu miliardu dolárov a veľmi záškodné útoky typu \zkratka{zkDDoS} by mali vzrásť až šesťnásobne. 
 
-Vyššie zmienené predpovede len potvrdzujú dôležitosť kybernetickej  bezpečnosti pri návrhu, implementácie, nasadzovaní a prevádzke informačných technológií.
+Vyššie zmienené predpovede len potvrdzujú dôležitosť kybernetickej  bezpečnosti pri návrhu, implementácií, nasadzovaní a prevádzke informačných technológií.
 
 
 
@@ -24,7 +24,7 @@ Vyššie zmienené predpovede len potvrdzujú dôležitosť kybernetickej  bezpe
   	
   	\item Útok na bezpečnosť (Security attack/Explotation)\,--\,krok, ktorý kompromituje bezpečnosť informačného aktíva \cite{Vyncke2008}.\\
   	    
-	\item Bezpečnostný mechanizmus (Security mechanism)\,--\,proces, ktorý je navrhnutý na detegovanie, prevenciu a zotavenie z~útoku na bezpečnosť. \\
+	\item Bezpečnostný mechanizmus (Security mechanism)\,--\,proces, ktorý je navrhnutý na detegovanie, prevenciu a zotavenie z~útoku. \\
 	
 	\item Protiopatrenie (Countermeasure)\,--\,ochranné opatrenie, ktoré znižuje riziko \cite{McMillan2018}.\\
 	
@@ -61,7 +61,7 @@ Triáda CIA pozostáva z~nasledujúcich častí \cite{McMillan2018}:
 		\begin{center}
 			\includegraphics[scale=0.6]{obrazky/cia.pdf}
 		\end{center}
-		\caption[Triáda dôvernosť, integrita a dostupnosť]{Triáda dôvernosť, integrita a dostupnosť demonštrujúca potrebu všetkých troch prvkov na zaistenie bezpečnosti \cite{Vyncke2008}}%{CIA triáda\footnotemark}				
+		\caption[Triáda dôvernosť, integrita a dostupnosť]{Triáda dôvernosť, integrita a dostupnosť demonštrujúca potrebu všetkých troch prvkov na zaistenie bezpečnosti \cite{Vyncke2008}.}%{CIA triáda\footnotemark}				
 \label{cia}
 \end{figure}
 %\footnotetext{Zdroj: https://www.comtact.co.uk/blog/what-is-the-cia-triad}
@@ -71,7 +71,7 @@ Triáda CIA pozostáva z~nasledujúcich častí \cite{McMillan2018}:
 	Aj keď triáda \zk{zkCIA} definuje ciele na zaistenie bezpečnosti, tak niektorí odborníci ju nepovažujú za dostatočnú a zavádzajú ďalšie dve podmienky a pojmy  \cite{Stallings2011}:\\
 	\\
 	\begin{itemize}
-		\item Authencity (Autenticita)\,--\,overenie originálnosti a platnosti správy a identity jej pôvodcovi. Najčastejšie sa na zaistenie tejto podmienky využívajú certifikáty.
+		\item Authencity (Autenticita)\,--\,overenie originál, platnosti správy a identity jej pôvodcovi. Najčastejšie sa na zaistenie tejto podmienky využívajú certifikáty.
 		\item Accountability (Sledovateľnosť)\,--\,identifikácia prístupu k~informáciám a vysledovateľnosť bezpečnostných incidentov v~prípade využitia forenznej analýzy. Väčšinou je táto požiadavka zaistená záznamom činnosti v~systéme formou logu.
 	\end{itemize}
 
@@ -81,23 +81,23 @@ Triáda CIA pozostáva z~nasledujúcich častí \cite{McMillan2018}:
 
 \newpage
 \section{Pasívne a aktívne útoky}
-Útoky na bezpečnosť môžu byť rozdelené do dvoch skupín \cite{Vyncke2008}. Jednou skupinou je pasívny útok, kde nepozmeňuje útočník pôvodné dáta a nevplýva na príjemcu týchto dát. Druhou možnosťou je aktívny útok, pri ktorom sú buď pozmenené dáta doručené príjemcovi alebo je obeť nejakým spôsobom ovplyvňovaná, napríklad zasielaním falošných informácií.
+Útoky na bezpečnosť môžu byť rozdelené do dvoch skupín \cite{Vyncke2008}. Jednou skupinou je pasívny útok, kde útočník nepozmeňuje pôvodné dáta a nevplýva na príjemcu týchto dát. Druhou možnosťou je aktívny útok, pri ktorom sú buď pozmenené dáta doručené príjemcovi alebo je obeť nejakým spôsobom ovplyvňovaná, napríklad zasielaním falošných informácií.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.55]{obrazky/passive-attack.pdf}
 	\end{center}
-	\caption[Pasívny útok]{Príklad pasívneho útok, pri ktorom útočník odpočúva komunikáciu medzi dvoma uzlami \cite{Stallings2011}}
+	\caption[Pasívny útok]{Príklad pasívneho útok, pri ktorom útočník odpočúva komunikáciu medzi dvoma uzlami \cite{Stallings2011}.}
 	\label{passive-attack}
 \end{figure}
 
-Pri pasívnom útoku, ktorý je znázornený na obrázku \ref{passive-attack} ide útočníkovi prevažne o~zachytenie prenášanej komunikácie a monitorovanie a  analýzu prevádzky. Odposluch a zobrazenie obsahu dát je účinné hlavne pri nepoužití šifrovania správ medzi koncovými bodmi alebo aj pri použití slabých šifier, krátkych kľúčov a nedostatočne bezpečných hesiel. Monitorovanie prevádzky, respektíve analýza komunikácie je možná aj pri použití šifrovania, keďže každá komunikácia je charakteristická určitým vzorom. Pasívne útoky je nesmierne obtiažne detegovať nakoľko nemodifikujú dáta pri prenose. Najúčinnejšia obrana je použitie dostatočne silných šifier na zabezpečenie dát. Jeden z~pasívnych útokov sa hojne využíva aj pri prevencii v~\zkratka{zkIDS} a \zkratka{zkIPS}, kde bez analýzy prevádzky by nebolo možné zabezpečiť sieť. Pasívnymi útokmi sa nespôsobuje škoda na systéme alebo infraštruktúre, ale hrozba spočíva v~narušení dôvernosti.
+Pri pasívnom útoku, ktorý je znázornený na obrázku \ref{passive-attack} ide útočníkovi prevažne o~zachytenie prenášanej komunikácie, monitorovanie a  analýzu prevádzky. Odposluch a zobrazenie obsahu dát je účinné hlavne pri nepoužití šifrovania správ medzi koncovými bodmi alebo aj pri použití slabých šifier, krátkych kľúčov a nedostatočne bezpečných hesiel. Monitorovanie prevádzky, respektíve analýza komunikácie je možná aj pri použití šifrovania, keďže každá komunikácia je charakteristická určitým vzorom. Pasívne útoky je nesmierne obtiažne detegovať nakoľko nemodifikujú dáta pri prenose. Najúčinnejšia obrana je použitie dostatočne silných šifier na zabezpečenie dát. Jeden z~pasívnych útokov sa hojne využíva aj pri prevencii v~\zkratka{zkIDS} a \zkratka{zkIPS}, kde bez analýzy prevádzky by nebolo možné zabezpečiť sieť. Pasívnymi útokmi sa nespôsobuje škoda na systéme alebo infraštruktúre, ale hrozba spočíva v~narušení dôvernosti.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.55]{obrazky/active-attack-masq.pdf}
 	\end{center}
-	\caption[Aktívny útok maškaráda]{Príklad aktívneho útoku maškarádou, kedy uzol Eva obdrží falošnú správu od útočníka mysliac si, že ide o~správu od uzla Bob \cite{Stallings2011}}
+	\caption[Aktívny útok maškaráda]{Príklad aktívneho útoku maškarádou, kedy uzol Eva obdrží falošnú správu od útočníka mysliac si, že ide o~správu od uzla Bob \cite{Stallings2011}.}
 	\label{active-attack-masq}
 \end{figure}
 
@@ -105,7 +105,7 @@ Pri pasívnom útoku, ktorý je znázornený na obrázku \ref{passive-attack} id
 	\begin{center}
 		\includegraphics[scale=0.55]{obrazky/active-attack-dos.pdf}
 	\end{center}
-	\caption[Aktívny útok DOS]{Príklad aktívneho útoku DOS, pri ktorom je uzol Eva zahltený nevyžiadanými správami (označené červeno) \cite{Stallings2011}}
+	\caption[Aktívny útok DOS]{Príklad aktívneho útoku DOS, pri ktorom je uzol Eva zahltený nevyžiadanými správami (označené červeno) \cite{Stallings2011}.}
 	\label{active-attack-dos}
 \end{figure}
 
@@ -113,7 +113,7 @@ Pri pasívnom útoku, ktorý je znázornený na obrázku \ref{passive-attack} id
 	\begin{center}
 		\includegraphics[scale=0.55]{obrazky/active-attack-mod.pdf}
 	\end{center}
-	\caption[Aktívny útok modifikácia správy]{Príklad aktívneho útoku modifikáciou správy, pri ktorom je originálna správa presmerovaná cez útočníka, následne pozmenená a prijatá uzlom Eva, ktorý ju považuje za legitímnu \cite{Stallings2011}}
+	\caption[Aktívny útok modifikácia správy]{Príklad aktívneho útoku modifikáciou správy, pri ktorom je originálna správa presmerovaná cez útočníka, následne pozmenená a prijatá uzlom Eva, ktorý ju považuje za legitímnu \cite{Stallings2011}.}
 	\label{active-attack-mod}	
 \end{figure}
 
@@ -121,13 +121,13 @@ Pri pasívnom útoku, ktorý je znázornený na obrázku \ref{passive-attack} id
 	\begin{center}
 		\includegraphics[scale=0.55]{obrazky/active-attack-reply.pdf}
 	\end{center}
-	\caption[Aktívny útok prehratím]{Príklad aktívneho útoku prehratím, pri ktorom príde uzlu Eva legitímna správa (označená modro) a následne po určitom čase aj odchytená správa od útočníka, ktorá je pozmenená (označená červeno) \cite{Stallings2011}}
+	\caption[Aktívny útok prehratím]{Príklad aktívneho útoku prehratím, pri ktorom príde uzlu Eva legitímna správa (označená modro) a následne po určitom čase aj odchytená správa od útočníka, ktorá je pozmenená (označená červeno) \cite{Stallings2011}.}
 	\label{active-attack-reply}
 \end{figure}
 
 %TODO AMPLIFIKACNY UTOK, REFLEXIVNY UTOK
 
-Aktívne útoky sú sofistikovanejšie ako pasívne, modifikujú dáta alebo vytvárajú falošné, o~ktorých prijímateľ predpokladá, že prišli od zdroja, s~ktorým pôvodne komunikoval. Hrozby, ktoré môžu týmito útokmi nastať sú strata integrity, teda modifikácia dát a ohrozenie dostupnosti pričom vždy dochádza ku škode na systéme alebo infraštruktúre. Maškaráda je prvým z~aktívnych útokov, kde ako je možné vidieť na obrázku \ref{active-attack-masq}, útočník vytvára falošnú správu, ktorú zasiela obeti a tá sa domnieva, že komunikuje s~pôvodným zdrojom, v~našom prípade Bobom. Použitím osobných certifikátov na oboch stranách by bolo možné odhaliť, že správa nepochádza od zdroja, ale od útočníka. Príkladom aktívneho útoku je aj útok odoprenia služby \ref{active-attack-dos}, kde sa vytvárajú falošné dáta generované vysokou frekvenciou, v~obrázku značené červenou farbou, za účelom odstaviť systém alebo infraštruktúru, ktorá nezvláda spracovanie toľkých požiadaviek, keďže nebola na takúto záťaž dimenzovaná. Tretím aktívnym útokom \ref{active-attack-mod} je modifikácia správy útočníkom pri prechode komunikačným kanálom, ktorý sa realizuje rôznymi technikami podvrhnutia zdroja alebo identity. Komunikácia v~tomto prípade prebieha cez útočníka, ktorý tento útok mohol uskutočniť napríklad podvrhnutím smerovania. Posledným útokom je útok prehratím \ref{active-attack-reply}, čo je útok veľmi podobný predchádzajúcemu, akurát obeť obdrží najprv pôvodnú nepozmenenú správu a následne po určitom čase aj modifikovanú správu od útočníka. Takéto správy môžu byť generované aj ako nežiadúca sieťová prevádzka pri zahltení prvkov alebo pri zlom nastavení smerovania. Citlivé sú najmä transakčné systémy napríklad databáze. Zabrániť tomuto útoku je možné pomocou časových pečiatok a jednoznačných identifikátorov. 
+Aktívne útoky sú sofistikovanejšie ako pasívne, modifikujú dáta alebo vytvárajú falošné, o~ktorých prijímateľ predpokladá, že prišli od zdroja, s~ktorým pôvodne komunikoval. Hrozby, ktoré môžu týmito útokmi nastať sú strata integrity, teda modifikácia dát a ohrozenie dostupnosti pričom vždy dochádza ku škode na systéme alebo infraštruktúre. Maškaráda je prvým z~aktívnych útokov, kde ako je možné vidieť na obrázku \ref{active-attack-masq}, útočník vytvára falošnú správu, ktorú zasiela obeti a tá sa domnieva, že komunikuje s~pôvodným zdrojom, v~našom prípade Bobom. Použitím osobných certifikátov na oboch stranách by bolo možné odhaliť, že správa nepochádza od zdroja, ale od útočníka. Príkladom aktívneho útoku je aj útok odoprenia služby \ref{active-attack-dos}, kde sa vytvárajú falošné dáta generované vysokou frekvenciou (v~obrázku značené červenou farbou), za účelom odstaviť systém alebo infraštruktúru, ktorá nezvláda spracovanie toľkých požiadaviek, keďže nebola na takúto záťaž dimenzovaná. Tretím aktívnym útokom \ref{active-attack-mod} je modifikácia správy útočníkom pri prechode komunikačným kanálom, ktorý sa realizuje rôznymi technikami podvrhnutia zdroja alebo identity. Komunikácia v~tomto prípade prebieha cez útočníka, ktorý tento útok mohol uskutočniť napríklad podvrhnutím smerovania. Posledným útokom je útok prehratím \ref{active-attack-reply}, čo je útok veľmi podobný predchádzajúcemu, akurát obeť obdrží najprv pôvodnú nepozmenenú správu a následne po určitom čase aj modifikovanú správu od útočníka. Takéto správy môžu byť generované aj ako nežiadúca sieťová prevádzka pri zahltení prvkov alebo pri zlom nastavení smerovania. Citlivé sú najmä transakčné systémy napríklad databáze. Zabrániť tomuto útoku je možné pomocou časových pečiatok a jednoznačných identifikátorov. 
 
 
 
