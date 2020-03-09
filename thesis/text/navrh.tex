@@ -193,37 +193,37 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Nepovolený prístup k~manažovaniu zariadenia	&Vytvoriť a aplikovať ACL pre OOB, Telnet, SSH a pod. a zaznamenať v~logu prístupy	&M	&C	&A	& \cite{Akin2002}
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Nepovolený prístup k~manažovaniu zariadenia	&Vytvoriť a aplikovať ACL pre Telnet, SSH a pod. a zaznamenať v~logu prístupy	&M	&C	&A	& \cite{Akin2002}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}	\\
 	2	&Neautorizovaný prístup cez nepoužívané a nezabezpečené protokoly na manažment zariadení	&Vypnúť nepoužívané protokoly na prístup k~manažovaniu zariadení (telnet a pod.)	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Singh2018}
 	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Nepovolený prístup k~manažmentu konfigurácie zariadenia	&Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)	&M	&H	&A	& \cite{Singh2018}	\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Nepovolený prístup k~manažmentu konfigurácie zariadenia	&Vypnutie odchádzajúcich spojení pre protokoly na manažment zariadení pokiaľ sa nepoužívajú (telnet a pod.)	&M	&H	&A	& \cite{Singh2018}	\\
 	4	&Prístup bez požadovaných prístupových údajov	&Nakonfigurovanie protokolov na manažment zariadení, aby požadovali prístupové údaje (telnet a pod.)	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Nekonzistencia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povoliť súčasne iba jednému administrátorovi vykonávanie zmien v~konfigurácii	&M	&H	&A	& \cite{Singh2018}	\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Nekonzistencia konfiguračných súborov pri zmenách konfigurácie viac ako jedným administrátorom	&Povoliť súčasne iba jednému administrátorovi vykonávanie zmien v~konfigurácii	&M	&H	&A	& \cite{Singh2018}	\\
 	6	&Nepoužívanie zabezpečeného protokolu na manažment zariadení môže viesť k~odposluchu	&Zapnutie SSH	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&Nebezpečná verzia 1 protokolu SSH	&SSH verzia 2	&M	&C	&A	& \cite{McMillan2018}	\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&Nebezpečná verzia 1 protokolu SSH	&SSH verzia 2	&M	&C	&A	& \cite{McMillan2018}	\\
 	8	&Útok na krátky RSA kľúč	&Dĺžka RSA kľúča minimálne 2048 bitov	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Barker2019} 
 	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 9	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k~aktívnemu sedeniu môže viesť k~zmene konfigurácie	&SSH čas vypršania sedenia	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 9	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k~aktívnemu sedeniu môže viesť k~zmene konfigurácie	&SSH čas vypršania sedenia	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
 	10	&Hádanie hesla k~RSA kľúču	&SSH maximálny počet neúspešných pokusov	&M	&H	&A	& \cite{Hucaby2010}
 	
 	\cite{Bouska2009}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 11	&Útok hrubou silou na zistenie prihlasovacích údajov	&Špecifikovať čas po ktorý nie je možné po N pokusoch sa prihlásiť	&M	&H	&A	& \cite{Hucaby2010}
+	\rowcolor[rgb]{ .94,  .94,  .94} 11	&Útok hrubou silou na zistenie prihlasovacích údajov	&Špecifikovať čas po ktorý nie je možné po N pokusoch sa prihlásiť	&M	&H	&A	& \cite{Hucaby2010}
 	
 	\cite{Bouska2009}	\\
 	12	&Prihlásenie na zariadenie nie je možné kvôli zablokovaniu pre príliš veľa neúspešných pokusov	&Povolenie prístupu administrátorovi na základe IP adresy, keď je protokol na manažovanie zariadení nedostupný kvôli DOS útoku	&M	&M	&A	& \cite{Hucaby2010}
 	
 	\cite{Bouska2009}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 13	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k~aktívnemu sedeniu môže viesť k~zmene konfigurácie	&Čas vypršania sedenia pre protokol na manažovanie zariadení	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 13	&Dlhé neaktívne sedenie môže byť zneužité alebo aj fyzický prístup útočníka k~aktívnemu sedeniu môže viesť k~zmene konfigurácie	&Čas vypršania sedenia pre protokol na manažovanie zariadení	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}
 	
@@ -232,7 +232,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	14	&Možné prihlásenie do zariadenia cez telnet keď je prítomné SSH	&Zakázať telnet ak je SSH aktívne	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 15	&Útočník nie je informovaný o~právnych následkoch	&Právne upozornenie pri prístupe k~zariadeniu	&M	&L	&A	& \cite{McMillan2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 15	&Útočník nie je informovaný o~právnych následkoch	&Právne upozornenie pri prístupe k~zariadeniu	&M	&L	&A	& \cite{McMillan2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}
 	
@@ -240,7 +240,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	16	&Nepovolená zmena konfigurácie zariadenia	&Vytvorenie hesla na editovanie konfigurácie zariadenia	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 17	&Nepovolený prístup k~manažmentu konfigurácie zariadenia	&Lokálne zabezpečené účty	&M	&C	&A	& \cite{Singh2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 17	&Nepovolený prístup k~manažmentu konfigurácie zariadenia	&Lokálne zabezpečené účty	&M	&C	&A	& \cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}	\\
 	18	&Centrálna správa prihlásení a dohľadateľnosť zmien v~konfigurácií	&Definovanie a povolenie AAA serveru na prihlásenie a definovanie záložného prihlásenia	&M	&H	&A	& \cite{Akin2002}
@@ -250,23 +250,23 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{McMillan2018}
 	
 	\cite{Graesser2001}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 19	&Centrálna správa prihlásení a dohľadateľnosť zmien v~konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 19	&Centrálna správa prihlásení a dohľadateľnosť zmien v~konfigurácií	&Definovanie a povolenie AAA serveru na editáciu konfigurácií a definovanie záložného prihlásenia	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
 	20	&Hádanie prístupových údajov	&Definovanie maximálneho počtu neúspešných pokusov o~prihlásenie a následné zablokovanie účtu	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 21	&Prihlásenie bez prihlasovacích údajov	&Zakázať záložné prihlásenie bez poskytnutia autentifikačných prostriedkov	&M	&C	&A	& \cite{Singh2018}	\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 21	&Prihlásenie bez prihlasovacích údajov	&Zakázať záložné prihlásenie bez poskytnutia autentifikačných prostriedkov	&M	&C	&A	& \cite{Singh2018}	\\
 	22	&AAA používa primárne lokálne účty namiesto centralizovaných na serveri	&AAA nesmie používať ako prvú možnosť prihlásenia lokálny účet 	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 23	&Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V~prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&M	&H	&A	& \cite{Graesser2001}
+	\rowcolor[rgb]{ .94,  .94,  .94} 23	&Používateľ prihlásený do zariadenia môže spúšťať akékoľvek príkazy	&Nastavenie AAA autorizácie pre spúšťanie príkazov. V~prípade výpadku AAA serveru, bude užívateľ odhlásený a následne prihlásený podľa  záložného prihlásenia, aby mu nebolo pridelené vysoké oprávnenie umožňujúce vykonávať príkazy, na ktoré nemá právo	&M	&H	&A	& \cite{Graesser2001}
 	
 	\cite{Singh2018}	\\
 	24	&Administrátor vloží zlý príkaz a po čase je ho nemožné dohľadať a zjednať nápravu	&Nastavenie AAA účtovania respektíve logovania pripojení a vykonaných príkazov	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 25	&AAA zdrojové rozhranie nie je rovnaké pri každom reštarte	&Definovanie loopback zdrojového rozhrania pre AAA	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}	\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 25	&AAA zdrojové rozhranie nie je rovnaké pri každom reštarte	&Definovanie loopback zdrojového rozhrania pre AAA	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}	\\
 	26	&SSH zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SSH	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 27	&DOS útok na štandardný SSH port 22	&Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie Port Knocking \cite{MJVmQiKUgZl92S8u}	&M	&H	&A	& \cite{MJVmQiKUgZl92S8u}	\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 27	&DOS útok na štandardný SSH port 22	&Špecifikovanie iného portu pre SSH ako štandardného alebo aplikovanie Port Knocking \cite{MJVmQiKUgZl92S8u}	&M	&H	&A	& \cite{MJVmQiKUgZl92S8u}	\\
 	\hline
 	
 	
@@ -290,7 +290,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Vloženie a manipulácia so smerovacími informáciami	&Autentifikácia smerovacích protokolov (nie heslá v~otvorenej podobe)	&C	&H	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Vloženie a manipulácia so smerovacími informáciami	&Autentifikácia smerovacích protokolov (nie heslá v~otvorenej podobe)	&C	&H	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -304,7 +304,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CCD,
 	CDA,
 	CAL	& \cite{Tiso2012}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Koncové zariadenie, užívateľ a útočník môžu vidieť smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy	&Špecifikovanie rozhraní, ktoré nebudú prijímať smerovacie informácie	&C	&H	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Koncové zariadenie, užívateľ a útočník môžu vidieť smerovacie správy a topológiu siete alebo pripojenie škodlivého zariadenia, ktoré vysielať a prijímať smerovacie správy	&Špecifikovanie rozhraní, ktoré nebudú prijímať smerovacie informácie	&C	&H	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -316,7 +316,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CAL	& \cite{q7WZuvqA1fZEsYyL}
 	
 	\cite{Lammle2013}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v~logu pri zmenách v~smerovaní	&C	&M	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Vysledovateľnosť nefunkčnosti smerovacieho protokolu a nesprávneho nastavenia	&Zaznamenanie zmeny v~logu pri zmenách v~smerovaní	&C	&M	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -329,7 +329,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CAL	& \cite{Khandelwal2016}
 	
 	\cite{Singh2018}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&Nesprávne smerovanie kvôli sumarizácií	&Vypnutie automatickej sumarizácie smerovacích protokolov	&C	&H	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&Nesprávne smerovanie kvôli sumarizácií	&Vypnutie automatickej sumarizácie smerovacích protokolov	&C	&H	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -339,7 +339,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CCD,
 	CDA,
 	CAL	& \cite{CIS_DrTLsgXv24lxeIIM}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 9	&DOS útok pomocou podvrhnutej IP adresy alebo vzdialený útok na smerovací protokol	&Zapnutie reverse path forwarding strict/loose mode	&C	&H	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 9	&DOS útok pomocou podvrhnutej IP adresy alebo vzdialený útok na smerovací protokol	&Zapnutie reverse path forwarding strict/loose mode	&C	&H	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -371,7 +371,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\endhead
 	
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&IP spoofing	&Špecifikácia ACL na zakázanie a logovanie privátnych a špeciálnych IP adries z~RFC 1918, RFC 3330	&C	&C	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&IP spoofing	&Špecifikácia ACL na zakázanie a logovanie privátnych a špeciálnych IP adries z~RFC 1918, RFC 3330	&C	&C	&CE,
 	CCD,
 	CAL	& \cite{Jackson2010}
 	
@@ -385,12 +385,12 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&IPv6 Next Header,
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&IPv6 Next Header,
 	IPv6 Fragmentation útok	&ACL blokujúce nerozpoznateľné rozšírené hlavičky	&C	&C	&A	& \cite{Podermanski1922015}
 	
 	\cite{Gregr2622015}\\
 	4	&DOS útok alebo pokus o~prístup k~tomu, čo nie je povolené	&Logovanie pravidiel zahodenia paketov v~ACL	&M	&M	&A	& \cite{Akin2002}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Pakety budú spracovávané v~CPU, ktoré môže byť preťažené a môže byť zmenené smerovanie na obídenie bezpečnostnej kontroly	&Zahadzovanie IPv4 paketov s~rozšírenou hlavičkou (IP Options filtering)	&C	&C	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Pakety budú spracovávané v~CPU, ktoré môže byť preťažené a môže byť zmenené smerovanie na obídenie bezpečnostnej kontroly	&Zahadzovanie IPv4 paketov s~rozšírenou hlavičkou (IP Options filtering)	&C	&C	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -417,13 +417,13 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Nízky stav voľnej pamäte	&Nastavenie notifikácie pri dochádzaní pamäte	&M	&M	&A	& \cite{Singh2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Nízky stav voľnej pamäte	&Nastavenie notifikácie pri dochádzaní pamäte	&M	&M	&A	& \cite{Singh2018}
 	
 	\cite{uYLsMtQInofenpV3}\\
 	2	&Logovacie správy nemôžu byť zaznamenané kvôli nedostatku pamäte	&Rezervovanie pamäte pre kritické notifikácie pri nedostatku pamäte	&M	&H	&A	& \cite{Singh2018}
 	
 	\cite{uYLsMtQInofenpV3}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Vysoké zaťaženie CPU	&Nastavenie notifikácie vysokom zaťažení CPU	&M	&M	&A	& \cite{Singh2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Vysoké zaťaženie CPU	&Nastavenie notifikácie vysokom zaťažení CPU	&M	&M	&A	& \cite{Singh2018}
 	
 	\cite{uYLsMtQInofenpV3}\\
 	4	&Vysoké zaťaženie zariadenia spôsobilo nemožnosť prihlásenia k~nemu	&Rezervovanie pamäte pre protokoly na manažment zariadení pri nedostatku pamäte	&M	&H	&A	& \cite{Singh2018}\\	
@@ -447,11 +447,11 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Skenovanie a zistenie informácií o~sieti za pomoci protokolu CDP a využitie bezpečnostných chýb	&Zakázanie protokolu CDP	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Skenovanie a zistenie informácií o~sieti za pomoci protokolu CDP a využitie bezpečnostných chýb	&Zakázanie protokolu CDP	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}\\
 	2	&Skenovanie a zistenie informácií o~sieti za pomoci protokolu LLDP a využitie bezpečnostných chýb	&Zakázanie protokolu LLDP	&M	&C	&A	& \cite{McMillan2018}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Proxy ARP môže viesť k~obídeniu PVLAN a rozširuje broadcast doménu	&Vypnutie Proxy ARP	&C	&C	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Proxy ARP môže viesť k~obídeniu PVLAN a rozširuje broadcast doménu	&Vypnutie Proxy ARP	&C	&C	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -464,7 +464,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CDA,
 	CAL	& \cite{Singh2018}
 	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Útočník môže zistiť masku podsiete pomocou ICMP Mask reply	&Vypnutie správ ICMP Mask reply	&D	&H	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Útočník môže zistiť masku podsiete pomocou ICMP Mask reply	&Vypnutie správ ICMP Mask reply	&D	&H	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -478,7 +478,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\cite{Akin2002}
 	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&Útočník môže zistiť smerovacie informácie alebo vyťažiť CPU	&Vypnutie správ ICMP Redirects	&D	&H	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&Útočník môže zistiť smerovacie informácie alebo vyťažiť CPU	&Vypnutie správ ICMP Redirects	&D	&H	&CE,
 	DI,
 	CCD,
 	CDA,
@@ -509,11 +509,11 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Nemožná identifikácia zariadenia	&Vytvoriť hostname	&M	&L	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Nemožná identifikácia zariadenia	&Vytvoriť hostname	&M	&L	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
 	2	&Nemožnosť vzdialeného prístupu	&Vytvoriť doménové meno	&M	&L	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Identifikácia pravidla v~ACL	&Popis každého pravidla v~ACL pre lepšiu identifikáciu	&M	&L	&A	& \cite{Singh2018}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Identifikácia pravidla v~ACL	&Popis každého pravidla v~ACL pre lepšiu identifikáciu	&M	&L	&A	& \cite{Singh2018}\\
 	4	&Identifikácia rozhrania	&Popis každého rozhrania	&M	&L	&A	& \cite{Lammle2013}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Nemožnosť identifikácie účelu VLAN	&Pridanie mena k~VLAN	&C	&L	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Nemožnosť identifikácie účelu VLAN	&Pridanie mena k~VLAN	&C	&L	&DI,
 	CDA,
 	AC,
 	
@@ -540,7 +540,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Nekonzistencia časov v~logoch a problém pričlenenia logov k~relevantným incidentom	&Nastavenie NTP serveru pre aktuálny čas v~logoch	&M	&H	&A	& \cite{Jackson2010}
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Nekonzistencia časov v~logoch a problém pričlenenia logov k~relevantným incidentom	&Nastavenie NTP serveru pre aktuálny čas v~logoch	&M	&H	&A	& \cite{Jackson2010}
 	
 	\cite{Singh2018}
 	
@@ -550,13 +550,13 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&NTP zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre NTP	&M	&M	&A	& \cite{Jackson2010}
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&NTP zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre NTP	&M	&M	&A	& \cite{Jackson2010}
 	
 	\cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}\\
 	4	&Väčšia bezpečnosť (pub/priv key) NTP a podpora IPv6	&Použitie NTP verzie 4	&M	&M	&A	&\cite{s0goWNnWp5OjqREE}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Falošný čas od podvrhnutého NTP zdroja	&Nastavenie NTP peer s~inými sieťovými zariadeniami na krížovú validáciu času a záložný zdroj času	&M	&M	&A	& \cite{Akin2002}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Falošný čas od podvrhnutého NTP zdroja	&Nastavenie NTP peer s~inými sieťovými zariadeniami na krížovú validáciu času a záložný zdroj času	&M	&M	&A	& \cite{Akin2002}\\
 	\hline
 \end{longtable}%
 \vspace{-1em}
@@ -578,7 +578,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Odpočúvanie SNMP verzie 1 a 2c	&Použitie SNMP verzie 3 pokiaľ je SNMP používané	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Odpočúvanie SNMP verzie 1 a 2c	&Použitie SNMP verzie 3 pokiaľ je SNMP používané	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}\\
 	2	&Modifikovanie konfigurácie pomocou SNMP	&Obmedzenie SNMP iba na čítanie	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
@@ -586,7 +586,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Graesser2001}
 	
 	\cite{Akin2002}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Neoprávnený prístup k~SNMP informáciám	&Obmedzenie SNMP iba pre vybrané IP adresy	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Neoprávnený prístup k~SNMP informáciám	&Obmedzenie SNMP iba pre vybrané IP adresy	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}\\
 	4	&Administrátor nemá povedomie o~problémoch na zariadení	&Povolenie asynchrónnych správ SNMP TRAP	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
@@ -594,13 +594,13 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Graesser2001}
 	
 	\cite{Akin2002}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Odpočúvanie SNMP sedenie z~dôvodu slabého šifrovania a hashovacej  funkcie	&Vytvorenie SNMP verzie 3 užívateľa s~minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA	&M	&C	&A	& \cite{Barker2019}
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Odpočúvanie SNMP sedenie z~dôvodu slabého šifrovania a hashovacej  funkcie	&Vytvorenie SNMP verzie 3 užívateľa s~minimálnym šifrovaním AES 128 bit a hashovacou funkciou SHA	&M	&C	&A	& \cite{Barker2019}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Akin2002}\\
 	6	&Sťažená identifikácia SNMP správ z~rôznych IP	&Definovanie lokácie SNMP serveru	&M	&L	&A	& \cite{Dooley2007}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SNMP	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&SNMP zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SNMP	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
 	8	&Zmeny názvov rozhraní medzi reštartami a nemožnosť monitorovania pomocou SNMP	&SNMP statické nemenné meno rozhrania aj po reštarte zariadenia	&M	&H	&A	& \cite{Dooley2007}\\
 	
 	\hline
@@ -624,21 +624,21 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Administrátor nemá povedomie o~problémoch na zariadení	&Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Administrátor nemá povedomie o~problémoch na zariadení	&Povolenie logovania protokolom SYSLOG a špecifikovanie IP adresy SYSLOG serveru	&M	&H	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}\\
 	2	&Neprijímanie všetkých dôležitých incidentov na zariadení z~protokolu SYSLOG	&Špecifikovanie dôležitosti oznámení SYSLOG na INFORMATIONAL	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SYSLOG	&M	&M	&A	& \cite{Singh2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&SYSLOG zdrojové rozhranie nie je rovnaké pri každom reštarte	& Definovanie loopback zdrojového rozhrania pre SYSLOG	&M	&M	&A	& \cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}\\
 	4	&Insufficient and non-standard  time format in logging messages/ Nedostatočné a neštandardné formáty času pri logovacích správach	&Definovanie formátu času pre logovacie a ladiace výstupy	&M	&M	&A	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Graesser2001}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Administrátor nevidí dôležité incidenty pri prihlásení a konfigurovaní cez konzolu	&Vypisovanie SYSLOG správ CRITICAL a dôležitejších do terminálu	&M	&M	&A	& \cite{Singh2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Administrátor nevidí dôležité incidenty pri prihlásení a konfigurovaní cez konzolu	&Vypisovanie SYSLOG správ CRITICAL a dôležitejších do terminálu	&M	&M	&A	& \cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}\\
 	6	&Malá vyrovnávacia pamäť pre SYSLOG je dôvodom zahadzovanie správ	&Definovanie veľkosti SYSLOG buffera dôležitosti oznámení na INFORMATIONAL	&M	&H	&A	& \cite{Singh2018}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ	&Definovanie dočasného úložiska SYSLOG správ v~prípade nedostupnosti servera	&M	&H	&A	& \cite{Singh2018}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&Neprístupný SYSLOG server spôsobuje zahadzovanie dôležitých syslog správ	&Definovanie dočasného úložiska SYSLOG správ v~prípade nedostupnosti servera	&M	&H	&A	& \cite{Singh2018}\\
 	8	&Problém identifikácie SYSLOG správ s~rovnakou časovou značkou	&Pridanie sekvenčného čísla ku každej syslog správe	&M	&L	&A	& \cite{Akin2002}\\
 	
 	\hline
@@ -663,13 +663,13 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&MAC Spoofing, MAC Flooding 	&Definovanie maximálne 1 MAC adresy na port, priradenie MAC adresy na port	&C	&C	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&MAC Spoofing, MAC Flooding 	&Definovanie maximálne 1 MAC adresy na port, priradenie MAC adresy na port	&C	&C	&DI,
 	CDA,
 	AC	& \cite{Lammle2013}\\
 	2	&MAC Spoofing, MAC Flooding 	&Nastavenie režimu narušenia, ktorý vypne port alebo informuje správcu o~pripojení nepovoleného zariadenia	&C	&H	&DI,
 	CDA,
 	AC	& \cite{Lammle2013}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Využívanie siete nepovolenými používateľmi	&Zapnutie 802.1x 	&C	&H	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Využívanie siete nepovolenými používateľmi	&Zapnutie 802.1x 	&C	&H	&DI,
 	CDA,
 	AC	& \cite{Vyncke2008}
 	
@@ -683,7 +683,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Bouska20071}
 	
 	\cite{Bouska2007} \\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&C	&C	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&DHCP spoofing	&DHCP snooping, IPv6 Snooping, DHCPv6 Guard	&C	&C	&DI,
 	CDA,
 	AC	& \cite{Vyncke2008}
 	
@@ -697,7 +697,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Singh2018}
 	
 	\cite{zXCpMaLbN1J7D1z2}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&ARP Spoofing	&Dynamic ARP Inspection	&C	&C	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&ARP Spoofing	&Dynamic ARP Inspection	&C	&C	&DI,
 	CDA,
 	AC	& \cite{McMillan2018}\\
 	8	&IP spoofing	&IPv4/IPv6 Source Guard	&C	&C	&DI,
@@ -705,7 +705,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	AC	& \cite{Singh2018}
 	
 	\cite{zXCpMaLbN1J7D1z2}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 9	&IPv6 ND Spoofing	&IPv6 ND Inspection	&C	&C	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 9	&IPv6 ND Spoofing	&IPv6 ND Inspection	&C	&C	&DI,
 	CDA,
 	AC	&\cite{Podermanski1222015}
 	
@@ -724,7 +724,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Gregr522015}
 	
 	\cite{zXCpMaLbN1J7D1z2}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 11	&Mobilné zariadenia pripojené bezdrôtovo spotrebovávajú veľa energie kvôli častým RA správam	&RA Throttling	&C	&L	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 11	&Mobilné zariadenia pripojené bezdrôtovo spotrebovávajú veľa energie kvôli častým RA správam	&RA Throttling	&C	&L	&DI,
 	CDA,
 	AC	& \cite{Podermanski532015}
 	
@@ -736,7 +736,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\cite{Podermanski1932015}
 	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 13	&Vyčerpanie cache susedov	&Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povoľujeme iba komunikáciu s~cieľovými IPv6 adresami, ktoré sa nachádzajú v~našej sieti	&C	&C	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 13	&Vyčerpanie cache susedov	&Na zabránenie vzdialeného útoku na cache susedov cez internet je potreba nastaviť ACL, kde povoľujeme iba komunikáciu s~cieľovými IPv6 adresami, ktoré sa nachádzajú v~našej sieti	&C	&C	&CE,
 	CCD,
 	CAL	&\cite{Podermanski1232015}
 	
@@ -751,7 +751,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\cite{Podermanski1932015}
 	\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 15	&Vyčerpanie cache susedov	&Limitovanie času IPv6 adresy v~cache susedov	&C	&C	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 15	&Vyčerpanie cache susedov	&Limitovanie času IPv6 adresy v~cache susedov	&C	&C	&DI,
 	CDA,
 	AC	&\cite{Podermanski1232015}
 	
@@ -781,13 +781,13 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Rogue root bridge protection (root guard)	&Rogue root bridge 	&C	&C	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Rogue root bridge protection (root guard)	&Rogue root bridge 	&C	&C	&DI,
 	CDA,
 	AC	& \cite{Vyncke2008}\\
 	2	&BPDU protection (BPDU guard)	&Pripojenie prepínaču na koncový prístupový port	&C	&C	&DI,
 	CDA,
 	AC	& \cite{Vyncke2008}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Prístupové porty by sa nemali podieľať na STP procese	&Rýchlosť konvergencie	&C	&H	&DI,
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Prístupové porty by sa nemali podieľať na STP procese	&Rýchlosť konvergencie	&C	&H	&DI,
 	CDA,
 	AC	& \cite{Vyncke2008}\\
 	4	&Špeciálne konfigurácie zaisťujúce bezslučkovú topológiu pomocou STP keď nastane jednosmerná komunikácia (Loop Guard)	&Jednosmerná komunikácia medzi prepínačmi môže viesť k~topológii so slučkami	&C	&C	&DI,
@@ -816,13 +816,13 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97}  1	&Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov	&Vytvorenie separátnej VLAN pre manažment	&C	&M	&DI, CDA, AC	& \cite{Lammle2013}\\
+	\rowcolor[rgb]{ .94,  .94,  .94}  1	&Špeciálna VLAN pre manažment na obmedzenie prístupu iba pre administrátorov	&Vytvorenie separátnej VLAN pre manažment	&C	&M	&DI, CDA, AC	& \cite{Lammle2013}\\
 	2	&Útočníkovi s~fyzickým prístupom k~portu môže byť pridelený prístup do časti siete, ktorá zodpovedá príslušnej VLAN 	&Vytvorenie špeciálnej black hole VLAN pre nevyužité porty	&C	&C	&DI, CDA, AC	& \cite{uYLsMtQInofenpV3}\\
-	\rowcolor[rgb]{ .97,  .97,  .97}  3	&Predvolenej VLAN je povolené prepnuté na akýkoľvek port, VLAN hopping, double tagging	&Odobrať všetky porty z~predvolenej VLAN	&C	&C	&DI, CDA, AC	& \cite{uYLsMtQInofenpV3}\\
+	\rowcolor[rgb]{ .94,  .94,  .94}  3	&Predvolenej VLAN je povolené prepnuté na akýkoľvek port, VLAN hopping, double tagging	&Odobrať všetky porty z~predvolenej VLAN	&C	&C	&DI, CDA, AC	& \cite{uYLsMtQInofenpV3}\\
 	4	&Predvolenej VLAN je povolené byť prepnutá na akýkoľvek port, VLAN hopping, double tagging	&Vytvorenie natívnej VLAN rozdielnej ako predvolená, priradenie k~trunk portu a povolenie iba potrebných portov	&C	&C	&DI, CDA, AC	& \cite{uYLsMtQInofenpV3}\\
-	\rowcolor[rgb]{ .97,  .97,  .97}  5	&DTP útok, Switch spoofing útok	&Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk	&C	&C	&DI, CDA, AC	& \cite{uYLsMtQInofenpV3}\\
+	\rowcolor[rgb]{ .94,  .94,  .94}  5	&DTP útok, Switch spoofing útok	&Vypnutie dynamického trunkovacieho protokolu a explicitne určiť porty ako prístupové a trunk	&C	&C	&DI, CDA, AC	& \cite{uYLsMtQInofenpV3}\\
 	6	&Nový prepínač s~vyšším číslom revízie, ale s~nesprávnou VLAN databázou môže šíriť falošné VLAN identifikátory a spôsobiť nefunkčnosť siete, veľa možných VTP útokov kvôli zraniteľnostiam 	&Vypnutie MVRP. MRP, GARP, VTP po úspešnej propagácií VLAN	&C	&C	&DI, CDA, AC	& \cite{Vyncke2008}\\
-	\rowcolor[rgb]{ .97,  .97,  .97}  7	&VTP musí byť používané	&Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté	&C	&C	&DI, CDA, AC	& \cite{Vyncke2008}\\
+	\rowcolor[rgb]{ .94,  .94,  .94}  7	&VTP musí byť používané	&Uprednostniť VTP verzie 3, špecifikovať skryté heslo a zapnúť VTP prunning pokiaľ musí byť VTP zapnuté	&C	&C	&DI, CDA, AC	& \cite{Vyncke2008}\\
 	8	&Vysoké zaťaženie linky	&Poslanie notifikácie pri prekročení prahovej hodnoty zaťaženia linky	&C	&M	&A	& \cite{uYLsMtQInofenpV3}\\
 	
 	\hline
@@ -847,30 +847,30 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	Riadok č.	&Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer	&Zdroj\\ \hhline{=======}
 	\endhead
 	
-	\rowcolor[rgb]{ .97,  .97,  .97} 1	&Zlyhanie zariadenia alebo linky môže viest k~nefunkčnosti siete 	&Povolenie FHRP s~autentifikáciou a aktuálnou verziou	&C	&M	&CE,
+	\rowcolor[rgb]{ .94,  .94,  .94} 1	&Zlyhanie zariadenia alebo linky môže viest k~nefunkčnosti siete 	&Povolenie FHRP s~autentifikáciou a aktuálnou verziou	&C	&M	&CE,
 	CCD,
 	CAL	& \cite{Lammle2013}\\
 	2	&Nepoužívané, staré a nezabezpečené služby môžu byť použité na škodlivé účely	&Vypnutie nepoužívaných služieb z~bezpečnostných dôvodov a na šetrenie CPU a pamäte 	& {\normalsize*}\footnotemark &H	&{\normalsize*}\footnotemark[\value{footnote}] & \cite{yDzYjF1hoACahpg1}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 3	&Odpočúvanie komunikácie  cez nezabezpečené tunely	&Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely	&D	&C	&CE, DI, CCD, CDA, CAL	& \cite{CIS_DrTLsgXv24lxeIIM}
+	\rowcolor[rgb]{ .94,  .94,  .94} 3	&Odpočúvanie komunikácie  cez nezabezpečené tunely	&Vypnúť tunely ktoré nie sú zabezpečené alebo zabezpečiť tunely	&D	&C	&CE, DI, CCD, CDA, CAL	& \cite{CIS_DrTLsgXv24lxeIIM}
 	
 	\cite{Hucaby2010}\\
-	4	&Môže byť zneužité odpočúvanie pokiaľ sa používa monitorovanie prevádzky a monitorovanie prevádzky kvôli legislatívnym potrebám	&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&C	&N	&A	& \cite{Singh2018}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 5	&Útočník s~fyzickým prístupom k~zariadeniu alebo portu môže odpočúvať alebo posielať škodlivý obsah	&Explicitne zakázať nepoužívané porty	&D	&C	&A	& \cite{Graesser2001}
+	4	&Môže byť zneužité odpočúvanie pokiaľ sa používa a monitorovanie prevádzky kvôli legislatívnym potrebám (zrkadlenie portov, záznam tokov)&Monitorovanie výkonnosti siete a zber sieťového prenosu kvôli legislatívnym potrebám	&C	&N	&A	& \cite{Singh2018}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Útočník s~fyzickým prístupom k~zariadeniu alebo portu môže odpočúvať alebo posielať škodlivý obsah	&Explicitne zakázať nepoužívané porty	&D	&C	&A	& \cite{Graesser2001}
 	
 	\cite{Jackson2010}\\
 	6	&Zdrojové rozhranie pre management a control protokoly	&Vytvoriť Loopback rozhranie s~IP adresou	&M/C	&M	&A	&
 	\cite{Singh2018}
 	
 	\cite{CIS_DrTLsgXv24lxeIIM}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 7	&Pretečenie pamäte	&Povoliť mechanizmy na detekciu pretečenia pamäte	&M	&M	&A	& \cite{Singh2018}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 7	&Pretečenie pamäte	&Povoliť mechanizmy na detekciu pretečenia pamäte	&M	&M	&A	& \cite{Singh2018}\\
 	8	&Načítanie škodlivej konfigurácie zo siete počas bootovania	&Vypnutie načítania operačného systému alebo konfigurácie zo siete pokiaľ to nie je nutné	&M	&M	&A	& \cite{Akin2002}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 9	&Odpočúvanie konfigurácií zariadení pri zálohe	&Zapnutie zabezpečenej zálohy na server (SFTP, SCP)	&M	&H	&A	& \cite{Singh2018}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 9	&Odpočúvanie konfigurácií zariadení pri zálohe	&Zapnutie zabezpečenej zálohy na server (SFTP, SCP)	&M	&H	&A	& \cite{Singh2018}\\
 	10	&Vymazanie konfigurácie	&Zapnutie ochrany pred výmazom konfigurácie	&M	&H	&A	& \cite{McMillan2018}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 11	&Možnosť urobiť diff zmien konfigurácií a jej návrat	&Periodické zálohovanie konfigurácie a logovanie jej zmien	&M	&M	&A	& \cite{McMillan2018}
+	\rowcolor[rgb]{ .94,  .94,  .94} 11	&Možnosť urobiť diff zmien konfigurácií a jej návrat	&Periodické zálohovanie konfigurácie a logovanie jej zmien	&M	&M	&A	& \cite{McMillan2018}
 	
 	\cite{Singh2018}\\
 	12	&Nemožnosť prihlásenia pri zaseknutom TCP spojení	&Terminovanie zaseknutého TCP spojenia	&M	&M	&A	& \cite{Singh2018}\\
-	\rowcolor[rgb]{ .97,  .97,  .97} 13	&Možnosť prečítať heslá z~uniknutých konfigurácií	&Zašifrovanie hesiel v~otvorenej podobe	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
+	\rowcolor[rgb]{ .94,  .94,  .94} 13	&Možnosť prečítať heslá z~uniknutých konfigurácií	&Zašifrovanie hesiel v~otvorenej podobe	&M	&C	&A	& \cite{CIS_DrTLsgXv24lxeIIM}\\
 	
 	\hline
 \end{longtable}%

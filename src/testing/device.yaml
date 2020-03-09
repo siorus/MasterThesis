@@ -31,19 +31,19 @@ facility: "l3sw"
 # Types: [core/edge, distribution, access, collapsed all, 
 # collapsed distribution access, 
 # collapsed core distribution]
-facility-layer: "access"
+facility_layer: "access"
 
 # Exclude modules which are specified in file 
 # "modules_by_facility.yaml" for specific 
 # "facility-layer" you do not want to be used
-excluded-modules:
+exclude_modules:
   - "dot1x.py"
 
 # Include modules which are not 
 # part of  specific "facility-layer"
 # in file "modules_by_facility.yaml" 
 # and you want to use them.
-include-modules: 
+include_modules: 
   - "cdp.py"
   - "portsec-max-mac.py"
 
@@ -52,17 +52,37 @@ include-modules:
 # are assigned automatically according to config 
 # and more than one type can be assigned to port
 # Roles: [access, trunk, wan, toinet, access-datacenter,
-# wlan, to_distribution_layer, to_core_layer, unused, none]   
+# wlan, to_distribution_layer, to_core_layer, unused, none]
+# Roles: [access, trunk, uplink, access-datacenter,
+# wlan, shutdown, noip, unused, subinterface, portchannel, none, svi]   
+#downlink -passive interface ? 
 interfaces:
-  - FastEthernet 0/1: "access"
-  - FastEthernet 0/2: "access-datacenter"
-  - FastEthernet 0/3: "access"
-  - FastEthernet 0/4: 
+  - FastEthernet0/1: 
+    - "access"
+  - FastEthernet0/2: 
+    - "access-datacenter"
+  - FastEthernet0/3: 
+    - "access"
+  - FastEthernet0/4: 
     - "trunk"
-    - "to-core-layer"
+    - "uplink"
+  - FastEthernet0/5: 
+    - "shutdown"
+    - "port-channel 1"
+  - FastEthernet0/4: 
+    - "noip"
+    - "shutdown"
+  - FastEthernet0/4.10:
+    - "subinterface"
+
+routing_protocols:
+  - "rip"
+  - "ospf"
+  - "eigrp"
+  - "bgp"
 
 # SHA1 hash of input configuration of device
-input-config-hash: "12975910C3E6352B5B2BDEE81FA2FC4653A5BD59"
+input_config_hash: "12975910C3E6352B5B2BDEE81FA2FC4653A5BD59"
 
 # SHA1 hash of current fix configuration 
-fix-hash: "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8"
+fix_hash: "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8"

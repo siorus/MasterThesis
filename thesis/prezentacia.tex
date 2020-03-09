@@ -50,6 +50,21 @@
 \usepackage{booktabs} % Balíček, který umožňuje v tabulce používat
                       % příkazy \toprule, \midrule, \bottomrule
 
+\usepackage{float}
+\usepackage{csvsimple}
+\usepackage{longtable,array,ragged2e}
+\usepackage{caption}
+\newcommand*{\headentry}[2]{\multicolumn{1}{#1}{\centering\arraybackslash\bfseries #2}}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{changepage}
+\usepackage{multirow}
+\usepackage{hhline}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%      Definice informací o dokumentu             %%%%%%%%%%
@@ -95,102 +110,143 @@
 % 1.snimek s cili (zadanim) prace
 \begin{frame} 
 	% nadpis snímku
-	\frametitle{Cíle práce}
+	\frametitle{Ciele semestrálne práce}
 	\begin{itemize}
-			\item Nastudovat
-			\item Popsat
-				\begin{itemize}
-					\item nastudované
-				\end{itemize}
-			\item Implementovat
-				\begin{itemize}
-					\item nastudované
-					\item nové
-				\end{itemize}
-			\item Porovnat a vyhodnotit
-				\begin{itemize}
-						\item výsledky
-				\end{itemize}
+			\vspace{1em}
+			\item Zoznámenie s problematikou sieťových zariadení, spôsobom ich konfigurácie.\vspace{1em}
+			\item Preštudovať problematiku osvedčených postupov konfigurácií s ohľadom na bezpečnosť fungovania zariadení v sieti.\vspace{1em}
+			\item Vybrať vhodné programovacie prostredie.\vspace{1em}
+			\item Vypracovať teoretickú časť.\vspace{1em}
+			\item Navrhnúť a popísať štruktúru aplikácie a základný popis komponentov s predpokladanou funkcionalitou.\vspace{1em}
+			\item Vlastné riešenie komponentov mierne rozpracovať.
+
 	\end{itemize}
+
+
+%Navrhněte systém či aplikaci, která bude umět pro vybranou množinu síťových zařízení vytvářet přednastavené parametry nastavení, které bude možné na dané síťové zařízení aplikovat. Dále musí daná aplikace umět verifikovat správnost existujících konfigurací, upozornit na případné nedostatky a i konfiguraci modifikovat tak, aby splňovala hlavní bezpečnostní a provozní standardy a doporučení. Fungování aplikace ověřte na testovacích vzorcích síťových konfigurací různých zařízení z několika různých sítí a případně i různých výrobců.
+
+
+
 \end{frame}
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Klíčové nástroje}
-
-	% prostředí alertblok, které slouží pro zdůraznění informace
-	\begin{alertblock}{Pro práci je klíčový Eulerův vzorec}
-		$$\eul^{\jmag x}=\cos x + \jmag\sin x$$
-	\end{alertblock}
-
-	\vspace{4ex}
-	Eulerova identita je speciálním případem tohoto vzorce, jestliže dosadíme $x=\uppi$:
-
-	% prostředí block, které slouží jako informativní
-	\begin{block}{Eulerova identita}
-		$$\eul^{\jmag \uppi}=\cos \uppi + \jmag\sin \uppi,$$\\
-		odkud vyplývá
-		$$\eul^{\jmag \uppi}+1=0.$$
-	\end{block}
+	\frametitle{Úvod do problematiky}
+	\begin{itemize}
+		\vspace{1em}
+		\item Prístup pri ktorom sieťové zariadenia musia plniť v prvom rade základnú funkcionalitu, bezpečnosť a osvedčená konfigurácia druhoradá.
+		
+		\item Domnienka všetko funguje, konfigurácia robí čo má.
+		
+		\item Potreba nastaviť zrkadlo\,--\,audit, súlad s osvedčenými postupmi.
+		
+		\item Skontrolovať všetko\,--\,manuálne nemožné, reprezentatívna vzorka nedostatočná.
+		
+		\item Zjednanie nápravy pri nájdení nedostatkov\,--\,automaticky/semiautomaticky.
+		
+		\item Povedomie o verziách sieťových operačných systémov v topológii a ich chybách (bezpečnostných).
+	\end{itemize}
+	
 \end{frame} 
 
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Plošný spoj}
-	
-	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
-		\begin{column}{0.4\textwidth}		% první sloupec
-			Obrázek znázorňuje model:\\[2ex]
-			%
-			\begin{itemize}
-				\item Deska
-				\item Součástky
-				\item Signály
-				\item Napájení
-			\end{itemize}
-		\end{column}
-		%
-		\begin{column}{0.6\textwidth}		% druhý sloupec
-			\begin{figure}%	
-				\centering
-				\vspace{1cm}	              % horizontální mezera
-				\includegraphics[width=0.8\columnwidth]{obrazky/soucastky}
-				%lze vlozit popisek, ale povetsinou je to v prezentaci zbytecne
-				%\caption{Popisek obrázku}%
-				%\label{obr:ukazka}
-			\end{figure}
-		\end{column}
-	\end{columns}											% ukončení prostředí sloupce
-\end{frame}
+	\frametitle{Zoznam odporúčaní}
+		\begin{itemize}
+				\item 120 odporúčaní
+				\item Zdroj viacero benchmarkov, odporúčaní a štandardov.
+				\item Rozšírenie o severity (Critical, High, Medium, Low, Notice).
+				\item Rozšírenie o facility layer\,--\,rozšírený hierarchický model.
+				\item Vytvorené mapovanie na zariadenia Cisco.
+		\end{itemize}
 
+	\begin{table}
+	\scriptsize
+		\begin{tabular}[!htbp]{|L{11em}L{10em}C{3.1em}C{3.3em}C{13em}|}
+		
+		\hline	
+			
+		Útok / Problém	&Mitigácia / Nastavenie	&Plane	&Severity	&Facility layer\\ \hhline{=====} 
 
-%%%%%%%%%%%%%
-\begin{frame} 
-	\frametitle{Výsledky}
-	\vspace{1cm}
-	\begin{table}[]
-		\centering
-		\caption{Výsledky měření mobilních sítí}
-		\label{tab:tabulka}
-			\begin{tabular}{lcc}
-				\toprule
-					Technologie  & Rychlost stahování [kB/s] & Rychlost nahrávání [kB/s] \\
-				\midrule
-					GPRS (2,5G)	& 7,2 	& 3,6\\
-					UMTS 3G     & 48 		& 48\\
-					HSPA (3,5G)	&	1\,706	&	720\\
-					LTE (4G) 		& 40\,750 & 10\,750\\
-				\bottomrule                                       
-			\end{tabular}
+			
+		Pripojenie prepínaču na koncový prístupový port & BPDU protection (BPDU guard)&Control	&Critical	&Distribution
+		
+		Collapsed Distribution Access
+		
+		Access \\ \hline
+		\end{tabular}
 	\end{table}
 \end{frame}
 
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Závěr}
-	\dots
+	\frametitle{Vlastnosti a rozdiel oproti existujúcim riešeniam}
+	
+	\begin{itemize}
+		\item Modularita
+		%každé overenie a náprava bude v~zvlášť súbore prihliadajúc na výrobcu a operačný systém pre ktoré je určené.
+		\vspace{0.5em}
+		\item Prispôsobenie na ďalších výrobcov
+		%definovanie API pre moduly na budúcu podporu pre zariadenia od viacerých výrobcov a ich operačných systémov.
+		\vspace{0.5em}
+		\item Zjednanie nápravy
+		%pri nájdení nedostatku vygenerovanie opravného nastavenia.
+		\vspace{0.5em}
+		\item Podpora IPv6
+		%detekcia zlého alebo chýbajúceho nastavenia a následná náprava pre protokol IPv6.
+		\vspace{0.5em}
+		\item Hierarchický model
+		%skenovanie nedostatkov typických pre jednotlivé vrstvy, v~ktorých sa zariadenia nachádzajú a tým zníženie falošne pozitívnych varovaní.
+		\vspace{0.5em}
+		\item Definovanie závažnosti
+		%každý nájdený nedostatok je hodnotený na 4 stupňovej škále.
+		\vspace{0.5em}
+		\item Personalizácia
+		%definovanie modulov, ktoré sa spustia pre jednotlivé vrstvy, zmena závažnosti nájdených nedostatkov v~konfiguračných súboroch.
+		\vspace{0.5em}
+		\item Zoznam útokov a problémov aktuálne bežiacej verzie operačného systému.
+		\vspace{0.5em}
+		\item Vygenerovanie správy s~nedostatkami.
+	\end{itemize}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%
+\begin{frame} 
+\frametitle{Programovacie prostredie}
+	\begin{itemize}
+		\vspace{2em}
+		\item Python \vspace{2em}
+		\item YAML \vspace{2em}
+		\item Regex
+	\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Záver}
+	
+	\begin{itemize}
+		\item Dosiahnuté ciele	
+			\begin{itemize}
+				\item Naštudovaná problematika a spracovaná teória.
+				\item Vytvorený zoznam odporúčaní a namapovanie príkazov pre zariadenia Cisco.
+				\item Vybrané programovacie prostredie.
+				\item Vytvorený návrh.
+				\item Vytvorené konfiguračné súbory YAML.
+			\end{itemize}
+		\item Budúce smerovanie
+			\begin{itemize}
+				\item Naprogramovanie modulov a aplikácie.
+				\item Otestovanie na konfiguráciách z virtuálnych zariadení (GNS3) a na zariadeniach z reálnej prevádzky.
+				\item Vytvorenie dokumentácie a definovanie API pre moduly.
+			\end{itemize}
+	\end{itemize}
+
 \end{frame}
 
 
@@ -199,16 +255,8 @@
 % bez nadpisu snimku
 	\frametitle{\mbox{ }}
 	\begin{center}
-		{\Huge Děkuji za pozornost!}
+		{\Huge Ďakujem za pozornosť!}
 	\end{center}
 \end{frame}
-
-% otázky oponenta
-\frame{
-\frametitle{Otázky oponenta}
-	\emph{Jaká je souvislost Vašeho vzorce (1.2) s~Maxwellovými rovnicemi v~integrálním tvaru?}\\[2ex]
-	%
-	Již staří Římané\,\dots
-}
 
 \end{document}

@@ -28,7 +28,7 @@ run-if-error-returned:
 
 # Run only when module(s) below have not find an error
 # means configuration which module(s) looking for is present
-run-if-error-returned: 
+run-if-not-error-returned: 
   - "none"
 
 # Variables needed for generating configuration fix
