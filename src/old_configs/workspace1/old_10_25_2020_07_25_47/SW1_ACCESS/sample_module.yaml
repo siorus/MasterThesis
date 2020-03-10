@@ -1,0 +1,178 @@
+---
+# Module name, it will be seen in report output
+name: "CDP disabled"
+
+# Instance name or identifier, e.g. OSPF processes are used
+instance-name: ""
+
+# Type of configuration command
+# Types: [o, i, m, b]
+# o - one time in config e.g. "ip ssh version 2"
+# i - applied on interface (onetime/manytime) e.g. portsecurity, ACL
+# m - multiple time e.g. password for telnet, password for eigrp processes
+# b - both interface and general e.g. CDP, root guard
+type: "b"
+
+# Type of device
+# Types: [r(router), l3sw(L3 switch), l2sw(L2 switch), all]
+default-facility: "all"
+
+# Type of layer where facility is installed
+# Types: [core/edge, distribution, access, collapsed all, collapsed distribution access, collapsed core distribution, all]
+default-facility-layer: "all"
+
+# Run only when module(s) below have found an error
+# means security problem or missing configuration
+run-if-error-returned: 
+  - "none"
+
+# Run only when module(s) below have not find an error
+# means configuration which module(s) looking for is present
+run-if-not-error-returned: 
+  - "none"
+
+# Variables needed for generating configuration fix
+# e.g. - snmp-user: "administrator1"
+instance-public-vars:
+  - "none"
+
+# Variable that holds secret until configuration fix is generated
+# after that it is cleared due to security
+# e.g. - password: "" 
+instance-secret-vars:
+  - "none"
+
+#--------------------------------------------------------------
+# GENERAL CMD CONFIG
+#--------------------------------------------------------------
+name-cmd-general: "CDP Globally DISABLED"
+
+# Severity which defines importance of found problem 
+# Types: [critical, high, medium, low, notice]
+default-cmd-general-severity: "critical"
+
+# Severity which defines importance of found problem 
+# Types: [critical, high, medium, low, notice]
+# Default: none
+user-cmd-general-severity: "none"
+
+#Regex to match and find occurrence
+regex-cmd-general: "no cdp run"
+
+# Specifies whether module should look for regex occurrence
+# or non-occurrence match
+# Types:
+# occurrence - set when regex occurrence in variable "regex-cmd-general" signalize no issue
+# nonoccurrence - set when regex non-occurrence in variable "regex-cmd-general" signalize no issue
+regex-cmd-general-occurrence: "occurrence"
+
+# Boolean variable to store whether regex matches or not 
+regex-cmd-general-match-status: "False"
+
+# Command to resolve problem
+# String when one line command, for multiple command setup a list
+fix-cmd-general: "no cdp run"
+
+# Notice seen in report when fix will be applied
+# e.g. notice about something can stop working after applying fix
+fix-cmd-general-notice: "Fix may cause CISCO IP telephony malfunction"
+
+# Boolean which indicates whether a fix will be ignored or applied
+fix-cmd-general-ignore: "True"
+
+# Comment to specify reason why command for fix is ignored,
+# reason or comment about accepting the risk
+fix-cmd-general-ignore-comment: "Enabled due to CISCO IP Telephony"
+
+# Boolean which indicates finding an issue is false positive
+fix-cmd-general-false-positive: "False"
+
+# Comment to specify reason why is finding marked as false positive
+fix-cmd-general-false-positive-comment: "none"
+
+
+#--------------------------------------------------------------
+# INTERFACE CMD CONFIG
+#--------------------------------------------------------------
+name-cmd-affected-ports: "CDP on interface DISABLED"
+
+# Severity which defines importance of found problem on affected interface
+# Types: [critical, high, medium, low, notice]
+default-cmd-affected-ports-severity: "critical"
+
+# Severity which defines importance of found problem on affected interface
+# Types: [critical, high, medium, low, notice]
+# Default: none
+user-cmd-affected-ports-severity: "none"
+
+#Regex to match and find occurrence
+regex-cmd-affected-ports: "no cdp enable"
+
+# Specifies whether module should look for regex occurrence
+# or non-occurrence match
+# Types:
+# occurrence - set when regex occurrence in variable "regex-cmd-general" signalize no issue
+# nonoccurrence - set when regex non-occurrence in variable "regex-cmd-general" signalize no issue
+regex-cmd-affected-ports-occurrence: "occurrence"
+
+# Boolean variable to store whether regex matches or not on interfaces 
+regex-cmd-affected-ports-match-status: "False"
+
+# List of ports where issue is found when variable "type" is "i" or "b"
+affected-ports:
+  - FastEthernet 0/1
+  - FastEthernet 0/2
+
+# Command to resolve problem on interfaces
+# String when one line command, for multiple command setup a list
+fix-cmd-affected-ports: "no cdp enable"
+
+# Notice seen in report when fix will be applied on affected interface
+# e.g. notice about something can stop working after applying fix
+fix-cmd-affected-ports-notice: "Fix may cause CISCO IP telephony malfunction"
+
+# Boolean which indicates whether a fix will be ignored or applied
+fix-cmd-affected-ports-ignore: "True"
+
+# Comment to specify reason why command for fix is ignored
+fix-cmd-affected-ports-ignore-comment: "Enabled due to CISCO IP Telephony"
+
+# Boolean which indicates finding an issue is false positive
+fix-cmd-affected-ports-false-positive: "False"
+
+# Comment to specify reason why is finding marked as false positive
+fix-cmd-affected-ports-positive-comment: "none"
+
+
+#--------------------------------------------------------------
+# INTERFACE CMD IGNORE CONFIG
+#--------------------------------------------------------------
+
+name-cmd-explicit-ignored-ports: "CDP running on interfaces IGNORED"
+
+# Severity which defines importance of found problem on affected interface
+# Types: [critical, high, medium, low, notice]
+default-cmd-explicit-ignored-ports-severity: "critical"
+
+# Severity which defines importance of found problem on affected interface
+# Types: [critical, high, medium, low, notice]
+# Default: none
+user-cmd-explicit-ignored-ports-severity: "none"
+
+# List of ports which should be ignored when "type" is "i" or "b"
+explicit-ignored-ports:
+  - FastEthernet 0/3
+  - FastEthernet 0/4
+
+# Command to resolve problem on interfaces which are ignored
+# Can be blank when you want just ignore ports, some commands
+# like CDP can have on ignored ports command "cdp enable" when
+# globally is disabled
+fix-cmd-explicit-ignored-ports: "cdp enable"
+
+# Notice seen in report when fix will be applied on ignored interface
+# e.g. notice about something can stop working after applying fix
+fix-cmd-explicit-ignored-ports-notice: "Enabling CDP on interface(s) can lead to serious attacks"
+
+# Comment to specify reason why ignore command is applied
+fix-cmd-explicit-ignored-ports-comment: "Enabled due to CISCO IP Telephony"
