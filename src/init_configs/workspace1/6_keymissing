@@ -1,0 +1,428 @@
+
+!
+version 15.5
+no service pad
+service tcp-keepalives-in
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname IOU1-6-keymissing
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+aaa new-model
+!
+!
+aaa group server tacacs+ MYTACACS
+ server-private 192.168.3.4
+!
+aaa authentication attempts login 4
+aaa accounting exec default
+ action-type start-stop
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+process cpu threshold type total rising 80 interval 10 falling 10 interval 10
+process cpu statistics limit entry-percentage 50
+clock timezone CET 1 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+no ip source-route
+no ip icmp rate-limit unreachable
+ip options drop
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip domain name ccna.com
+ip cef
+login block-for 65 attempts 3 within 4
+login quiet-mode access-class 1
+login on-failure log
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+cts logging verbose
+!
+!
+archive
+ path unix:
+memory reserve critical 4096
+memory free low-watermark processor 1000
+secure boot-config
+!
+redundancy
+!
+!
+ip tcp synwait-time 5
+! 
+!
+!
+!
+!
+!
+crypto ipsec transform-set HQVPN esp-aes esp-sha512-hmac 
+ mode tunnel
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ no ip address
+!
+interface Loopback1
+ no ip address
+!
+interface Loopback2
+ no ip address
+!
+interface Tunnel0
+ ip address 10.0.0.1 255.255.0.0
+!
+interface Ethernet0/0
+ ip address 192.168.20.3 255.255.255.0
+!
+interface Ethernet0/1
+ no ip address
+ ip mask-reply
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip ospf authentication-key 7 15262E3F30191F16
+ shutdown
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+interface Ethernet1/0
+ no ip address
+ shutdown
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+!
+interface Serial2/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial2/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial2/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial2/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+!
+router eigrp 1
+ no eigrp log-neighbor-changes
+!
+!
+router eigrp 5
+!
+router ospfv3 20
+ !
+ address-family ipv4 unicast
+ exit-address-family
+!
+router ospf 1
+!
+router ospf 2
+ router-id 2.2.2.2
+ max-lsa 4
+ redistribute static subnets
+!
+router ospf 8
+!
+router ospf 9
+!
+router rip
+ network 192.168.1.0
+!
+router bgp 223
+ no bgp log-neighbor-changes
+ neighbor 192.168.254.1 remote-as 33
+ neighbor 192.168.254.1 ebgp-multihop 2
+!
+ip forward-protocol nd
+!
+ip flow-export destination 192.168.254.1 1
+ip flow-export destination 192.168.254.1 2
+!
+no ip http server
+no ip http secure-server
+ip tacacs source-interface Loopback1
+!
+ip access-list standard ALC_STAN
+ deny   192.168.254.1
+ip access-list standard RFC1918STANDARD
+!
+ip access-list extended ACL_EXT
+ remark deny all node ipv4 address
+ deny   icmp any host 224.0.0.1 echo log-input
+ip access-list extended RFC1918
+ deny   ip any 172.16.0.0 0.15.255.255
+ deny   ip host 0.0.0.0 any
+ deny   ip 127.0.0.0 0.255.255.255 any
+ deny   ip 192.0.2.0 0.0.0.255 any
+ deny   ip 224.0.0.0 31.255.255.255 any
+ deny   ip 10.0.0.0 0.255.255.255 any
+ deny   ip 172.16.0.0 0.15.255.255 any
+ deny   ip 192.168.0.0 0.0.255.255 any
+!
+ip radius source-interface Loopback0 
+logging source-interface Loopback1
+logging host 192.168.254.1
+logging host 192.168.254.2
+ipv6 router eigrp 1
+!
+ipv6 router ospf 1
+ router-id 1.1.1.1
+ max-lsa 5
+ redistribute static
+!
+!
+snmp-server group USER1 v3 priv 
+snmp-server community COMMUNITY_STR RO
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps vrrp
+snmp-server enable traps flowmon
+snmp-server enable traps ds1
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps xgcp
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps ethernet evc status create delete
+snmp-server enable traps diameter
+snmp-server enable traps auth-framework sec-violation auth-fail
+snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
+snmp-server enable traps aaa_server
+snmp-server enable traps atm subif
+snmp-server enable traps bfd
+snmp-server enable traps bgp cbgp2
+snmp-server enable traps bstun
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps cnpd
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dial
+snmp-server enable traps dlsw
+snmp-server enable traps dsp card-status
+snmp-server enable traps dsp oper-state
+snmp-server enable traps dsp video-usage
+snmp-server enable traps dsp video-out-of-resource
+snmp-server enable traps entity-ext
+snmp-server enable traps entity
+snmp-server enable traps fru-ctrl
+snmp-server enable traps resource-policy
+snmp-server enable traps frame-relay multilink bundle-mismatch
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps ipmobile
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps mempool
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls fast-reroute protected
+snmp-server enable traps mpls rfc ldp
+snmp-server enable traps mpls ldp
+snmp-server enable traps msdp
+snmp-server enable traps mvpn
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps pppoe
+snmp-server enable traps cpu threshold
+snmp-server enable traps nhrp nhs
+snmp-server enable traps nhrp nhc
+snmp-server enable traps nhrp nhp
+snmp-server enable traps nhrp quota-exceeded
+snmp-server enable traps rsvp
+snmp-server enable traps ipsla
+snmp-server enable traps stun
+snmp-server enable traps l2tun session
+snmp-server enable traps l2tun pseudowire status
+snmp-server enable traps pw vc
+snmp-server enable traps waas 
+snmp-server enable traps event-manager
+snmp-server enable traps firewall serverstatus
+snmp-server enable traps ospfv3 state-change
+snmp-server enable traps ospfv3 errors
+snmp-server enable traps pki
+snmp-server enable traps gdoi gm-start-registration
+snmp-server enable traps gdoi gm-registration-complete
+snmp-server enable traps gdoi gm-re-register
+snmp-server enable traps gdoi gm-rekey-rcvd
+snmp-server enable traps gdoi gm-rekey-fail
+snmp-server enable traps gdoi ks-rekey-pushed
+snmp-server enable traps gdoi gm-incomplete-cfg
+snmp-server enable traps gdoi ks-no-rsa-keys
+snmp-server enable traps gdoi ks-new-registration
+snmp-server enable traps gdoi ks-reg-complete
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps ethernet cfm alarm
+snmp-server enable traps ccme
+snmp-server enable traps srst
+snmp-server enable traps rf
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps mpls vpn
+snmp-server enable traps voice
+snmp-server enable traps dnis
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server host 192.168.254.1 version 3 priv USER1 
+!
+access-list 102 deny   ip host 0.0.0.0 any
+access-list 102 deny   ip 10.0.0.0 0.255.255.255 any
+access-list 102 deny   ip 172.16.0.0 0.15.255.255 any
+access-list 102 deny   ip 192.168.0.0 0.0.255.255 any
+access-list 102 remark AAAA
+!
+!
+radius server NEW_SERVER
+!
+!
+ipv6 access-list IPV6_HEADERS
+ deny ipv6 any any log-input undetermined-transport
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+configuration mode exclusive
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ exec-timeout 5 0
+ transport input none
+ transport output none
+!
+ntp authentication-key 1 md5 052A27 7
+ntp trusted-key 1
+ntp source Loopback1
+ntp server 192.168.25.1 key 4 source Loopback1
+ntp server 192.168.2.1
+ntp server 192.168.25.2 key 4 source Loopback2
+ntp server 192.168.2.2
+!
+end
