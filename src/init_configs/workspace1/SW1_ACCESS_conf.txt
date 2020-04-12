@@ -119,10 +119,6 @@ interface Ethernet0/3
  ip dhcp snooping trust
 !
 interface Ethernet1/0
- switchport access vlan 256
- switchport mode access
- shutdown
- spanning-tree portfast edge
 !
 interface Ethernet1/1
  switchport access vlan 256
