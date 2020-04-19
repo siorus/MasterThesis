@@ -73,6 +73,8 @@ fix_cmd_false_positive_comment: "" # Comment to specify reason why is finding ma
 
 affected_ports: [] # List of ports where issue is found when variable "type" is "i"
 
+affected_context: [] # List of contexts where issue is found when variable "type" is "c", e.g. context "router eigrp 1", "router eigrp 2",...
+
 explicit_ignored_ports: [] # List of ports which should be ignored. Can be overwritten to exclude interfaces from check.
 
 explicit_ignored_ports_comment: "" # Comment to specify reason why ignore command is applied.

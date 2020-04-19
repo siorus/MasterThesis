@@ -100,6 +100,7 @@ Premenné a ich význam:
 	\item \texttt{fix\_cmd\_false\_positive}\,--\,administrátor môže zadať \texttt{true} pokiaľ je nález falošne pozitívny.
 	\item \texttt{fix\_cmd\_false\_positive\_comment}\,--\,komentár a zdôvodnenie, prečo ide o falošne pozitívny nález.
 	\item \texttt{affected\_ports}\,--\,výpis rozhraní, ktoré absentujú dané nastavenie.
+	\item \texttt{affected\_context}\,--\,výpis kontextov, ktoré absentujú dané nastavenie. Táto premenná je programom vyplnená iba ak \texttt{type: ``c``}.
 	\item \texttt{explicit\_ignored\_ports}\,--\,výpis rozhraní, ktoré sú explicitne vylúčené z analýzy.
 	\item \texttt{explicit\_ignored\_ports\_comment}\,--\,komentár a zdôvodnenie, prečo boli rozhrania vylúčené.
 \end{itemize}
@@ -159,6 +160,7 @@ fix_cmd_ignore_comment: ""
 fix_cmd_false_positive: "false"
 fix_cmd_false_positive_comment: "" 
 affected_ports: []
+affected_context: []
 explicit_ignored_ports: []
 explicit_ignored_ports_comment: "" 
 \end{lstlisting}

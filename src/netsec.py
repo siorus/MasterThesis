@@ -722,6 +722,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
           if (yaml_module_file.eliminate_all_matched):
             yaml_module_file.fix_to_apply = yaml_module_file.fix_to_apply+context_header+"\n"+yaml_module_file.eliminate_prefix+" "+((matched.group(0)).lstrip()).rstrip() + "\n"
             #print("FIX_TO_APPLY: "+str(yaml_module_file.fix_to_apply)) #DEBUG
+            yaml_module_file.affected_context.append(context_header)
             yaml_module_file.matched_values.append(context_header+"\n"+matched.group(0)) # TODO pri argumente ignore, treba dat prazdny retazec
             fill_variables_context_yaml(yaml_module_file,context)
             fill_variables_group_yaml(yaml_module_file,matched,workspace_path,device_folder,regex_cmd_matched_pos) #Not save every matched, only the last one
@@ -740,6 +741,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
         elif ((not matched) and (yaml_module_file.regex_cmd_occurrence == "occurrence") and ((regex_cmd_len-1) == regex_cmd_matched_pos)):
           #print("CONTEXT NOT CONTAINING CMD: " + str(regex_cmd)) #DEBUG
           yaml_module_file.cmd_match_status = "error"
+          yaml_module_file.affected_context.append(context_header)
           fill_variables_context_yaml(yaml_module_file,context)
           if (fill_variables_group_yaml_err(yaml_module_file,workspace_path,device_folder,regex_cmd_matched_pos,pub_var_dict)):
             return #return because unable to fill required public_variables
@@ -834,10 +836,10 @@ def audit_check(args):
 
 def generate_more_info_report(yaml_file):
   if (yaml_file['regex_cmd_occurrence'] == "occurrence"):
-    more_info_list = ["Comment: ","Right configuration setting found in: ","Found ports with error: ","Generated fix: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: ","Cannot determine search/fix comment: "]
+    more_info_list = ["Comment: ","Right configuration setting found in: ","Found port(s) with error: ","Found error in context(s): ","Generated fix: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: ","Cannot determine search/fix comment: "]
   elif (yaml_file['regex_cmd_occurrence'] == "non-occurrence"):
-    more_info_list = ["Comment: ","Error configuration setting found in: ","Found ports with error: ","Generated fix: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: ","Cannot determine search/fix comment: "]
-  vars_to_print = [yaml_file['general_comment'],yaml_file['matched_values'],yaml_file['affected_ports'],yaml_file['fix_to_apply'],yaml_file['fix_cmd_notice'],yaml_file['fix_cmd_ignore_comment'],yaml_file['fix_cmd_false_positive_comment'],yaml_file['cannot_determine_search_or_fix_comment']]
+    more_info_list = ["Comment: ","Error configuration setting found in: ","Found ports with error: ","Found error in context(s): ","Generated fix: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: ","Cannot determine search/fix comment: "]
+  vars_to_print = [yaml_file['general_comment'],yaml_file['matched_values'],yaml_file['affected_ports'],yaml_file['affected_context'],yaml_file['fix_to_apply'],yaml_file['fix_cmd_notice'],yaml_file['fix_cmd_ignore_comment'],yaml_file['fix_cmd_false_positive_comment'],yaml_file['cannot_determine_search_or_fix_comment']]
   i = 0
   final_html = ""       
   for var in vars_to_print:
@@ -846,9 +848,9 @@ def generate_more_info_report(yaml_file):
     else:
       if (isinstance(var,str)):
         var = var.replace('\n', "<br/>")
-        final_html = final_html + "<tr><td><br/>"+more_info_list[i]+"<br/>"+var+"</td>\n</tr>\n"
+        final_html = final_html + "<tr><td><br/><b>"+more_info_list[i]+"</b><br/>"+var+"</td>\n</tr>\n"
       elif (isinstance(var,list)):
-        final_html = final_html + "<tr><td>"+more_info_list[i]+"<br/>"
+        final_html = final_html + "<tr><td><br/><b>"+more_info_list[i]+"</b><br/>"
         for lst_item in var:
           lst_item = lst_item.replace('\n', "<br/>")
           final_html = final_html + str(lst_item)+"<br/>"
@@ -893,22 +895,24 @@ def generate_report(args):
       l3_proto = ','.join(device_yaml_file.l3_protocols)
       final_html = final_html+"<tr><td type='device_first_column'>L3 protocols:</td><td>"+l3_proto+"</td></tr>\n"
       functions = ','.join(device_yaml_file.enabled_functions)
-      final_html = final_html+"<tr><td type='device_first_column'>Enabled functions:</td><td>"+functions+"</td></tr>\n"
+      if (functions != ""):
+        final_html = final_html+"<tr><td type='device_first_column'>Enabled functions:</td><td>"+functions+"</td></tr>\n"
       final_html = final_html+"<tr><td type='device_first_column'>Date:</td><td>"+current_time+"</td></tr>\n"
       html_end = open_file_to_read(getcwd()+"/report/report_end.html")
       
 
       name_of_area = ""
       first = True
+      seq = 1
       for yaml_module in yaml_in_dir:
         #print(yaml_module) #DEBUG
         yaml_file = read_from_yaml(workspace_path+"/"+device_folder+"/"+yaml_module)
-        seq = (re.search("(\d+)_(\d+).*",yaml_module).group(2)).lstrip("0")
+        #seq = (re.search("(\d+)_(\d+).*",yaml_module).group(2)).lstrip("0")
         if (name_of_area == yaml_file['name_of_area']):
           #if (yaml_file['cmd_match_status'] == "not run"):
           #  final_html = final_html + "<tr type='module_info_line'>\n<td type='no_col'>"+seq+"</td>\n"
           #else:
-          final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+seq+"</td>\n"
+          final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+str(seq)+"</td>\n"
           final_html = final_html + "<td type='name_col'>"+yaml_file['name_cmd_general']+"</td>\n"
           #if (yaml_file['regex_cmd_occurrence'] == 'occurrence'):
           #  final_html = final_html + "<td type='occur_col'>"+"Must present"+"</td>\n"
@@ -936,6 +940,7 @@ def generate_report(args):
           #print(yaml_file['name_cmd_general']) #DEBUG
           final_html = final_html + generate_more_info_report(yaml_file)
         else:
+          seq = 1
           if (not (first)):
             final_html = final_html + "</tbody></table>\n"
           else:
@@ -953,7 +958,7 @@ def generate_report(args):
           #if (yaml_file['cmd_match_status'] == "not run"):
           #  final_html = final_html + "<tr type='module_info_line'>\n<td type='no_col'>"+seq+"</td>\n"
           #else:
-          final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+seq+"</td>\n"
+          final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+str(seq)+"</td>\n"
           final_html = final_html + "<td type='name_col'>"+yaml_file['name_cmd_general']+"</td>\n"
           #if (yaml_file['regex_cmd_occurrence'] == 'occurence'):
           #  final_html = final_html + "<td type='occur_col'>"+"Must present"+"</td>\n"
@@ -981,7 +986,7 @@ def generate_report(args):
           #print(device_yaml_file.hostname) #DEBUG
           #print(yaml_file['name_cmd_general']) #DEBUG
           final_html = final_html + generate_more_info_report(yaml_file)
-          
+        seq = seq + 1  
 
 
       final_html = final_html + "</tbody></table>\n"

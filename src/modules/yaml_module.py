@@ -40,6 +40,7 @@ class yaml_module:
     self.fix_cmd_false_positive = ""
     self.fix_cmd_false_positive_comment = ""
     self.affected_ports = []
+    self.affected_context = []
     self.explicit_ignored_ports = []
     self.explicit_ignored_ports_comment = ""
 
@@ -67,38 +68,3 @@ class yaml_module:
     instance_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
     for attribute in instance_attributes:
       setattr(self,attribute,current_yaml_conf[attribute])
-    """
-    self.hostname = current_yaml_conf['hostname']
-    self.type = ""
-    self.check_if_l3_protocol = []]
-    self.check_if_function = []
-    self.run_after_module = ""
-    self.run_after_module_match_status = ""
-    self.applicable_to_interface_type = []
-    self.non_applicable_to_interface_type = []
-    self.cannot_determine_search_or_fix = ""
-    self.cannot_determine_search_or_fix_comment = ""
-    self.name_cmd_general = ""
-    self.name-of-area = ""
-    self.default_cmd_general_severity = ""
-    self.user_cmd_general_severity = ""
-    self.regex_cmd = []
-    self.regex_context = ""
-    self.regex_cmd_occurrence = ""
-    self.cmd_match_status = ""
-    self.mark_module_as = []
-    self.matched_values = []
-    self.public_vars = []
-    self.secret_vars = []
-    self.eliminate_all_matched = ""
-    self.fix_cmd = []
-    self.fix_to_apply = []
-    self.fix_cmd_notice = ""
-    self.fix_cmd_ignore = ""
-    self.fix_cmd_ignore_comment = ""
-    self.fix_cmd_false_positive = ""
-    self.fix_cmd_false_positive_comment = ""
-    self.affected_ports = []
-    self.explicit_ignored_ports = []
-    self.explicit-ignored-ports-comment = ""
-    """
