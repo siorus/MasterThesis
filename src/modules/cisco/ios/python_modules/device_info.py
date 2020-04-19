@@ -227,42 +227,11 @@ class device_info:
     instance_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
     for attribute in instance_attributes:
       current_yaml_conf[attribute] = getattr(self,attribute)
-    """  
-    current_yaml_conf['hostname'] = self.hostname
-    current_yaml_conf['config'] = self.config
-    current_yaml_conf['version'] = self.version
-    current_yaml_conf['l3_protocols'] = self.l3_protocols
-    current_yaml_conf['vendor'] = self.vendor
-    current_yaml_conf['os'] = self.os
-    current_yaml_conf['facility'] = self.facility
-    current_yaml_conf['facility_layer'] = self.facility_layer
-    current_yaml_conf['exclude_modules'] = self.exclude_modules
-    current_yaml_conf['include_modules'] = self.include_modules
-    current_yaml_conf['interfaces'] = self.interfaces
-    current_yaml_conf['enabled_functions'] = self.enabled_functions
-    current_yaml_conf['input_config_hash'] = self.input_config_hash
-    current_yaml_conf['fix_hash'] = self.fix_hash
-    """
+      
   def load_yaml_to_object(self,current_yaml_conf):
     instance_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
     for attribute in instance_attributes:
       setattr(self,attribute,current_yaml_conf[attribute])
-    """
-    self.hostname = current_yaml_conf['hostname']
-    self.config = current_yaml_conf['config']
-    self.version = current_yaml_conf['version']
-    self.l3_protocols = current_yaml_conf['l3_protocols']
-    self.vendor = current_yaml_conf['vendor']
-    self.os = current_yaml_conf['os']
-    self.facility = current_yaml_conf['facility']
-    self.facility_layer = current_yaml_conf['facility_layer']
-    self.exclude_modules = current_yaml_conf['exclude_modules']
-    self.include_modules = current_yaml_conf['include_modules']
-    self.interfaces = current_yaml_conf['interfaces']
-    self.enabled_functions = current_yaml_conf['enabled_functions']
-    self.input_config_hash = current_yaml_conf['input_config_hash']
-    self.fix_hash = current_yaml_conf['fix_hash']
-    """
 
 if __name__ == "__main__":
 

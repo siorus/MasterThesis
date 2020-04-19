@@ -1,5 +1,297 @@
+
+\iffalse
+%\chapter{YAML súbor popisujúci modul}
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfiguračný súbor \texttt{01\_02\_aaa\_server.yaml}, ktorý popisuje základné informácie o~jednom konkrétnom zariadení},label=yaml:module,basicstyle=\ttfamily\small,rulecolor=\color{black}, keywordstyle=\color{black},language=python,breaklines=true]
+---
+# Type of configuration command [o, i, m, c], o - one time 
+# in config e.g. "ip ssh version 2", i - applied on interface
+# (onetime/manytime) e.g. portsecurity, 
+# m - multiple time e.g. defined aaa servers, 
+# c - under subcontext e.g. password for eigrp processes.
+type: "m"
+
+# Type of facility on which module can be tested 
+# [r,l3sw,l2sw], empty means it does not matter
+facility_type: []
+
+# Run check only when specific L3 protocol is enabled
+# on device [ipv4, ipv6], empty means skip checking.
+check_if_l3_protocol: []
+
+# Run check only when specific function is enabled
+# on device e.g. eigrp, ospf, bgp,vrrp, etc.
+# empty means skip checking.
+check_if_function: []
+
+# Run this module only after specified module
+# had been run before.
+run_after_module: "01_01_aaa_new_model.yaml"
+
+# Run check only when module specified in variable 
+# run_after_module had status 
+# Successful/Error/Matched by equivalent stored 
+# in cmd_match_status. If None is specified, 
+# then stored value does not matter 
+# [successful, error, matched by equivalent, none].
+run_after_module_match_status: "none" 
+
+# Type of interface from device.yaml, module 
+# will be run only on interfaces with specified 
+# interface type, logical OR is used if more than
+# one type is defined. If at least one type is matched,
+# than looking for regex can be applied. When blank list
+# is defined, command must be set on every interface.
+applicable_to_interface_type: []
+
+# Type of interface from device.yaml, module will be run
+# only on interfaces non containing specified interface type,
+# logical OR is used if more than one type is defined. 
+# If at least one type is matched, than looking for regex
+# will not be applied. When blank list is defined,
+# interface type check is skipped.
+non_applicable_to_interface_type: [] 
+
+# True in case not enough information obtained 
+# e.g. no interface set as 'wan'
+cannot_determine_search_or_fix: "false" 
+
+# Information when previous variable is True
+cannot_determine_search_or_fix_comment: ""
+
+# True when "check_if_l3_protocol or "check_if_function" values 
+# not in specific device, e.g. when device has no eigrp 
+# configured, so module looking for eigrp authentication
+# will not be run.
+eliminated: "false" 
+
+# Name seen in report output.
+name_cmd_general: "AAA server set"
+
+# Area of cmd/check, it will be seen in report output.
+name_of_area: "Authentication, Authorization, Accounting"
+
+# Severity which defines importance of found problem 
+# [critical, high, medium, low, notice]
+default_cmd_general_severity: "high" 
+
+# Severity which defines importance of found problem 
+# specified by admin according to company's policy
+# [critical, high, medium, low, notice] Default: none
+user_cmd_general_severity: "none"
+
+# Regex to match and find occurrence, when more than one
+# specified, then it works like logical OR, looking for 
+# another in row when previous search is not successful.
+regex_cmd:
+- '^(radius|tacacs) server (.+)$(?:.*\r?\n(?!\!))+?^.*address ipv[46].+$(?:\r?\n^.*key.+$)?(?:.*\r?\n)*?(?=\!)'
+- '^.*(radius|tacacs)-server host .*$(\r?\n^.*(radius|tacacs)-server key.*$)?'
+- '^.*(radius-server|tacacs-server) host .* key.+$'
+
+# Regex under which previous variable "regex_cmd" is matched
+# and searched, subcontext, e.g. passive interface is under
+# command "router eigrp" or even under address families.
+regex_context: ""
+
+# Specifies whether module should look for regex occurrence
+# or non-occurrence match, "occurrence" - set when regex
+# occurrence in variable "regex_cmd" signalize no issue, 
+# "nonoccurrence" - set when regex non-occurrence 
+# in variable "regex_cmd" signalize no issue
+regex_cmd_occurrence: "occurrence"
+
+# Variable to store whether regex matches or not 
+# [successful, error, not run, matched by equivalent],
+# successful - security feature is configured as expected,
+# error - security feature is not configured as expected,
+# not run - this module has not been started yet,
+# matched by equivalent - equivalent module found 
+# wished setting.
+cmd_match_status: "not run"
+
+# General comment for any kind of output of module.
+general_comment: ""
+
+# After successful match of this module, another can be 
+# marked as successful or error and does not have to be 
+# checked or previous "cmd_match_status" can be overwritten.
+# Position in list corresponds with position of regex 
+# in "regex_cmd".
+mark_module_as:
+- NOMODULE: "none"
+- 01_03_aaa_group.yaml: "matched by equivalent"
+- 01_03_aaa_group.yaml: "matched by equivalent"
+
+# Saved matched strings from device running configuration.
+matched_values: []
+
+# Variables needed for generating configuration fix
+# e.g. - snmp_user: "administrator1".
+public_vars:
+- aaa_type: "group(1)"
+- aaa_server_name: "regex_cmd[0].group(2)"
+- aaa_ip: ""
+- aaa_key: ""
+
+# Variable that holds secret until configuration fix is 
+# generated after that it is cleared due to security 
+# e.g. password: "" .
+secret_vars: []
+
+# When True, all matches will get will get string prefix 
+# from "eliminate_prefix" to eliminate them [true, false].
+eliminate_all_matched: "false"
+
+# Prefix string for matched commands to eliminated matched 
+# strings.
+eliminate_prefix: ""
+
+# Command to resolve problem, you can use stored variables
+# with prefix $ or future variables which are now empty 
+# and will be matched by regex. For fix it is necessary 
+# to define same variable in own_variables.yaml.
+fix_cmd: 
+- '$aaa_type server $aaa_server_name'
+- 'address ipv4 $aaa_ip'
+- 'address ipv6 $aaa_ip'
+- 'key $aaa_key'
+
+# This is generated by program, string which will be 
+# appended to fix output document and apllied to device.
+fix_to_apply: "" 
+
+# Notice seen in report when fix will be applied 
+# e.g. notice about something can stop working 
+# after applying fix.
+fix_cmd_notice: ""
+
+# Boolean which indicates whether a fix will be ignored 
+# or applied [true, false].
+fix_cmd_ignore: "false"
+
+# Comment to specify reason why command for fix is ignored,
+# reason or comment about accepting the risk.
+fix_cmd_ignore_comment: ""
+
+# Boolean which indicates finding an issue is 
+# false positive [true, false].
+fix_cmd_false_positive: "false"
+
+# Comment to specify reason why is finding marked 
+# as false positive
+fix_cmd_false_positive_comment: "" 
+
+# List of ports where issue is found when variable 
+# "type" is "i"
+affected_ports: []
+
+# List of ports which should be ignored. Can be overwritten 
+# to exclude interfaces from check.
+explicit_ignored_ports: []
+
+# Comment to specify reason why ignore command is applied.
+explicit_ignored_ports_comment: "" 
+\end{lstlisting}
+\fi
+\iffalse
+%\chapter{YAML súbor popisujúci zariadenie}
+\begin{lstlisting}[frame=single,numbers=right,caption={Konfiguračný súbor \texttt{device\_info.yaml}, ktorý popisuje základné informácie o~jednom konkrétnom zariadení},label=yaml:device_info,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
+---
+# Hostname of device
+hostname: "SW1_ACCESS"
+
+# Path to configuration file of device
+config: "SW1_ACCESS_conf.txt" 
+
+# Version of running operating system
+version: "" 
+
+# L3 protocols which are used not only available but 
+# literally used and enabled
+l3_protocols:
+- "ipv4"
+- "ipv6"
+
+# Manufacturer of device. Same directory name has to be 
+# created inside directory "modules", where all modules
+# for this vendor are stored
+vendor: "cisco"
+
+# Operating system. Same directory name has to be created
+# inside directory "modules" and subdirectory specified
+# in variable "vendor" 
+os: "ios" 
+
+# Type of device [r(router), l3sw(L3 switch),
+# l2sw(L2 switch)]
+facility: "l3sw" 
+
+# Type of layer where facility is installed [core, 
+# distribution, access, collapsed all, 
+# collapsed core distribution, collapsed distribution access]
+facility_layer: "collapsed_distribution_access" 
+
+# Exclude modules which are specified in file
+# "modules_by_facility_layer.yaml" for specific 
+# "facility_layer" you do not want to be used
+exclude_modules: []
+
+# Include modules which are not part of specific
+# "facility_layer" in file "modules_by_facility_layer.yaml"
+# and you want to use them.
+include_modules: []
+
+# All available interfaces, roles of interfaces can be 
+# specified, roles such as "access" or "trunk" 
+# are assigned automatically according to config 
+# and more than one type can be assigned to port  
+# Roles: [access, trunk, uplink, downlink, access-datacenter,
+# wlan, shutdown, noip, unused, subinterface, portchannel, 
+# none, svi, passive-int, wan] 
+interfaces:
+Port-channel1:
+- "trunk"
+- "noip"
+- "port-channel"
+Ethernet0/0:
+- "trunk"
+- "noip"
+- "channel-group1"
+Ethernet0/1:
+- "trunk"
+- "noip"
+- "channel-group1"
+Ethernet1/0:
+- "noip"
+- "access"
+Ethernet1/1:
+- "access"
+- "shutdown"
+- "noip"
+Ethernet2/0:
+- "noshutdown"
+- "noip"
+Ethernet2/0.10:
+- "subinterface"
+Ethernet2/0.20:
+- "subinterface"
+
+
+# Enabled functions such as eigrp, ospf, bgp, vrrp, etc.
+enabled_functions:
+- "rip"
+- "eigrp"
+
+# SHA1 hash of input configuration of device
+input_config_hash: "2ad9b080449de7a86e88b56fb2993b7f3ba4308e"
+
+# SHA1 hash of current fix configuration 
+fix_hash: ""
+
+\end{lstlisting}
+\fi
+\iffalse
 \newgeometry{left=2.5cm,bottom=3.4cm, top=2.5cm}
-\chapter{Kontrolný zoznam odporúčaní pre zariadenia CISCO}
+%\chapter{Kontrolný zoznam odporúčaní pre zariadenia CISCO}
 \label{apendix:cisco_cmd}
 
 \scriptsize
@@ -1661,4 +1953,4 @@
 
 \restoregeometry
 \normalsize
-
+\fi

@@ -80,7 +80,7 @@ def parse_input_device_cfg(workspace_path,args):
 
   sys.stdout.write("["+" "*(num_of_configs)+"]  0%")
   sys.stdout.flush()
-
+  hostname_layer_map = {}
   for filename in listdir("init_configs/"+args.workspace):
     #pozlozka s versions
     if (isfile(getcwd()+"/init_configs/"+args.workspace+"/"+filename)):
@@ -90,8 +90,10 @@ def parse_input_device_cfg(workspace_path,args):
         data = file.read()
         device_yaml_file = device_info(filename)        
         device_yaml_file.fill_variables(data)
+        device_yaml_file.os = args.os
         if (args.facility_layer):
           device_yaml_file.facility_layers = args.facility_layer
+        hostname_layer_map[device_yaml_file.hostname] = device_yaml_file.facility_layer
         copy_and_create_dir(args,device_yaml_file.hostname,filename)
       current_yaml_conf = device_yaml_file.read_from_yaml(workspace_path+"/"+device_yaml_file.hostname)
       device_yaml_file.save_object_to_yaml(current_yaml_conf)
@@ -109,7 +111,15 @@ def parse_input_device_cfg(workspace_path,args):
     makedirs(getcwd()+"/device_configs/"+args.workspace+"/reports",0o755)
   else:
     makedirs(getcwd()+"/device_configs/"+args.workspace+"/reports",0o755)
-  sys.stdout.write("\b"*6+'] Done!\n') 
+  sys.stdout.write("\b"*6+'] Done!\n')
+  if (not args.facility_layer):
+    print("\nHostname"+42*" "+"Facility layer(Automatically set)")
+  else:
+    print("\nHostname"+42*" "+"Facility layer")
+  for hostname,layer in hostname_layer_map.items():
+    spaces = 50 - len(hostname)
+    print(str(hostname)+" "*spaces+str(layer))
+  print("\nTo edit facility layer go to " +workspace_path + " to corresponding folder named by hostname and change variable 'faciliy_layer' in device_info.yaml")
 
 def initial_analyze(args):
   check_analyze_arguments(getcwd(),args)
@@ -129,6 +139,32 @@ def initial_analyze(args):
       print("Error copying to folder 'old_configs'\n"+str(e),file=sys.stderr)
       exit(1)
   parse_input_device_cfg(workspace_path,args)
+
+def test_empty_own_vars(workspace_path):
+  first = True
+  was_empty = False
+  yaml_own_vars = read_from_yaml(workspace_path+"/own_variables.yaml")
+  for var in yaml_own_vars:
+    if (yaml_own_vars[var] == ""):
+      was_empty = True
+      if (first):
+        print("\nEmpty variables in "+str(workspace_path)+"/own_variables.yaml:\n")
+        first = False
+      print(var)
+  if (was_empty):
+    print("\nEmpty variables found in "+str(workspace_path)+"/own_variables.yaml!!\n")
+    while True:
+      answear = input("Would you like to continue and ignore empty variables which can lead to not fixing issues on device(s)? [Y|N] > ")
+      if ((answear == "Y") or (answear == "y")):
+        print("Ignoring empty variables!")
+        break
+      elif ((answear == "N") or (answear == "n")):
+        print("Exiting program due to missing filled variables in "+str(workspace_path)+"/own_variables.yaml")
+        exit(0)
+      else:
+        print("Given input was not recognised!")
+        continue
+  
 
 def read_from_yaml(path):
   try:
@@ -215,25 +251,32 @@ def eliminate_module(yaml_module_file,device_yaml_file,module_var,device_var):
         yaml_module_file.general_comment = "Skipped, required function "+list_item+" not configured on device. Everything is OK."
         return 1
 
+def eliminate_module_facility(yaml_module_file,device_yaml_file,module_var,device_var):
+  if (not(getattr(yaml_module_file,module_var) == [])):
+    if not (getattr(device_yaml_file,device_var) in getattr(yaml_module_file,module_var)):
+      yaml_module_file.eliminated = "true"
+      yaml_module_file.general_comment = "Skipped, device facility type must be "+str("/".join(getattr(yaml_module_file,module_var)).upper())+". Everything is OK."
+      return 1
+
 def eliminate_module_by_int(yaml_module_file,device_yaml_file,module_var):
-  #print(yaml_module_file.name_cmd_general) #DEBUG
+  print(yaml_module_file.name_cmd_general) #DEBUG
   if (not(getattr(yaml_module_file,module_var) == [])):
     desc_in_int = False
     for interface in device_yaml_file.interfaces:
         for list_item in getattr(yaml_module_file,module_var):
-          #print(list_item) #DEBUG
-          #print(device_yaml_file.interfaces[interface]) #DEBUG
+          print(list_item) #DEBUG
+          print(device_yaml_file.interfaces[interface]) #DEBUG
           if list_item in (device_yaml_file.interfaces[interface]):
             desc_in_int = True
         if desc_in_int:
           break
     if (not(desc_in_int)):
-      #print(yaml_module_file.name_cmd_general) #DEBUG
+      print(yaml_module_file.name_cmd_general) #DEBUG
       return 1
 
 def mark_module_as(yaml_module_file,regex_cmd_matched_pos,path,module):
   try:
-    #print(list(yaml_module_file.mark_module_as[regex_cmd_matched_pos].keys())[0]) #DEBUG
+    print(list(yaml_module_file.mark_module_as[regex_cmd_matched_pos].keys())[0]) #DEBUG
     if (str(list(yaml_module_file.mark_module_as[regex_cmd_matched_pos].keys())[0]) != "NOMODULE"): #Process only when yaml file specified
       marked_module_path = path+"/"+str(list(yaml_module_file.mark_module_as[regex_cmd_matched_pos].keys())[0])
       marked_module = read_from_yaml(marked_module_path)
@@ -254,6 +297,7 @@ def fill_variables_context_yaml(yaml_module_file,matched):
     var_pos = var_pos + 1
     
 def fill_variables_group_yaml(yaml_module_file,matched,workspace_path,device_folder,regex_cmd_matched_pos):
+  #print("Regex match pos: "+str(regex_cmd_matched_pos)) #DEBUG
   var_pos = 0
   for var in yaml_module_file.public_vars:
     num = re.search("^group\((\d+)\)$",list(var.values())[0],flags=re.MULTILINE) #Load variable from matched group, which "regex_cmd" was used to match, does not matter
@@ -350,11 +394,14 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
   applicable_to_interface_type
   non_applicable_to_interface_type
   """
-  
+  print("Module: "+str(module)) #DEBUG
+  #previous_module = None
   #Was marked by another module before
   if (yaml_module_file.cmd_match_status != "not run"):
     return
 
+  if (eliminate_module_facility(yaml_module_file,device_yaml_file,"facility_type","facility")):
+    return
   if (eliminate_module(yaml_module_file,device_yaml_file,"check_if_l3_protocol","l3_protocols")):
     return
   if (eliminate_module(yaml_module_file,device_yaml_file,"check_if_function","enabled_functions")):
@@ -362,10 +409,6 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
 
   if (yaml_module_file.run_after_module != ""): #Test if there is specified previous module which had must been run
     previous_module = read_from_yaml(workspace_path+"/"+device_folder+"/"+yaml_module_file.run_after_module)
-    #if ((previous_module["cmd_match_status"] != "False") and (previous_module["run_after_module_match_status"] == "none")): #Test if specified module had been run
-      #TODO VYPIS DO NEJAKE VAR KTORA ESTE NIE JE DEFINOVANA
-    #  print("Module "+module+" configured to run after "+previous_module+" but that module has not run yet, "+module" will not run",file=sys.stderr)
-    #  return
     if ((yaml_module_file.run_after_module_match_status == "none")):
       if (previous_module["cmd_match_status"] == "not run"):
         yaml_module_file.general_comment = "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run"
@@ -376,7 +419,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
         yaml_module_file.general_comment = "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run"
         print("Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run",file=sys.stderr)
         return
-
+        
   pub_var_dict = {} #For easier determining and reading public_vars
   if (yaml_module_file.type == "o"):
     regex_cmd_matched_pos = 0
@@ -508,6 +551,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
       
 
   elif (yaml_module_file.type == "i"):
+    print("IN I TYPE") #DEBUG
     matched_int_settings,interface_context,interface_name = device_yaml_file.list_interfaces(source_configuration)
     int_position = 0 #because withou it we would need nested loops below
     at_least_one_int = False
@@ -608,9 +652,13 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
       """
       
       int_position = int_position+1
-    if (not at_least_one_int):
-      yaml_module_file.cannot_determine_search_or_fix = "true"
-      yaml_module_file.cannot_determine_search_or_fix_comment = "There is no applicable interface type on this device to scan and apply fix to. Cannot meet requirements in 'applicable_to_interface_type' and 'non_applicable_to_interface_type'" 
+    if ((not at_least_one_int)):
+      if ((yaml_module_file.regex_cmd_occurrence == "occurrence")):
+        yaml_module_file.cmd_match_status = "error"
+        yaml_module_file.cannot_determine_search_or_fix = "true"
+        yaml_module_file.cannot_determine_search_or_fix_comment = "There is no applicable interface type on this device to scan and apply fix to. Cannot meet requirements in 'applicable_to_interface_type' and 'non_applicable_to_interface_type'" 
+      if ((yaml_module_file.regex_cmd_occurrence == "non-occurrence")):
+        yaml_module_file.cmd_match_status = "successful"
 
     """
     if (eliminate_module_by_int(yaml_module_file,device_yaml_file,"applicable_to_interface_type")):
@@ -710,7 +758,14 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
   else:
     print("Wrong module type in \""+str(yaml_module_file)+"\"",file=sys.stderr)
     exit(10)
-
+  """
+  if (previous_module != None):
+    if ((previous_module["cmd_match_status"] == "error") and (previous_module["fix_to_apply"] != "")):
+      #yaml_module_file.cmd_match_status = "matched by equivalent"
+      yaml_module_file.general_comment = "HERE"
+      yaml_module_file.fix_to_apply = ""
+      return
+  """
 def audit_check(args):
   """
   -1. test whether workspace exists and at least one folder and all shity files
@@ -727,6 +782,7 @@ def audit_check(args):
 
   workspace_path = getcwd()+"/device_configs/"+args.workspace
   test_audit_requirements(workspace_path) #Test whether all needed files are in workspace directory
+  test_empty_own_vars(workspace_path)
   module_to_import = open_file_to_read(workspace_path+"/module_info") #Open file with saved vendor and os defined in analyze argument
   
   modules_to_run_all = [] #Modules which are run on every device does not matter on which facility layer device operates 
@@ -777,8 +833,11 @@ def audit_check(args):
   sys.stdout.write("\b"*6+'] Done!\n')  
 
 def generate_more_info_report(yaml_file):
-  more_info_list = ["Comment: ","Matched values: ","Cannot determine search/fix comment: ","Affected port: ","Fix to apply: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: "]
-  vars_to_print = [yaml_file['general_comment'],yaml_file['matched_values'],yaml_file['cannot_determine_search_or_fix_comment'],yaml_file['affected_ports'],yaml_file['fix_to_apply'],yaml_file['fix_cmd_notice'],yaml_file['fix_cmd_ignore_comment'],yaml_file['fix_cmd_false_positive_comment']]
+  if (yaml_file['regex_cmd_occurrence'] == "occurrence"):
+    more_info_list = ["Comment: ","Right configuration setting found in: ","Found ports with error: ","Generated fix: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: ","Cannot determine search/fix comment: "]
+  elif (yaml_file['regex_cmd_occurrence'] == "non-occurrence"):
+    more_info_list = ["Comment: ","Error configuration setting found in: ","Found ports with error: ","Generated fix: ","Fix notice: ","Fix ignore comment: ","Fix false positive comment: ","Cannot determine search/fix comment: "]
+  vars_to_print = [yaml_file['general_comment'],yaml_file['matched_values'],yaml_file['affected_ports'],yaml_file['fix_to_apply'],yaml_file['fix_cmd_notice'],yaml_file['fix_cmd_ignore_comment'],yaml_file['fix_cmd_false_positive_comment'],yaml_file['cannot_determine_search_or_fix_comment']]
   i = 0
   final_html = ""       
   for var in vars_to_print:
@@ -817,6 +876,7 @@ def generate_report(args):
     yaml_in_dir = [basename(name) for name in  glob.glob(workspace_path+"/"+device_folder+"/*.yaml") ]
     #print("DEVICE FOLDER: " + str(workspace_path+"/"+device_folder)) #DEBUG
     yaml_in_dir.remove("device_info.yaml")
+    yaml_in_dir.sort()
     final_html = ""
     if (isdir(workspace_path+"/"+device_folder)):
       device_yaml_file = device_info(None) #Constructor need filename, which I do not know now
@@ -841,13 +901,14 @@ def generate_report(args):
       name_of_area = ""
       first = True
       for yaml_module in yaml_in_dir:
+        #print(yaml_module) #DEBUG
         yaml_file = read_from_yaml(workspace_path+"/"+device_folder+"/"+yaml_module)
         seq = (re.search("(\d+)_(\d+).*",yaml_module).group(2)).lstrip("0")
         if (name_of_area == yaml_file['name_of_area']):
-          if (yaml_file['cmd_match_status'] == "not run"):
-            final_html = final_html + "<tr type='module_info_line'>\n<td type='no_col'>"+seq+"</td>\n"
-          else:
-            final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+seq+"</td>\n"
+          #if (yaml_file['cmd_match_status'] == "not run"):
+          #  final_html = final_html + "<tr type='module_info_line'>\n<td type='no_col'>"+seq+"</td>\n"
+          #else:
+          final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+seq+"</td>\n"
           final_html = final_html + "<td type='name_col'>"+yaml_file['name_cmd_general']+"</td>\n"
           #if (yaml_file['regex_cmd_occurrence'] == 'occurrence'):
           #  final_html = final_html + "<td type='occur_col'>"+"Must present"+"</td>\n"
@@ -860,14 +921,14 @@ def generate_report(args):
           final_html = final_html + "<td type='elim_col'>"+yaml_file['eliminated'].capitalize()+"</th>\n"
           final_html = final_html + "<td type='deter_col'>"+yaml_file['cannot_determine_search_or_fix'].capitalize()+"</td>\n"
           #PUSTAT AK NOT RUN?
-          if ((yaml_file['cmd_match_status'] == "successful") or (yaml_file['cmd_match_status'] == "matched_by_equivalent")):
+          if ((yaml_file['cmd_match_status'] == "successful") or (yaml_file['cmd_match_status'] == "matched by equivalent")):
             stat = "<td type='stat_col'>"+yaml_file['cmd_match_status'].capitalize()+" <span style='color:green;font-size:16pt;'> &#10004;</span></td>\n"
-          if (yaml_file['cmd_match_status'] == "error"):
+          elif (yaml_file['cmd_match_status'] == "error"):
             stat = "<td type='stat_col'>"+yaml_file['cmd_match_status'].capitalize()+" <span style='color:red;font-size:16pt;'> &#10008;</span></td>\n"
-          if (yaml_file['fix_cmd_false_positive'] == "true"):
+          elif (yaml_file['fix_cmd_false_positive'] == "true"):
             stat = "<td type='stat_col'>False positive <span style='color:green;font-size:16pt;'> &#10004;</span></td>\n"
-          if (yaml_file['cmd_match_status'] == "not run"):
-            stat = "<td type='stat_col'>"+yaml_file['cmd_match_status'].capitalize()+" <span style='color:darkorange;font-size:16pt;text-decoration:none;'> !</span></td>\n"
+          elif (yaml_file['cmd_match_status'] == "not run"):
+            stat = "<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>\n"
           #if (yaml_file['fix_cmd_ignore'] == "true"):
           #  stat = stat+"<td type='stat_col'><br\>Fix ignored</td>\n"
           final_html = final_html + stat + "</tr>\n"
@@ -889,10 +950,10 @@ def generate_report(args):
           final_html = final_html + "<th type='elim_col'>Skipped</th>\n"
           final_html = final_html + "<th type='deter_col'>Cannot determine search/fix</th>\n"
           final_html = final_html + "<th type='stat_col'>Status</th>\n</tr>\n"
-          if (yaml_file['cmd_match_status'] == "not run"):
-            final_html = final_html + "<tr type='module_info_line'>\n<td type='no_col'>"+seq+"</td>\n"
-          else:
-            final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+seq+"</td>\n"
+          #if (yaml_file['cmd_match_status'] == "not run"):
+          #  final_html = final_html + "<tr type='module_info_line'>\n<td type='no_col'>"+seq+"</td>\n"
+          #else:
+          final_html = final_html + "<tr type='module_info'>\n<td type='no_col'>"+seq+"</td>\n"
           final_html = final_html + "<td type='name_col'>"+yaml_file['name_cmd_general']+"</td>\n"
           #if (yaml_file['regex_cmd_occurrence'] == 'occurence'):
           #  final_html = final_html + "<td type='occur_col'>"+"Must present"+"</td>\n"
@@ -906,14 +967,14 @@ def generate_report(args):
           final_html = final_html + "<td type='deter_col'>"+yaml_file['cannot_determine_search_or_fix'].capitalize()+"</td>\n"
           #PUSTAT AK NOT RUN?
           #final_html = final_html + "<td type='stat_col'>"+yaml_file['cmd_match_status']capitalize()+"</td>\n</tr>\n"
-          if ((yaml_file['cmd_match_status'] == "successful") or (yaml_file['cmd_match_status'] == "matched_by_equivalent")):
+          if ((yaml_file['cmd_match_status'] == "successful") or (yaml_file['cmd_match_status'] == "matched by equivalent")):
             stat = "<td type='stat_col'>"+yaml_file['cmd_match_status'].capitalize()+" <span style='color:green;font-size:16pt;'> &#10004;</span></td>\n"
-          if (yaml_file['cmd_match_status'] == "error"):
+          elif (yaml_file['cmd_match_status'] == "error"):
             stat = "<td type='stat_col'>"+yaml_file['cmd_match_status'].capitalize()+" <span style='color:red;font-size:16pt;'> &#10008;</span></td>\n"
-          if (yaml_file['fix_cmd_false_positive'] == "true"):
+          elif (yaml_file['fix_cmd_false_positive'] == "true"):
             stat = "<td type='stat_col'>False positive <span style='color:green;font-size:16pt;'> &#10004;</span></td>\n"
-          if (yaml_file['cmd_match_status'] == "not run"):
-            stat = "<td type='stat_col'>"+yaml_file['cmd_match_status'].capitalize()+" <span style='color:darkorange;font-size:16pt;text-decoration:none;'> !</span></td>\n"
+          elif (yaml_file['cmd_match_status'] == "not run"):
+            stat = "<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>\n"
           #if (yaml_file['fix_cmd_ignore'] == "true"):
           #  stat = stat+"<td type='stat_col'><br\>Fix ignored</td>\n"
           final_html = final_html + stat + "</tr>\n"

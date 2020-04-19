@@ -7,6 +7,7 @@ class yaml_module:
 
   def __init__(self):
     self.type = ""
+    self.facility_type = []
     self.check_if_l3_protocol = []
     self.check_if_function = []
     self.run_after_module = ""

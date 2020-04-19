@@ -11,17 +11,17 @@ l3_protocols:    # L3 protocols which are used not only available but literally 
   - ipv6
 vendor: "cisco" # Manufacturer of device. Same directory name has to be created inside directory "modules", where all modules for this vendor are stored
 
-os: "" # Operating system. Same directory name has to be created inside directory "modules" and subdirectory specified in variable "vendor" 
+os: "ios" # Operating system. Same directory name has to be created inside directory "modules" and subdirectory specified in variable "vendor" 
 
 facility: "l3sw" # Type of device [r(router), l3sw(L3 switch), l2sw(L2 switch)]
 
-facility_layer: "collapsed_distribution_access" # Type of layer where facility is installed [core, distribution, access, collapsed all, collapsed core distribution, collapsed distribution access]
+facility_layer: "collapsed_distribution_access" # Type of layer where facility is installed [core, distribution, access, collapsed_all, collapsed_core_distribution, collapsed_distribution_access]
 
 exclude_modules: [] # Exclude modules which are specified in file "modules_by_facility_layer.yaml" for specific "facility_layer" you do not want to be used
 
 include_modules: [] # Include modules which are not part of specific "facility_layer" in file "modules_by_facility_layer.yaml" and you want to use them.
 
-interfaces:    # All available interfaces, roles of interfaces can be specified, roles such as "access" or "trunk" are assigned automatically according to config and more than one type can be assigned to port Roles: [access, trunk, wan, toinet, access-datacenter, wlan, to_distribution_layer, to_core_layer, unused, none] Roles: [access, trunk, uplink, access-datacenter, wlan, shutdown, noip, unused, subinterface, portchannel, none, svi] downlink -passive interface ? 
+interfaces:    # All available interfaces, roles of interfaces can be specified, roles such as "access" or "trunk" are assigned automatically according to config and more than one type can be assigned to port  Roles: [access, trunk, uplink, downlink, access-datacenter, wlan, shutdown, noip, unused, subinterface, portchannel, none, svi, passive-int, wan] 
 
   Loopback0:
     - noip

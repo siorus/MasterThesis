@@ -1,13 +1,17 @@
 ---
 type: "o" # Type of configuration command [o, i, m, c], o - one time in config e.g. "ip ssh version 2", i - applied on interface (onetime/manytime) e.g. portsecurity, m - multiple time e.g. defined aaa servers, c - under subcontext e.g. password for eigrp processes.
 
+facility_type: # Type of facility on which module can be tested [r,l3sw,l2sw], empty means it does not matter
+  - "l2sw"
+  - "l3sw"
+
 check_if_l3_protocol: [] # Run check only when specific L3 protocol is enabled on device [ipv4, ipv6], empty means skip checking.
 
 check_if_function: [] # Run check only when specific function is enabled on device e.g. rip, eigrp, ospf, bgp,vrrp, etc. empty means skip checking.
 
 run_after_module: "" # Run this module only after specified module had been run before.
 
-run_after_module_match_status: "none" # Run check only when module specified in variable run_after_module had status Successful or Error stored in cmd_match_status. If None is specified, then stored value does not matter [successful, error, none].
+run_after_module_match_status: "none" # Run check only when module specified in variable run_after_module had status Successful/Error/Matched by equivalent stored in cmd_match_status. If None is specified, then stored value does not matter [successful, error, matched by equivalent, none].
 
 applicable_to_interface_type: [] # Type of interface from device.yaml, module will be run only on interfaces with specified interface type, logical OR is used if more than one type is defined. If at least one type is matched, than looking for regex can be applied. When blank list is defined, command must be set on every interface.
 
@@ -34,7 +38,7 @@ regex_context: "" # Regex under which previous variable "regex_cmd" is matched a
 
 regex_cmd_occurrence: "non-occurrence" # Specifies whether module should look for regex occurrence or non-occurrence match, "occurrence" - set when regex occurrence in variable "regex_cmd" signalize no issue, "nonoccurrence" - set when regex non-occurrence in variable "regex_cmd" signalize no issue
 
-cmd_match_status: "not run" # Variable to store whether regex matches or not [successful, error, not run], successful - security feature is configured as expected, error - security feature is not configured as expected, false - this module has not been started yet.
+cmd_match_status: "successful" # Variable to store whether regex matches or not [successful, error, not run, matched by equivalent], successful - security feature is configured as expected, error - security feature is not configured as expected, not run - this module has not been started yet, matched by equivalent - equivalent module found wished setting.
 
 general_comment: "" # General comment for any kind of output of module
 
@@ -70,3 +74,4 @@ explicit_ignored_ports: [] # List of ports which should be ignored. Can be overw
 
 explicit_ignored_ports_comment: "" # Comment to specify reason why ignore command is applied.
 
+...

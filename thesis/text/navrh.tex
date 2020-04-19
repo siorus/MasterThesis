@@ -38,7 +38,8 @@ Kľúčové vlastnosti:
 
 \newpage
 \section{Rozdelenie príkazov}
-Na zariadeniach od firmy Cisco s~operačným systémom IOS bol vykonaný rozbor možných príkazov a ich foriem zápisu a početnosti výskytu v~konfigurácií. Tento rozbor bol spravený z~dôvodu, že niektoré príkazy sa môžu opakovať a zároveň jeden druh príkazu môže byť konfigurovaný v~rôznych kontextoch a teda neprítomnosť v~jednom kontexte automaticky neznamená nedostatok v~konfigurácií. Na základe rozboru boli rozdelené príkazy na konfiguráciu sieťových zariadení do nasledujúcich kategórií:
+\label{rozdelenie_prikazov}
+Na zariadeniach od firmy Cisco s~operačným systémom IOS bol vykonaný rozbor možných príkazov a ich foriem zápisu a početnosti výskytu v~konfigurácií. Tento rozbor bol spravený z~dôvodu, že niektoré príkazy sa môžu opakovať a zároveň jeden druh príkazu môže byť konfigurovaný v~rôznych kontextoch a teda neprítomnosť v~jednom kontexte automaticky neznamená nedostatok v~konfigurácií. Umožňuje to generalizovať príkazy do skupín a nebude nutné pre každý príkaz písať zdrojový kód, ktorý by riešil nález a  nápravu iba pre konkrétny jeden prípad. Na základe rozboru boli rozdelené príkazy na konfiguráciu sieťových zariadení do nasledujúcich kategórií:
 \\
 \begin{enumerate}
 	\item Maximálne s~jedným výskytom v~konfigurácii\,--\,príkladom môže byť verzia protokolu \zk{zkSSH}.
@@ -137,7 +138,8 @@ Vstup programu počíta s~predpripravenými konfiguráciami v~textovej podobe, t
  
 
 \subsection*{Hierarchická štruktúra}
-Nasledujúca štruktúra súborov s~komentármi vyobrazuje hierarchiu uloženia potrebných súborov na vykonávanie skenovania nedostatkov a zjednanie náprav. Súbor \texttt{hostname1\_fix\_hash} obsahuje namiesto slova ``hash`` skutočný hash súboru \texttt{hostname1\_config.txt}, aby bolo zrejmé, ku ktorej verzii konfigurácie zariadenia patrí a v~prípade aktualizovania a pridania novej konfigurácie do \texttt{init\_configs} nedošlo k~nejednoznačnosti. Nové konfigurácie stiahnuté zo zariadenia sa schválne nedávajú do zložky \texttt{device\_configs}, keďže táto zložka môže obsahovať už nejakú nápravu a správu k~predchádzajúcej konfigurácie, a preto by mohol vzniknúť konflikt a nebolo by jasné ku ktorej verzii konfigurácie  výstupy programu patria. Program bude uchovávať taktiež históriu jednotlivých skenovaní a náprav, pričom pri iniciovaní nového skenovania a prítomnosti novej verzie konfigurácie zariadenia, príde k~premiestneniu aktuálnych výstupov do podzložky s~hashom prislúchajúcim konfigurácií \texttt{hostname1\_old\_hash}. 
+\label{hierarchy_struct}
+Nasledujúca štruktúra súborov s~komentármi vyobrazuje hierarchiu uloženia potrebných súborov na vykonávanie skenovania nedostatkov a zjednanie náprav. Nové konfigurácie stiahnuté zo zariadenia sa schválne nedávajú do zložky \texttt{device\_configs}, keďže táto zložka môže obsahovať už nejakú nápravu a správu k~predchádzajúcej konfigurácie, a preto by mohol vzniknúť konflikt a nebolo by jasné ku ktorej verzii konfigurácie výstupy programu patria. Program bude uchovávať taktiež históriu jednotlivých skenovaní a náprav, pričom pri iniciovaní nového skenovania a prítomnosti novej verzie konfigurácie zariadenia, príde k~premiestneniu aktuálnych výstupov do podzložky \texttt{old\_configs} s časovým razítkom v názve adresára. Moduly, respektíve šablóny YAML súborov definujúce nájdenie problému sú uložené hierarchicky na základe výrobcu sieťového zariadenia a následne v podzložke operačného systému. Príkladom cesty takto uložených modulov je sekvencia \texttt{cisco/ios/yaml\_module\_config}. Popis jednotlivých súborov a adresárov je v stromovej štruktúre nižšie.
 
 \vspace{2em}
 {\small
