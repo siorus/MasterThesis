@@ -104,7 +104,6 @@ def parse_input_device_cfg(workspace_path,args):
     shutil.rmtree(getcwd()+"/device_configs/"+args.workspace+"/current_fixes")
     makedirs(getcwd()+"/device_configs/"+args.workspace+"/current_fixes",0o755)
   else:
-    print(str(getcwd()+"/device_configs/"+args.workspace+"/current_fixes"))
     makedirs(getcwd()+"/device_configs/"+args.workspace+"/current_fixes",0o755)
   if (isdir(getcwd()+"/device_configs/"+args.workspace+"/reports")):
     shutil.rmtree(getcwd()+"/device_configs/"+args.workspace+"/reports")
@@ -847,12 +846,16 @@ def generate_more_info_report(yaml_file):
       pass
     else:
       if (isinstance(var,str)):
-        var = var.replace('\n', "<br/>")
+        var = var.replace('<', "&lt")
+        var = var.replace('>', "&gt")
+        var = var.replace('\n', "<br/>") #Must be after less than/ more than sign replace
         final_html = final_html + "<tr><td><br/><b>"+more_info_list[i]+"</b><br/>"+var+"</td>\n</tr>\n"
       elif (isinstance(var,list)):
         final_html = final_html + "<tr><td><br/><b>"+more_info_list[i]+"</b><br/>"
         for lst_item in var:
-          lst_item = lst_item.replace('\n', "<br/>")
+          lst_item = lst_item.replace('<', "&lt")
+          lst_item = lst_item.replace('>', "&gt")
+          lst_item = lst_item.replace('\n', "<br/>") #Must be after less than/ more than sign replace
           final_html = final_html + str(lst_item)+"<br/>"
         final_html = final_html + "</td>\n</tr>\n"
     i = i + 1

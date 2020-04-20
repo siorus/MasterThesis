@@ -9,27 +9,17 @@ from hashlib import sha1
 import errno
 from ruamel.yaml.comments import CommentedMap as OrderedDict #Wokraround to eliminate improper !!omap in ordereddict from https://gist.github.com/monester/3f3bd87a936d1017c1f5089650b79a98
 
-class device_info:
+sys.path.append("../../../../modules")
+sys.dont_write_bytecode = True
+from modules import device_info_abstract
+
+class device_info(device_info_abstract.device_info_abstract):
   
   vendor = "cisco"
 
   def __init__(self,filename):
-    self.hostname = ""
-    self.config = filename
-    self.version = ""
-    #TODO najst IOS XE vysput z sh ver
-    self.os = ""
-    self.l3_protocols = []
-    self.facility = ""
-    self.facility_layer = ""
-    self.exclude_modules = []
-    self.include_modules = []
-    self.interfaces = {}
-    self.enabled_functions = []
-    self.input_config_hash = ""
-    self.fix_hash = ""
-    
-    
+    super().__init__(filename)
+
   def fill_variables(self,data):
     self.hostname = re.search("^hostname (.*)",data,flags=re.MULTILINE).group(1)
     self.input_config_hash = sha1(data.encode("utf-8")).hexdigest()
@@ -82,17 +72,10 @@ class device_info:
         special = True
       if (re.search("^.*(?:(?<!no )) Port-channel(\d+).*$",interface.group(0),flags=re.MULTILINE)):
         self.interfaces[interface.group(1)].append("port-channel")  
-
-      #print(interface.group(1))
-      #print(access)
-      #print(str(special))
-      #print(not(re.search("^.*(?:(?=no )?)(?:ip|ipv6) address.*$",interface.group(0),flags=re.MULTILINE)))
-      #print(((self.facility == "l3sw") or (self.facility == "l2sw")))
-      #print("--------------")
       
       if ((not access) and (not special) and (not(re.search("^.*(?:(?=no )?)(?:ip|ipv6) address.*$",interface.group(0),flags=re.MULTILINE))) and ((self.facility == "l3sw") or (self.facility == "l2sw"))):
         self.interfaces[interface.group(1)].append("access") #if no setup is done on port(blank settings) and device is switch, then port is in default set as access
-
+  
   def list_interfaces(self,data):
     matched_lst = list(re.finditer("^((interface) (.*).*)$(?:.*\r?\n)*?(?=\!)",data,flags=re.MULTILINE))
     interface_context = []
@@ -208,79 +191,3 @@ class device_info:
       is_access = True
     
     return is_access
-
-  def read_from_yaml(self,path):
-    try:
-      with open(path+"/device_info.yaml","r") as device_info_yaml:
-        current_yaml_conf = ruamel.yaml.round_trip_load(device_info_yaml, preserve_quotes=True)
-        return current_yaml_conf
-    except OSError as e:
-      print("Error opening and reading "+path+"/device_info.yaml\n"+str(e),file=sys.stderr)
-      exit(errno.ENONET)
-    
-  def write_to_yaml(self,path,current_yaml_conf):
-    with open(path+"/device_info.yaml","w") as device_info_yaml:
-      current_yaml_conf.preserve_quotes = True
-      ruamel.yaml.round_trip_dump(current_yaml_conf,device_info_yaml,block_seq_indent=2,explicit_start=True,explicit_end=True)
-    
-  def save_object_to_yaml(self,current_yaml_conf):
-    instance_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
-    for attribute in instance_attributes:
-      current_yaml_conf[attribute] = getattr(self,attribute)
-      
-  def load_yaml_to_object(self,current_yaml_conf):
-    instance_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
-    for attribute in instance_attributes:
-      setattr(self,attribute,current_yaml_conf[attribute])
-
-if __name__ == "__main__":
-
-  #TOTO JE SKOR INIT, METODY Z TEJTO CLASSY SA BUDU POUZIVAT AJ PRI LOAD A STORE YAML
-
-  workspace = "workspace1"
-  analyze_path = getcwd()+"/../../../init_config/"
-  
-  #TODO CESTA RELATIVNA K HLAVNEMU SKRIPTU
-  for filename in listdir(analyze_path+workspace):
-    if (isfile(analyze_path+workspace+"/"+filename)):
-      #  hostname = re.search("^hostname (.*)",data,flags=re.MULTILINE).group(1)
-      #  print(hostname)
-      
-      
-      with open(analyze_path+workspace+"/"+filename) as file:
-        data = file.read()
-        file_info = device_info(filename)
-        file_info.fill_variables(data)
-        #file_info.fill_variables(data)
-      print(file_info.hostname)
-      #print(file_info.input_config_hash)
-      print(file_info.l3_protocols)
-      #print(file_info.routing_protocols)
-      #print(file_info.interfaces)
-      print(file_info.facility_layer)
-      print(file_info.facility)
-
-      current_yaml_conf = file_info.read_from_yaml(getcwd())
-      file_info.save_object_to_yaml(current_yaml_conf)
-      file_info.write_to_yaml(getcwd(),current_yaml_conf)
-
-     # with open(getcwd()+"/device.yaml","r") as device_info_yaml:
-     #   current_yaml_conf = ruamel.yaml.round_trip_load(device_info_yaml)
-        
-      #print(ruamel.yaml.round_trip_dump(current_yaml_conf))
-      #current_yaml_conf['hostname'] = file_info.hostname
-      #current_yaml_conf['config'] = file_info.config
-      #current_yaml_conf['version'] = file_info.version
-      #current_yaml_conf['l3_protocols'] = file_info.l3_protocols
-
-      #with open(getcwd()+"/device1.yaml","w") as device_info_yaml:
-      #  current_yaml_conf = ruamel.yaml.round_trip_dump(current_yaml_conf,device_info_yaml)
-      #  print(current_yaml_conf)
-
-
-
-
-
-
-      del file_info
-  

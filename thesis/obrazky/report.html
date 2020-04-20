@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="report.css">
+  </head>
+  <body>
+    <page size="A4">
+      <table>
+        <tbody>
+          <tr><td><h1>AUDIT REPORT</h1></td></tr><tr><td type='device_first_column'>Hostname:</td><td>SW1_DISTACC</td></tr>
+<tr><td type='device_first_column'>Config file name:</td><td>5</td></tr>
+<tr><td type='device_first_column'>Config hash:</td><td>10b09a99888cd890f6d8bb5b9b220c53092b0579</td></tr>
+<tr><td type='device_first_column'>Vendor:</td><td>cisco</td></tr>
+<tr><td type='device_first_column'>OS:</td><td>ios</td></tr>
+<tr><td type='device_first_column'>Facility layer:</td><td>collapsed_distribution_access</td></tr>
+<tr><td type='device_first_column'>L3 protocols:</td><td>ipv4,ipv6</td></tr>
+<tr><td type='device_first_column'>Enabled functions:</td><td>rip,eigrp</td></tr>
+<tr><td type='device_first_column'>Date:</td><td>19/04/2020_14:52</td></tr>
+<table><tbody>
+<tr><h3>Authentication, Authorization, Accounting</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>AAA new model/ Enabled AAA</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa new-model<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>AAA server set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>radius server MY_SERVER<br/> address ipv4 192.168.1.1 auth-port 1645 acct-port 1646<br/> timeout 1<br/> non-standard<br/> key AAA<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>AAA server group</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa group server radius MYGROUP<br/> server name MY_SERVER<br/><br/></td>
+</tr>
+</table></tbody>
+<table><tbody>
+<tr><h3>SSH</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SSH enable on management connection</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line vty 0 4<br/> transport input ssh<br/>line vty 6<br/> transport input ssh<br/></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line vty 5<br/>line vty 10 11<br/>line vty 15<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line vty 5<br/>transport input ssh<br/><br/>line vty 10 11<br/>transport input ssh<br/><br/>line vty 15<br/>transport input ssh<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>VLAN</h3></tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Native vlan different than 1</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Ethernet2/0<br/> switchport trunk native vlan 100<br/></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>Ethernet2/1<br/>Ethernet3/2<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface Port-channel1<br/>switchport trunk native vlan 100<br/>interface Ethernet2/1<br/>switchport trunk native vlan 100<br/>interface Ethernet3/2<br/>switchport trunk native vlan 100<br/></td>
+</tr>
+</table></tbody>
+<table><tbody>
+<tr><h3>Network Mapping</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>CDP globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no cdp run<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>CDP disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Matched by equivalent <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module was marked as matched by equivalent by module 11_01_cdp_run_disabled.yaml</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>LLDP globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>LLDP receive disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 11_04_lldp_receive.yaml configured to run after 11_03_lldp_run_disabled.yaml with status error but that module has not run yet with specified cmd_match_status, 11_04_lldp_receive.yaml will not run</td>
+</tr>
+</tbody></table>
+        </tbody>
+      </table>
+    </page>
+  </body>
+</html>
