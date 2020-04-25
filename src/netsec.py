@@ -683,6 +683,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
       return
     previous_status = "not run"  
     for context in whole_contexts:
+      #subcontext, e.g. address family, group(3) is subcontext and group(2) is subcontext content 
       context_header = context.group(1)
       regex_cmd_matched_pos = 0
       regex_cmd_len = len(yaml_module_file.regex_cmd) #Number of "regex_cmd" commands, logical OR

@@ -38,10 +38,19 @@ class device_info(device_info_abstract.device_info_abstract):
   def __check_enabled_functions(self,data):
     if (re.search("^.*(ipv6 )?router rip.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("rip")
-    if (re.search("^.*(ipv6 )?router ospf(v3)?.*$",data,flags=re.MULTILINE)):
+
+    if (re.search("^.*(?<!ipv6 )router ospf.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("ospf")
-    if (re.search("^.*(ipv6 )?router eigrp.*$",data,flags=re.MULTILINE)):
+    if (re.search("^.*ipv6 router ospf.*$",data,flags=re.MULTILINE)):
+      self.enabled_functions.append("ospf ivp6")
+    if (re.search("^.*router ospfv3.*$",data,flags=re.MULTILINE)):
+      self.enabled_functions.append("ospfv3")
+    if (re.search("^.*(?<!ipv6 )router eigrp.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("eigrp")
+    if (re.search("^.*ipv6 router eigrp.*$",data,flags=re.MULTILINE)):
+      self.enabled_functions.append("eigrp ipv6")    
+    if (re.search("^.*router eigrp [a-zA-Z]+.*",data,flags=re.MULTILINE)):
+      self.enabled_functions.append("eigrp named")
     if (re.search("^.*(ipv6 )?router bgp.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("bgp")
 

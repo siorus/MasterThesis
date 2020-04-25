@@ -57,3 +57,5 @@ management_vlan_mask: ""
 management_vlan_gateway: ""
 native_vlan_id: ""
 allowed_vlan_on_trunk: "" #Separated by comma
+network_mapping_acl: ""
+network_mapping_acl_ipv6: ""
