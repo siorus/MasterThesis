@@ -18,7 +18,7 @@ page[size="A4"][layout="landscape"] {
 }
 @media print {
   body, page {
-    margin: 0;
+    margin-bottom: 0;
     box-shadow: 0;
     height: 297mm;
     display: block;
@@ -32,6 +32,9 @@ table {
   border-radius: 5px;
   table-layout:fixed;
   page-break-inside:auto;
+}
+tbody[type="stat"]{
+  font-size: 12pt;
 }
 tr{
   page-break-inside:avoid; 
@@ -63,6 +66,19 @@ td[type="device_first_column"]{
   width: 4cm;
   word-wrap: break-word;
   text-align: left;
+  font-size: 11pt;
+}
+td[type="device_section"]{
+  font-size: 11pt;
+}
+td[type="stat_first_column"]{
+  width: 5cm;
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 11pt;
+}
+td[type="stat_second_column"]{
+  font-size: 11pt;
 }
 td[type="no_col"],th[type="no_col"]{
   width: 1cm;

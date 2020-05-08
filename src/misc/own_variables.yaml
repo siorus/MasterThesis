@@ -1,0 +1,84 @@
+---
+aaa_type: "radius" # [radius|tacacs]
+aaa_server_name: "AAA_SERVER" # Own name of AAA server, it can be whatever
+aaa_ip: "10.0.0.8" # IP or IPv6 address of aaa server
+aaa_key: "RadKey123" # Key for AAA server
+aaa_server_group: "SERVER_GRP" # Own name of AAA server group
+aaa_login_group: "default"  #Own name of AAA login group, default is recommended. Default: default
+aaa_exec_group: "default"
+aaa_commands_group: "default"
+aaa_connection_group: "default"
+aaa_source_interface: "Loopback0"
+aaa_max_login_attempts: "3"
+exec_timeout: "5"
+local_username: "admin"
+local_username_password: "adminpasswd123"
+enable_password: "enablepasswd123"
+ipv4_acl_vty_name: "IPV4_VTY_ACL"
+ipv6_acl_vty_name: "IPV6_VTY_ACL"
+quiet_mode_acl: "IPV4_VTY_ACL"
+login_block_for: "120"
+login_block_for_attempts: "3"
+login_block_for_within: "30"
+banner_motd: "Unauthorized access will be prosecuted!!"
+banner_login: "Unauthorized access will be prosecuted!!"
+banner_exec: "Unauthorized access will be prosecuted!!"
+ssh_max_retries: "3" #Must be in interval <0,5> Default: 3
+ssh_source_interface: "Loopback0"
+ssh_port: "2223"
+domain_name: "cisco.com"
+snmp_v3_group_ipv4: "SNMPv3_GRPipv4"
+snmp_v3_group_ipv6: "SNMPv3_GRPipv6"
+snmp_v3_read_view: "READVIEW3"
+snmp_v3_acl: "SNMP3_ACL"
+snmp_v3_acl_ipv6: "SNMP3_ACL6"
+snmp_v3_user_name: "SNMPv3USER"
+snmp_v3_user_sha_psswd: "SnmpPasswd123"
+snmp_v3_user_aes_psswd: "SnmpPasswd123"
+snmp_source_interface: "Loopback0"
+snmp_server_location: "home"
+snmp_server_host: "10.0.0.8"
+syslog_ipv4: "10.0.0.8"
+syslog_ipv6: "fd01::100"
+syslog_source_interface: "Loopback0"
+syslog_buffer_bytes: "40960" #Minimum 4096. Default: 40960
+syslog_local_location_path: "flash:"
+ntp_server_ip_ipv6: "10.0.0.8"
+ntp_source_interface: "Loopback0"
+ntp_key_num: "1" #Default: 1
+ntp_password: "ntpPasswd123"
+cpu_threshold_polling_interval: "5" #Default:5 (seconds)
+cpu_threshold_rising: "70" #Default:70 (percents)
+memory_reserve_critical_notifications: "1000" #Default:1000 (kB)
+minimum_cpu_memory_notification: "2000" #Default:2000 (kB)
+minimum_io_memory_notification: "2000" #Default:2000 (kB)
+management_vlan_id: "" #Must be VLAN ID assigned to any access port and must exist
+management_vlan_ip: ""
+management_vlan_mask: ""
+management_vlan_gateway: ""
+native_vlan_id: "100"
+allowed_vlan_on_trunk: "10,20,30" #Separated by comma
+network_mapping_acl: "DENY_NETWORK_MAP"
+network_mapping_acl_ipv6: "DENY_NETWORK_MAP_IPV6"
+ospf_router_id: "1.1.1.1"
+eigrp_router_id: "2.2.2.2"
+bgp_router_id: "3.3.3.3"
+loopback_id: "0" #Default:0
+loopback_ip: "1.1.1.1"
+loopback_mask: "255.255.255.0"
+archive_config_path: "unix:"
+maxium_archived_configs: "5"
+time_period_archive: "60"
+acl_name_banned_ipv4_address_from_wan: "IPV4_WAN_FILTER"
+acl_name_banned_ipv6_address_from_wan: "IPV6_WAN_FILTER"
+acl_name_fragmentation_ipv6: "IPV6_FRAGMENT_FILTER"
+ipv4_dhcp_snooping_vlans: "10,20,30" # Separate VLANs with comma
+ipv4_dhcp_snooping_ratelimit: "100"
+ipv6_raguard_policy: "ipv6_raguard_policy"
+dhcpv6_server_policy: "dhcpv6_server_policy"
+dhcpv6_client_policy: "dhcpv6_client_policy"
+dynamic_arp_inspection_vlans: "10,20,30"
+ipv6_nd_inspection_policy: "ipv6_nd_inspection_policy"
+ipv6_snooping_policy: "ipv6_snooping_policy"
+ipv6_source_guard_policy: "ipv6_source_guard_policy"
+ipv6_destination_guard_policy: "ipv6_destination_guard_policy"

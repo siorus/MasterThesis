@@ -2,11 +2,24 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{Záver}
 
-TODO \\
+
 %Buducnost - oznacovanie flase possive + komenty\\
 %Dorobit backend - server \\
-TOTO ZO SEMESTRALKY\\
+%co som mal spravit
+%co som spravilk
 
-V~rámci semestrálnej práce bola naštudovaná problematika bezpečnosti a prevádzky sieťových zariadení a prišlo k~porovnaniu existujúcich riešení. Z~dostupnej literatúry a odborných textov boli vytvorené tabuľky s~odporúčaniami rešpektujúce topológiu, teda hierarchický model siete a tiež ohodnotenie závažnosti pri absencii odporúčaní. Bol vytvorený návrh aplikácie, princíp fungovania, navrhnutá štruktúra ukladania a práce s~konfiguráciami zariadení a ukladanie výsledkov. V~rámci implementácie kódu prišlo k~vytvoreniu konfiguračných súborov na ukladanie informácií zariadení a šablóny konfiguračného súboru popisujúceho modul zodpovedný za nález, vykonanie nápravy a záznam nájdených nedostatkov. Ako implementačný programovací jazyk bol vybraný jazyk Python a jazyk YAML pre konfigurácie potrebné pre moduly.
+% co sa nepodarili
+% v skratke vyhody
+% co bolo nutne nastudovat plus z kolko guidov som cerpal
 
-V~naväzujúcej diplomovej práci príde k~celkovej implementácii aplikácie a jej následnému otestovaniu na konfiguráciách z~virtuálnych zariadení ako aj na zariadeniach z~reálnej prevádzky. Bude vytvorená dokumentácia a API, ktoré budú umožňovať pridávanie modulov ďalšími prispievateľmi a tým rozšíriť použiteľnosť aplikácie na ďalších výrobcov. 
+
+
+
+
+Cieľom tejto diplomovej práce bol návrh a následná implementácia programu na nájdenie bezpečnostných a prevádzkových nedostatkov v sieťových zariadeniach, ako aj ich náprava pomocou generovania opravnej konfigurácie. Z tohto dôvodu bola naštudovaná problematika bezpečnosti a prevádzky sieťových zariadení a ich správna konfigurácia. Z množstva dostupnej literatúry, štandardov a odporúčaní bol vytvorený zoznam odporúčaní, na základe ktorého boli zostavované YAML moduly pre výsledný program. Tento zoznam odporúčaní bol rozšírený aj o hodnotenie závažnosti nedostatkov a priradenie prvkov zoznamu k relevantným zariadeniam v hierarchickom modely siete. Jedná sa teda o unikátne riešenie medzi bezplatnými zoznamami odporúčaní. Tento zoznam môže byť použitý aj na rozšírenie programu o podporu iných výrobcov, ale aj separátne bez akéhokoľvek využitia v programe. Vzhľadom na časovú náročnosť boli vytvorené moduly zatiaľ pre zariadenia značky Cisco. Bolo nutné zanalyzovať niekoľko stovák príkazov a ich povolených kombinácií, vytvoriť pre ne korešpondujúce regulárne výrazy a následne vytvoriť viac ako 220 YAML modulov zodpovedných za nájdenie problémov v konfiguráciách. 
+
+Ako implementačný jazyk bol využitý Python 3.7, ktorý zaisťuje prenositeľnosť programu na viaceré platformy. Program na rozdiel od konkurencie umožňuje rozšírenie vďaka modularite aj na ďalších výrobcov sieťových zariadení a pridáva kontrolu aj pre topológie využívajúce IPv6. Taktiež rešpektuje hierarchický model siete, a teda generuje oveľa menej falošne pozitívnych správ, keďže kontroluje iba nastavenia typické pre danú vrstvu, na ktorej zariadenie operuje. Jeho výstupom je okrem iného aj prehľadná správa o kontrole zobraziteľná v PDF alebo vo webovom prehliadači. Naviac ako jediný z porovnávaných bezplatných riešení umožňuje automatické vygenerovanie nápravy, pokiaľ je to z charakteru príkazu možné. 
+
+Napriek rôznym komplikáciám, a to hlavne neposkytnutie konfigurácií z reálnych sietí, ktoré boli vopred dohodnuté, prebehlo aj testovanie pomocou vyexportovaných konfigurácií z topológií vytvorených v nástroji GNS3.
+
+Z pôvodného návrhu sa nepodarilo vzhľadom na časovú náročnosť celého programu implementovať vyhľadávanie zoznamu útokov a problémov aktuálne bežiacej verzie operačného systému, no počíta sa s implementáciou tejto funkcionality v budúcnosti. Ďalším rozšírením, ktoré je možné aplikovať, je pridanie podpory na ďalších výrobcov ako Juniper a HP. Využiteľné by bolo taktiež možnosť editovať záverečné správy pridaním back-endu pre HTML správy.

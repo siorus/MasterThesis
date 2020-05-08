@@ -3,13 +3,18 @@
 
 \section{Požiadavky na aplikáciu a existujúce riešenia}
 %TODO api cisco verzie problemy
-Kľúčovou vlastnosťou je modularita navrhovanej aplikácie, vďaka ktorej bude možné pridávať a definovať nové moduly na odhaľovanie a opravu nedostatkov alebo meniť existujúce pri zmene syntaxe a sémantiky príkazov. Modularita taktiež umožňuje vytvorenie a podporu ďalších výrobcov a operačných systémov sieťových zariadení. Existujúce riešenia sú zväčša zamerané iba na jedného výrobcu a operačný systém, pričom program je jeden zdrojový súbor, ktorý bez dobrej znalosti kódu je problematické upraviť a rozšíriť. Preto jednotlivé overovania odporúčaní a ich následná oprava bude každé v~separátnom module, ktorý budú musieť dodržať určité vstupy a výstupy, teda akési \zkratka{zkAPI}. Existujúce riešenia nedisponujú žiadnym generovaním opravnej konfigurácie na základe nálezu nedostatku, preto  vzniknutá aplikácia bude podporovať aj vygenerovanie nápravy.
+V súčasnosti existuje zopár programov funkcionalitou podobných vytváranému. Jedným z príkladov je open-source riešenie \texttt{Cisco Config Analysis Tool} \cite{AU81CvNW4q8RGnqM}, ktorý čerpá odporúčania z~jednej literatúry \cite{Singh2018}, pomocou ktorej boli vytvorené aj odporúčania v~tejto práci. V~tomto riešení však chýba veľa dôležitých prevádzkových a bezpečnostných odporúčaní z~dôvodu, že námetom na kontrolný zoznam pri zostavovaní aplikácie bola iba jedna literatúra. Taktiež podporuje iba jedného výrobcu sieťových zariadení a chýba mu modularita, nerozlišuje odporúčania a kontrolu ich prítomnosti na základe umiestnenia sieťového zariadenia v~hierarchickom modeli. Existujúci nástroj \texttt{Cisco Config Analysis Tool} obsahuje kontrolu iba na niektoré bezpečnostné nastavenie pre protokol IPv6. Rozšíriteľnosť tohto riešenia je takmer nulová vzhľadom an absenciu modularity.
 
-Príkladom open-source riešenia je \texttt{Cisco Config Analysis Tool} \cite{AU81CvNW4q8RGnqM}, ktorý čerpá odporúčania z~jednej literatúry \cite{Singh2018}, pomocou ktorej boli vytvorené aj odporúčania v~tejto práci. V~tomto riešení však chýba veľa dôležitých prevádzkových a bezpečnostných odporúčaní z~dôvodu, že námetom na kontrolný zoznam pri zostavovaní aplikácie bola iba jedna literatúra. Taktiež podporuje iba jedného výrobcu sieťových zariadení a chýba mu modularita, nerozlišuje odporúčania a kontrolu ich prítomnosti na základe umiestnenia sieťového zariadenia v~hierarchickom modeli. Existujúci nástroj \texttt{Cisco Config Analysis Tool} obsahuje kontrolu iba na niektoré bezpečnostné nastavenie pre protokol IPv6. Nástrojom s~podobnými vlastnosťami a nedostatkami je aj \texttt{Router Auditing Tool} \cite{OniomAfGpef53LHq}, ktorý má naviac aj \zkratka{zkGUI}. Existuje niekoľko rozšírení aj pre nástroj \texttt{Nessus}, ktoré overujú dodržiavanie odporúčaní a podľa zistení čerpajú z~CIS Benchmarku \cite{CIS_DrTLsgXv24lxeIIM}. Taktiež však nepodporujú zjednanie nápravy a ignorujú umiestnenie zariadenia v~topológii.     
+\vspace{1em}
+\noindent
+Druhým nástrojom s~podobnými vlastnosťami a nedostatkami je aj \texttt{Router Auditing Tool} \cite{OniomAfGpef53LHq}, ktorý má naviac aj \zkratka{zkGUI}. Existuje niekoľko rozšírení aj pre nástroj \texttt{Nessus}, ktoré overujú dodržiavanie odporúčaní a podľa zistení čerpajú z~CIS Benchmarku \cite{CIS_DrTLsgXv24lxeIIM}. Taktiež však nepodporujú zjednanie nápravy a ignorujú umiestnenie zariadenia v~topológii.
+
+\vspace{1em}
+\noindent
+Kľúčovou vlastnosťou vytváraného programu je modularita, vďaka ktorej bude možné pridávať a definovať nové moduly na odhaľovanie a opravu nedostatkov alebo meniť existujúce pri zmene syntaxe a sémantiky príkazov. Modularita taktiež umožňuje vytvorenie a podporu ďalších výrobcov a operačných systémov sieťových zariadení. Existujúce riešenia sú zväčša zamerané iba na jedného výrobcu a operačný systém, pričom program je jeden zdrojový súbor, ktorý bez dobrej znalosti kódu je problematické upraviť a rozšíriť. Preto jednotlivé overovania odporúčaní a ich následná oprava bude každé v~separátnom module, ktorý budú musieť dodržať určité vstupy a výstupy, teda akési \zkratka{zkAPI}. Existujúce riešenia nedisponujú žiadnym generovaním opravnej konfigurácie na základe nálezu nedostatku, preto vzniknutá aplikácia bude podporovať aj vygenerovanie nápravy.
 
 Výhodou výsledného programu je aj, že kontrolný zoznam vznikol z~viacerých knižných odporúčaní a benchmarkov organizácií zaoberajúcimi sa danou problematikou. Program bude umožňovať spúšťanie modulov zodpovedných za nájdenie a odstránenie nedostatkov na základe definovaného umiestnenia zariadenia v~hierarchickom modely siete. Tým sa zamedzí generovaniu falošne pozitívnych správ, ktoré by vznikli v~dôsledku overovania nerelevantných požiadavkov na zariadenie v~danej vrstve modelu. V~neposlednom rade bude riešenie zdarma s~možnosťou nahliadnuť a modifikovať, respektíve rozšíriť kód. Program bude umožňovať kontrolu odporúčaní aj pre protokol IPv6, ktorým sa príliš nezaoberá väčšina odporúčaní a benchmarkov.
 
-\newpage
 \noindent
 \\
 Kľúčové vlastnosti:
@@ -19,9 +24,9 @@ Kľúčové vlastnosti:
 	\vspace{0.5em}
 	\item Prispôsobenie na ďalších výrobcov\,--\,definovanie API pre moduly na budúcu podporu pre zariadenia od viacerých výrobcov a ich operačných systémov.
 	\vspace{0.5em}
-	\item Zjednanie nápravy\,--\,pri nájdení nedostatku vygenerovanie opravného nastavenia.
+	\item Zjednanie nápravy\,--\,pri nájdení nedostatku automatické vygenerovanie opravného nastavenia, pokiaľ je to možné. Náprava je generovaná, ak sú definované nutné premenné pre príkaz zjednávajúci nápravu alebo charakter nastavenia umožňuje automatické generovanie príkazu.
 	\vspace{0.5em}
-	\item Podpora IPv6\,--\,detekcia zlého alebo chýbajúceho nastavenia a následná náprava aj pre protokol IPv6.
+	\item Podpora IPv6\,--\,detekcia zlého alebo chýbajúceho nastavenia a následná náprava nielen pre nastavenia využívajúce najviac rozšírený protokol IPv4, ale aj pre protokol IPv6.
 	\vspace{0.5em}
 	\item Rozdelene odporúčaní podľa vrstvy zariadenia, na ktorom majú byť nastavené\vspace{0.5em}
 	\item Hierarchický model\,--\,skenovanie nedostatkov typických pre jednotlivé vrstvy, v~ktorých sa zariadenia nachádzajú a tým zníženie falošne pozitívnych varovaní.
@@ -32,7 +37,7 @@ Kľúčové vlastnosti:
 	\vspace{0.5em}
 	\item Zoznam útokov a problémov aktuálne bežiacej verzie operačného systému.
 	\vspace{0.5em}
-	\item Vygenerovanie správy s~nedostatkami.
+	\item Automatické vygenerovanie správy s~nedostatkami a ohodnotenia bezpečnosti pomocou skóre pre každé zariadenie.
 
 \end{itemize}
 
@@ -124,7 +129,7 @@ Sieť je dnes navrhovaná zväčša podľa hierarchického modelu opísaného v~
 
 \section{Princíp fungovania}
 
-Vstup programu počíta s~predpripravenými konfiguráciami v~textovej podobe, tie sú často dostupné z~pravidelných záloh. Môže sa stať, že nie všetky nastavenia potrebné na dôsledné oskenovanie sú k~dispozícií a preto je možné vyexportovať potrebné výstupy zo zariadenia pomocou skriptu, ktorý by bol spustiteľný na zariadení. Program umožní automaticky vyplniť polia v~konfiguračnom súbore pre zariadenie \texttt{device.yaml}, no v~prípade nepostačujúcich informácií zo stiahnutých konfigurácií je potreba manuálne vyplniť niektoré parametre, napríklad vrstvu, na ktorej zariadenie pracuje. Po úspešnom oskenovaní bude možné označiť nálezy ako falošne pozitívne a okomentovať tento dôvod, následne po takomto označení nebude generovaná náprava na nález na danom zariadení. Výstupom bude správa v~HTML formáte s~nedostatkami spustiteľná v akomkoľvek prehliadači, s informáciou o~zjednanej náprave alebo označení falošne pozitívneho nálezu. Aplikovanie nápravy bude zjednané manuálne nakopírovaním tejto vygenerovanej nápravy na zariadenie prípadne pomocou programov na hromadné nasadenie ako napríklad Ansible, ktorý mnohé spoločnosti využívajú k hromadnému nasadzovaniu. 
+Vstup programu počíta s~vopred vyexportovanými konfiguráciami v~textovej podobe, tie sú často dostupné z~pravidelných záloh. Môže sa stať, že nie všetky nastavenia potrebné na dôsledné oskenovanie sú k~dispozícií a preto je možné vyexportovať potrebné výstupy zo zariadenia pomocou skriptu, ktorý by bol spustiteľný na zariadení. Program umožní automaticky vyplniť polia v~konfiguračnom súbore pre zariadenie \texttt{device.yaml}, no v~prípade nepostačujúcich informácií zo stiahnutých konfigurácií je potreba manuálne vyplniť niektoré parametre, napríklad vrstvu, na ktorej zariadenie pracuje. Po úspešnom oskenovaní bude možné označiť nálezy ako falošne pozitívne a okomentovať tento dôvod, následne po takomto označení nebude generovaná náprava na nález na danom zariadení. Výstupom bude správa v~HTML formáte s~nedostatkami spustiteľná v akomkoľvek prehliadači, s informáciou o~zjednanej náprave alebo označení falošne pozitívneho nálezu. Aplikovanie nápravy bude zjednané manuálne nakopírovaním tejto vygenerovanej nápravy na zariadenie prípadne pomocou programov na hromadné nasadenie ako napríklad Ansible, ktorý mnohé spoločnosti využívajú k hromadnému nasadzovaniu. 
 
 
 \begin{figure}[H]
@@ -202,7 +207,7 @@ Nasledujúca štruktúra súborov s~komentármi vyobrazuje hierarchiu uloženia 
 V~súčasnej dobe existuje mnoho odporúčaní, štandardov a benchmarkov, ktoré sa zaoberajú bezpečnosťou a správnou konfiguráciou sieťových zariadení. V~mnohých prípadoch sú buď príliš všeobecné, a teda sieťoví inžinieri majú problém zistiť, čo daným odporúčaním autor myslel a ako ho implementovať, alebo sú určené iba pre zariadenia od jedného výrobcu. Problémom je taktiež, že väčšina odporúčaní, štandardov a benchmarkov sa nie úplne prekrývajú, a teda je potrebné pri nastavovaní a audite zariadení čerpať s~mnohých naraz. Nižšie uvedené výsledné tabuľky obsahujú odporúčania z~odbornej literatúry, štandardov a benchmarkov verejne dostupných a používaných v~produkčnom nasadení. Výhodou je aj fakt, že obsahujú odporúčania vychádzajúce z~problémov IPv6, ktoré nie sú často v~štandardoch a benchmarkoch dostupné. 
 %Podrobná tabuľka s~mapovaním odporúčaní na príkazy pre zariadenia Cisco s~operačným systémom IOS je v~prílohe \ref{apendix:cisco_cmd}.
 
-Zariadenia Cisco boli pre túto prácu vybrané z~dôvodu, že spoločnosť Cisco je lídrom v sie5ov7ch zariadeniach, ktorý udáva trend, ich zariadenia sú celosvetovo v~korporáciách veľmi rozšírené a mnoho literatúry a benchmarkov sa odvoláva na nastavenia týchto prístrojov s~udávanými príkladmi konfigurácie. Taktiež sú tieto zariadenia dobrým referenčným príkladom pre hľadanie alternatívy v~zariadeniach od iných výrobcov.
+Zariadenia Cisco boli pre túto prácu vybrané z~dôvodu, že spoločnosť Cisco je lídrom v sieťových zariadeniach, ktorý udáva trend, ich zariadenia sú celosvetovo v~korporáciách veľmi rozšírené a mnoho literatúry a benchmarkov sa odvoláva na nastavenia týchto prístrojov s~udávanými príkladmi konfigurácie. Taktiež sú tieto zariadenia dobrým referenčným príkladom pre hľadanie alternatívy v~zariadeniach od iných výrobcov.
 
 Tabuľky sú rozdelené do skupín podľa protokolu prípadne okruhu problému, ktorému sa venujú. V~tabuľkách je možné vidieť, že odporúčania sú zatriedené podľa viacerých kritérií. %V~prvom rade sú to roviny (plane), ktoré nie sú dôležité pre následnú automatickú konfiguráciu a odhaľovanie problémov, ale na vytvorenie si obrazu, ktorá časť rovín je kritická a postihnuteľná najviac. 
 
@@ -212,6 +217,19 @@ Stĺpec závažnosť (severity) vznikol na základe predpokladaných závažnost
 Posledným rozdelením je vrstva, na ktorej zariadenie pracuje (Facility layer), nakoľko rozdelenie podľa zariadení nie je dostatočné, pretože napríklad L3 prepínač môže byť použitý na ktorejkoľvek vrstve hierarchického modelu a každá vrstva má určité špecifiká, ktoré neobsahuje iná vrstva. Špeciálny YAML konfiguračný súbor bude obsahovať informáciu, do ktorej vrstvy (Facility layer) daný modul patrí a na základe toho bude môcť program rozhodnúť, ktoré moduly zodpovedné za nájdenie problému a jeho vyriešenie budú nad vyexportovaným konfiguračným súborom zariadenia spustené. Taktiež bude možné meniť, dopĺňať a zakázať spúšťanie modulov pre jednotlivé zariadenia, pokiaľ by v~danej topológii nevyhovovalo rozdelenie z~tabuliek uvedených nižšie. 
 
 Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa odporúčanie a opatrenie týka, nie sú súčasťou žiadneho kontrolného zoznamu, benchmarku ani štandardu, z~ktorého bolo čerpané. Sieťový administrátor by preto musel sám vyvodiť záver, ktoré odporúčania a postupy bude aplikovať na jednotlivé zariadenia a vrstvy hierarchického modelu. Preto vytvorená tabuľka odporúčaní už obsahuje aj zoznam zariadení, ktorých sa opatrenie týka.
+\\\\
+\noindent
+Vytvorená sústava tabuliek \ref{tab:managemnet} -- \ref{tab:other} je značne dlhá. Vzhľadom k jej dôležitosti a značnému úsiliu pri jej vytváraní bolo rozhodnuté ju ponechať v hlavnom texte práce, nakoľko jej vytvorenie je neoddeliteľnou súčasťou práce. Odvíja sa od nej totiž aj implementácia ako aj prípadné budúce rozšírenie na zariadenia ďalších výrobcov a pridaní podpory pre ne.\\\\
+
+
+\noindent
+V nižšie uvedených tabuľkách sa nachádzajú tieto skratky:
+\begin{itemize}
+	\item Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data
+	\item Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify
+	\item Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution
+\end{itemize}
+
 
 %Z~dôvodu šetrenia priestoru boli hodnoty nadobúdajúce stĺpce Plane a Severity skrátené na iniciály slov reprezentujúce tieto hodnoty. Ich celé názvy je možné nájsť v~kapitole \ref{hierarchydesign} respektíve \ref{riskmanagement}. Stĺpec Facility layer naviac obsahuje hodnotu \texttt{A}, ktorej význam znamená, že toto odporúčanie sa vzťahuje na všetky zariadenia bez ohľadu, na akej vrstve operujú.  
 
@@ -310,12 +328,6 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
@@ -391,12 +403,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\hline
 	
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
+
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	\caption{Odporúčania pre filtrovanie prevádzky}
@@ -438,12 +445,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CAL	& \cite{Hucaby2010}\\
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
+\newpage
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	\caption{Odporúčania pri vysokom zaťažení}
@@ -468,12 +470,6 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	4	&Vysoké zaťaženie zariadenia spôsobilo nemožnosť prihlásenia k~nemu	&Rezervovanie pamäte pre protokoly na manažment zariadení pri nedostatku pamäte	&M	&H	&A	& \cite{Singh2018}\\	
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	\caption{Odporúčania na zamedzenie mapovania siete}
@@ -530,12 +526,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Rey2016}\\
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
+
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	\caption{Odporúčania na identifikáciu zariadení a nastavení}
@@ -559,14 +550,8 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	CAL	& \cite{Lammle2013}\\	
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
-
+\newpage
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	
 	\caption{Odporúčania k~protokolu NTP}
@@ -598,12 +583,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\rowcolor[rgb]{ .94,  .94,  .94} 5	&Falošný čas od podvrhnutého NTP zdroja	&Nastavenie NTP peer s~inými sieťovými zariadeniami na krížovú validáciu času a záložný zdroj času	&M	&M	&A	& \cite{Akin2002}\\
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
+
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	
@@ -644,12 +624,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
+
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	
@@ -682,14 +657,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
-\
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	
 	\caption{Odporúčania pre First Hop Security}
@@ -797,12 +765,6 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\cite{Podermanski1932015}\\ 
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
@@ -836,12 +798,7 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	\hline
 	
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
+
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
 	
@@ -866,12 +823,6 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
 
 \begin{longtable}[!htbp]{|C{2.5em}L{11em}L{11em}C{2.5em}C{4em}C{5em}L{2.5em}|}
@@ -913,12 +864,6 @@ Vrstva, na ktorej zariadenie operuje, ako aj definované zariadenie, ktorého sa
 	
 	\hline
 \end{longtable}%
-\vspace{-1em}
-{\tiny 
-	\noindent
-	Plane: M\,--\,Management, C\,--\,Control, D\,--\,Data\\
-	Severity: C\,--\,Critical, H\,--\,High, M\,--\,Medium, L\,--\,Low, N\,--\,Notify\\
-	Facility layer: A\,--\,Všetky zariadenia, CE\,--\,Core/Edge, DI\,--\,Distribution, AC\,--\,Access, CAL\,--\,Collapsed All, CDA\,--\,Collapsed Distribution Access, CCD\,--\,Collapsed Core Distribution}
 
 
 

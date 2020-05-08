@@ -62,53 +62,6 @@ Základným stavebným pilierom celého programu sú moduly alebo inak povedané
 
 Pomenovanie modulov, napríklad \texttt{01\_02\_aaa\_server.yaml} \ref{yaml:module} je charakteristické dvojicou čísiel. Prvá dvojica je rovnaká pre viacero modulov a identifikuje oblasť, o ktorú sa modul stará, napríklad nastavenia AAA. Druhá dvojica je unikátna vrámci oblasti AAA, pričom v ostatných oblastiach môže byť použité rovnaké číslo. Toto číslovanie je povinné, pri pridaní nového modulu do oblasti je potreba zachovať číslovanie a zároveň druhá dvojica čísiel sa nemôže v danej oblasti opakovať. Číslovanie bolo použité z dôvodu, aby sa moduly spúšťali v želanom poradí, nebolo nutné rekurzívne spúšťanie, kde bolo nutné definovať viac náväzností ako v súčasnosti. Naviac to umožňuje pri generovaní správy s nedostatkami vypisovať spolu podobné moduly z jednej oblasti.\\  
 
-
-\vspace{1em}
-\noindent
-Premenné a ich význam:
-\begin{itemize}
-	\item \texttt{type}\,--\,môže nadobudnúť štyri hodnoty, ktoré kopírujú rozdelenie príkazov z kapitoly \ref{rozdelenie_prikazov}, preto ich význam a motivácia už nebudú ďalej rozoberané.
-	\item \texttt{facility\_type}\,--\,aj keď definujeme moduly, ktoré sa majú spustiť na základe príslušnosti zariadenia vo vrstve hierarchického modelu, môžu nastať situácie, kedy to nestačí. Takýmto príkladom je distribučná vrstva. Na tejto vrstve môžu byť použité buď L3 prepínače, alebo smerovače. Rozdiel je badateľný napríklad v module, ktorý overuje nastavenia natívnej VLAN trunk portov. Pokiaľ by bolo zariadenie smerovač, tak tento modul nemá zmysel spúšťať, pretože by generoval iba falošne pozitívny nález.
-	\item \texttt{check\_if\_l3\_protocol}\,--\,definuje, že modul bude spustený iba ak je na zariadení povolený určitý L3 protokol napríklad IPv6. V prípade prázdnej premennej na tom aký je protokol prítomný a nastavený na zariadení nezáleží, modul bude spustený vždy.
-	\item \texttt{check\_if\_function}\,--\,definované funkcie ako napríklad OSPF, ktoré musia byť prítomné na zariadení, ak má byť spustená analýza. Je to z dôvodu eliminovania falošne pozitívnych správ, pretože nemá zmysel hľadať nedostatky v OSPF, ak vôbec nie je na zariadení nastavené. V prípade prázdnej premennej, nezáleží na tom, aké funkcie sú prítomné a nastavené na zariadení, modul bude spustený vždy.
-	\item \texttt{run\_after\_module}\,--\,špecifikovanie modulu, ktorý musí byť spustený pred aktuálnym. Tejto premennej nemusí byť vždy priradená hodnota.
-	\item \texttt{run\_after\_module\_match\_status}\,--\,zväzujúca informácia s predchádzajúcou položkou. Pri definovaní \texttt{none} stačí ak daný predchádzajúci modul bol spustený. Ak bude hodnota \texttt{error}, príde k spusteniu aktuálneho modulu iba v prípade neúspechu predchádzajúceho modulu. Analogicky funguje hodnota \texttt{successful}, kedy musí predchádzajúci modul skončiť úspechom, aby sa aktuálny spustil.
-	\item \texttt{applicable\_to\_interface\_type}\,--\,v prípade ak ide o modul, ktorý kontroluje rozhrania, teda \texttt{type: ``i``}, tak sa môže špecifikovať zoznam, na základe ktorého sa bude testovať iba prítomnosť nastavenia na rozhraní, ktoré má určité nastavenie, napríklad na prístupových portoch \texttt{access}. V prípade viac ako jednej hodnoty v tomto zozname sa použije logická funkcia OR, a prítomnosť nastavenia sa bude hľadať na všetkých rozhraniach, ktoré spĺňajú aspoň jeden z definovaných prvkov zoznamu. V prípade prázdneho zoznamu sa bude nastavenie hľadať na všetkých rozhraniach bez výnimky.
-	\item \texttt{non\_applicable\_to\_interface\_type}\,--\,premenná, ktorá funguje podobne ako predchádzajúca, akurát môže bližšie špecifikovať rozhranie, teda aj napriek pozitívnemu výskytu a zhode v predchádzajúcom parametre môžu nastať kombinácie, kde analýza modulom nie je na mieste. Napríklad by rozhranie malo atribút \texttt{access} a daný modul je aplikovateľný na takéto rozhrania, tak môžeme špecifikovať, že je aplikovateľný ak je \texttt{access} a zároveň nie je \texttt{shutdown}.
-	\item \texttt{cannot\_determine\_search\_or\_fix}\,--\,môže nastať prípad, že nemáme špecifikované všetky premenné v \texttt{own\_variables.yaml}, prípadne pri hľadaní nedostatkov program nebol schopný premenné vyplniť. V takomto prípade sa táto premenná označí ako \texttt{True}, čo znamená, že administrátor musí spozornieť a prečítať si komentár k tomuto nálezu programu. Taktiež môže nastať stav, že nie je možné nájsť daný kontext špecifikovaný v \texttt{regex\_context} alebo v prípade nastavenia na rozhraní, nebolo nájdené rozhranie s daným nastavením napríklad \texttt{access}, na ktorého typ modul hľadá nedostatok.
-	\item \texttt{cannot\_determine\_search\_or\_fix\_comment}\,--\,dodatočný komentár k vysvetleniu nadobudnutia hodnoty \texttt{true} v predchádzajúcej premennej.
-	\item \texttt{eliminated}\,--\,znižuje počet falošne pozitívnych správ, program označí premennú ako \texttt{true} v prípade, že na skenovanom zariadení nie je funkcia definovaná v \texttt{check\_if\_l3\_protocol} alebo \texttt{check\_if\_function}.
-	\item \texttt{name\_cmd\_general}\,--\,názov modulu, ktorý bude vidieť v záverečnej správe.
-	\item \texttt{name\_of\_area}\,--\,oblasť pod ktorú spadá daný modul, obsah premennej bude viditeľný v záverečnej správe.
-	\item \texttt{default\_cmd\_general\_severity}\,--\,predvolená hodnota závažnosti nastavenia respektíve jeho nedostatku. 
-	\item \texttt{user\_cmd\_general\_severity}\,--\,špecifická hodnota závažnosti nastavenia respektíve jeho nedostatku zmenená administrátorom, ktorá bola zistená analýzou rizík. 
-	\item \texttt{regex\_cmd}\,--\,regulárny výraz potrebný na nájdenie nastavenia. V prípade viac ako jedného reťazca v zozname sa použije logická funkcia OR pričom pri neúspešnom hľadaní prvého výrazu sa skúša ďalší v poradí. Hľadanie sa rozumie ako úspešné, pokiaľ aspoň jeden z regulárnych výrazov nájde zhodu v konfigurácií zariadenia. Všetky regulárne výrazy sú si rovnocenné a hľadajú rovnaké nastavenie, ale s rozličnou syntaxou.
-	\item \texttt{regex\_context}\,--\,kontext pod ktorým sa hľadá regulárny vyraz z \texttt{regex\_cmd}. V tejto premennej sa nachádza tiež regulárny výraz, využitá je iba v prípade bodu 4 kapitoly \ref{rozdelenie_prikazov}.
-	\item \texttt{regex\_cmd\_occurrence}\,--\,nie vždy je žiadúce aby hľadaný regulárny výraz našiel zhodu, pretože niektoré nastavenia zariadení spôsobujú bezpečnostnú hrozbu. Môžu byť prednastavené už od výroby alebo aplikované administrátormi. Z tohto dôvodu táto premenná pri nadobudnutej hodnote \texttt{occurence} definuje, že hľadaný regulárny výraz musí nájst dané nastavenie a musí byť v zariadení prítomné. Naopak \texttt{non-occurence} znamená, že analýza modulom je úspešná, ak daný regulárny výraz nenájde žiadnu zhodu. 
-	\item \texttt{cmd\_match\_status}\,--\,definuje úspešnosť \texttt{successful} alebo neúspešnosť \texttt{error} pri hľadaní regulárneho výrazu. Taktiež zo začiatku ešte nespustený modul označuje ako \texttt{not run}. V prípade, že existuje ešte nejaký modul, ktorého nastavenie implikuje súčasný modul, tak sa v tejto premennej ocitne reťazec \texttt{matched by equivalent}.
-	\item \texttt{mark\_module\_as}\,--\,ako už bolo spomenuté v predchádzajúcom bode, tak pri úspešnom nájdení nastavenia respektíve pri explicitne vyžiadanej neprítomnosti nastavenia môžeme označiť iný modul povolenými hodnotami z predchádzajúceho bodu. Poradie v zozname je ekvivalentné  s poradím z premennej \texttt{regex\_cmd}. V prípade príkladu z výpisu nižšie to znamená, že pri úspešnom nájdení prvého regulárneho výrazu sa neoznačí žiaden modul. Pokiaľ sa však nenájde zhoda s prvým regulárnym výrazom testuje sa ďalší a pri jeho zhode sa označí modul \texttt{01\_03\_aaa\_group.yaml} ako \texttt{matched by equivalent}.
-	\item \texttt{general\_comment}\,--\,všeobecný komentár, do ktorého sa ukladajú rôzne výstupy a upozornenia z programu.
-	\item \texttt{matched\_values}\,--\,všetky zhody, ktoré sa nájdu v nastavení zariadenia budú uložené do tejto premennej. Z hľadiska anonymizácie výstupnej správy je však možné nič do tejto premennej programom nezapisovať.
-	\item \texttt{public\_vars}\,--\,na zjednanie nápravy je často potrebné poznať premenné do niektorých príkazov, ktoré nastavujú zariadenie. Tie môžeme získať z úspešného nájdenia príkazu v konfigurácií, alebo zo súboru \texttt{own\_variables.yaml}. Detailnejšie sa problémom zaoberá kapitola \ref{variables_generate}.
-	\item \texttt{secret\_vars}\,--\,nie je v súčasnej dobe využitá, počíta sa s premiestnením premenných na zjednanie nápravy z \texttt{public\_vars}, ktoré by sa nemali uchovávať z bezpečnostných dôvodov, napríklad rôzne heslá, ktoré sú súčasťou príkazov.
-	\item \texttt{eliminate\_all\_matched}\,--\,administrátor zvolí túto hodnotu \texttt{true} ak máme \texttt{regex\_cmd\_occurrence: non-occurence}, teda ak sa nájde v nastavení príkaz, ktorý by tam nemal figurovať.
-	\item \texttt{eliminate\_prefix}\,--\,súvisí z prechádzajúcou premennou a definuje reťazec, ktorý sa pridá k nájdenému nastaveniu, ktoré by sa v ideálnom prípade nemalo v konfigurácií zariadenia nachádzať a tým toto nastavenie eliminuje. Príkladom môže byť prefix \texttt{no} alebo \texttt{delete}.
-	\item \texttt{fix\_cmd}\,--\,príkaz zjednávajúci nápravu. Pokiaľ má príkaz viacej riadkov, každý riadok sa píše ako zvlášť položka zoznamu. Je to z dôvodu  lepšej čitateľnosti a jednoduchšieho pridávania premenných, ktoré majú začiatočný symbol \texttt{\$}. Platí, že sa môžu použiť premenné iba definované v danom module v premennej \texttt{public\_vars}.
-	\item \texttt{fix\_to\_apply}\,--\,generované programom, výsledné príkazy s vyplnenými premennými v jednom reťazci.
-	\item \texttt{fix\_cmd\_notice}\,--\,Poznámka, ktorá môže byť pridaná a oznamuje prípadné problémy, ktoré by mohli vzniknúť aplikovaním nápravy.
-	\item \texttt{fix\_cmd\_ignore}\,--\,administrátor môže zadať \texttt{true} pokiaľ nechce aby sa generovala náprava pre tento typ modulu.
-	\item \texttt{fix\_cmd\_ignore\_comment}\,--\,komentár a zdôvodnenie, prečo administrátor nechce povoliť automatické generovanie nápravy
-	\item \texttt{fix\_cmd\_false\_positive}\,--\,administrátor môže zadať \texttt{true} pokiaľ je nález falošne pozitívny.
-	\item \texttt{fix\_cmd\_false\_positive\_comment}\,--\,komentár a zdôvodnenie, prečo ide o falošne pozitívny nález.
-	\item \texttt{affected\_ports}\,--\,výpis rozhraní, ktoré absentujú dané nastavenie. Táto premenná je programom vyplnená iba ak \texttt{type: ``i``}.
-	\item \texttt{affected\_context}\,--\,výpis kontextov, ktoré absentujú dané nastavenie. Táto premenná je programom vyplnená iba ak \texttt{type: ``c``}.
-	\item \texttt{explicit\_ignored\_ports}\,--\,výpis rozhraní, ktoré sú explicitne vylúčené z analýzy.
-	\item \texttt{explicit\_ignored\_ports\_comment}\,--\,komentár a zdôvodnenie, prečo boli rozhrania vylúčené.
-\end{itemize}
-\newpage
-\vspace{1em}
-
-Zaujímavou časťou je označovanie iných modulov bez ich samotného spustenia pomocou reťazca \texttt{mark\_module\_as}. Dôležité je povedať, že takéto označovanie iných modulov je možné iba v prípade úspešnosti aktuálneho modulu. Pri nájdení chyby respektíve nedostatku to nie je možné. Iný modul je možné označiť vopred, teda ešte pred jeho samotným spustením, v tom prípade k jeho spusteniu ani nedôjde. Je však možné nejaký modul označiť aj spätne, pričom ak v označovanom module bola predtým nájdená chyba a vygenerovaná náprava, tak sa táto náprava eliminuje. Pri takomto spätnom a doprednom označovaní sa odporúča modul označiť ako \texttt{matched by equivalent}.
 %Takáto funkcia je nutná keďže mohé nastavenia idú aplikovať v rôznych kontextoch, prípadne rôzne verzie operačných systémov bežiacich na zariadení majú rozdielny spôsob konfigurácie.
 
 
@@ -166,11 +119,57 @@ affected_context: []
 explicit_ignored_ports: []
 explicit_ignored_ports_comment: "" 
 \end{lstlisting}
+\vspace{1em}
+\noindent
+Premenné a ich význam:
+\begin{itemize}
+	\item \texttt{type}\,--\,môže nadobudnúť štyri hodnoty, ktoré kopírujú rozdelenie príkazov z kapitoly \ref{rozdelenie_prikazov}, preto ich význam a motivácia už nebudú ďalej rozoberané.
+	\item \texttt{facility\_type}\,--\,aj keď definujeme moduly, ktoré sa majú spustiť na základe príslušnosti zariadenia vo vrstve hierarchického modelu, môžu nastať situácie, kedy to nestačí. Takýmto príkladom je distribučná vrstva. Na tejto vrstve môžu byť použité buď L3 prepínače, alebo smerovače. Rozdiel je badateľný napríklad v module, ktorý overuje nastavenia natívnej VLAN trunk portov. Pokiaľ by bolo zariadenie smerovač, tak tento modul nemá zmysel spúšťať, pretože by generoval iba falošne pozitívny nález.
+	\item \texttt{check\_if\_l3\_protocol}\,--\,definuje, že modul bude spustený iba ak je na zariadení povolený určitý L3 protokol napríklad IPv6. V prípade prázdnej premennej na tom aký je protokol prítomný a nastavený na zariadení nezáleží, modul bude spustený vždy.
+	\item \texttt{check\_if\_function}\,--\,definované funkcie ako napríklad OSPF, ktoré musia byť prítomné na zariadení, ak má byť spustená analýza. Je to z dôvodu eliminovania falošne pozitívnych správ, pretože nemá zmysel hľadať nedostatky v OSPF, ak vôbec nie je na zariadení nastavené. V prípade prázdnej premennej, nezáleží na tom, aké funkcie sú prítomné a nastavené na zariadení, modul bude spustený vždy.
+	\item \texttt{run\_after\_module}\,--\,špecifikovanie modulu, ktorý musí byť spustený pred aktuálnym. Tejto premennej nemusí byť vždy priradená hodnota.
+	\item \texttt{run\_after\_module\_match\_status}\,--\,zväzujúca informácia s predchádzajúcou položkou. Pri definovaní \texttt{none} stačí ak daný predchádzajúci modul bol spustený. Ak bude hodnota \texttt{error}, príde k spusteniu aktuálneho modulu iba v prípade neúspechu predchádzajúceho modulu. Analogicky funguje hodnota \texttt{successful}, kedy musí predchádzajúci modul skončiť úspechom, aby sa aktuálny spustil.
+	\item \texttt{applicable\_to\_interface\_type}\,--\,v prípade ak ide o modul, ktorý kontroluje rozhrania, teda \texttt{type: ``i``}, tak sa môže špecifikovať zoznam, na základe ktorého sa bude testovať iba prítomnosť nastavenia na rozhraní, ktoré má určité nastavenie, napríklad na prístupových portoch \texttt{access}. V prípade viac ako jednej hodnoty v tomto zozname sa použije logická funkcia OR, a prítomnosť nastavenia sa bude hľadať na všetkých rozhraniach, ktoré spĺňajú aspoň jeden z definovaných prvkov zoznamu. V prípade prázdneho zoznamu sa bude nastavenie hľadať na všetkých rozhraniach bez výnimky.
+	\item \texttt{non\_applicable\_to\_interface\_type}\,--\,premenná, ktorá funguje podobne ako predchádzajúca, akurát môže bližšie špecifikovať rozhranie, teda aj napriek pozitívnemu výskytu a zhode v predchádzajúcom parametre môžu nastať kombinácie, kde analýza modulom nie je na mieste. Napríklad by rozhranie malo atribút \texttt{access} a daný modul je aplikovateľný na takéto rozhrania, tak môžeme špecifikovať, že je aplikovateľný ak je \texttt{access} a zároveň nie je \texttt{shutdown}.
+	\item \texttt{cannot\_determine\_search\_or\_fix}\,--\,môže nastať prípad, že nemáme špecifikované všetky premenné v \texttt{own\_variables.yaml}, prípadne pri hľadaní nedostatkov program nebol schopný premenné vyplniť. V takomto prípade sa táto premenná označí ako \texttt{True}, čo znamená, že administrátor musí spozornieť a prečítať si komentár k tomuto nálezu programu. Taktiež môže nastať stav, že nie je možné nájsť daný kontext špecifikovaný v \texttt{regex\_context} alebo v prípade nastavenia na rozhraní, nebolo nájdené rozhranie s daným nastavením napríklad \texttt{access}, na ktorého typ modul hľadá nedostatok.
+	\item \texttt{cannot\_determine\_search\_or\_fix\_comment}\,--\,dodatočný komentár k vysvetleniu nadobudnutia hodnoty \texttt{true} v predchádzajúcej premennej.
+	\item \texttt{eliminated}\,--\,znižuje počet falošne pozitívnych správ, program označí premennú ako \texttt{true} v prípade, že na skenovanom zariadení nie je funkcia definovaná v \texttt{check\_if\_l3\_protocol} alebo \texttt{check\_if\_function}.
+	\item \texttt{name\_cmd\_general}\,--\,názov modulu, ktorý bude vidieť v záverečnej správe.
+	\item \texttt{name\_of\_area}\,--\,oblasť pod ktorú spadá daný modul, obsah premennej bude viditeľný v záverečnej správe.
+	\item \texttt{default\_cmd\_general\_severity}\,--\,predvolená hodnota závažnosti nastavenia respektíve jeho nedostatku. 
+	\item \texttt{user\_cmd\_general\_severity}\,--\,špecifická hodnota závažnosti nastavenia respektíve jeho nedostatku zmenená administrátorom, ktorá bola zistená analýzou rizík. 
+	\item \texttt{regex\_cmd}\,--\,regulárny výraz potrebný na nájdenie nastavenia. V prípade viac ako jedného reťazca v zozname sa použije logická funkcia OR pričom pri neúspešnom hľadaní prvého výrazu sa skúša ďalší v poradí. Hľadanie sa rozumie ako úspešné, pokiaľ aspoň jeden z regulárnych výrazov nájde zhodu v konfigurácií zariadenia. Všetky regulárne výrazy sú si rovnocenné a hľadajú rovnaké nastavenie, ale s rozličnou syntaxou.
+	\item \texttt{regex\_context}\,--\,kontext pod ktorým sa hľadá regulárny vyraz z \texttt{regex\_cmd}. V tejto premennej sa nachádza tiež regulárny výraz, využitá je iba v prípade bodu 4 kapitoly \ref{rozdelenie_prikazov}.
+	\item \texttt{regex\_cmd\_occurrence}\,--\,nie vždy je žiadúce aby hľadaný regulárny výraz našiel zhodu, pretože niektoré nastavenia zariadení spôsobujú bezpečnostnú hrozbu. Môžu byť prednastavené už od výroby alebo aplikované administrátormi. Z tohto dôvodu táto premenná pri nadobudnutej hodnote \texttt{occurence} definuje, že hľadaný regulárny výraz musí nájst dané nastavenie a musí byť v zariadení prítomné. Naopak \texttt{non-occurence} znamená, že analýza modulom je úspešná, ak daný regulárny výraz nenájde žiadnu zhodu. 
+	\item \texttt{cmd\_match\_status}\,--\,definuje úspešnosť \texttt{successful} alebo neúspešnosť \texttt{error} pri hľadaní regulárneho výrazu. Taktiež zo začiatku ešte nespustený modul označuje ako \texttt{not run}. V prípade, že existuje ešte nejaký modul, ktorého nastavenie implikuje súčasný modul, tak sa v tejto premennej ocitne reťazec \texttt{matched by equivalent}.
+	\item \texttt{mark\_module\_as}\,--\,ako už bolo spomenuté v predchádzajúcom bode, tak pri úspešnom nájdení nastavenia respektíve pri explicitne vyžiadanej neprítomnosti nastavenia môžeme označiť iný modul povolenými hodnotami z predchádzajúceho bodu. Poradie v zozname je ekvivalentné  s poradím z premennej \texttt{regex\_cmd}. V prípade príkladu z výpisu nižšie to znamená, že pri úspešnom nájdení prvého regulárneho výrazu sa neoznačí žiaden modul. Pokiaľ sa však nenájde zhoda s prvým regulárnym výrazom testuje sa ďalší a pri jeho zhode sa označí modul \texttt{01\_03\_aaa\_group.yaml} ako \texttt{matched by equivalent}.
+	\item \texttt{general\_comment}\,--\,všeobecný komentár, do ktorého sa ukladajú rôzne výstupy a upozornenia z programu.
+	\item \texttt{matched\_values}\,--\,všetky zhody, ktoré sa nájdu v nastavení zariadenia budú uložené do tejto premennej. Z hľadiska anonymizácie výstupnej správy je však možné nič do tejto premennej programom nezapisovať.
+	\item \texttt{public\_vars}\,--\,na zjednanie nápravy je často potrebné poznať premenné do niektorých príkazov, ktoré nastavujú zariadenie. Tie môžeme získať z úspešného nájdenia príkazu v konfigurácií, alebo zo súboru \texttt{own\_variables.yaml}. Detailnejšie sa problémom zaoberá kapitola \ref{variables_generate}.
+	\item \texttt{secret\_vars}\,--\,nie je v súčasnej dobe využitá, počíta sa s premiestnením premenných na zjednanie nápravy z \texttt{public\_vars}, ktoré by sa nemali uchovávať z bezpečnostných dôvodov, napríklad rôzne heslá, ktoré sú súčasťou príkazov.
+	\item \texttt{eliminate\_all\_matched}\,--\,administrátor zvolí túto hodnotu \texttt{true} ak máme \texttt{regex\_cmd\_occurrence: non-occurence}, teda ak sa nájde v nastavení príkaz, ktorý by tam nemal figurovať.
+	\item \texttt{eliminate\_prefix}\,--\,súvisí z prechádzajúcou premennou a definuje reťazec, ktorý sa pridá k nájdenému nastaveniu, ktoré by sa v ideálnom prípade nemalo v konfigurácií zariadenia nachádzať a tým toto nastavenie eliminuje. Príkladom môže byť prefix \texttt{no} alebo \texttt{delete}.
+	\item \texttt{fix\_cmd}\,--\,príkaz zjednávajúci nápravu. Pokiaľ má príkaz viacej riadkov, každý riadok sa píše ako zvlášť položka zoznamu. Je to z dôvodu  lepšej čitateľnosti a jednoduchšieho pridávania premenných, ktoré majú začiatočný symbol \texttt{\$}. Platí, že sa môžu použiť premenné iba definované v danom module v premennej \texttt{public\_vars}.
+	\item \texttt{fix\_to\_apply}\,--\,generované programom, výsledné príkazy s vyplnenými premennými v jednom reťazci.
+	\item \texttt{fix\_cmd\_notice}\,--\,Poznámka, ktorá môže byť pridaná a oznamuje prípadné problémy, ktoré by mohli vzniknúť aplikovaním nápravy.
+	\item \texttt{fix\_cmd\_ignore}\,--\,administrátor môže zadať \texttt{true} pokiaľ nechce aby sa generovala náprava pre tento typ modulu.
+	\item \texttt{fix\_cmd\_ignore\_comment}\,--\,komentár a zdôvodnenie, prečo administrátor nechce povoliť automatické generovanie nápravy
+	\item \texttt{fix\_cmd\_false\_positive}\,--\,administrátor môže zadať \texttt{true} pokiaľ je nález falošne pozitívny.
+	\item \texttt{fix\_cmd\_false\_positive\_comment}\,--\,komentár a zdôvodnenie, prečo ide o falošne pozitívny nález.
+	\item \texttt{affected\_ports}\,--\,výpis rozhraní, ktoré absentujú dané nastavenie. Táto premenná je programom vyplnená iba ak \texttt{type: ``i``}.
+	\item \texttt{affected\_context}\,--\,výpis kontextov, ktoré absentujú dané nastavenie. Táto premenná je programom vyplnená iba ak \texttt{type: ``c``}.
+	\item \texttt{explicit\_ignored\_ports}\,--\,výpis rozhraní, ktoré sú explicitne vylúčené z analýzy.
+	\item \texttt{explicit\_ignored\_ports\_comment}\,--\,komentár a zdôvodnenie, prečo boli rozhrania vylúčené.
+\end{itemize}
+\vspace{1em}
+
+Zaujímavou časťou je označovanie iných modulov bez ich samotného spustenia pomocou reťazca \texttt{mark\_module\_as}. Dôležité je povedať, že takéto označovanie iných modulov je možné iba v prípade úspešnosti aktuálneho modulu. Pri nájdení chyby respektíve nedostatku to nie je možné. Iný modul je možné označiť vopred, teda ešte pred jeho samotným spustením, v tom prípade k jeho spusteniu ani nedôjde. Je však možné nejaký modul označiť aj spätne, pričom ak v označovanom module bola predtým nájdená chyba a vygenerovaná náprava, tak sa táto náprava eliminuje. Pri takomto spätnom a doprednom označovaní sa odporúča modul označiť ako \texttt{matched by equivalent}.
+
 \newpage
 \subsection{Súbor popisujúci vrstvy a moduly}
 Program má ako jednu z požiadaviek minimalizovať počet falošne pozitívnych hlásení. Jeden z prístupov, ktorý má tomuto zamedziť, je spúšťanie kontroly prítomnosti nastavení  na základe umiestnenia zariadenie v hierarchickom modeli siete. Preto je nutné špecifikovať, ktoré moduly majú byť spustené na zariadeniach príslušnej vrstvy. Rozdelenie vrstiev je spomenuté v kapitole \ref{hierarchydesign} a na základe tohto rozdelenia je vytvorený aj súbor \texttt{modules\_by\_facility\_layer.yaml}. Následný výpis kódu \ref{yaml:faclayer} je len ilustračný a skrátený, kde bodky symbolizujú pokračovanie. Jeden YAML modul, môže byť definovaný na viacerých vrstvách. Špeciálnym prípadom je vrstva \texttt{all}, ktorá vlastne ani vrstvou nie je. Ide o zápis, ktorý odstraňuje redundanciu, teda moduly v nej definované by museli byť zadané povinne na každej vrstve, čo by spravilo súbor menej prehľadným a aj komplikovalo editáciu.
 
-\begin{lstlisting}[frame=single,numbers=right,caption={Skrátený konfiguračný súbor \texttt{modules\_by\_facility\_layer.yaml}, ktorý popisuje, aké moduly môžu byť spúšťané na jednotlivých vrstvách.},label=yaml:faclayer,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Ukážka skráteného príkladu skráteného konfiguračného súboru \texttt{modules\_by\_facility\_layer.yaml}, ktorý popisuje, aké moduly môžu byť spúšťané na jednotlivých vrstvách.},label=yaml:faclayer,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
 ---
 all:
 - "01_01_aaa_new_model.yaml"
@@ -215,14 +214,19 @@ Môže nastať päť situácií s hodnotou premenných v \texttt{public\_vars}. 
 
 Ako bolo už spomenuté, súbor \texttt{own\_variables.yaml} obsahuje informácie pre celý jeden workspace, môže sa stať, že pre nejaké zariadenie môžeme chcieť špecifické nastavenie odlišné od definovaného v tomto súbore. Toto je možné docieliť editáciou samotného modulu v danom adresári zariadenia, ktorý vyhľadáva a napravuje nedostatok, ale je tak možné učiniť až po pustení programu s argumentom \texttt{analyze}.
 %\vspace{-0.0em}
-\begin{lstlisting}[frame=single,numbers=right,caption={Skrátený konfiguračný súbor \texttt{own\_variables.yaml} definujúci premenné potrebné na genrovanie nápravy},label=yaml:variables,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=right,caption={Ukážka skráteného príkladu vyplneného konfiguračného súboru \texttt{own\_variables.yaml} definujúceho premenné potrebné na generovanie nápravy},label=yaml:variables,basicstyle=\ttfamily\small, keywordstyle=\color{black},language=python,breaklines=true]
 ---
-aaa_type: "" # [radius|tacacs]
-aaa_server_name: "" # Own name of AAA server
+aaa_type: "radius"
+aaa_server_name: "CORP_RADIUS"
 ...
 ssh_port: "2223"
 ...
-native_vlan_id: ""
+syslog_ipv4: "10.0.0.140"
+...
+ospf-router-id: "1.1.1.1"
+...
+allowed_vlan_on_trunk: "10,20,30"
+...
 ...
 \end{lstlisting}
 
@@ -236,6 +240,7 @@ native_vlan_id: ""
 
 
 \section{Popis fungovania a diagramy funkcií}
+\label{popis_fungovania}
 Program je vytvorený s orientáciou na budúcu možnú rozšíriteľnosť, prenositeľnosť, modularitu a udržovateľnosť kódu. Z tohto dôvodu sa nejedná o jeden skript, ktorý ma v sebe natvrdo napísané regulárne výrazy na hľadanie nedostatkov, reakciu na ne a rôzne ďalšie minoritné výstupy, ale obsahuje "moduly". Tieto moduly, viď \ref{module} sú konfiguračnými súbormi využívajúcimi syntax a sémantiku jazyka YAML a definujú správanie programu pri nájdení, odstraňovaní a notifikovaní o nedostatku na analyzovanom zariadení. Samozrejme tento koncept generuje určitú vyššiu réžiu na ukladanie nálezov, ale značne tým zvyšuje modularitu, znovupoužiteľnosť a budúcu rozšíriteľnosť.
 
 V prechádzajúcich kapitolách a v adresárovej štruktúre opísanej v kapitole \ref{hierarchy_struct} bolo často spomenuté slovo "workspace". Jedná sa v podstate o zložku s vyexportovanými konfiguráciami, ktoré patria pod jednu sieť. Záleží od používateľa programu, ktoré všetky zariadenia považuje za jednu sieť a chce ich zanalyzovať naraz. Zároveň je však odporúčané dávať do jednej workspace zložky ideálne zariadenia operujúce na rovnakej vrstve hierarchického modelu, t.j. napríklad všetky zariadenia z danej testovanej siete, ktoré sa používajú na prístupovej (access) vrstve. Program síce obsahuje algoritmus popísaný v \ref{automatic_faclayer} na rozpoznanie zariadenia a zatriedenie do vrstvy hierarchického modelu, no jeho spoľahlivosť nie je 100\%-ná. Preto existuje prepínač, ktorý definuje, že všetky zariadenia v danej zložke (workspace) patria iba do jednej určitej vrstvy. A z tohto dôvodu je odporúčané dávať do analyzovanej zložky ideálne zariadenia operujúce na rovnakej vrstve. Je nutné taktiež podotknúť, že nie je nutné ako názov zložky používať slovo "workspace", užívateľ si tento názov môže zvoliť ľubovoľne, ide iba o demonštráciu. Pri analyzovaní siete organizácie VUT FEKT sa môže zvoliť názov zložky "sieť\_VUT\_FEKT".
@@ -316,40 +321,83 @@ Beh programu sa rozdeľuje do štyroch fáz. Je to z dôvodu, že pri naplnení 
 
 
 \begin{enumerate}
-	\item inicializácia\,--\,
-	\item hľadanie nedostatkov a generovanie nápravy\,--\,
-	\item generovanie záverečnej správy\,--\,
-	\item vyexportovanie súborov pre nápravu\,--\,
+	\item Inicializácia\,--\,je dôležitá pre zistenie základných informácií o zariadeniach v definovanom workspace. Zistené údaje sú napríklad jeho meno, role jednotlivých rozhraní, zatriedenie zariadenia do hierarchického modelu siete, a tým zistenie, ktoré moduly sa budú spúšťať v nasledujúcej fáze. Zjednodušený postup práce programu tejto časti je znázornený pomocou vývojového diagramu \ref{netsec_analyze}.
+	\item Hľadanie nedostatkov a generovanie nápravy\,--\,pre každé zariadenie je spustený zoznam modulov zodpovedajúcich vrstve, na ktorej zariadenie pracuje. Je dobré po úvodnej analýze vyplniť súbor \texttt{own\_variables.yaml}, kde sa nachádzajú premenné potrebné pre nápravu v prípade príkazov, ktoré potrebujú dodatočné informácie. Diagram \ref{netsec_audit} opisujúci hlavnú časť programu je veľmi zjednodušený, zovšeobecnený a abstraktný. V prípade záujmu je možné nahliadnuť do zdrojového súboru \texttt{netsec.py} do metód \texttt{audit\_check} a \texttt{audit\_analyze\_module}.
+	\item Generovanie záverečnej správy\,--\,diagram pre túto časť programu nie je potrebný nakoľko ide o priamočiaru prácu. Otvoria sa všetky moduly v zložke každého zariadenia, zistí sa stav hľadania nedostatkov a všetky údaje sa použijú na vytvorenie záverečnej HTML správy aj so štatistickými informáciami. Príklad tejto správy je k nahliadnutiu v kapitole \ref{sprava_nedostatky}.
+	\item Vyexportovanie súborov pre nápravu\,--\,pre túto časť programu nie je taktiež nutná vizualizácia, keďže sa zoberú vygenerované reťazce nápravy z každého YAML modulu v adresári pre konkrétne zariadenie a pridajú sa do textového súboru, ktorý sa následne bude aplikovať na zariadenie. Tento nápravný textový súbor je vygenerovaný pre každé zariadenie. Môže byť aplikovaný ručne pomocou nakopírovania do konzole alebo v prípade existencie automatických nasadzovacích nástrojov ako Ansible, sa táto činnosť môže spraviť automatizovane.
 \end{enumerate}
 
-
+\vspace{2em}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.8]{obrazky/netsec_analyze.pdf}
 	\end{center}
-	\caption[Inicializácia programu pomocou argumentu \texttt{analyze}]{Inicializácia programu pomocou argumentu \texttt{analyze}}
-	\label{fac_layer}
+	\caption[Inicializácia programu pomocou argumentu \texttt{analyze}.]{Inicializácia programu pomocou argumentu \texttt{analyze}.}
+	\label{netsec_analyze}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.8]{obrazky/netsec_audit.pdf}
+	\end{center}
+	\caption[Veľmi zjednodušený pohľad na prácu hlavnej časti programu zodpovednú za nájdenie nedostatkov a vygenerovanie ich nápravy spustením pomocou argumentu \texttt{audit-check}.]{Veľmi zjednodušený pohľad na prácu hlavnej časti programu zodpovednú za nájdenie nedostatkov a vygenerovanie ich nápravy spustením pomocou argumentu \texttt{audit-check}.}
+	\label{netsec_audit}
 \end{figure}
 
 \section{Správa s nedostatkami}
+\label{sprava_nedostatky}
 Po úspešnej analýze nastavení zariadení je možné pomocou argumentu \texttt{generate\_report} vytvoriť správu o analýze s nájdenými nedostatkami. Správa obsahuje základné informácie o zariadení zo súboru \texttt{device\_info.yaml}, ktorý ako už bolo spomenuté, slúži na uchovanie premenných z triedy \texttt{device\_info}. Naviac je správa doplnená o čas jej vygenerovania. Správa je zámerne v anglickom jazyku z dôvodu univerzálnosti a tiež kvôli predpokladanému budúcemu využitiu programu ďalšími osobami.
+\\\\
+\noindent
+Správa obsahuje aj štatistiku úspešnosti. Zaujímavou časťou je koeficient váženého skóre (Weighted score coefficient). Nasledujúca tabuľka reprezentuje priradenie váhy úspešným a neúspešným nálezom: 
 
-Nasledujú jednotlivé oblasti, ako Authentication, Authorization, Accounting; SSH a podobne. Každá oblasť obsahuje názov spusteného modulu, závažnosť (Severity) nastavenia alebo nedostatku, informáciu o preskočení testovania (Skipped), informáciu o nemožnosti nájsť alebo vykonať nápravu (Cannot determine search/fix) a výsledný stav testu (Status). Testovanie môže byť preskočené (Skipped) pokiaľ sa na zariadení nevyskytuje nejaké nastavenie, alebo L3 protokol, čo súvisí s premennými \texttt{l3\_protocols} a \texttt{enabled\_functions}, ktoré boli opísané v kapitole \ref{device_info}. Stĺpec \texttt{Cannot determine search/fix} nadobúda hodnotu \texttt{True} pokiaľ nevie program zjednať nápravu pre chýbajúce premenné do príkazu, prípadne pri nenájdení nutného kontextu alebo rozhrania, ktoré musí mať určité nastavenie, napríklad byť prístupovým (access) portom. Následne pri každej položke sa zobrazujú ďalšie dodatočné informácie. Pri nedostatku sa zobrazia rozhrania, ktoré nastavenie absentujú, kontexty, v ktorých bola nájdená chyba a tiež sekvencia príkazov na zjednanie nápravy. Ďalšími údajmi môžu byť nastavenia, ktoré boli úspešne nájdené a rôzne komentáre k zisteniam, ako aj upozornenia a usmernenia. Ilustračná skrátená záverečná správa je dostupná na obrázku nižšie.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l|l|l|l}
+		\begin{tabular}[c]{@{}l@{}}Úspešnosť hľadania\\ nastavenia\end{tabular} & Závažnosť              & Váha & \begin{tabular}[c]{@{}l@{}}Premenná udávajúca \\ početnosť výskytov\end{tabular} \\ \hline
+		Úspech                                                                  & \multicolumn{1}{c|}{-} & 1    & počet\_úspech                                                                  \\
+		Neúspech                                                                & Notice                 & 1    & počet\_notice                                                                  \\
+		Neúspech                                                                & Low                    & 0.75 & počet\_low                                                                     \\
+		Neúspech                                                                & Medium                 & 0.5  & počet\_medium                                                                  \\
+		Neúspech                                                                & High                   & 0.25 & počet\_high                                                                    \\
+		Neúspech                                                                & Critical               & 0    & počet\_critical                                                               
+	\end{tabular}
+	\caption{Váhy nálezov}
+	\label{tab:weight_score}
+\end{table}
+\noindent
+Výpočet koeficientu je nasledovný:
+\[normalizovaný\_diel = 100/počet\_všetkých\_testovaných\_modulov\]
+\[suma\_koeficientov = 0*počet\_critical+0.25*počet\_high+0.5*počet\_medium+\]
+\[                     +0.75*počet\_low+1*počet\_notice+1*počet\_úspech\]
+\[koeficient\_váženého\_skóre = suma\_koeficientov*normalizovaný\_diel\]
+\\
+\noindent
+V správe o analýze nasledujú jednotlivé oblasti, ako Authentication, Authorization, Accounting; SSH a podobne. Každá oblasť obsahuje názov spusteného modulu, závažnosť (Severity) nastavenia alebo nedostatku, informáciu o preskočení testovania (Skipped), informáciu o nemožnosti nájsť alebo vykonať nápravu (Cannot determine search/fix) a výsledný stav testu (Status). Testovanie môže byť preskočené (Skipped) pokiaľ sa na zariadení nevyskytuje nejaké nastavenie, alebo L3 protokol, čo súvisí s premennými \texttt{l3\_protocols} a \texttt{enabled\_functions}, ktoré boli opísané v kapitole \ref{device_info}. Stĺpec \texttt{Cannot determine search/fix} nadobúda hodnotu \texttt{True} pokiaľ nevie program zjednať nápravu pre chýbajúce premenné do príkazu, prípadne pri nenájdení nutného kontextu alebo rozhrania, ktoré musí mať určité nastavenie, napríklad byť prístupovým (access) portom. Následne pri každej položke sa zobrazujú ďalšie dodatočné informácie. Pri nedostatku sa zobrazia rozhrania, ktoré nastavenie absentujú, kontexty, v ktorých bola nájdená chyba a tiež sekvencia príkazov na zjednanie nápravy. Ďalšími údajmi môžu byť nastavenia, ktoré boli úspešne nájdené a rôzne komentáre k zisteniam, ako aj upozornenia a usmernenia. Ilustračná skrátená záverečná správa je dostupná na obrázku nižšie.
 \begin{figure}[H]
 	\caption[Príklad ilustračnej skrátenej záverečnej správy s nedostatkami]{Príklad ilustračnej skrátenej záverečnej správy s nedostatkami}
 	\begin{center}
-		\includegraphics[scale=0.8]{obrazky/report_html_page_1.pdf}
+		\includegraphics[scale=0.85]{obrazky/report_html_page_1.pdf}
 	\end{center}
 	
 	\label{report_1}
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\vspace{-0.8cm}\includegraphics[scale=0.9]{obrazky/report_html_page_2.pdf}
+		\includegraphics[scale=0.85]{obrazky/report_html_page_2.pdf}
 	\end{center}
 	
 	\label{report_2}
 \end{figure}
+
+\section{Požiadavky programu}
+Na bezproblémovú prácu s programom sú potrebné tieto náležitosti:
+\begin{enumerate}
+	\item Python 3.7.3 alebo vyšší
+	\item Python modul \texttt{ruamel.yaml}
+	\item Python modul \texttt{pdfkit} (voliteľný)\,--\,pri nenainštalovaní nebudú vygenerované PDF správy, ale iba HTML správy.
+	\item Program \texttt{wkhtmltopdf} (voliteľný)\,--\,pri nenainštalovaní nebudú vygenerované PDF správy, ale iba HTML správy.
+\end{enumerate}
 
 
 

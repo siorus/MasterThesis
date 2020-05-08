@@ -30,7 +30,7 @@ default_cmd_general_severity: "low" # Severity which defines importance of found
 user_cmd_general_severity: "none" # Severity which defines importance of found problem specified by admin according to company's policy [critical, high, medium, low, notice] Default: none
 
 regex_cmd: # Regex to match and find occurrence, when more than one specified, then it works like logical OR, looking for another in row when previous search is not successful.
-  - '^.*banner login.*$'
+  - '^.*banner login (.*)(?:$|[\s\S]*?)\1'
 
 regex_context: "" # Regex under which previous variable "regex_cmd" is matched and searched, subcontext, e.g. passive interface is under command "router eigrp" or even under address families
 

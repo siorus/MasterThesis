@@ -137,6 +137,7 @@
 \usepackage{changepage}
 \usepackage{multirow}
 \usepackage{hhline}
+\usepackage{amsmath}
 
 \newcommand*\rot{\rotatebox{45}}
 
@@ -185,7 +186,7 @@
 
 %% Vložení desek generovaných informačním systémem
 \includepdf[pages=1]%
-  {pdf/semestralka-dosky}% název souboru nesmí obsahovat mezery!
+  {pdf/diplomka-dosky}% název souboru nesmí obsahovat mezery!
 \vlozprazdnoustranku %pri dvojstrannem tisku se prida prazdna stranka
 % NEBO vytvoření desek z balíčku
 %\vytvorobalku
@@ -194,14 +195,14 @@
 
 %% Vložení titulního listu generovaného informačním systémem
 \includepdf[pages=1]%
-  {pdf/semestralka-titulka}% název souboru nesmí obsahovat mezery!
+  {pdf/diplomka-titulka}% název souboru nesmí obsahovat mezery!
 \vlozprazdnoustranku  %pri dvojstrannem tisku se prida prazdna stranka
 % NEBO vytvoření titulní stránky z balíčku
 %\vytvortitulku
    
 %% Vložení zadání generovaného informačním systémem
 \includepdf[pages=1]%
-  {pdf/semestralka-zadanie}% název souboru nesmí obsahovat mezery!
+  {pdf/diplomka-zadanie}% název souboru nesmí obsahovat mezery!
 \vlozprazdnoustranku   %pri dvojstrannem tisku se prida prazdna stranka
 % NEBO lze vytvořit prázdný list příkazem ze šablony
 %\stranka{}%

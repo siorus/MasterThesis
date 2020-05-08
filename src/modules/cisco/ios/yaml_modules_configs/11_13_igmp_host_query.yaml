@@ -12,7 +12,7 @@ run_after_module: "" # Run this module only after specified module had been run 
 run_after_module_match_status: "none" # Run check only when module specified in variable run_after_module had status Successful/Error/Matched by equivalent stored in cmd_match_status. If None is specified, then stored value does not matter [successful, error, matched by equivalent, none].
 
 applicable_to_interface_type: # Type of interface from device.yaml, module will be run only on interfaces with specified interface type, logical OR is used if more than one type is defined. If at least one type is matched, than looking for regex can be applied. When blank list is defined, command must be set on every interface.
-  - "access"
+  - "access-basic"
   - "access-datacenter"
   - "wlan"
 
@@ -33,7 +33,7 @@ default_cmd_general_severity: "medium" # Severity which defines importance of fo
 user_cmd_general_severity: "none" # Severity which defines importance of found problem specified by admin according to company's policy [critical, high, medium, low, notice] Default: none
 
 regex_cmd: # Regex to match and find occurrence, when more than one specified, then it works like logical OR, looking for another in row when previous search is not successful.
-  - '^.*ipv6 access-list .* (.*)$(?:.*\r?\n(?!\!))+?(^ *deny *icmp *any *host *ff02::1 * echo-request *log-input$)(?:.*\r?\n)*?(?=\!)'
+  - '^.*ip access-list .* (.*)$(?:.*\r?\n(?!\!))+?(^ *deny *igmp *any *any *host-query$)(?:.*\r?\n)*?(?=\!)'
 
 regex_context: "" # Regex under which previous variable "regex_cmd" is matched and searched, subcontext, e.g. passive interface is under command "router eigrp" or even under address families
 

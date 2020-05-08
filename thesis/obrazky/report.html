@@ -16,6 +16,20 @@
 <tr><td type='device_first_column'>L3 protocols:</td><td>ipv4,ipv6</td></tr>
 <tr><td type='device_first_column'>Enabled functions:</td><td>rip,eigrp</td></tr>
 <tr><td type='device_first_column'>Date:</td><td>19/04/2020_14:52</td></tr>
+</table></tbody>
+<table><tbody type='stat'>
+<tr><td><h3>SUCCESS STATISTICS</h3></td></tr><br/>
+<tr><td type='stat_first_column'>Weighted score coefficient:</td><td type='stat_second_column'>65 out of 100</td></tr>
+<tr><td type='stat_first_column'>Successful checks:</td><td type='stat_second_column'>49.0&#37</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful checks:</td><td type='stat_second_column'>51.0&#37</td></tr><tr><td></td></tr>
+<br/><tr><td type='stat_first_column'>Total number of relevant started checks:</td><td type='stat_second_column'>157</td></tr><tr><td></td></tr>
+<tr><td type='stat_first_column'>Successful checks:</td><td type='stat_second_column'>76</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Critical':</td><td type='stat_second_column'>22</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'High':</td><td type='stat_second_column'>29</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Medium':</td><td type='stat_second_column'>25</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Low':</td><td type='stat_second_column'>4</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Notice':</td><td type='stat_second_column'>1</td></tr>
+</table></tbody>
 <table><tbody>
 <tr><h3>Authentication, Authorization, Accounting</h3></tr>
 <tr>
@@ -77,9 +91,9 @@
 </tr>
 <tr><td><br/><b>Right configuration setting found in: </b><br/>line vty 0 4<br/> transport input ssh<br/>line vty 6<br/> transport input ssh<br/></td>
 </tr>
-<tr><td><br/><b>Found error in context(s): </b><br/>line vty 5<br/>line vty 10 11<br/>line vty 15<br/></td>
+<tr><td><br/><b>Found error in context(s): </b><br/>line vty 5<br/>line vty 10 11<br/></td>
 </tr>
-<tr><td><br/><b>Generated fix: </b><br/>line vty 5<br/>transport input ssh<br/><br/>line vty 10 11<br/>transport input ssh<br/><br/>line vty 15<br/>transport input ssh<br/><br/></td>
+<tr><td><br/><b>Generated fix: </b><br/>line vty 5<br/>transport input ssh<br/><br/>line vty 10 11<br/>transport input ssh<br/><br/></td>
 </tr>
 </tbody></table>
 <table><tbody>
@@ -94,9 +108,9 @@
 </tr>
 <tr><td><br/><b>Right configuration setting found in: </b><br/>interface Ethernet2/0<br/> switchport trunk native vlan 100<br/></td>
 </tr>
-<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>Ethernet2/1<br/>Ethernet3/2<br/></td>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Ethernet2/1<br/>Ethernet3/2<br/></td>
 </tr>
-<tr><td><br/><b>Generated fix: </b><br/>interface Port-channel1<br/>switchport trunk native vlan 100<br/>interface Ethernet2/1<br/>switchport trunk native vlan 100<br/>interface Ethernet3/2<br/>switchport trunk native vlan 100<br/></td>
+<tr><td><br/><b>Generated fix: </b><br/>interface Ethernet2/1<br/>switchport trunk native vlan 100<br/>interface Ethernet3/2<br/>switchport trunk native vlan 100<br/></td>
 </tr>
 </table></tbody>
 <table><tbody>

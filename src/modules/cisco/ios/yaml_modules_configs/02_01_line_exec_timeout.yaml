@@ -32,7 +32,7 @@ user_cmd_general_severity: "none" # Severity which defines importance of found p
 regex_cmd: # Regex to match and find occurrence, when more than one specified, then it works like logical OR, looking for another in row when previous search is not successful.
   - '^.*exec-timeout (1|2|3|4|5)( \d*)?$'
 
-regex_context: '(line .* \d+(?: )?\d*)(?: .*\r?\n|\r?\n)*' # Regex under which previous variable "regex_cmd" is matched and searched, subcontext, e.g. passive interface is under command "router eigrp" or even under address families
+regex_context: '(line (?:vty|tty|con) \d+(?: )?\d*)(?: .*\r?\n|\r?\n)*' # Regex under which previous variable "regex_cmd" is matched and searched, subcontext, e.g. passive interface is under command "router eigrp" or even under address families
 
 regex_cmd_occurrence: "occurrence" # Specifies whether module should look for regex occurrence or non-occurrence match, "occurrence" - set when regex occurrence in variable "regex_cmd" signalize no issue, "nonoccurrence" - set when regex non-occurrence in variable "regex_cmd" signalize no issue
 

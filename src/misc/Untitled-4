@@ -1,0 +1,60 @@
+<page size="A4">
+  <table>
+    <tr type="definition_line">
+      <td type="cmd_name">aaaaaaaaaaaaaaaaaaaaaaaa</td>
+      <td>bb</td>
+    </tr>
+  </table>
+</page>
+<page size="A4" layout="landscape"></page>
+
+
+body {
+  background: rgb(204,204,204); 
+}
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  padding: 2cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  font-size: 12pt;
+}
+page[size="A4"] {  
+  width: 21cm;
+  height: 29.7cm; 
+}
+page[size="A4"][layout="landscape"] {
+  width: 29.7cm;
+  height: 21cm;  
+}
+@media print {
+  body, page {
+    margin: 0;
+    box-shadow: 0;
+    width: 210mm;
+    height: 297mm;
+  }
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px #D3D3D3 solid;
+  border-radius: 5px;
+  table-layout:fixed;
+}
+td[type="cmd_name"]{
+  width:5cm;
+  word-wrap: break-word;
+}
+https://codepen.io/rafaelcastrocouto/pen/LFAes
+---
+aaa_type: "tacacs"
+aaa_server_name: "MYServer"
+aaa_ip: "10.0.10.250"
+aaa_key: "aaasecretkey123"
+aaa_server_group: "MYGroup"

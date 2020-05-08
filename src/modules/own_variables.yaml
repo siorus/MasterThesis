@@ -3,8 +3,8 @@ aaa_type: "" # [radius|tacacs]
 aaa_server_name: "" # Own name of AAA server, it can be whatever
 aaa_ip: "" # IP or IPv6 address of aaa server
 aaa_key: "" # Key for AAA server
-aaa_server_group: "" # Own name of AAA server group
-aaa_login_group: "default"  #Own name of AAA login group, default is recommended. Default: default
+aaa_server_group: "radius" # Own name of AAA server group. Default: radius
+aaa_login_group: "default"  # Own name of AAA login group, default is recommended. Default: default
 aaa_exec_group: "default"
 aaa_commands_group: "default"
 aaa_connection_group: "default"
@@ -27,11 +27,12 @@ ssh_max_retries: "3" #Must be in interval <0,5> Default: 3
 ssh_source_interface: ""
 ssh_port: "2223"
 domain_name: ""
-snmp_v3_group: ""
+snmp_v3_group_ipv4: ""
+snmp_v3_group_ipv6: ""
 snmp_v3_read_view: ""
 snmp_v3_acl: ""
 snmp_v3_acl_ipv6: ""
-snmp_v3_user: ""
+snmp_v3_user_name: ""
 snmp_v3_user_sha_psswd: ""
 snmp_v3_user_aes_psswd: ""
 snmp_source_interface: ""
@@ -51,11 +52,29 @@ cpu_threshold_rising: "70" #Default:70 (percents)
 memory_reserve_critical_notifications: "1000" #Default:1000 (kB)
 minimum_cpu_memory_notification: "2000" #Default:2000 (kB)
 minimum_io_memory_notification: "2000" #Default:2000 (kB)
-management_vlan_id: "" #Must be VLAN ID assigned to any access port and must exist
-management_vlan_ip: ""
-management_vlan_mask: ""
-management_vlan_gateway: ""
 native_vlan_id: ""
 allowed_vlan_on_trunk: "" #Separated by comma
 network_mapping_acl: ""
 network_mapping_acl_ipv6: ""
+ospf_router_id: ""
+eigrp_router_id: ""
+bgp_router_id: ""
+loopback_id: "0" #Default:0
+loopback_ip: ""
+loopback_mask: ""
+archive_config_path: ""
+maxium_archived_configs: ""
+time_period_archive: "" #In minutes
+acl_name_banned_ipv4_address_from_wan: ""
+acl_name_banned_ipv6_address_from_wan: ""
+acl_name_fragmentation_ipv6: ""
+ipv4_dhcp_snooping_vlans: "" # Separate VLANs with comma
+ipv4_dhcp_snooping_ratelimit: ""
+ipv6_raguard_policy: ""
+dhcpv6_server_policy: ""
+dhcpv6_client_policy: ""
+dynamic_arp_inspection_vlans: ""
+ipv6_nd_inspection_policy: ""
+ipv6_snooping_policy: ""
+ipv6_source_guard_policy: ""
+ipv6_destination_guard_policy: ""

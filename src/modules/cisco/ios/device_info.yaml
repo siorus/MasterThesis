@@ -19,7 +19,7 @@ exclude_modules: [] # Exclude modules which are specified in file "modules_by_fa
 
 include_modules: [] # Include modules which are not part of specific "facility_layer" in file "modules_by_facility_layer.yaml" and you want to use them.
 
-interfaces: [] # All available interfaces, roles of interfaces can be specified, roles such as "access" or "trunk" are assigned automatically according to config and more than one type can be assigned to port  Roles: [access, trunk, uplink, downlink, access-datacenter, wlan, shutdown, noip, unused, subinterface, portchannel, none, svi, passive-int, wan] 
+interfaces: [] # All available interfaces, roles of interfaces can be specified, roles such as "access" or "trunk" are assigned automatically according to config and more than one type can be assigned to port  Roles: [access, trunk, uplink, downlink, access-datacenter, wlan, shutdown, noip, unused, subinterface, port-channel, none, svi, passive-int, wan] 
 
 enabled_functions: [] # Enabled functions such as eigrp, rip, ospf, bgp, vrrp, glbp, etc.
 

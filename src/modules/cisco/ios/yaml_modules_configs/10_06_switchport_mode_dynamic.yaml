@@ -15,7 +15,7 @@ run_after_module_match_status: "none" # Run check only when module specified in 
 
 applicable_to_interface_type: # Type of interface from device.yaml, module will be run only on interfaces with specified interface type, logical OR is used if more than one type is defined. If at least one type is matched, than looking for regex can be applied. When blank list is defined, command must be set on every interface.
   - "trunk"
-  - "access"
+  - "access-basic"
   - "access-datacenter"
   - "wlan"
 
