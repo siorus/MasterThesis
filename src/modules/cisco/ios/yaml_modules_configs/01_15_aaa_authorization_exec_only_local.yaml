@@ -7,7 +7,7 @@ check_if_l3_protocol: [] # Run check only when specific L3 protocol is enabled o
 
 check_if_function: [] # Run check only when specific function is enabled on device e.g. rip, eigrp, ospf, bgp,vrrp, etc. empty means skip checking.
 
-run_after_module: "01_01_aaa_new_model.yaml" # Run this module only after specified module had been run before.
+run_after_module: "" # Run this module only after specified module had been run before.
 
 run_after_module_match_status: "none" # Run check only when module specified in variable run_after_module had status Successful/Error/Matched by equivalent stored in cmd_match_status. If None is specified, then stored value does not matter [successful, error, matched by equivalent, none].
 

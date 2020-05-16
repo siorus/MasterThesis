@@ -34,6 +34,8 @@ from ruamel.yaml.comments import CommentedMap as OrderedDict #Wokraround to elim
 sys.dont_write_bytecode = True
 from modules import yaml_module
 
+err_str = "" #String for notification or error messages which are not fatal for program
+
 def check_analyze_arguments(path,args):
   if not isdir(path+"/init_configs/"+args.workspace):
     print("ERROR: Directory \'"+args.workspace+"\' does not exist inside directory 'init_configs'",file=sys.stderr)
@@ -376,7 +378,7 @@ def fill_variables_group_yaml_err(yaml_module_file,workspace_path,device_folder,
       except KeyError:
         yaml_module_file.cannot_determine_search_or_fix = "true"
         yaml_module_file.cannot_determine_search_or_fix_comment = "Error variable "+str(list(var.keys())[0])+" for creating command fix is not declared in "+workspace_path+"/own_variables_yaml, skipping generating fix."
-        print("Error variable "+str(list(var.keys())[0])+" for creating command fix is not declared in "+workspace_path+"/own_variables_yaml, skipping generating fix.",file=sys.stderr)
+        err_str = err_str + "Error variable "+str(list(var.keys())[0])+" for creating command fix is not declared in "+workspace_path+"/own_variables_yaml, skipping generating fix.\n"
         return 1
 
     pub_var_dict[str(list(var.keys())[0])] = str(list(yaml_module_file.public_vars[var_pos].values())[0])
@@ -393,7 +395,7 @@ def generate_fix(yaml_module_file,pub_var_dict,workspace_path):
     for matched_var in matched_vars:
       #print(str(matched_var.rstrip().lstrip("$")) + "  " + str(pub_var_dict[matched_var.rstrip().lstrip("$")])) #DEBUG
       if (pub_var_dict[matched_var.rstrip().lstrip("$")] == ""):
-        print("Error determinig variable "+matched_var.rstrip().lstrip("$")+" for creating command fix, seems to be empty, skipping generating fix, determine it in "+workspace_path+"/own_variables.yaml",file=sys.stderr)
+        err_str = err_str + "Error determinig variable "+matched_var.rstrip().lstrip("$")+" for creating command fix, seems to be empty, skipping generating fix, determine it in "+workspace_path+"/own_variables.yaml\n"
         yaml_module_file.cannot_determine_search_or_fix = "true"
         yaml_module_file.cannot_determine_search_or_fix_comment = "Error determinig variable "+matched_var.rstrip().lstrip("$")+" for creating command fix, seems to be empty, skipping generating fix, determine it in "+workspace_path+"/own_variables.yaml."
         return 1
@@ -439,12 +441,12 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
     if ((yaml_module_file.run_after_module_match_status == "none")):
       if (previous_module["cmd_match_status"] == "not run"):
         yaml_module_file.general_comment = "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run"
-        print("Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run",file=sys.stderr)
+        err_str = err_str + "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run\n"
         return
     else:
       if (previous_module["cmd_match_status"] != yaml_module_file.run_after_module_match_status):
         yaml_module_file.general_comment = "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run"
-        print("Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run",file=sys.stderr)
+        err_str = err_str + "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run\n"
         return
         
   check_var_in_regex(yaml_module_file,workspace_path,device_folder)
@@ -699,7 +701,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
       yaml_module_file.cmd_match_status = "error"
       yaml_module_file.cannot_determine_search_or_fix = "true"
       yaml_module_file.cannot_determine_search_or_fix_comment = "Context have not been found, cannot create fix, skipping."
-      print("Context "+yaml_module_file.regex_context+" specified in "+ module +" have not been found, cannot create fix, skipping.",file=sys.stderr)
+      err_str = err_str + "Context "+yaml_module_file.regex_context+" specified in "+ module +" have not been found, cannot create fix, skipping.\n"
       return
     elif ((whole_contexts == []) and (yaml_module_file.regex_cmd_occurrence == "non-occurrence")):
       yaml_module_file.cmd_match_status = "successful"
@@ -803,14 +805,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
   else:
     print("Wrong module type in \""+str(yaml_module_file)+"\"",file=sys.stderr)
     exit(10)
-  """
-  if (previous_module != None):
-    if ((previous_module["cmd_match_status"] == "error") and (previous_module["fix_to_apply"] != "")):
-      #yaml_module_file.cmd_match_status = "matched by equivalent"
-      yaml_module_file.general_comment = "HERE"
-      yaml_module_file.fix_to_apply = ""
-      return
-  """
+
 def audit_check(args):
   workspace_path = getcwd()+"/device_configs/"+args.workspace
   test_audit_requirements(workspace_path) #Test whether all needed files are in workspace directory
@@ -894,8 +889,6 @@ def create_overal_stat(stat_dict):
   html = html+"<tr><td type='stat_first_column'>Unsuccessful 'Low':</td><td type='stat_second_column'>"+str(stat_dict['low'])+"</td></tr>\n"
   html = html+"<tr><td type='stat_first_column'>Unsuccessful 'Notice':</td><td type='stat_second_column'>"+str(stat_dict['notice'])+"</td></tr>\n</table></tbody>\n"
   return html
-
-
 
 def generate_pdf_from_html(source_file,dest_file,pdfkit_module):
   
@@ -1167,15 +1160,23 @@ if __name__ == "__main__":
 
   if (args.subparser == "analyze"):
     initial_analyze(args)
-    print("\nWorkspace successfully analyzed!")
+    if (err_str != ""):
+      print("Errors or notifications from program:\n"err_str + "\n")
+    print("\nWorkspace analyzed!")
   elif (args.subparser == "audit-check"):
     if (args.hide_match):
       print("Saving matched commands in configurations suppressed due to used argument 'hide-match'!")
     audit_check(args)
+    if (err_str != ""):
+      print("Errors or notifications from program:\n"err_str + "\n")
     print("\nAudit check was done on workspace!")
   elif (args.subparser == "generate-report"):
     generate_report(args)
+    if (err_str != ""):
+      print("Errors or notifications from program:\n"err_str + "\n")
     print("\nReports were generated on workspace!")
   elif (args.subparser == "generate-fix"):
     generate_fix_file(args)
+    if (err_str != ""):
+      print("Errors or notifications from program:\n"err_str + "\n")
     print("\nFixes were generated on workspace!")

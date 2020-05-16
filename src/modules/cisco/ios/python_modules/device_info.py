@@ -18,12 +18,9 @@
 
 import sys
 import re
-import ruamel.yaml
 from os import listdir, getcwd
 from os.path import isfile
 from hashlib import sha1
-import errno
-from ruamel.yaml.comments import CommentedMap as OrderedDict #Wokraround to eliminate improper !!omap in ordereddict from https://gist.github.com/monester/3f3bd87a936d1017c1f5089650b79a98
 
 sys.path.append("../../../../modules")
 sys.dont_write_bytecode = True
@@ -75,6 +72,8 @@ class device_info(device_info_abstract.device_info_abstract):
       self.enabled_functions.append("hsrp")
     if (re.search("^.*interface (.*).*$(?:.*\r?\n(?!\!))+?(^ *(glbp) (\d+) ip (.*)$)(?:.*\r?\n)*?(?=\!)",data,flags=re.MULTILINE)):
       self.enabled_functions.append("glbp")
+    if (re.search("^.*access-list.*$",data,flags=re.MULTILINE)):
+      self.enabled_functions.append("acl created")
 
   def __find_interfaces(self,data):
     for interface in re.finditer("^interface (.*).*$(?:.*\r?\n)*?(?=\!)",data,flags=re.MULTILINE):
@@ -137,7 +136,7 @@ class device_info(device_info_abstract.device_info_abstract):
         special = True
 
       if ((not access) and (not special) and (not(re.search("^.*(?:(?=no )?)(?:ip|ipv6) address.*$",interface.group(0),flags=re.MULTILINE))) and ((self.facility == "l3sw") or (self.facility == "l2sw"))):
-        self.interfaces[interface.group(1)].append("access") #if no setup is done on port(blank settings) and device is switch, then port is in default set as access
+        self.interfaces[interface.group(1)].append("access-basic") #if no setup is done on port(blank settings) and device is switch, then port is in default set as access
   
   def list_interfaces(self,data):
     matched_lst = list(re.finditer("^((interface) (.*).*)$(?:.*\r?\n)*?(?=\!)",data,flags=re.MULTILINE))

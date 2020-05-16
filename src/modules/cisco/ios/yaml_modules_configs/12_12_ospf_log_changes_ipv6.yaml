@@ -10,7 +10,7 @@ check_if_function: # Run check only when specific function is enabled on device 
 
 run_after_module: "" # Run this module only after specified module had been run before.
 
-run_after_module_match_status: "" # Run check only when module specified in variable run_after_module had status Successful/Error/Matched by equivalent stored in cmd_match_status. If None is specified, then stored value does not matter [successful, error, matched by equivalent, none].
+run_after_module_match_status: "none" # Run check only when module specified in variable run_after_module had status Successful/Error/Matched by equivalent stored in cmd_match_status. If None is specified, then stored value does not matter [successful, error, matched by equivalent, none].
 
 applicable_to_interface_type: [] # Type of interface from device.yaml, module will be run only on interfaces with specified interface type, logical OR is used if more than one type is defined. If at least one type is matched, than looking for regex can be applied. When blank list is defined, command must be set on every interface.
 

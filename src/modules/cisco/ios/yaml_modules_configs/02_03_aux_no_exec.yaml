@@ -21,7 +21,7 @@ cannot_determine_search_or_fix_comment: "" # Information when previous variable 
 
 eliminated: "false" # True when "check_if_l3_protocol or "check_if_function" values not in specific device, e.g. when device has no eigrp configured, so module looking for eigrp authentication will not be run.
 
-name_cmd_general: "AUX no execution" # Name seen in report output.
+name_cmd_general: "AUX no execution set" # Name seen in report output.
 
 name_of_area: "Access to device" # Area of cmd/check, it will be seen in report output.
 
