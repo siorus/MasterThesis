@@ -1,0 +1,8 @@
+line vty 0 4
+exec-timeout 5
+
+snmp-server enable traps cpu threshold
+
+secure boot config
+secure boot-config
+

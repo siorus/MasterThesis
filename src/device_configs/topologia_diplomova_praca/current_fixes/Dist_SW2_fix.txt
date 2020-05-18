@@ -1,0 +1,832 @@
+aaa new-model
+
+radius server RADIUS_SERVER
+address ipv4 192.168.60.11
+key RadKey1
+
+aaa group server radius RADIUS_SERVER
+server name RADIUS_SERVER
+
+aaa authentication login default group RADIUS_SERVER local enable
+
+aaa authentication login default group RADIUS_SERVER local enable
+
+aaa authentication enable default group RADIUS_SERVER enable
+
+aaa authentication enable default group RADIUS_SERVER enable
+
+aaa authorization exec default group RADIUS_SERVER local if-authenticated
+
+aaa authorization exec default group RADIUS_SERVER local if-authenticated
+
+aaa accounting connection default start-stop group RADIUS_SERVER
+
+aaa accounting exec default start-stop group RADIUS_SERVER
+
+ip radius source-interface Loopback0
+
+line con 0
+exec-timeout 5
+
+line vty 0 4
+exec-timeout 5
+
+line aux 0
+no exec
+
+line con 0
+transport output none
+
+line aux 0
+transport output none
+
+line vty 0 4
+transport output none
+
+username admin secret admin_password
+
+enable secret enablepasswd123
+
+line vty 0 4
+access-class IPV4_VTY_ACL in
+
+login on-failure trap
+login on-failure log
+login on-failure log-input
+
+login on-success trap
+login on-success log
+login on-success log-input
+
+login quiet-mode access-class IPV4_VTY_ACL
+
+configuration mode exclusive
+configuration mode exclusive auto
+
+banner motd ; Unauthorized access will be prosecuted!! ;
+
+line con 0
+session-timeout 30
+
+line aux 0
+session-timeout 30
+
+line vty 0 4
+session-timeout 30
+
+line aux 0
+exec-timeout 0 1
+
+login block-for 120 attempts 3 within 30
+
+line vty 0 4
+transport input ssh
+
+ip ssh version 2
+
+ip ssh timeout 30
+ip ssh time-out 30
+
+ip ssh source-interface Loopback0
+
+ip ssh port 2223 rotary 1
+
+line vty 0 4
+rotary 1
+
+ip domain-name thesis-test.cz
+ip domain name thesis-test.cz
+
+snmp-server trap-source Loopback0
+
+snmp-server location GNS3LAB
+
+snmp-server host 192.168.60.11 version 3 priv SNMPv3USER
+
+snmp-server enable traps
+
+snmp-server ifindex persist
+snmp ifmib ifindex persist
+
+interface GigabitEthernet0/0
+snmp ifindex persist
+exit
+interface GigabitEthernet0/1
+snmp ifindex persist
+exit
+interface GigabitEthernet0/2
+snmp ifindex persist
+exit
+interface GigabitEthernet0/3
+snmp ifindex persist
+exit
+interface GigabitEthernet1/0
+snmp ifindex persist
+exit
+interface GigabitEthernet1/1
+snmp ifindex persist
+exit
+interface GigabitEthernet1/2
+snmp ifindex persist
+exit
+interface GigabitEthernet1/3
+snmp ifindex persist
+exit
+interface GigabitEthernet2/0
+snmp ifindex persist
+exit
+interface GigabitEthernet2/1
+snmp ifindex persist
+exit
+interface GigabitEthernet2/2
+snmp ifindex persist
+exit
+interface GigabitEthernet2/3
+snmp ifindex persist
+exit
+interface GigabitEthernet3/0
+snmp ifindex persist
+exit
+interface GigabitEthernet3/1
+snmp ifindex persist
+exit
+interface GigabitEthernet3/2
+snmp ifindex persist
+exit
+interface GigabitEthernet3/3
+snmp ifindex persist
+exit
+interface Vlan20
+snmp ifindex persist
+exit
+interface Vlan30
+snmp ifindex persist
+exit
+logging host 192.168.60.11
+
+logging source-interface Loopback0
+
+logging console critical
+
+logging buffered 40960 informational
+
+logging persistent url flash:
+
+service sequence-numbers
+
+ntp server 192.168.60.11
+
+ntp source Loopback0
+
+ntp authentication-key 1 md5 ntpPasswd123
+
+ntp trusted-key 1
+
+ntp authenticate
+
+snmp-server enable traps cpu threshold
+
+process cpu threshold type total rising 70 interval 5
+
+process cpu statistics limit entry-percentage 70
+
+memory reserve critical 1000
+
+memory free low-watermark processor 2000
+
+memory free low-watermark io 2000
+
+spanning-tree portfast default
+spanning-tree portfast edge default
+
+interface GigabitEthernet0/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet0/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet1/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet1/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet1/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet2/0
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet2/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet2/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet2/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet3/0
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet3/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet3/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface GigabitEthernet3/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+spanning-tree portfast bpduguard default
+spanning-tree portfast edge bpduguard default
+
+interface GigabitEthernet0/2
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet0/3
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet1/1
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet1/2
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet1/3
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet2/0
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet2/1
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet2/2
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet2/3
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet3/0
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet3/1
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet3/2
+spanning-tree bpduguard enable
+exit
+interface GigabitEthernet3/3
+spanning-tree bpduguard enable
+exit
+spanning-tree loopguard default
+
+interface GigabitEthernet0/1
+spanning-tree guard loop
+exit
+interface GigabitEthernet0/2
+spanning-tree guard loop
+exit
+interface GigabitEthernet0/3
+spanning-tree guard loop
+exit
+interface GigabitEthernet1/0
+spanning-tree guard loop
+exit
+interface GigabitEthernet1/1
+spanning-tree guard loop
+exit
+interface GigabitEthernet1/2
+spanning-tree guard loop
+exit
+interface GigabitEthernet1/3
+spanning-tree guard loop
+exit
+interface GigabitEthernet2/0
+spanning-tree guard loop
+exit
+interface GigabitEthernet2/1
+spanning-tree guard loop
+exit
+interface GigabitEthernet2/2
+spanning-tree guard loop
+exit
+interface GigabitEthernet2/3
+spanning-tree guard loop
+exit
+interface GigabitEthernet3/0
+spanning-tree guard loop
+exit
+interface GigabitEthernet3/1
+spanning-tree guard loop
+exit
+interface GigabitEthernet3/2
+spanning-tree guard loop
+exit
+interface GigabitEthernet3/3
+spanning-tree guard loop
+exit
+interface GigabitEthernet0/2
+switchport mode access
+exit
+interface GigabitEthernet0/3
+switchport mode access
+exit
+interface GigabitEthernet1/1
+switchport mode access
+exit
+interface GigabitEthernet1/2
+switchport mode access
+exit
+interface GigabitEthernet1/3
+switchport mode access
+exit
+interface GigabitEthernet2/1
+switchport mode access
+exit
+interface GigabitEthernet2/2
+switchport mode access
+exit
+interface GigabitEthernet2/3
+switchport mode access
+exit
+interface GigabitEthernet3/0
+switchport mode access
+exit
+interface GigabitEthernet3/1
+switchport mode access
+exit
+interface GigabitEthernet3/2
+switchport mode access
+exit
+interface GigabitEthernet3/3
+switchport mode access
+exit
+interface GigabitEthernet0/2
+switchport nonegotiate
+exit
+interface GigabitEthernet0/3
+switchport nonegotiate
+exit
+interface GigabitEthernet1/1
+switchport nonegotiate
+exit
+interface GigabitEthernet1/2
+switchport nonegotiate
+exit
+interface GigabitEthernet1/3
+switchport nonegotiate
+exit
+interface GigabitEthernet2/1
+switchport nonegotiate
+exit
+interface GigabitEthernet2/2
+switchport nonegotiate
+exit
+interface GigabitEthernet2/3
+switchport nonegotiate
+exit
+interface GigabitEthernet3/0
+switchport nonegotiate
+exit
+interface GigabitEthernet3/1
+switchport nonegotiate
+exit
+interface GigabitEthernet3/2
+switchport nonegotiate
+exit
+interface GigabitEthernet3/3
+switchport nonegotiate
+exit
+interface GigabitEthernet0/0
+no ip proxy-arp
+exit
+interface Vlan20
+no ip proxy-arp
+exit
+interface Vlan30
+no ip proxy-arp
+exit
+interface GigabitEthernet0/0
+no ip unreachables
+exit
+interface Vlan20
+no ip unreachables
+exit
+interface Vlan30
+no ip unreachables
+exit
+interface GigabitEthernet0/0
+no ip redirects
+exit
+interface Vlan20
+no ip redirects
+exit
+interface Vlan30
+no ip redirects
+exit
+ip access-list extended DENY_NETWORK_MAP
+remark deny ping all nodes
+deny icmp any host 224.0.0.1 echo log-input
+remark deny host query
+deny igmp any any host-query log-input
+permit ip any any
+
+ip access-list extended DENY_NETWORK_MAP
+remark deny ping all nodes
+deny icmp any host 224.0.0.1 echo log-input
+remark deny host query
+deny igmp any any host-query log-input
+permit ip any any
+
+interface GigabitEthernet0/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet0/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet1/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet1/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet1/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet2/0
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet2/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet2/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet2/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet3/0
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet3/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet3/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface GigabitEthernet3/3
+ip access-group DENY_NETWORK_MAP in
+exit
+router ospf 1
+router-id 1.1.1.1
+
+ip options drop
+
+interface GigabitEthernet0/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet0/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet1/1
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet1/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet1/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet2/1
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet2/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet2/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet3/0
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet3/1
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet3/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface GigabitEthernet3/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+dot1x system-auth-control
+
+aaa authentication dot1x default group RADIUS_SERVER
+
+interface GigabitEthernet0/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet0/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet1/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet1/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet1/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet2/0
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet2/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet2/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet2/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet3/0
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet3/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet3/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet3/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface GigabitEthernet0/2
+dot1x pae authenticator
+exit
+interface GigabitEthernet0/3
+dot1x pae authenticator
+exit
+interface GigabitEthernet1/1
+dot1x pae authenticator
+exit
+interface GigabitEthernet1/2
+dot1x pae authenticator
+exit
+interface GigabitEthernet1/3
+dot1x pae authenticator
+exit
+interface GigabitEthernet2/0
+dot1x pae authenticator
+exit
+interface GigabitEthernet2/1
+dot1x pae authenticator
+exit
+interface GigabitEthernet2/2
+dot1x pae authenticator
+exit
+interface GigabitEthernet2/3
+dot1x pae authenticator
+exit
+interface GigabitEthernet3/0
+dot1x pae authenticator
+exit
+interface GigabitEthernet3/1
+dot1x pae authenticator
+exit
+interface GigabitEthernet3/2
+dot1x pae authenticator
+exit
+interface GigabitEthernet3/3
+dot1x pae authenticator
+exit
+ip dhcp snooping
+
+ip dhcp snooping vlan 10,20,30,40,50,60
+
+interface GigabitEthernet0/1
+ip dhcp snooping trust
+exit
+interface GigabitEthernet1/0
+ip dhcp snooping trust
+exit
+interface GigabitEthernet0/2
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet0/3
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet1/1
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet1/2
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet1/3
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet2/0
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet2/1
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet2/2
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet2/3
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet3/0
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet3/1
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet3/2
+ip dhcp snooping limit rate 100
+exit
+interface GigabitEthernet3/3
+ip dhcp snooping limit rate 100
+exit
+ip arp inspection vlan 10,20,30,40,50,60
+
+ip arp inspection validate src-mac dst-mac ip
+
+interface GigabitEthernet0/1
+ip arp inspection trust
+exit
+interface GigabitEthernet1/0
+ip arp inspection trust
+exit
+interface GigabitEthernet0/2
+ip verify source port-security
+exit
+interface GigabitEthernet0/3
+ip verify source port-security
+exit
+interface GigabitEthernet1/1
+ip verify source port-security
+exit
+interface GigabitEthernet1/2
+ip verify source port-security
+exit
+interface GigabitEthernet1/3
+ip verify source port-security
+exit
+interface GigabitEthernet2/0
+ip verify source port-security
+exit
+interface GigabitEthernet2/1
+ip verify source port-security
+exit
+interface GigabitEthernet2/2
+ip verify source port-security
+exit
+interface GigabitEthernet2/3
+ip verify source port-security
+exit
+interface GigabitEthernet3/0
+ip verify source port-security
+exit
+interface GigabitEthernet3/1
+ip verify source port-security
+exit
+interface GigabitEthernet3/2
+ip verify source port-security
+exit
+interface GigabitEthernet3/3
+ip verify source port-security
+exit
+no service pad
+
+no ip bootp server
+
+no ip domain-lookup
+no ip domain lookup
+
+no ip gratuitous-arps
+
+ip arp gratuitous none
+
+interface loopback 0
+ip address 1.1.1.1 255.255.255.0
+snmp ifindex persist
+no ip redirects
+no ip unreachables
+no ipv6 unreachables
+no ip proxy-arp
+exit
+
+exception memory ignore overflow io
+
+exception memory ignore overflow processor
+
+ip scp server enable
+
+secure boot config
+secure boot-config
+
+archive
+path unix:
+log config
+logging enable
+notify syslog
+hidekeys
+maximum 5
+time-period 60
+
+service tcp-keepalives-in
+
+service tcp-keepalives-out
+

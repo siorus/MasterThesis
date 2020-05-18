@@ -1,0 +1,6 @@
+memory free low-watermark io 2000
+
+exception memory ignore overflow io
+
+exception memory ignore overflow processor
+

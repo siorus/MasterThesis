@@ -52,13 +52,13 @@ class device_info(device_info_abstract.device_info_abstract):
     if (re.search("^.*(ipv6 )?router rip.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("rip")
 
-    if (re.search("^.*(?<!ipv6 )router ospf.*$",data,flags=re.MULTILINE)):
+    if (re.search("^.*(?<!ipv6 )router ospf(?!v3).*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("ospf ipv4")
     if (re.search("^.*ipv6 router ospf.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("ospf ivp6")
     if (re.search("^.*router ospfv3.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("ospfv3")
-    if (re.search("^.*(?<!ipv6 )router eigrp.*$",data,flags=re.MULTILINE)):
+    if (re.search("^.*(?<!ipv6 )router eigrp \d+.*",data,flags=re.MULTILINE)):
       self.enabled_functions.append("eigrp ipv4")
     if (re.search("^.*ipv6 router eigrp.*$",data,flags=re.MULTILINE)):
       self.enabled_functions.append("eigrp ipv6")    
@@ -79,7 +79,7 @@ class device_info(device_info_abstract.device_info_abstract):
     for interface in re.finditer("^interface (.*).*$(?:.*\r?\n)*?(?=\!)",data,flags=re.MULTILINE):
       access = False #to prevent double port definition as access
       special = False #port is different than access
-      self.interfaces.update({interface.group(1): []})  
+      self.interfaces.update({interface.group(1): []})
       if self.__access_port_find(interface.group(0)):
         self.interfaces[interface.group(1)].append("access-basic")
         access = True
@@ -95,6 +95,8 @@ class device_info(device_info_abstract.device_info_abstract):
         self.interfaces[interface.group(1)].append("ip-not-set")
       else:
         self.interfaces[interface.group(1)].append("ip-set")
+      if self.__unused_interface_find(interface.group(0)):
+        self.interfaces[interface.group(1)].append("unused")
       if (re.search("^.*interface (.*\.\d+).*$.*$",interface.group(0),flags=re.MULTILINE)):
         self.interfaces[interface.group(1)].append("subinterface")
         special = True
@@ -125,12 +127,17 @@ class device_info(device_info_abstract.device_info_abstract):
         self.interfaces[interface.group(1)].append("glbp")
         special = True
 
+      if (re.search("(serial|Serial)",interface.group(1),flags=re.MULTILINE)):
+        self.interfaces[interface.group(1)].append("serial")
+        special = True
+
       if (self.facility != "r"):
         if (re.search("^.*no switchport.*$",interface.group(0),flags=re.MULTILINE)):
           self.interfaces[interface.group(1)].append("routed-port")
           special = True  
         else:
-          self.interfaces[interface.group(1)].append("switchport")
+          if ((not (re.search("(serial|Serial)",interface.group(1),flags=re.MULTILINE))) and (not self.__svi_find(interface.group(1)))):
+            self.interfaces[interface.group(1)].append("switchport")
       else:
         self.interfaces[interface.group(1)].append("routed-port")
         special = True
@@ -146,7 +153,18 @@ class device_info(device_info_abstract.device_info_abstract):
       interface_context.append(context.group(1))
       interface_name.append(context.group(3))
     return matched_lst,interface_context,interface_name
-
+  
+  def __unused_interface_find(self,interface_info):
+    if (re.search("^interface .*(\r?\n)?(?!.*\r?\n)",interface_info,flags=re.MULTILINE)):
+      ret = True
+    else:
+      try:
+        res = re.search("^interface .*\r?\n negotiation.*(?:\r?\n)?([\s\S]*)",interface_info,flags=re.MULTILINE)
+        if ((res.group(1) == "") or (res is None)):
+          ret = True
+      except AttributeError:
+        ret = False
+    return ret
 
   def __access_port_find(self,interface_info):
     if (re.search("^.*switchport (mode )?access( vlan \d+)?.*$",interface_info,flags=re.MULTILINE)):
@@ -193,7 +211,10 @@ class device_info(device_info_abstract.device_info_abstract):
       if (is_distribution and is_access):
         self.facility_layer = "collapsed_distribution_access"
       elif (is_distribution):
-        self.facility_layer = "distribution"
+        if (self.facility == 'r'):
+          self.facility_layer = "distribution"
+        else:
+          self.facility_layer = "collapsed_distribution_access"
       elif (is_access):
         self.facility_layer = "access"
       else:

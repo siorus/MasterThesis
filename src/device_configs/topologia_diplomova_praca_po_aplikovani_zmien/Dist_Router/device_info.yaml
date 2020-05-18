@@ -1,0 +1,120 @@
+---
+hostname: "Dist_Router" # Hostname of device
+
+config: "dist-router.txt" # Path to configuration file of device
+
+version: "" # Version of running operating system
+
+l3_protocols:    # L3 protocols which are used not only available but literally used and enabled
+
+  - ipv4
+  - ipv6
+vendor: "cisco" # Manufacturer of device. Same directory name has to be created inside directory "modules", where all modules for this vendor are stored
+
+os: "ios" # Operating system. Same directory name has to be created inside directory "modules" and subdirectory specified in variable "vendor" 
+
+facility: "r" # Type of device [r(router), l3sw(L3 switch), l2sw(L2 switch)]
+
+facility_layer: "distribution" # Type of layer where facility is installed [core, distribution, access, collapsed_all, collapsed_core_distribution, collapsed_distribution_access]
+
+exclude_modules: [] # Exclude modules which are specified in file "modules_by_facility_layer.yaml" for specific "facility_layer" you do not want to be used
+
+include_modules: [] # Include modules which are not part of specific "facility_layer" in file "modules_by_facility_layer.yaml" and you want to use them.
+
+interfaces:    # All available interfaces, roles of interfaces can be specified, roles such as "access" or "trunk" are assigned automatically according to config and more than one type can be assigned to port  Roles: [access-basic, trunk, trusted-uplink, access-datacenter, wlan, shutdown, passive, ip-set, ip-not-set, unused, subinterface, channel-group,port-channel, tunnel, loopback, portfast, vrrp, hsrp, glbp, router-port, switchport, svi, wan] 
+
+  Loopback0:
+    - ip-set
+    - loopback
+    - routed-port
+  Tunnel0:
+    - ip-set
+    - tunnel
+    - routed-port
+  Ethernet0/0:
+    - ip-set
+    - routed-port
+  Ethernet0/1:
+    - ip-not-set
+    - routed-port
+  Ethernet0/1.50:
+    - ip-set
+    - subinterface
+    - routed-port
+  Ethernet0/1.60:
+    - ip-set
+    - subinterface
+    - routed-port
+  Ethernet0/2:
+    - shutdown
+    - ip-not-set
+    - routed-port
+  Ethernet0/3:
+    - shutdown
+    - ip-not-set
+    - routed-port
+  Ethernet1/0:
+    - shutdown
+    - ip-not-set
+    - routed-port
+  Ethernet1/1:
+    - shutdown
+    - ip-not-set
+    - routed-port
+  Ethernet1/2:
+    - shutdown
+    - ip-not-set
+    - routed-port
+  Ethernet1/3:
+    - shutdown
+    - ip-not-set
+    - routed-port
+  Serial2/0:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial2/1:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial2/2:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial2/3:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial3/0:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial3/1:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial3/2:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+  Serial3/3:
+    - shutdown
+    - ip-not-set
+    - serial
+    - routed-port
+enabled_functions:    # Enabled functions such as eigrp, rip, ospf, bgp, vrrp, glbp, etc.
+
+  - rip
+  - ospf ipv4
+  - eigrp named
+input_config_hash: "fd2712fba7473a1f7ae2f5295b74807c2d105911" # SHA1 hash of input configuration of device
+
+fix_hash: "" # SHA1 hash of current fix configuration 
+...

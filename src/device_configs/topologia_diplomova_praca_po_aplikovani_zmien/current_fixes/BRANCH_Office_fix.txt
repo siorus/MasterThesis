@@ -1,0 +1,5 @@
+snmp-server enable traps cpu threshold
+
+secure boot config
+secure boot-config
+

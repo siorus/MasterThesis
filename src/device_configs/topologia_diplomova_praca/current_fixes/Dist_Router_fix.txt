@@ -1,0 +1,573 @@
+aaa new-model
+
+radius server RADIUS_SERVER
+address ipv4 192.168.60.11
+key RadKey1
+
+aaa group server radius RADIUS_SERVER
+server name RADIUS_SERVER
+
+aaa authentication login default group RADIUS_SERVER local enable
+
+aaa authentication login default group RADIUS_SERVER local enable
+
+aaa authentication enable default group RADIUS_SERVER enable
+
+aaa authentication enable default group RADIUS_SERVER enable
+
+aaa authorization exec default group RADIUS_SERVER local if-authenticated
+
+aaa authorization exec default group RADIUS_SERVER local if-authenticated
+
+aaa accounting connection default start-stop group RADIUS_SERVER
+
+aaa accounting exec default start-stop group RADIUS_SERVER
+
+ip radius source-interface Loopback0
+
+line con 0
+exec-timeout 5
+
+line vty 0 4
+exec-timeout 5
+
+line aux 0
+no exec
+
+line con 0
+transport output none
+
+line aux 0
+transport output none
+
+line vty 0 4
+transport output none
+
+username admin secret admin_password
+
+enable secret enablepasswd123
+
+line vty 0 4
+access-class IPV4_VTY_ACL in
+
+login on-failure trap
+login on-failure log
+login on-failure log-input
+
+login on-success trap
+login on-success log
+login on-success log-input
+
+login quiet-mode access-class IPV4_VTY_ACL
+
+configuration mode exclusive
+configuration mode exclusive auto
+
+banner motd ; Unauthorized access will be prosecuted!! ;
+
+banner exec ; Unauthorized access will be prosecuted!! ;
+
+banner login ; Unauthorized access will be prosecuted!! ;
+
+line con 0
+session-timeout 30
+
+line aux 0
+session-timeout 30
+
+line vty 0 4
+session-timeout 30
+
+line aux 0
+exec-timeout 0 1
+
+line vty 0 4
+ipv6 access-class IPV6_VTY_ACL in
+
+login block-for 120 attempts 3 within 30
+
+line vty 0 4
+transport input ssh
+
+ip ssh version 2
+
+ip ssh timeout 30
+ip ssh time-out 30
+
+ip ssh source-interface Loopback0
+
+ip ssh port 2223 rotary 1
+
+line vty 0 4
+rotary 1
+
+ip domain-name thesis-test.cz
+ip domain name thesis-test.cz
+
+snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3
+snmp-server user SNMPv3USER SNMP_V3_GRP v3 auth sha SnmpPasswd123 priv aes 256 SnmpPasswd123 access SNMP_V3
+
+snmp-server group SNMP_V3_GRP_IPV6 v3 priv read READVIEWv3 access ipv6 SNMP_V3_ACL6
+snmp-server user SNMPv3USER SNMP_V3_GRP_IPV6 v3 auth sha SnmpPasswd123 priv aes 256 SnmpPasswd123 access SNMP_V3_ACL6
+
+snmp-server trap-source Loopback0
+
+snmp-server location GNS3LAB
+
+snmp-server host 192.168.60.11 version 3 priv SNMPv3USER
+
+snmp-server enable traps
+
+snmp-server ifindex persist
+snmp ifmib ifindex persist
+
+interface Tunnel0
+snmp ifindex persist
+exit
+interface Ethernet0/0
+snmp ifindex persist
+exit
+interface Ethernet0/1
+snmp ifindex persist
+exit
+interface Ethernet0/2
+snmp ifindex persist
+exit
+interface Ethernet0/3
+snmp ifindex persist
+exit
+interface Ethernet1/0
+snmp ifindex persist
+exit
+interface Ethernet1/1
+snmp ifindex persist
+exit
+interface Ethernet1/2
+snmp ifindex persist
+exit
+interface Ethernet1/3
+snmp ifindex persist
+exit
+interface Serial2/0
+snmp ifindex persist
+exit
+interface Serial2/1
+snmp ifindex persist
+exit
+interface Serial2/2
+snmp ifindex persist
+exit
+interface Serial2/3
+snmp ifindex persist
+exit
+interface Serial3/0
+snmp ifindex persist
+exit
+interface Serial3/1
+snmp ifindex persist
+exit
+interface Serial3/2
+snmp ifindex persist
+exit
+interface Serial3/3
+snmp ifindex persist
+exit
+logging host 192.168.60.11
+
+logging host ipv6 fd00:60::2050:79ff:fe66:6805
+
+logging source-interface Loopback0
+
+logging console critical
+
+logging buffered 40960 informational
+
+logging persistent url flash:
+
+service sequence-numbers
+
+ntp server 192.168.60.11
+
+ntp source Loopback0
+
+ntp authentication-key 1 md5 ntpPasswd123
+
+ntp trusted-key 1
+
+ntp authenticate
+
+snmp-server enable traps cpu threshold
+
+process cpu threshold type total rising 70 interval 5
+
+process cpu statistics limit entry-percentage 70
+
+memory reserve critical 1000
+
+memory free low-watermark processor 2000
+
+memory free low-watermark io 2000
+
+no cdp run
+
+interface Tunnel0
+no cdp enable
+exit
+interface Ethernet0/0
+no cdp enable
+exit
+interface Ethernet0/1
+no cdp enable
+exit
+interface Ethernet0/1.50
+no cdp enable
+exit
+interface Ethernet0/1.60
+no cdp enable
+exit
+interface Ethernet0/2
+no cdp enable
+exit
+interface Ethernet0/3
+no cdp enable
+exit
+interface Ethernet1/0
+no cdp enable
+exit
+interface Ethernet1/1
+no cdp enable
+exit
+interface Ethernet1/2
+no cdp enable
+exit
+interface Ethernet1/3
+no cdp enable
+exit
+interface Serial2/0
+no cdp enable
+exit
+interface Serial2/1
+no cdp enable
+exit
+interface Serial2/2
+no cdp enable
+exit
+interface Serial2/3
+no cdp enable
+exit
+interface Serial3/0
+no cdp enable
+exit
+interface Serial3/1
+no cdp enable
+exit
+interface Serial3/2
+no cdp enable
+exit
+interface Serial3/3
+no cdp enable
+exit
+interface Tunnel0
+no ip proxy-arp
+exit
+interface Ethernet0/0
+no ip proxy-arp
+exit
+interface Ethernet0/1
+no ip proxy-arp
+exit
+interface Ethernet0/1.50
+no ip proxy-arp
+exit
+interface Ethernet0/1.60
+no ip proxy-arp
+exit
+interface Ethernet0/2
+no ip proxy-arp
+exit
+interface Ethernet0/3
+no ip proxy-arp
+exit
+interface Ethernet1/0
+no ip proxy-arp
+exit
+interface Ethernet1/1
+no ip proxy-arp
+exit
+interface Ethernet1/2
+no ip proxy-arp
+exit
+interface Ethernet1/3
+no ip proxy-arp
+exit
+interface Serial2/0
+no ip proxy-arp
+exit
+interface Serial2/1
+no ip proxy-arp
+exit
+interface Serial2/2
+no ip proxy-arp
+exit
+interface Serial2/3
+no ip proxy-arp
+exit
+interface Serial3/0
+no ip proxy-arp
+exit
+interface Serial3/1
+no ip proxy-arp
+exit
+interface Serial3/2
+no ip proxy-arp
+exit
+interface Serial3/3
+no ip proxy-arp
+exit
+interface Tunnel0
+no ip unreachables
+exit
+interface Ethernet0/0
+no ip unreachables
+exit
+interface Ethernet0/1
+no ip unreachables
+exit
+interface Ethernet0/1.50
+no ip unreachables
+exit
+interface Ethernet0/1.60
+no ip unreachables
+exit
+interface Ethernet0/2
+no ip unreachables
+exit
+interface Ethernet0/3
+no ip unreachables
+exit
+interface Ethernet1/0
+no ip unreachables
+exit
+interface Ethernet1/1
+no ip unreachables
+exit
+interface Ethernet1/2
+no ip unreachables
+exit
+interface Ethernet1/3
+no ip unreachables
+exit
+interface Serial2/0
+no ip unreachables
+exit
+interface Serial2/1
+no ip unreachables
+exit
+interface Serial2/2
+no ip unreachables
+exit
+interface Serial2/3
+no ip unreachables
+exit
+interface Serial3/0
+no ip unreachables
+exit
+interface Serial3/1
+no ip unreachables
+exit
+interface Serial3/2
+no ip unreachables
+exit
+interface Serial3/3
+no ip unreachables
+exit
+interface Tunnel0
+no ipv6 unreachables
+exit
+interface Ethernet0/0
+no ipv6 unreachables
+exit
+interface Ethernet0/1
+no ipv6 unreachables
+exit
+interface Ethernet0/1.50
+no ipv6 unreachables
+exit
+interface Ethernet0/1.60
+no ipv6 unreachables
+exit
+interface Ethernet0/2
+no ipv6 unreachables
+exit
+interface Ethernet0/3
+no ipv6 unreachables
+exit
+interface Ethernet1/0
+no ipv6 unreachables
+exit
+interface Ethernet1/1
+no ipv6 unreachables
+exit
+interface Ethernet1/2
+no ipv6 unreachables
+exit
+interface Ethernet1/3
+no ipv6 unreachables
+exit
+interface Serial2/0
+no ipv6 unreachables
+exit
+interface Serial2/1
+no ipv6 unreachables
+exit
+interface Serial2/2
+no ipv6 unreachables
+exit
+interface Serial2/3
+no ipv6 unreachables
+exit
+interface Serial3/0
+no ipv6 unreachables
+exit
+interface Serial3/1
+no ipv6 unreachables
+exit
+interface Serial3/2
+no ipv6 unreachables
+exit
+interface Serial3/3
+no ipv6 unreachables
+exit
+interface Tunnel0
+no ip redirects
+exit
+interface Ethernet0/0
+no ip redirects
+exit
+interface Ethernet0/1
+no ip redirects
+exit
+interface Ethernet0/1.50
+no ip redirects
+exit
+interface Ethernet0/1.60
+no ip redirects
+exit
+interface Ethernet0/2
+no ip redirects
+exit
+interface Ethernet0/3
+no ip redirects
+exit
+interface Ethernet1/0
+no ip redirects
+exit
+interface Ethernet1/1
+no ip redirects
+exit
+interface Ethernet1/2
+no ip redirects
+exit
+interface Ethernet1/3
+no ip redirects
+exit
+interface Serial2/0
+no ip redirects
+exit
+interface Serial2/1
+no ip redirects
+exit
+interface Serial2/2
+no ip redirects
+exit
+interface Serial2/3
+no ip redirects
+exit
+interface Serial3/0
+no ip redirects
+exit
+interface Serial3/1
+no ip redirects
+exit
+interface Serial3/2
+no ip redirects
+exit
+interface Serial3/3
+no ip redirects
+exit
+router ospf 1
+router-id 1.1.1.1
+
+router eigrp EIGRP_NAMED
+address-family ipv4 unicast autonomous-system 1
+eigrp router-id 2.2.2.2
+
+router eigrp EIGRP_NAMED
+address-family ipv4 unicast autonomous-system 1
+eigrp log-neighbor-changes
+
+ip options drop
+
+no service pad
+
+no ip bootp server
+
+interface Ethernet0/0
+no mop enabled
+exit
+interface Ethernet0/1
+no mop enabled
+exit
+interface Ethernet0/2
+no mop enabled
+exit
+interface Ethernet0/3
+no mop enabled
+exit
+interface Ethernet1/0
+no mop enabled
+exit
+interface Ethernet1/1
+no mop enabled
+exit
+interface Ethernet1/2
+no mop enabled
+exit
+interface Ethernet1/3
+no mop enabled
+exit
+no ip gratuitous-arps
+
+ip arp gratuitous none
+
+interface loopback 0
+ip address 1.1.1.1 255.255.255.0
+snmp ifindex persist
+no ip redirects
+no ip unreachables
+no ipv6 unreachables
+no ip proxy-arp
+exit
+
+exception memory ignore overflow io
+
+exception memory ignore overflow processor
+
+ip scp server enable
+
+secure boot config
+secure boot-config
+
+archive
+path unix:
+log config
+logging enable
+notify syslog
+hidekeys
+maximum 5
+time-period 60
+
+service tcp-keepalives-in
+
+service tcp-keepalives-out
+

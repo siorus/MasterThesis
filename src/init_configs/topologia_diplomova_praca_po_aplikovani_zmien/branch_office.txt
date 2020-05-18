@@ -1,0 +1,600 @@
+!
+! Last configuration change at 20:29:28 UTC Sun May 17 2020
+!
+version 15.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+service sequence-numbers
+!
+hostname BRANCH_Office
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging buffered 40960 informational
+logging persistent url flash:/
+logging console critical
+enable secret 5 $1$iEdY$nL1gMILjU.xmsUL6HN5DM.
+!
+username User secret 5 $1$Gash$8fbPyutm3nNsdVyenmhwh/
+username admin secret 5 $1$yF/I$VpV90aBW82fsd45z664.e/
+aaa new-model
+!
+!
+aaa group server radius RADIUS_SERVER
+ server name RADIUS_SERVER
+!
+aaa authentication login default group RADIUS_SERVER local enable
+aaa authentication enable default group RADIUS_SERVER enable
+aaa authentication dot1x default group RADIUS_SERVER
+aaa authorization exec default group RADIUS_SERVER local if-authenticated 
+aaa accounting exec default start-stop group RADIUS_SERVER
+aaa accounting connection default start-stop group RADIUS_SERVER
+!
+!
+!
+!
+!
+!
+aaa session-id common
+process cpu threshold type total rising 70 interval 5
+process cpu statistics limit entry-percentage 70
+!
+!
+!
+!
+!
+vtp mode transparent
+ip arp gratuitous none
+ip arp inspection vlan 10,20,30,40,50,60
+ip arp inspection validate src-mac dst-mac ip 
+no ip gratuitous-arps
+ip options drop
+!
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+!
+ip dhcp pool Branch_pool
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1 
+!
+!
+ip dhcp snooping vlan 10,20,30,40,50,60
+ip dhcp snooping
+no ip bootp server
+no ip domain-lookup
+ip domain-name thesis-test.cz
+ip cef
+login block-for 120 attempts 3 within 30
+login quiet-mode access-class IPV4_VTY_ACL
+login on-failure log
+login on-success log
+no ipv6 cef
+!
+!
+dot1x system-auth-control
+service-template webauth-global-inactive
+ inactivity-timer 3600 
+service-template webauth-global-absolute
+service-template DEFAULT_LINKSEC_POLICY_MUST_SECURE
+ linksec policy must-secure
+service-template DEFAULT_LINKSEC_POLICY_SHOULD_SECURE
+ linksec policy should-secure
+service-template DEFAULT_CRITICAL_VOICE_TEMPLATE
+ voice vlan
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+ path flash:
+ maximum 5
+ time-period 60
+memory reserve critical 1000
+memory free low-watermark processor 2000
+memory free low-watermark IO 2000
+!
+spanning-tree mode pvst
+spanning-tree loopguard default
+spanning-tree portfast edge default
+spanning-tree portfast edge bpduguard default
+spanning-tree extend system-id
+!
+!
+!
+parameter-map type webauth AI_NRH_PMAP
+ type authbypass
+!
+!
+parameter-map type webauth AI_WEBAUTH_PMAP
+ type webauth
+!         
+!
+vlan 10 
+!
+vlan 20
+ name Branch
+no cdp run
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!         
+!
+!
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.0
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ no ipv6 unreachables
+ snmp ifindex persist
+!
+interface Tunnel0
+ ip address 172.16.32.1 255.255.255.252
+ no ip proxy-arp
+ snmp ifindex persist
+ tunnel source 209.115.200.2
+ tunnel destination 10.10.10.2
+!
+interface GigabitEthernet0/0
+ description WAN_PORT
+ no switchport
+ ip address 209.115.200.2 255.255.255.252
+ ip access-group IPV4_WAN_FILTER in
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ negotiation auto
+ snmp ifindex persist
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security mac-address sticky 0050.7966.6800
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ spanning-tree portfast edge
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ spanning-tree portfast edge
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ spanning-tree portfast edge
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet1/0
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet1/1
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet1/2
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet1/3
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet2/0
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet2/1
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet2/2
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet2/3
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet3/0
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet3/1
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet3/2
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface GigabitEthernet3/3
+ switchport mode access
+ switchport nonegotiate
+ switchport port-security mac-address sticky
+ switchport port-security
+ ip access-group DENY_NETWORK_MAP in
+ negotiation auto
+ access-session port-control auto
+ snmp ifindex persist
+ dot1x pae authenticator
+ no cdp enable
+ ip verify source port-security
+ ip dhcp snooping limit rate 100
+!
+interface Vlan10
+ ip address 192.168.10.1 255.255.255.0
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ snmp ifindex persist
+!
+router rip
+ version 2
+ network 172.16.0.0
+ network 192.168.10.0
+ no auto-summary
+!
+router bgp 1212
+ bgp router-id 3.3.3.3
+ bgp log-neighbor-changes
+ neighbor 209.115.200.1 remote-as 1211
+ neighbor 209.115.200.1 ttl-security hops 2
+!
+ip forward-protocol nd
+!
+ip http server
+!
+ip route 0.0.0.0 0.0.0.0 209.115.200.1
+ip ssh time-out 30
+ip ssh port 2223 rotary 1
+ip ssh source-interface Loopback0
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip scp server enable
+!
+ip access-list standard VTY_ACC
+ permit 192.168.0.0 0.0.255.255
+!
+ip access-list extended AI_PORT_ACL
+ permit ip any any
+ip access-list extended DENY_NETWORK_MAP
+ remark deny ping all nodes
+ deny   icmp any host 224.0.0.1 echo log-input
+ remark deny host query
+ deny   igmp any any 1 log-input
+ permit ip any any
+ip access-list extended IPV4_WAN_FILTER
+ remark DENY RFC6890 and RFC8190
+ deny   ip 0.0.0.0 0.255.255.255 any log-input
+ deny   ip 10.0.0.0 0.255.255.255 any log-input
+ deny   ip 100.64.0.0 0.63.255.255 any log-input
+ deny   ip 127.0.0.0 0.255.255.255 any log-input
+ deny   ip 169.254.0.0 0.0.255.255 any log-input
+ deny   ip 172.16.0.0 0.15.255.255 any log-input
+ deny   ip 192.0.0.0 0.0.0.7 any log-input
+ deny   ip 192.0.2.0 0.0.0.255 any log-input
+ deny   ip 192.18.0.0 0.1.255.255 any log-input
+ deny   ip 198.51.100.0 0.0.0.255 any log-input
+ deny   ip 192.168.0.0 0.0.255.255 any log-input
+ deny   ip 192.0.0.0 0.255.255.255 any log-input
+ deny   ip 203.0.113.0 0.0.0.255 any log-input
+ deny   ip 224.0.0.0 15.255.255.255 any log-input
+ deny   ip 240.0.0.0 15.255.255.255 any log-input
+ permit ip any any
+!
+ip radius source-interface Loopback0 
+logging source-interface Loopback0
+logging host 192.168.60.11
+!
+!
+!
+snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3
+snmp-server trap-source Loopback0
+snmp-server location GNS3LAB
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps flowmon
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps casa
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps energywise
+snmp-server enable traps pw vc
+snmp-server enable traps l2tun session
+snmp-server enable traps l2tun pseudowire status
+snmp-server enable traps ether-oam
+snmp-server enable traps lisp
+snmp-server enable traps mpls rfc ldp
+snmp-server enable traps mpls ldp
+snmp-server enable traps mpls rfc traffic-eng
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps ethernet evc status create delete
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps bfd
+snmp-server enable traps bgp
+snmp-server enable traps bgp cbgp2
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps dlsw
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps msdp
+snmp-server enable traps mvpn
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps rsvp
+snmp-server enable traps ipsla
+snmp-server enable traps slb real virtual csrp
+snmp-server enable traps syslog
+snmp-server enable traps event-manager
+snmp-server enable traps pki
+snmp-server enable traps ethernet cfm alarm
+snmp-server enable traps mpls vpn
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server host 192.168.60.11 version 3 priv SNMPv3USER 
+snmp ifmib ifindex persist
+!
+!
+radius server RADIUS_SERVER
+ address ipv4 192.168.60.11 auth-port 1645 acct-port 1646
+ key RadKey1
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner motd ^C Unauthorized access will be prosecuted!! ^C
+configuration mode exclusive
+!
+line con 0
+ session-timeout 30 
+ exec-timeout 5 0
+ transport output none
+line aux 0
+ session-timeout 30 
+ exec-timeout 0 1
+ no exec
+ transport output none
+line vty 0 4
+ session-timeout 30 
+ access-class VTY_ACC in
+ exec-timeout 5 0
+ rotary 1
+ transport input ssh
+ transport output none
+line vty 5 6
+ session-timeout 30 
+ access-class VTY_ACC in
+ exec-timeout 5 0
+ rotary 1
+ transport input ssh
+ transport output none
+!
+exception memory ignore overflow processor
+exception memory ignore overflow io
+ntp authentication-key 1 md5 11070D152713181F132E7A767B 7
+ntp authenticate
+ntp trusted-key 1
+ntp source Loopback0
+ntp server 192.168.60.11
+!
+end
+

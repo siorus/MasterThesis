@@ -1,0 +1,1372 @@
+aaa new-model
+
+radius server RADIUS_SERVER
+address ipv4 192.168.60.11
+key RadKey1
+
+aaa group server radius RADIUS_SERVER
+server name RADIUS_SERVER
+
+aaa authentication login default group RADIUS_SERVER local enable
+
+aaa authentication login default group RADIUS_SERVER local enable
+
+aaa authentication enable default group RADIUS_SERVER enable
+
+aaa authentication enable default group RADIUS_SERVER enable
+
+aaa authorization exec default group RADIUS_SERVER local if-authenticated
+
+aaa authorization exec default group RADIUS_SERVER local if-authenticated
+
+aaa accounting connection default start-stop group RADIUS_SERVER
+
+aaa accounting exec default start-stop group RADIUS_SERVER
+
+ip radius source-interface Loopback0
+
+line con 0
+exec-timeout 5
+
+line vty 0 4
+exec-timeout 5
+
+line aux 0
+no exec
+
+line con 0
+transport output none
+
+line aux 0
+transport output none
+
+line vty 0 4
+transport output none
+
+username admin secret admin_password
+
+enable secret enablepasswd123
+
+line vty 0 4
+access-class IPV4_VTY_ACL in
+
+login on-failure trap
+login on-failure log
+login on-failure log-input
+
+login on-success trap
+login on-success log
+login on-success log-input
+
+login quiet-mode access-class IPV4_VTY_ACL
+
+configuration mode exclusive
+configuration mode exclusive auto
+
+banner motd ; Unauthorized access will be prosecuted!! ;
+
+banner exec ; Unauthorized access will be prosecuted!! ;
+
+banner login ; Unauthorized access will be prosecuted!! ;
+
+line con 0
+session-timeout 30
+
+line aux 0
+session-timeout 30
+
+line vty 0 4
+session-timeout 30
+
+line aux 0
+exec-timeout 0 1
+
+line vty 0 4
+ipv6 access-class IPV6_VTY_ACL in
+
+login block-for 120 attempts 3 within 30
+
+line vty 0 4
+transport input ssh
+
+ip ssh version 2
+
+ip ssh timeout 30
+ip ssh time-out 30
+
+ip ssh source-interface Loopback0
+
+ip ssh port 2223 rotary 1
+
+line vty 0 4
+rotary 1
+
+ip domain-name thesis-test.cz
+ip domain name thesis-test.cz
+
+snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3
+snmp-server user SNMPv3USER SNMP_V3_GRP v3 auth sha SnmpPasswd123 priv aes 256 SnmpPasswd123 access SNMP_V3
+
+snmp-server group SNMP_V3_GRP_IPV6 v3 priv read READVIEWv3 access ipv6 SNMP_V3_ACL6
+snmp-server user SNMPv3USER SNMP_V3_GRP_IPV6 v3 auth sha SnmpPasswd123 priv aes 256 SnmpPasswd123 access SNMP_V3_ACL6
+
+snmp-server trap-source Loopback0
+
+snmp-server location GNS3LAB
+
+snmp-server host 192.168.60.11 version 3 priv SNMPv3USER
+
+snmp-server enable traps
+
+snmp-server ifindex persist
+snmp ifmib ifindex persist
+
+interface Ethernet0/0
+snmp ifindex persist
+exit
+interface Ethernet0/1
+snmp ifindex persist
+exit
+interface Ethernet0/2
+snmp ifindex persist
+exit
+interface Ethernet0/3
+snmp ifindex persist
+exit
+interface Ethernet1/0
+snmp ifindex persist
+exit
+interface Ethernet1/1
+snmp ifindex persist
+exit
+interface Ethernet1/2
+snmp ifindex persist
+exit
+interface Ethernet1/3
+snmp ifindex persist
+exit
+interface Ethernet2/0
+snmp ifindex persist
+exit
+interface Ethernet2/1
+snmp ifindex persist
+exit
+interface Ethernet2/2
+snmp ifindex persist
+exit
+interface Ethernet2/3
+snmp ifindex persist
+exit
+interface Ethernet3/0
+snmp ifindex persist
+exit
+interface Ethernet3/1
+snmp ifindex persist
+exit
+interface Ethernet3/2
+snmp ifindex persist
+exit
+interface Ethernet3/3
+snmp ifindex persist
+exit
+interface Serial4/0
+snmp ifindex persist
+exit
+interface Serial4/1
+snmp ifindex persist
+exit
+interface Serial4/2
+snmp ifindex persist
+exit
+interface Serial4/3
+snmp ifindex persist
+exit
+interface Serial5/0
+snmp ifindex persist
+exit
+interface Serial5/1
+snmp ifindex persist
+exit
+interface Serial5/2
+snmp ifindex persist
+exit
+interface Serial5/3
+snmp ifindex persist
+exit
+interface Vlan1
+snmp ifindex persist
+exit
+logging host 192.168.60.11
+
+logging host ipv6 fd00:60::2050:79ff:fe66:6805
+
+logging source-interface Loopback0
+
+logging console critical
+
+logging buffered 40960 informational
+
+logging persistent url flash:
+
+service sequence-numbers
+
+ntp server 192.168.60.11
+
+ntp source Loopback0
+
+ntp authentication-key 1 md5 ntpPasswd123
+
+ntp trusted-key 1
+
+ntp authenticate
+
+snmp-server enable traps cpu threshold
+
+process cpu threshold type total rising 70 interval 5
+
+process cpu statistics limit entry-percentage 70
+
+memory reserve critical 1000
+
+memory free low-watermark processor 2000
+
+memory free low-watermark io 2000
+
+spanning-tree portfast default
+spanning-tree portfast edge default
+
+interface Ethernet0/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet0/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet0/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet1/0
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet1/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet1/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet1/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet2/0
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet2/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet2/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet2/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet3/0
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet3/1
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet3/2
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+interface Ethernet3/3
+spanning-tree portfast
+spanning-tree portfast edge
+exit
+spanning-tree portfast bpduguard default
+spanning-tree portfast edge bpduguard default
+
+interface Ethernet0/1
+spanning-tree bpduguard enable
+exit
+interface Ethernet0/2
+spanning-tree bpduguard enable
+exit
+interface Ethernet0/3
+spanning-tree bpduguard enable
+exit
+interface Ethernet1/0
+spanning-tree bpduguard enable
+exit
+interface Ethernet1/1
+spanning-tree bpduguard enable
+exit
+interface Ethernet1/2
+spanning-tree bpduguard enable
+exit
+interface Ethernet1/3
+spanning-tree bpduguard enable
+exit
+interface Ethernet2/0
+spanning-tree bpduguard enable
+exit
+interface Ethernet2/1
+spanning-tree bpduguard enable
+exit
+interface Ethernet2/2
+spanning-tree bpduguard enable
+exit
+interface Ethernet2/3
+spanning-tree bpduguard enable
+exit
+interface Ethernet3/0
+spanning-tree bpduguard enable
+exit
+interface Ethernet3/1
+spanning-tree bpduguard enable
+exit
+interface Ethernet3/2
+spanning-tree bpduguard enable
+exit
+interface Ethernet3/3
+spanning-tree bpduguard enable
+exit
+spanning-tree loopguard default
+
+interface Ethernet0/0
+spanning-tree guard loop
+exit
+interface Ethernet0/1
+spanning-tree guard loop
+exit
+interface Ethernet0/2
+spanning-tree guard loop
+exit
+interface Ethernet0/3
+spanning-tree guard loop
+exit
+interface Ethernet1/0
+spanning-tree guard loop
+exit
+interface Ethernet1/1
+spanning-tree guard loop
+exit
+interface Ethernet1/2
+spanning-tree guard loop
+exit
+interface Ethernet1/3
+spanning-tree guard loop
+exit
+interface Ethernet2/0
+spanning-tree guard loop
+exit
+interface Ethernet2/1
+spanning-tree guard loop
+exit
+interface Ethernet2/2
+spanning-tree guard loop
+exit
+interface Ethernet2/3
+spanning-tree guard loop
+exit
+interface Ethernet3/0
+spanning-tree guard loop
+exit
+interface Ethernet3/1
+spanning-tree guard loop
+exit
+interface Ethernet3/2
+spanning-tree guard loop
+exit
+interface Ethernet3/3
+spanning-tree guard loop
+exit
+interface Ethernet0/3
+switchport mode access
+exit
+interface Ethernet1/0
+switchport mode access
+exit
+interface Ethernet1/1
+switchport mode access
+exit
+interface Ethernet1/2
+switchport mode access
+exit
+interface Ethernet1/3
+switchport mode access
+exit
+interface Ethernet2/0
+switchport mode access
+exit
+interface Ethernet2/1
+switchport mode access
+exit
+interface Ethernet2/2
+switchport mode access
+exit
+interface Ethernet2/3
+switchport mode access
+exit
+interface Ethernet3/0
+switchport mode access
+exit
+interface Ethernet3/1
+switchport mode access
+exit
+interface Ethernet3/2
+switchport mode access
+exit
+interface Ethernet3/3
+switchport mode access
+exit
+interface Ethernet0/0
+switchport nonegotiate
+exit
+interface Ethernet0/1
+switchport nonegotiate
+exit
+interface Ethernet0/2
+switchport nonegotiate
+exit
+interface Ethernet0/3
+switchport nonegotiate
+exit
+interface Ethernet1/0
+switchport nonegotiate
+exit
+interface Ethernet1/1
+switchport nonegotiate
+exit
+interface Ethernet1/2
+switchport nonegotiate
+exit
+interface Ethernet1/3
+switchport nonegotiate
+exit
+interface Ethernet2/0
+switchport nonegotiate
+exit
+interface Ethernet2/1
+switchport nonegotiate
+exit
+interface Ethernet2/2
+switchport nonegotiate
+exit
+interface Ethernet2/3
+switchport nonegotiate
+exit
+interface Ethernet3/0
+switchport nonegotiate
+exit
+interface Ethernet3/1
+switchport nonegotiate
+exit
+interface Ethernet3/2
+switchport nonegotiate
+exit
+interface Ethernet3/3
+switchport nonegotiate
+exit
+no cdp run
+
+interface Ethernet0/1
+no cdp enable
+exit
+interface Ethernet0/2
+no cdp enable
+exit
+interface Ethernet0/3
+no cdp enable
+exit
+interface Ethernet1/0
+no cdp enable
+exit
+interface Ethernet1/1
+no cdp enable
+exit
+interface Ethernet1/2
+no cdp enable
+exit
+interface Ethernet1/3
+no cdp enable
+exit
+interface Ethernet2/0
+no cdp enable
+exit
+interface Ethernet2/1
+no cdp enable
+exit
+interface Ethernet2/2
+no cdp enable
+exit
+interface Ethernet2/3
+no cdp enable
+exit
+interface Ethernet3/0
+no cdp enable
+exit
+interface Ethernet3/1
+no cdp enable
+exit
+interface Ethernet3/2
+no cdp enable
+exit
+interface Ethernet3/3
+no cdp enable
+exit
+interface Serial4/0
+no cdp enable
+exit
+interface Serial4/1
+no cdp enable
+exit
+interface Serial4/2
+no cdp enable
+exit
+interface Serial4/3
+no cdp enable
+exit
+interface Serial5/0
+no cdp enable
+exit
+interface Serial5/1
+no cdp enable
+exit
+interface Serial5/2
+no cdp enable
+exit
+interface Serial5/3
+no cdp enable
+exit
+ip access-list extended DENY_NETWORK_MAP
+remark deny ping all nodes
+deny icmp any host 224.0.0.1 echo log-input
+remark deny host query
+deny igmp any any host-query log-input
+permit ip any any
+
+ip access-list extended DENY_NETWORK_MAP
+remark deny ping all nodes
+deny icmp any host 224.0.0.1 echo log-input
+remark deny host query
+deny igmp any any host-query log-input
+permit ip any any
+
+ipv6 access-list DENY_NETWORK_MAP_IPV6
+remark deny ping all nodes
+deny icmp any host ff02::1 echo-request log-input
+remark deny mld query
+deny icmp any any mld-query log-input
+permit ipv6 any any
+
+ipv6 access-list DENY_NETWORK_MAP_IPV6
+remark deny ping all nodes
+deny icmp any host ff02::1 echo-request log-input
+remark deny mld query
+deny icmp any any mld-query log-input
+permit ipv6 any any
+
+interface Ethernet0/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet0/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet0/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet1/0
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet1/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet1/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet1/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet2/0
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet2/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet2/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet2/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet3/0
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet3/1
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet3/2
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet3/3
+ip access-group DENY_NETWORK_MAP in
+exit
+interface Ethernet0/1
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet0/2
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet0/3
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet1/0
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet1/1
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet1/2
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet1/3
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet2/0
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet2/1
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet2/2
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet2/3
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet3/0
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet3/1
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet3/2
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+interface Ethernet3/3
+ipv6 traffic-filter DENY_NETWORK_MAP_IPV6 in
+exit
+ipv6 access-list IPV6_FRAGMENT_FILTER
+remark DENY unknown IPv6 extended headers
+deny ipv6 any any undetermined-transport log-input
+permit ipv6 any any
+
+interface Ethernet0/1
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet0/2
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet0/3
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet1/0
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet1/1
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet1/2
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet1/3
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet2/0
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet2/1
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet2/2
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet2/3
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet3/0
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet3/1
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet3/2
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet3/3
+ipv6 traffic-filter IPV6_FRAGMENT_FILTER in
+exit
+interface Ethernet0/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet1/0
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet1/1
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet1/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet1/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet2/0
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet2/1
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet2/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet2/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet3/0
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet3/1
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet3/2
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+interface Ethernet3/3
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security
+exit
+dot1x system-auth-control
+
+aaa authentication dot1x default group RADIUS_SERVER
+
+interface Ethernet0/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet0/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet0/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet1/0
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet1/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet1/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet1/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet2/0
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet2/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet2/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet2/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet3/0
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet3/1
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet3/2
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet3/3
+access-session port-control auto
+authentication port-control auto
+dot1x port-control auto
+yes
+exit
+interface Ethernet0/1
+dot1x pae authenticator
+exit
+interface Ethernet0/2
+dot1x pae authenticator
+exit
+interface Ethernet0/3
+dot1x pae authenticator
+exit
+interface Ethernet1/0
+dot1x pae authenticator
+exit
+interface Ethernet1/1
+dot1x pae authenticator
+exit
+interface Ethernet1/2
+dot1x pae authenticator
+exit
+interface Ethernet1/3
+dot1x pae authenticator
+exit
+interface Ethernet2/0
+dot1x pae authenticator
+exit
+interface Ethernet2/1
+dot1x pae authenticator
+exit
+interface Ethernet2/2
+dot1x pae authenticator
+exit
+interface Ethernet2/3
+dot1x pae authenticator
+exit
+interface Ethernet3/0
+dot1x pae authenticator
+exit
+interface Ethernet3/1
+dot1x pae authenticator
+exit
+interface Ethernet3/2
+dot1x pae authenticator
+exit
+interface Ethernet3/3
+dot1x pae authenticator
+exit
+ip dhcp snooping
+
+ip dhcp snooping vlan 10,20,30,40,50,60
+
+interface Ethernet0/0
+ip dhcp snooping trust
+exit
+interface Ethernet0/1
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet0/2
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet0/3
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet1/0
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet1/1
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet1/2
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet1/3
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet2/0
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet2/1
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet2/2
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet2/3
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet3/0
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet3/1
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet3/2
+ip dhcp snooping limit rate 100
+exit
+interface Ethernet3/3
+ip dhcp snooping limit rate 100
+exit
+ipv6 nd raguard policy ipv6_raguard_policy
+device-role host
+
+interface Ethernet0/1
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet0/2
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet0/3
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet1/0
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet1/1
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet1/2
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet1/3
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet2/0
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet2/1
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet2/2
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet2/3
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet3/0
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet3/1
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet3/2
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+interface Ethernet3/3
+ipv6 nd raguard attach-policy ipv6_raguard_policy
+exit
+ipv6 dhcp guard policy dhcpv6_server_policy
+device-role server
+
+ipv6 dhcp guard policy dhcpv6_client_policy
+device-role client
+
+interface Ethernet0/0
+ipv6 dhcp guard attach-policy dhcpv6_server_policy
+exit
+interface Ethernet0/1
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet0/2
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet0/3
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet1/0
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet1/1
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet1/2
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet1/3
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet2/0
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet2/1
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet2/2
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet2/3
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet3/0
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet3/1
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet3/2
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+interface Ethernet3/3
+ipv6 dhcp guard attach-policy dhcpv6_client_policy
+exit
+ip arp inspection vlan 10,20,30,40,50,60
+
+ip arp inspection validate src-mac dst-mac ip
+
+interface Ethernet0/0
+ip arp inspection trust
+exit
+ipv6 nd inspection policy ipv6_nd_inspection_policy
+device-role host
+tracking enable
+
+interface Ethernet0/1
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet0/2
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet0/3
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet1/0
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet1/1
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet1/2
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet1/3
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet2/0
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet2/1
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet2/2
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet2/3
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet3/0
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet3/1
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet3/2
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+interface Ethernet3/3
+ipv6 nd inspection attach-policy ipv6_nd_inspection_policy
+exit
+ipv6 snooping policy ipv6_snooping_policy
+security-level glean
+
+interface Ethernet0/0
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet0/1
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet0/2
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet0/3
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet1/0
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet1/1
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet1/2
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet1/3
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet2/0
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet2/1
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet2/2
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet2/3
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet3/0
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet3/1
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet3/2
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet3/3
+ipv6 snooping attach-policy ipv6_snooping_policy
+exit
+interface Ethernet0/1
+ip verify source port-security
+exit
+interface Ethernet0/2
+ip verify source port-security
+exit
+interface Ethernet0/3
+ip verify source port-security
+exit
+interface Ethernet1/0
+ip verify source port-security
+exit
+interface Ethernet1/1
+ip verify source port-security
+exit
+interface Ethernet1/2
+ip verify source port-security
+exit
+interface Ethernet1/3
+ip verify source port-security
+exit
+interface Ethernet2/0
+ip verify source port-security
+exit
+interface Ethernet2/1
+ip verify source port-security
+exit
+interface Ethernet2/2
+ip verify source port-security
+exit
+interface Ethernet2/3
+ip verify source port-security
+exit
+interface Ethernet3/0
+ip verify source port-security
+exit
+interface Ethernet3/1
+ip verify source port-security
+exit
+interface Ethernet3/2
+ip verify source port-security
+exit
+interface Ethernet3/3
+ip verify source port-security
+exit
+ipv6 source-guard policy ipv6_source_guard_policy
+validate address
+
+interface Ethernet0/1
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet0/2
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet0/3
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet1/0
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet1/1
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet1/2
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet1/3
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet2/0
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet2/1
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet2/2
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet2/3
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet3/0
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet3/1
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet3/2
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+interface Ethernet3/3
+ipv6 source-guard attach-policy ipv6_source_guard_policy
+exit
+ipv6 destination-guard policy ipv6_destination_guard_policy
+enforcement always
+
+interface Ethernet0/1
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet0/2
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet0/3
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet1/0
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet1/1
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet1/2
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet1/3
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet2/0
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet2/1
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet2/2
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet2/3
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet3/0
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet3/1
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet3/2
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+interface Ethernet3/3
+ipv6 destination-guard attach-policy ipv6_destination_guard_policy
+exit
+no service pad
+
+no ip bootp server
+
+no ip gratuitous-arps
+
+ip arp gratuitous none
+
+ip flow-export version 9
+
+exception memory ignore overflow io
+
+exception memory ignore overflow processor
+
+ip scp server enable
+
+secure boot config
+secure boot-config
+
+archive
+path unix:
+log config
+logging enable
+notify syslog
+hidekeys
+maximum 5
+time-period 60
+
+service tcp-keepalives-in
+
+service tcp-keepalives-out
+

@@ -363,6 +363,7 @@ def check_var_in_regex(yaml_module_file,workspace_path,device_folder):
     regex_pos = regex_pos + 1
 
 def fill_variables_group_yaml_err(yaml_module_file,workspace_path,device_folder,regex_cmd_matched_pos,pub_var_dict):
+  global err_str
   var_pos = 0    
   for var in yaml_module_file.public_vars:
     num = re.search("^(.*\.yaml)\.(.*)$",list(var.values())[0],flags=re.MULTILINE)  #Load variable from previous yaml module
@@ -385,6 +386,7 @@ def fill_variables_group_yaml_err(yaml_module_file,workspace_path,device_folder,
     var_pos = var_pos + 1
 
 def generate_fix(yaml_module_file,pub_var_dict,workspace_path):
+  global err_str
   fix_cmd = ""
   if ((yaml_module_file.fix_cmd == []) and (yaml_module_file.general_comment == "")):
     yaml_module_file.general_comment = "Cannot be fixed automatically!"
@@ -423,6 +425,7 @@ def compare_nonapplicable_int(non_applicable_to_interface_type,device_ints):
   return True
 
 def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,workspace_path,device_folder,module):
+  global err_str
   print("Module: "+str(module)) #DEBUG
   #previous_module = None
   #Was marked by another module before
@@ -441,12 +444,12 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
     if ((yaml_module_file.run_after_module_match_status == "none")):
       if (previous_module["cmd_match_status"] == "not run"):
         yaml_module_file.general_comment = "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run"
-        err_str = err_str + "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run\n"
+        err_str = err_str + "-------------\n" + str(device_folder) + "\n" +"Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" but that module has not run yet, "+str(module)+" will not run\n"
         return
     else:
       if (previous_module["cmd_match_status"] != yaml_module_file.run_after_module_match_status):
         yaml_module_file.general_comment = "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run"
-        err_str = err_str + "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run\n"
+        err_str = err_str + "-------------\n" + str(device_folder) + "\n" + "Module "+str(module)+" configured to run after "+str(yaml_module_file.run_after_module)+" with status "+str(yaml_module_file.run_after_module_match_status) +" but that module has not run yet with specified cmd_match_status, "+str(module)+" will not run\n"
         return
         
   check_var_in_regex(yaml_module_file,workspace_path,device_folder)
@@ -701,7 +704,7 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
       yaml_module_file.cmd_match_status = "error"
       yaml_module_file.cannot_determine_search_or_fix = "true"
       yaml_module_file.cannot_determine_search_or_fix_comment = "Context have not been found, cannot create fix, skipping."
-      err_str = err_str + "Context "+yaml_module_file.regex_context+" specified in "+ module +" have not been found, cannot create fix, skipping.\n"
+      err_str = err_str + "-------------\n" + str(device_folder) + "\n" + "Context "+yaml_module_file.regex_context+" specified in "+ module +" have not been found, cannot create fix, skipping.\n"
       return
     elif ((whole_contexts == []) and (yaml_module_file.regex_cmd_occurrence == "non-occurrence")):
       yaml_module_file.cmd_match_status = "successful"
@@ -806,6 +809,10 @@ def audit_analyze_module(yaml_module_file,device_yaml_file,source_configuration,
     print("Wrong module type in \""+str(yaml_module_file)+"\"",file=sys.stderr)
     exit(10)
 
+  if (yaml_module_file.fix_cmd == []): #In case "c" or "i" type when fix is not possible fut it would generate empty interface settings in report
+    yaml_module_file.fix_to_apply = ""
+
+
 def audit_check(args):
   workspace_path = getcwd()+"/device_configs/"+args.workspace
   test_audit_requirements(workspace_path) #Test whether all needed files are in workspace directory
@@ -870,6 +877,9 @@ def overal_stat(yaml_module_file,stat_dict):
 
 def create_overal_stat(stat_dict):
   count_modules = sum(stat_dict.values())
+  if (count_modules == 0):
+    print("\nIt looks like program has not run with 'audit-check' argument in this workspace. No report can be generated. Run program with argument 'audit-check' and afterwards with 'generate-report'",file=sys.stderr)
+    exit(2)
   one_piece = 100/count_modules
   coefficeient_sum = 0*stat_dict['critical'] + 0.25*stat_dict['high'] + 0.5*stat_dict['medium'] + 0.75*stat_dict['low']+1*stat_dict['notice']+1*stat_dict['ok']
   weighted_score = coefficeient_sum*one_piece
@@ -1139,17 +1149,17 @@ if __name__ == "__main__":
   parser_analyze.add_argument("--workspace",help="subset of devices or one topology belongs to one workspace",action="store",required=True)
   parser_analyze.add_argument("--vendor",help="manufacturer of device to analyze, directory with same name must exist in directory 'modules'",action="store",required=True)
   parser_analyze.add_argument("--os",help="operating system of device to analyze, directory with same name must exist in subdirectory directory of 'modules'",action="store",required=True)
-  parser_analyze.add_argument("--facility_layer",help="manually set layer of devices in this specific workspace, automatic detection will be supressed",action="store",choices=["core","distribution","access","collapsed all","collapsed core distribution","collapsed distribution access"])
+  parser_analyze.add_argument("--facility-layer",help="manually set layer of devices in this specific workspace, automatic detection will be supressed",action="store",choices=["core","distribution","access","collapsed all","collapsed core distribution","collapsed distribution access"])
   parser_analyze.add_argument("--keep-own-vars",help="Allows to keep fulfilled own_variables.yaml in workspace when program 'analyze' argument is run repeatedly",action="store_true")
 
 
   parser_audit_check = subparsers.add_parser("audit-check",help="Find absence of recommended settings, run after successful analyze of input configurations")
   parser_audit_check.add_argument("--workspace", help="find absence in specific previously created workspace folder",action="store",required=True)
-  parser_audit_check.add_argument("--hide-match", help="do not store and show matched strings in audit report", action="store_true")
+  parser_audit_check.add_argument("--hide-match", help="do not store matched strings in yaml modules, only info about its presence or absence", action="store_true")
 
   parser_generate_report = subparsers.add_parser("generate-report",help="Creates readable report in HTML for every device")
   parser_generate_report.add_argument("--workspace", help="find audit info in specific previously created workspace folder",action="store",required=True)
-  parser_generate_report.add_argument("--hide-match", help="do not store and show matched strings in audit report", action="store_true")
+  parser_generate_report.add_argument("--hide-match", help="do not show matched strings from yaml modules in audit report", action="store_true")
 
   parser_generate_fix = subparsers.add_parser("generate-fix",help="Generate fix for each device")
   parser_generate_fix.add_argument("--workspace", help="find audit info in specific previously created workspace folder",action="store",required=True)
@@ -1161,22 +1171,22 @@ if __name__ == "__main__":
   if (args.subparser == "analyze"):
     initial_analyze(args)
     if (err_str != ""):
-      print("Errors or notifications from program:\n"err_str + "\n")
+      print("Notifications from program:\n"+err_str + "\n")
     print("\nWorkspace analyzed!")
   elif (args.subparser == "audit-check"):
     if (args.hide_match):
       print("Saving matched commands in configurations suppressed due to used argument 'hide-match'!")
     audit_check(args)
     if (err_str != ""):
-      print("Errors or notifications from program:\n"err_str + "\n")
+      print("Notifications from program:\n"+err_str + "\n")
     print("\nAudit check was done on workspace!")
   elif (args.subparser == "generate-report"):
     generate_report(args)
     if (err_str != ""):
-      print("Errors or notifications from program:\n"err_str + "\n")
+      print("Notifications from program:\n"+err_str + "\n")
     print("\nReports were generated on workspace!")
   elif (args.subparser == "generate-fix"):
     generate_fix_file(args)
     if (err_str != ""):
-      print("Errors or notifications from program:\n"err_str + "\n")
+      print("Notifications from program:\n"+err_str + "\n")
     print("\nFixes were generated on workspace!")

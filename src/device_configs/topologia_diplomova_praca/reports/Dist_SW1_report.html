@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../../../report/report.css">
+  </head>
+  <body>
+    <page size="A4">
+      <table>
+        <tbody>
+          <tr><td><h1>AUDIT REPORT</h1></td></tr><tr><td type='device_first_column'>Hostname:</td><td type='device_section'>Dist_SW1</td></tr>
+<tr><td type='device_first_column'>Config file name:</td><td type='device_section'>Dist_SW1_startup-config.cfg</td></tr>
+<tr><td type='device_first_column'>Config hash:</td><td type='device_section'>b92c994ebbb2fb6b8b9e2d089ed71f2320d31855</td></tr>
+<tr><td type='device_first_column'>Vendor:</td><td type='device_section'>cisco</td></tr>
+<tr><td type='device_first_column'>OS:</td><td type='device_section'>ios</td></tr>
+<tr><td type='device_first_column'>Facility layer:</td><td type='device_section'>collapsed_distribution_access</td></tr>
+<tr><td type='device_first_column'>L3 protocols:</td><td type='device_section'>ipv4</td></tr>
+<tr><td type='device_first_column'>Enabled functions:</td><td type='device_section'>ospf ipv4,hsrp</td></tr>
+<tr><td type='device_first_column'>Date:</td><td type='device_section'>18/05/2020_09:43</td></tr>
+</table></tbody>
+<table><tbody type='stat'>
+<tr><td><h3>SUCCESS STATISTICS</h3></td></tr><br/>
+<tr><td type='stat_first_column'>Weighted score coefficient:</td><td type='stat_second_column'>52 out of 100</td></tr>
+<tr><td type='stat_first_column'>Successful checks:</td><td type='stat_second_column'>33.3&#37</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful checks:</td><td type='stat_second_column'>66.7&#37</td></tr><tr><td></td></tr>
+<br/><tr><td type='stat_first_column'>Total number of relevant started checks:</td><td type='stat_second_column'>159</td></tr><tr><td></td></tr>
+<tr><td type='stat_first_column'>Successful checks:</td><td type='stat_second_column'>53</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Critical':</td><td type='stat_second_column'>25</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'High':</td><td type='stat_second_column'>45</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Medium':</td><td type='stat_second_column'>32</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Low':</td><td type='stat_second_column'>4</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Notice':</td><td type='stat_second_column'>0</td></tr>
+</table></tbody>
+<table><tbody>
+<tr><h3>Authentication, Authorization, Accounting</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>AAA new model/ Enabled AAA</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa new-model<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>AAA server set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>radius server RADIUS_SERVER<br/>address ipv4 192.168.60.11<br/>key RadKey1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>AAA server group</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa group server radius RADIUS_SERVER<br/>server name RADIUS_SERVER<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>AAA authentication login</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authentication login default group RADIUS_SERVER local enable<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>AAA authentication login fallback</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authentication login default group RADIUS_SERVER local enable<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>AAA authentication login only local disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>AAA authentication login none disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>AAA authentication "enable"</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authentication enable default group RADIUS_SERVER enable<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>AAA authentication "enable" fallback</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authentication enable default group RADIUS_SERVER enable<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>AAA authentication "enable" only local disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>AAA authentication "enable" none disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>AAA authorization "exec"</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authorization exec default group RADIUS_SERVER local if-authenticated<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>AAA authorization "exec" fallback</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authorization exec default group RADIUS_SERVER local if-authenticated<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>AAA authorization "exec" only local disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>AAA authorization "exec" none disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>AAA accounting "connection"</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa accounting connection default start-stop group RADIUS_SERVER<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>AAA auccounting "connection" none disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>AAA accounting "exec"</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa accounting exec default start-stop group RADIUS_SERVER<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>AAA accounting "exec" none disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>AAA source interface</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip radius source-interface Loopback0<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>AAA authentication max attempts less or equal to 5</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Access to device</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Exec timeout <=5 minutes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line con 0<br/>line vty 0 4<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line con 0<br/>exec-timeout 5<br/><br/>line vty 0 4<br/>exec-timeout 5<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>AUX connection input disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>AUX no execution set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line aux 0<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line aux 0<br/>no exec<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Remote output connections disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line con 0<br/>line aux 0<br/>line vty 0 4<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line con 0<br/>transport output none<br/><br/>line aux 0<br/>transport output none<br/><br/>line vty 0 4<br/>transport output none<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Local user database with encrypted password</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>username admin secret admin_password<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Local user database with plaintext password disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>Enable password encrypted</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>enable secret enablepasswd123<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>Enable password plaintext disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>Local login to virtual terminal disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Error configuration setting found in: </b><br/>line vty 0 4<br/> login<br/></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line vty 0 4<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>Restrict login to device - IPv4 ACL</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line vty 0 4<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line vty 0 4<br/>access-class IPV4_VTY_ACL in<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>ACL specified for VTY access is created</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for managing devices with these commands: <br/>ip access-list standard &ltacl name&gt<br/> remark Permiting managemnt device <br/> permit &ltip address&gt &ltwildcard mask&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>Log login to device on failure</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>login on-failure trap<br/>login on-failure log<br/>login on-failure log-input<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Depending on IOS, usually just one of fixing command is applicable to device. There are more because of different syntax and support among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>Log login to device on success</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>login on-success trap<br/>login on-success log<br/>login on-success log-input<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Depending on IOS, usually just one of fixing command is applicable to device. There are more because of different syntax and support among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>Login quiet mode</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>login quiet-mode access-class IPV4_VTY_ACL<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>ACL exists for specified login quiet mode</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for managing devices with these commands: <br/>ip access-list standard &ltacl name&gt<br/> remark Permiting managemnt device <br/> permit &ltip address&gt &ltwildcard mask&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>One user change config at time</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>configuration mode exclusive<br/>configuration mode exclusive auto<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>Legal banner MOTD</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>banner motd ; Unauthorized access will be prosecuted!! ;<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>Legal banner exec</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>banner exec ^C<br/>**************************************************************************<br/>* IOSv is strictly limited to use for evaluation, demonstration and IOS  *<br/>* education. IOSv is provided as-is and is not supported by Cisco's      *<br/>* Technical Advisory Center. Any use or disclosure, in whole or in part, *<br/>* of the IOSv Software or Documentation to any third party for any       *<br/>* purposes is expressly prohibited except as otherwise authorized by     *<br/>* Cisco in writing.                                                      *<br/>**************************************************************************^C<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>Legal banner login</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>banner login ^C<br/>**************************************************************************<br/>* IOSv is strictly limited to use for evaluation, demonstration and IOS  *<br/>* education. IOSv is provided as-is and is not supported by Cisco's      *<br/>* Technical Advisory Center. Any use or disclosure, in whole or in part, *<br/>* of the IOSv Software or Documentation to any third party for any       *<br/>* purposes is expressly prohibited except as otherwise authorized by     *<br/>* Cisco in writing.                                                      *<br/>**************************************************************************^C<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>Session timeout</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line con 0<br/>line aux 0<br/>line vty 0 4<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line con 0<br/>session-timeout 30<br/><br/>line aux 0<br/>session-timeout 30<br/><br/>line vty 0 4<br/>session-timeout 30<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>AUX exec timeout one second</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line aux 0<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line aux 0<br/>exec-timeout 0 1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>Restrict login to device - IPv6 ACL</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>ACL IPv6 specified for VTY access is created</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>Login DOS block for</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>login block-for 120 attempts 3 within 30<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>SSH</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SSH enable on management connection</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line vty 0 4<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line vty 0 4<br/>transport input ssh<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Make sure RSA key is present - generated or imported. For generating RSA key, issue command:<br/> crypto key generate rsa modulus 2048</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>SSH version 2</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip ssh version 2<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>SSH timeout</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip ssh timeout 30<br/>ip ssh time-out 30<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>SSH max 3 retries</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>SSH source interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip ssh source-interface Loopback0<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>SSH not default port</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip ssh port 2223 rotary 1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>SSH not default port applied</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>line vty 0 4<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>line vty 0 4<br/>rotary 1<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Device identification</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Hostname set</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>hostname Dist_SW1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Domain name set</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip domain-name thesis-test.cz<br/>ip domain name thesis-test.cz<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>All interfaces have description</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface GigabitEthernet0/0<br/> description uplink<br/></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>GigabitEthernet0/1<br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/0<br/>GigabitEthernet1/1<br/>GigabitEthernet1/2<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/>Vlan20<br/>Vlan30<br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Set interface descrtiption with command: <br/> interface &ltinterface name&gt<br/> description &ltdescription of interface&gt</td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>Fixing commands suppressed due to manual need of manual chenage and name determination.</td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>SNMP</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SNMP v2 write disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Error configuration setting found in: </b><br/>snmp-server community SNMP_V2 RW<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>SNMP v2 read without ACL disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>SNMP v2 read with ACL disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>SNMP v1 trap host disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>SNMP v2 trap host disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>SNMP v3 read [authnopriv|noauth|authpriv without ACL] or write disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>SNMP v3 read authpriv with ACL enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3<br/>snmp-server user SNMPv3USER SNMP_V3_GRP v3 auth sha SnmpPasswd123 priv aes 256 SnmpPasswd123 access SNMP_V3<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>SNMP v3 read authpriv with IPv6 ACL enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>SNMP user v1|v2c or v3 [noauth|authnopriv|no sha|no aes|without ACL] disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>SNMP trap source interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server trap-source Loopback0<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>SNMP server location</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server location GNS3LAB<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>SNMP v3 traps priv</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server host 192.168.60.11 version 3 priv SNMPv3USER<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>SNMP traps v3 read [authnopriv|noauth] or v1|v2 disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>SNMP traps enabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server enable traps<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>ACL is created for SNMPv3</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for receiving SNMP with these commands: <br/>ip access-list standard &ltacl name&gt<br/> remark Permiting SNMP <br/> permit &ltip address&gt &ltwildcard mask&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>ACL IPv6 is created for SNMPv3</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>SNMP interface index persist enabled globally</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server ifindex persist<br/>snmp ifmib ifindex persist<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>SNMP interface index persist enabled per interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>GigabitEthernet0/0<br/>GigabitEthernet0/1<br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/0<br/>GigabitEthernet1/1<br/>GigabitEthernet1/2<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/>Vlan20<br/>Vlan30<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface Port-channel1<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet0/0<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet0/1<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet0/2<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet0/3<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet1/0<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet1/1<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet1/2<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet1/3<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet2/0<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet2/1<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet2/2<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet2/3<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet3/0<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet3/1<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet3/2<br/>snmp ifindex persist<br/>exit<br/>interface GigabitEthernet3/3<br/>snmp ifindex persist<br/>exit<br/>interface Vlan20<br/>snmp ifindex persist<br/>exit<br/>interface Vlan30<br/>snmp ifindex persist<br/>exit<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Syslog</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Syslog server enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging host 192.168.50.11<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Syslog server IPv6 enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Syslog source interface</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>logging source-interface Loopback0<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Syslog format</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>service timestamps log datetime msec<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Syslog critical alerts to console</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging console critical<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Syslog send informational traps</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>Syslog buffer set with severity</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>logging buffered 40960 informational<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>Syslog local backup</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>logging persistent url flash:<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>Syslog sequence numbers added</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>service sequence-numbers<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>NTP</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>NTP server set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ntp server 192.168.60.11<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>NTP source interface</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ntp source Loopback0<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>NTP authentication key</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ntp authentication-key 1 md5 ntpPasswd123<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>NTP trusted key</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ntp trusted-key 1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>NTP authenticate</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ntp authenticate<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>High load</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SNMP traps for CPU load</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>snmp-server enable traps cpu threshold<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Threshold for CPU load</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>process cpu threshold type total rising 70 interval 5<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Statistics entry for CPU load</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>process cpu statistics limit entry-percentage 70<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Reserve memory for critical notification</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>memory reserve critical 1000<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Minimum CPU memory notification</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>memory free low-watermark processor 2000<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Minimum IO memory notification</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>memory free low-watermark io 2000<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Spanning tree</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Portfast globally enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>spanning-tree portfast default<br/>spanning-tree portfast edge default<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Portfast enabled on access interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet0/3<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet1/3<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet2/0<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet2/1<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet2/2<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet2/3<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet3/0<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet3/1<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet3/2<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/>interface GigabitEthernet3/3<br/>spanning-tree portfast<br/>spanning-tree portfast edge<br/>exit<br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>BPDU Guard globally enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>spanning-tree portfast bpduguard default<br/>spanning-tree portfast edge bpduguard default<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>BPDU Guard enabled on access interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet0/3<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet1/3<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet2/0<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet2/1<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet2/2<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet2/3<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet3/0<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet3/1<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet3/2<br/>spanning-tree bpduguard enable<br/>exit<br/>interface GigabitEthernet3/3<br/>spanning-tree bpduguard enable<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>BPDU Filter globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>BPDU Filter disabled on access interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 09_06_stp_bpdu_filter_interface.yaml configured to run after 09_05_stp_bpdu_filter.yaml with status error but that module has not run yet with specified cmd_match_status, 09_06_stp_bpdu_filter_interface.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>Loop Guard globally enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>spanning-tree loopguard default<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>Loop Guard enabled on access interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>GigabitEthernet0/1<br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/0<br/>GigabitEthernet1/1<br/>GigabitEthernet1/2<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface Port-channel1<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet0/1<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet0/2<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet0/3<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet1/0<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet1/1<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet1/2<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet1/3<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet2/0<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet2/1<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet2/2<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet2/3<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet3/0<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet3/1<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet3/2<br/>spanning-tree guard loop<br/>exit<br/>interface GigabitEthernet3/3<br/>spanning-tree guard loop<br/>exit<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>VLAN</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Default Vlan not used</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically! Cannot automatically determine VLAN assignment to port.</td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Eliminate ports with default Vlan by command with Vlan ID different than 1<br/> interface &ltinterface name&gt<br/> switchport mode access<br/> switchport access vlan &ltvlan id&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Management VLAN + SVI set and different than 1</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically! Cannot automatically set diffrenet IP among SVI(s) a lot of prerequirements must be met as existing VLAN and port assigned to VLAN.</td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Vlan20<br/> ip address 192.168.20.3 255.255.255.0<br/> standby 20 ip 192.168.20.1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Management VLAN gateway</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically! Cannot automatically set default gateway among different switches.</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Default gateway can be set with command: <br/> ip default-gateway &ltip address&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Native vlan different than 1</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Port-channel1<br/> switchport trunk native vlan 100<br/>interface GigabitEthernet0/1<br/> switchport trunk native vlan 100<br/>interface GigabitEthernet1/0<br/> switchport trunk native vlan 100<br/>interface GigabitEthernet1/1<br/> switchport trunk native vlan 100<br/>interface GigabitEthernet1/2<br/> switchport trunk native vlan 100<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Specified allowed VLAN on trunk</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Port-channel1<br/> switchport trunk allowed vlan 20,30<br/>interface GigabitEthernet0/1<br/> switchport trunk allowed vlan 20,30<br/>interface GigabitEthernet1/0<br/> switchport trunk allowed vlan 20,30<br/>interface GigabitEthernet1/1<br/> switchport trunk allowed vlan 20,30<br/>interface GigabitEthernet1/2<br/> switchport trunk allowed vlan 20,30<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Switchport mode dynamic disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>Switchport implicit dynamic disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet0/3<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet1/3<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet2/0<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet2/1<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet2/2<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet2/3<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet3/0<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet3/1<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet3/2<br/>switchport mode access<br/>exit<br/>interface GigabitEthernet3/3<br/>switchport mode access<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>DTP disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Port-channel1<br/> switchport nonegotiate<br/>interface GigabitEthernet0/1<br/> switchport nonegotiate<br/>interface GigabitEthernet1/0<br/> switchport nonegotiate<br/>interface GigabitEthernet1/1<br/> switchport nonegotiate<br/>interface GigabitEthernet1/2<br/> switchport nonegotiate<br/></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet0/3<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet1/3<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet2/0<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet2/1<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet2/2<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet2/3<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet3/0<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet3/1<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet3/2<br/>switchport nonegotiate<br/>exit<br/>interface GigabitEthernet3/3<br/>switchport nonegotiate<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>VTP disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Network Mapping</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>CDP globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no cdp run<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>CDP disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Matched by equivalent <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module was marked as matched by equivalent by module 11_01_cdp_run_disabled.yaml</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>LLDP globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>LLDP receive disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 11_04_lldp_receive.yaml configured to run after 11_03_lldp_run_disabled.yaml with status error but that module has not run yet with specified cmd_match_status, 11_04_lldp_receive.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>LLDP transmit disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 11_05_lldp_transmit.yaml configured to run after 11_03_lldp_run_disabled.yaml with status error but that module has not run yet with specified cmd_match_status, 11_05_lldp_transmit.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Proxy ARP disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/0<br/>Vlan20<br/>Vlan30<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/0<br/>no ip proxy-arp<br/>exit<br/>interface Vlan20<br/>no ip proxy-arp<br/>exit<br/>interface Vlan30<br/>no ip proxy-arp<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>ICMP Unreachable disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/0<br/>Vlan20<br/>Vlan30<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/0<br/>no ip unreachables<br/>exit<br/>interface Vlan20<br/>no ip unreachables<br/>exit<br/>interface Vlan30<br/>no ip unreachables<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>ICMPv6 Unreachable disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>ICMP Mask Reply disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>Directed broadcast disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>ICMP Redirects disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/0<br/>Vlan20<br/>Vlan30<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/0<br/>no ip redirects<br/>exit<br/>interface Vlan20<br/>no ip redirects<br/>exit<br/>interface Vlan30<br/>no ip redirects<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>ICMP 224.0.0.1 ping disabled in ACL</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip access-list extended DENY_NETWORK_MAP<br/>remark deny ping all nodes<br/>deny icmp any host 224.0.0.1 echo log-input<br/>remark deny host query<br/>deny igmp any any host-query log-input<br/>permit ip any any<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Some devices do not recognize parameter "log-input" in ACL, so manually replace it with "log"</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>IGMP Host Query disabled in ACL</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip access-list extended DENY_NETWORK_MAP<br/>remark deny ping all nodes<br/>deny icmp any host 224.0.0.1 echo log-input<br/>remark deny host query<br/>deny igmp any any host-query log-input<br/>permit ip any any<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Some devices do not recognize parameter "log-input" in ACL, so manually replace it with "log"</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>ICMPv6 ff02::1 ping disabled in ACL</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>MLD Host Query disabled in ACL</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>ACL against IPv4 network monitoring applied on interface(s)</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet0/3<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet1/3<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet2/0<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet2/1<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet2/2<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet2/3<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet3/0<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet3/1<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet3/2<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/>interface GigabitEthernet3/3<br/>ip access-group DENY_NETWORK_MAP in<br/>exit<br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>ACL will be applied to specified ACCESS interface(s). In case of existing ACL on interface in same direction, please set variable fix_cmd_ignore: "true" and append generated ACL from module 11_12_icmp_discovery_network to existing ACL to proper place.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>ACL against IPv6 network monitoring applied on interface(s)</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Routing</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>OSPF IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found error in context(s): </b><br/>router ospf 1<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>router ospf 1<br/>router-id 1.1.1.1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>OSPF IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospf ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>OSPFv3 Address Family General Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>OSPFv3 Address Family IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>OSPFv3 Address Family IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>EIGRP IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv4 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>EIGRP IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>EIGRP Named IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp named not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>EIGRP Named IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>BGP Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>OSPF IPv4 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>OSPF IPv6 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospf ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>OSPFv3 Address Family IPv6 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>OSPFv3 Address Family IPv4 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>OSPFv3 Address Family IPv6 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>EIGRP IPv4 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv4 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>EIGRP IPv6 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>EIGRP Named IPv4 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp named not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>EIGRP Named IPv6 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>BGP Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>RIP auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function rip not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>EIGRP IPv4 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv4 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>EIGRP IPv6 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>EIGRP Named IPv4 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp named not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>25</td>
+<td type='name_col'>EIGRP Named IPv6 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>26</td>
+<td type='name_col'>BGP Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>27</td>
+<td type='name_col'>BGP Multihop disabled or TTL security used</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>28</td>
+<td type='name_col'>IP Source routing (IP Options) disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Filtering</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>IP Options disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip options drop<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>RSVP and other protocols that use IP Options packets may not function as expected.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>ACL filter IPv6 unknown extended header</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>ACL filter IPv6 unknown extended header applied on ACCESS interface</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>First Hop Security</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Port security enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet0/3<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet1/3<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet2/0<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet2/1<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet2/2<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet2/3<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet3/0<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet3/1<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet3/2<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/>interface GigabitEthernet3/3<br/>switchport port-security mac-address sticky<br/>switchport port-security maximum 1<br/>switchport port-security violation shutdown<br/>switchport port-security<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Port security maximum 1 allowed MAC on port</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Port security violation shutdown</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>802.1x globally enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>dot1x system-auth-control<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>AAA authentication 802.1x</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>aaa authentication dot1x default group RADIUS_SERVER<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>802.1x enabled on interfaces</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet0/3<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet1/3<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet2/0<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet2/1<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet2/2<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet2/3<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet3/0<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet3/1<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet3/2<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/>interface GigabitEthernet3/3<br/>access-session port-control auto<br/>authentication port-control auto<br/>dot1x port-control auto<br/>yes<br/>exit<br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>802.1x enabled on interfaces</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>802.1x port set authenticator</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet0/3<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet1/3<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet2/0<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet2/1<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet2/2<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet2/3<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet3/0<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet3/1<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet3/2<br/>dot1x pae authenticator<br/>exit<br/>interface GigabitEthernet3/3<br/>dot1x pae authenticator<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>DHCP Snooping globally enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip dhcp snooping<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>On router(s) to DHCP server issue command "ip dhcp relay information trust-all"</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>DHCP Snooping enabled for VLAN(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip dhcp snooping vlan 10,20,30,40,50,60<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>DHCP Snooping trust interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>GigabitEthernet0/1<br/>GigabitEthernet1/0<br/>GigabitEthernet1/1<br/>GigabitEthernet1/2<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface Port-channel1<br/>ip dhcp snooping trust<br/>exit<br/>interface GigabitEthernet0/1<br/>ip dhcp snooping trust<br/>exit<br/>interface GigabitEthernet1/0<br/>ip dhcp snooping trust<br/>exit<br/>interface GigabitEthernet1/1<br/>ip dhcp snooping trust<br/>exit<br/>interface GigabitEthernet1/2<br/>ip dhcp snooping trust<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>DHCP Snooping rate limit fo ACCESS interface(s) set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet0/3<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet1/3<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet2/0<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet2/1<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet2/2<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet2/3<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet3/0<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet3/1<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet3/2<br/>ip dhcp snooping limit rate 100<br/>exit<br/>interface GigabitEthernet3/3<br/>ip dhcp snooping limit rate 100<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>IPv6 Unicast Routing enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>IPv6 RA Guard host policy defined</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>IPv6 RA Guard on ACCESS interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>DHCPv6 Server policy</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>DHCPv6 Client policy</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>DHCPv6 Guard server interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>DHCPv6 Guard client interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>Dynamic ARP Inspection enabled for VLAN(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip arp inspection vlan 10,20,30,40,50,60<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>Dynamic ARP Inspection validate by SRC,DST MAC and IP</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip arp inspection validate src-mac dst-mac ip<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>Dynamic ARP trusted interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Port-channel1<br/>GigabitEthernet0/1<br/>GigabitEthernet1/0<br/>GigabitEthernet1/1<br/>GigabitEthernet1/2<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface Port-channel1<br/>ip arp inspection trust<br/>exit<br/>interface GigabitEthernet0/1<br/>ip arp inspection trust<br/>exit<br/>interface GigabitEthernet1/0<br/>ip arp inspection trust<br/>exit<br/>interface GigabitEthernet1/1<br/>ip arp inspection trust<br/>exit<br/>interface GigabitEthernet1/2<br/>ip arp inspection trust<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>IPv6 ND inspection policy</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>IPv6 ND inspection on interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>25</td>
+<td type='name_col'>IPv6 Snooping policy</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>26</td>
+<td type='name_col'>IPv6 Snooping on interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>27</td>
+<td type='name_col'>IP Source Guard on interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>GigabitEthernet0/2<br/>GigabitEthernet0/3<br/>GigabitEthernet1/3<br/>GigabitEthernet2/0<br/>GigabitEthernet2/1<br/>GigabitEthernet2/2<br/>GigabitEthernet2/3<br/>GigabitEthernet3/0<br/>GigabitEthernet3/1<br/>GigabitEthernet3/2<br/>GigabitEthernet3/3<br/></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface GigabitEthernet0/2<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet0/3<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet1/3<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet2/0<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet2/1<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet2/2<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet2/3<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet3/0<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet3/1<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet3/2<br/>ip verify source port-security<br/>exit<br/>interface GigabitEthernet3/3<br/>ip verify source port-security<br/>exit<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>28</td>
+<td type='name_col'>IPv6 Source Guard policy</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>29</td>
+<td type='name_col'>IPv6 Source Guard on interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>30</td>
+<td type='name_col'>IPv6 Destination Guard policy</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>31</td>
+<td type='name_col'>IPv6 Destination Guard on interface(s) set</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ipv6 not configured on device. Everything is OK.</td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Other</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Servis PAD disabled (Packet assembler disassembler)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>no service pad<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>BOOTP server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>no ip bootp server<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Finger protocol disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>HTTP server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Error configuration setting found in: </b><br/>ip http server<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>HTTPS server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>TCP small server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>UDP small server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>IP domain lookup disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>no ip domain-lookup<br/>no ip domain lookup<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>Gratuitous ARPs generation disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>no ip gratuitous-arps<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>Gratuitous ARPs reject enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip arp gratuitous none<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>Netflow is disabled</td>
+<td type='sever_col'>Notice</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>By default fix is ignored due to disablement of traffic monitoring. Consider whether port mirroring is neccesary for monitoring</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>Netflow version 9 used</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 15_14_netflow_version_9.yaml configured to run after 15_13_netflow.yaml with status error but that module has not run yet with specified cmd_match_status, 15_14_netflow_version_9.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>Netflow traffic analyze disabled on interface(s)</td>
+<td type='sever_col'>Notice</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 15_15_netflow_interface.yaml configured to run after 15_13_netflow.yaml with status error but that module has not run yet with specified cmd_match_status, 15_15_netflow_interface.yaml will not run</td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>By default fix is ignored due to disablement of traffic monitoring. Consider whether port mirroring is neccesary for monitoring</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>Port mirroring disabled on interface(s)</td>
+<td type='sever_col'>Notice</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>By default fix is ignored due to disablement of traffic monitoring. Consider whether port mirroring is neccesary for monitoring</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>Set always "UP" Loopback interface with IP address</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>interface loopback 0<br/>ip address 1.1.1.1 255.255.255.0<br/>snmp ifindex persist<br/>no ip redirects<br/>no ip unreachables<br/>no ipv6 unreachables<br/>no ip proxy-arp<br/>exit<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>If IP address and mask is not in this module, fallback settings from own_variables.yaml are used. So it may cause same IP on loopbacks accross multiple devices!</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>Notification on memory IO leak/overflow</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>exception memory ignore overflow io<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>Notification on memory CPU leak/overflow</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>exception memory ignore overflow processor<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>Network boot disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>Network config load disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>SCP server enabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>ip scp server enable<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>SCP alias copy instead of TFTP</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>Protection of configuration deletion</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>secure boot config<br/>secure boot-config<br/><br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Just one of fixing command is applicable to device. There are more because of different syntax among IOS versions.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>Archive and log config changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>archive<br/>path unix:<br/>log config<br/>logging enable<br/>notify syslog<br/>hidekeys<br/>maximum 5<br/>time-period 60<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>Terminate hanged inbound TCP connection to device</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>service tcp-keepalives-in<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>25</td>
+<td type='name_col'>Terminate hanged outbound TCP connection to device</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>service tcp-keepalives-out<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>26</td>
+<td type='name_col'>Encrypt all saved passwords in configuration</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no service password-encryption<br/></td>
+</tr>
+</tbody></table>
+        </tbody>
+      </table>
+    </page>
+  </body>
+</html>

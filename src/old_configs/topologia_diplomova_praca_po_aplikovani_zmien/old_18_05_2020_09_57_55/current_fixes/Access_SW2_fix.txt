@@ -1,0 +1,30 @@
+line vty 0 4
+transport input ssh
+
+ip ssh version 2
+
+ip ssh timeout 30
+ip ssh time-out 30
+
+ip ssh source-interface Loopback0
+
+ip ssh port 2223 rotary 1
+
+snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3
+snmp-server user SNMPv3USER SNMP_V3_GRP v3 auth sha SnmpPasswd123 priv aes 256 SnmpPasswd123 access SNMP_V3
+
+snmp-server host 192.168.60.11 version 3 priv SNMPv3USER
+
+snmp-server enable traps cpu threshold
+
+memory free low-watermark io 2000
+
+exception memory ignore overflow io
+
+exception memory ignore overflow processor
+
+ip scp server enable
+
+secure boot config
+secure boot-config
+

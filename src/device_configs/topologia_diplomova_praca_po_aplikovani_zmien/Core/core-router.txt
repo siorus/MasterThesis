@@ -1,0 +1,567 @@
+!
+! Last configuration change at 21:01:29 CET Sun May 17 2020
+!
+version 15.5
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service sequence-numbers
+!
+hostname Core
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging buffered 40960 informational
+logging persistent url unix:/
+logging console critical
+enable secret 5 $1$6Y11$aATgfOC5l1wwORXfQmG1D0
+!
+aaa new-model
+!
+!
+aaa group server radius RADIUS_SERVER
+ server name RADIUS_SERVER
+!
+aaa authentication login default group RADIUS_SERVER local enable
+aaa authentication enable default group RADIUS_SERVER enable
+aaa authorization exec default group RADIUS_SERVER local if-authenticated 
+aaa accounting exec default start-stop group RADIUS_SERVER
+aaa accounting connection default start-stop group RADIUS_SERVER
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+process cpu threshold type total rising 70 interval 5
+process cpu statistics limit entry-percentage 70
+clock timezone CET 1 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+no ip source-route
+ip arp gratuitous none
+no ip gratuitous-arps
+no ip icmp rate-limit unreachable
+ip options drop
+!
+!
+!
+!
+!
+!
+!         
+!
+
+
+!
+!
+!
+!
+no ip bootp server
+no ip domain lookup
+ip domain name thesis-test.cz
+ip cef
+login block-for 120 attempts 3 within 30
+login quiet-mode access-class IPV4_VTY_ACL
+login on-failure log
+login on-success log
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!         
+!
+!
+!
+cts logging verbose
+!
+!
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+ path unix:
+ maximum 5
+ time-period 60
+memory reserve critical 1000
+memory free low-watermark processor 2000
+username admin secret 5 $1$720u$ep.dW.7w9aUAAeGoX.YoE.
+secure boot-config
+!
+redundancy
+!
+no cdp run
+!         
+ip tcp synwait-time 5
+ip ssh time-out 30
+ip ssh port 2223 rotary 1
+ip ssh source-interface Loopback0
+ip ssh version 2
+ip scp server enable
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.10.10.20 255.255.255.255
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ip ospf network point-to-point
+ no ipv6 unreachables
+ snmp ifindex persist
+!
+interface Ethernet0/0
+ description WAN_PORT
+ ip address 209.115.200.1 255.255.255.252
+ ip access-group IPV4_WAN_FILTER in
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ no ipv6 unreachables
+ ipv6 traffic-filter IPV6_WAN_FILTER in
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet0/1
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet0/2
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet0/3
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown 
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet1/0
+ ip address 10.10.10.1 255.255.255.252
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ ipv6 address FD00::1/64
+ ipv6 enable
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet1/1
+ ip address 10.10.10.5 255.255.255.252
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet1/2
+ ip address 10.10.10.9 255.255.255.252
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet1/3
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ no cdp enable
+ no mop enabled
+!
+interface Serial2/0
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+interface Serial2/1
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+interface Serial2/2
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+interface Serial2/3
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!         
+interface Serial3/0
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+interface Serial3/1
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+interface Serial3/2
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+interface Serial3/3
+ no ip address
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ shutdown
+ no ipv6 unreachables
+ snmp ifindex persist
+ serial restart-delay 0
+ no cdp enable
+!
+!
+router eigrp EIGRP_NAMED
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  topology base
+  exit-af-topology
+  network 10.10.10.0 0.0.0.3
+  eigrp router-id 10.10.10.1
+ exit-address-family
+ !
+ address-family ipv6 unicast autonomous-system 1
+  !
+  topology base
+  exit-af-topology
+  eigrp router-id 10.10.10.1
+ exit-address-family
+!
+router ospf 1
+ router-id 10.10.10.1
+ network 10.10.10.0 0.0.0.3 area 1
+ network 10.10.10.4 0.0.0.3 area 2
+ network 10.10.10.8 0.0.0.3 area 2
+ network 10.10.10.20 0.0.0.0 area 0
+ default-information originate
+!
+router bgp 1211
+ bgp router-id 3.3.3.3
+ bgp log-neighbor-changes
+ neighbor 209.115.200.2 remote-as 1212
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 209.115.200.2
+!
+ip access-list extended IPV4_WAN_FILTER
+ remark DENY RFC6890 and RFC8190
+ deny   ip 0.0.0.0 0.255.255.255 any log-input
+ deny   ip 10.0.0.0 0.255.255.255 any log-input
+ deny   ip 100.64.0.0 0.63.255.255 any log-input
+ deny   ip 127.0.0.0 0.255.255.255 any log-input
+ deny   ip 169.254.0.0 0.0.255.255 any log-input
+ deny   ip 172.16.0.0 0.15.255.255 any log-input
+ deny   ip 192.0.0.0 0.0.0.7 any log-input
+ deny   ip 192.0.2.0 0.0.0.255 any log-input
+ deny   ip 192.18.0.0 0.1.255.255 any log-input
+ deny   ip 198.51.100.0 0.0.0.255 any log-input
+ deny   ip 192.168.0.0 0.0.255.255 any log-input
+ deny   ip 192.0.0.0 0.255.255.255 any log-input
+ deny   ip 203.0.113.0 0.0.0.255 any log-input
+ deny   ip 224.0.0.0 15.255.255.255 any log-input
+ deny   ip 240.0.0.0 15.255.255.255 any log-input
+ permit ip any any
+!
+ip radius source-interface Loopback0 
+logging source-interface Loopback0
+logging host 192.168.60.11
+logging host ipv6 FD00:60::2050:79FF:FE66:6805
+!
+snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3
+snmp-server group SNMP_V3_GRP_IPV6 v3 priv read READVIEWv3 access ipv6 SNMP_V3_ACL6
+snmp-server ifindex persist
+snmp-server trap-source Loopback0
+snmp-server location GNS3LAB
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps vrrp
+snmp-server enable traps flowmon
+snmp-server enable traps ds1
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps xgcp
+snmp-server enable traps isdn call-information
+snmp-server enable traps isdn layer2
+snmp-server enable traps isdn chan-not-avail
+snmp-server enable traps isdn ietf
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps ethernet evc status create delete
+snmp-server enable traps diameter
+snmp-server enable traps auth-framework sec-violation auth-fail
+snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
+snmp-server enable traps aaa_server
+snmp-server enable traps atm subif
+snmp-server enable traps bfd
+snmp-server enable traps bgp
+snmp-server enable traps bgp cbgp2
+snmp-server enable traps bstun
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps cnpd
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dial
+snmp-server enable traps dlsw
+snmp-server enable traps dsp card-status
+snmp-server enable traps dsp oper-state
+snmp-server enable traps dsp video-usage
+snmp-server enable traps dsp video-out-of-resource
+snmp-server enable traps entity-ext
+snmp-server enable traps entity
+snmp-server enable traps fru-ctrl
+snmp-server enable traps resource-policy
+snmp-server enable traps frame-relay multilink bundle-mismatch
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps ipmobile
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps mempool
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls fast-reroute protected
+snmp-server enable traps mpls rfc ldp
+snmp-server enable traps mpls ldp
+snmp-server enable traps msdp
+snmp-server enable traps mvpn
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps pppoe
+snmp-server enable traps cpu threshold
+snmp-server enable traps nhrp nhs
+snmp-server enable traps nhrp nhc
+snmp-server enable traps nhrp nhp
+snmp-server enable traps nhrp quota-exceeded
+snmp-server enable traps rsvp
+snmp-server enable traps ipsla
+snmp-server enable traps stun
+snmp-server enable traps l2tun session
+snmp-server enable traps l2tun pseudowire status
+snmp-server enable traps pw vc
+snmp-server enable traps waas 
+snmp-server enable traps event-manager
+snmp-server enable traps firewall serverstatus
+snmp-server enable traps ospfv3 state-change
+snmp-server enable traps ospfv3 errors
+snmp-server enable traps pki
+snmp-server enable traps gdoi gm-start-registration
+snmp-server enable traps gdoi gm-registration-complete
+snmp-server enable traps gdoi gm-re-register
+snmp-server enable traps gdoi gm-rekey-rcvd
+snmp-server enable traps gdoi gm-rekey-fail
+snmp-server enable traps gdoi ks-rekey-pushed
+snmp-server enable traps gdoi gm-incomplete-cfg
+snmp-server enable traps gdoi ks-no-rsa-keys
+snmp-server enable traps gdoi ks-new-registration
+snmp-server enable traps gdoi ks-reg-complete
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps ethernet cfm alarm
+snmp-server enable traps ccme
+snmp-server enable traps srst
+snmp-server enable traps rf
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps mpls vpn
+snmp-server enable traps voice
+snmp-server enable traps dnis
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server host 192.168.60.11 version 3 priv SNMPv3USER 
+!
+!
+!
+radius server RADIUS_SERVER
+ address ipv4 192.168.60.11 auth-port 1645 acct-port 1646
+ key RadKey1
+!
+!
+ipv6 access-list IPV6_WAN_FILTER
+ remark DENY RFC6890 and RFC8190 and RFC5156
+ deny ipv6 host ::1 any log-input
+ deny ipv6 host :: any log-input
+ deny ipv6 ::FFFF:0.0.0.0/96 any log-input
+ deny ipv6 100::/64 any log-input
+ deny ipv6 2001::/23 any log-input
+ deny ipv6 2001::/32 any log-input
+ deny ipv6 2001:2::/48 any log-input
+ deny ipv6 2001:DB8::/32 any log-input
+ deny ipv6 2001:10::/28 any log-input
+ deny ipv6 2002::/16 any log-input
+ deny ipv6 FC00::/7 any log-input
+ deny ipv6 FF00::/8 any log-input
+ remark DENY unknown IPv6 extended headers
+ deny ipv6 any any log-input undetermined-transport
+ permit ipv6 any any
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+banner exec ^C Unauthorized access will be prosecuted!! ^C
+banner login ^C Unauthorized access will be prosecuted!! ^C
+banner motd ^C Unauthorized access will be prosecuted!! ^C
+configuration mode exclusive
+!
+line con 0
+ session-timeout 30 
+ exec-timeout 5 0
+ privilege level 15
+ logging synchronous
+ transport output none
+line aux 0
+ session-timeout 30 
+ exec-timeout 0 1
+ privilege level 15
+ logging synchronous
+ no exec
+ transport output none
+line vty 0 4
+ session-timeout 30 
+ access-class IPV4_VTY_ACL in
+ exec-timeout 5 0
+ ipv6 access-class IPV6_VTY_ACL in
+ rotary 1
+ transport input ssh
+ transport output none
+!
+ntp authentication-key 1 md5 06081B317C4F1A0A121343595F 7
+ntp authenticate
+ntp trusted-key 1
+ntp source Loopback0
+ntp server 192.168.60.11
+!
+end  

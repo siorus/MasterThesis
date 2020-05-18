@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../../../report/report.css">
+  </head>
+  <body>
+    <page size="A4">
+      <table>
+        <tbody>
+          <tr><td><h1>AUDIT REPORT</h1></td></tr><tr><td type='device_first_column'>Hostname:</td><td type='device_section'>Dist_Router</td></tr>
+<tr><td type='device_first_column'>Config file name:</td><td type='device_section'>dist-router.txt</td></tr>
+<tr><td type='device_first_column'>Config hash:</td><td type='device_section'>fd2712fba7473a1f7ae2f5295b74807c2d105911</td></tr>
+<tr><td type='device_first_column'>Vendor:</td><td type='device_section'>cisco</td></tr>
+<tr><td type='device_first_column'>OS:</td><td type='device_section'>ios</td></tr>
+<tr><td type='device_first_column'>Facility layer:</td><td type='device_section'>distribution</td></tr>
+<tr><td type='device_first_column'>L3 protocols:</td><td type='device_section'>ipv4,ipv6</td></tr>
+<tr><td type='device_first_column'>Enabled functions:</td><td type='device_section'>rip,ospf ipv4,eigrp named</td></tr>
+<tr><td type='device_first_column'>Date:</td><td type='device_section'>18/05/2020_09:49</td></tr>
+</table></tbody>
+<table><tbody type='stat'>
+<tr><td><h3>SUCCESS STATISTICS</h3></td></tr><br/>
+<tr><td type='stat_first_column'>Weighted score coefficient:</td><td type='stat_second_column'>95 out of 100</td></tr>
+<tr><td type='stat_first_column'>Successful checks:</td><td type='stat_second_column'>92.8&#37</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful checks:</td><td type='stat_second_column'>7.2&#37</td></tr><tr><td></td></tr>
+<br/><tr><td type='stat_first_column'>Total number of relevant started checks:</td><td type='stat_second_column'>139</td></tr><tr><td></td></tr>
+<tr><td type='stat_first_column'>Successful checks:</td><td type='stat_second_column'>129</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Critical':</td><td type='stat_second_column'>4</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'High':</td><td type='stat_second_column'>1</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Medium':</td><td type='stat_second_column'>4</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Low':</td><td type='stat_second_column'>1</td></tr>
+<tr><td type='stat_first_column'>Unsuccessful 'Notice':</td><td type='stat_second_column'>0</td></tr>
+</table></tbody>
+<table><tbody>
+<tr><h3>Authentication, Authorization, Accounting</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>AAA new model/ Enabled AAA</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa new-model<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>AAA server set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>radius server RADIUS_SERVER<br/> address ipv4 192.168.60.11 auth-port 1645 acct-port 1646<br/> key RadKey1<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>AAA server group</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa group server radius RADIUS_SERVER<br/> server name RADIUS_SERVER<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>AAA authentication login</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa authentication login default group RADIUS_SERVER local enable<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>AAA authentication login fallback</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa authentication login default group RADIUS_SERVER local enable<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>AAA authentication login only local disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>AAA authentication login none disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>AAA authentication "enable"</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa authentication enable default group RADIUS_SERVER enable<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>AAA authentication "enable" fallback</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa authentication enable default group RADIUS_SERVER enable<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>AAA authentication "enable" only local disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>AAA authentication "enable" none disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>AAA authorization "exec"</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa authorization exec default group RADIUS_SERVER local if-authenticated <br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>AAA authorization "exec" fallback</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa authorization exec default group RADIUS_SERVER local if-authenticated <br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>AAA authorization "exec" only local disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>AAA authorization "exec" none disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>AAA accounting "connection"</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa accounting connection default start-stop group RADIUS_SERVER<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>AAA auccounting "connection" none disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>AAA accounting "exec"</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>aaa accounting exec default start-stop group RADIUS_SERVER<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>AAA accounting "exec" none disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>AAA source interface</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip radius source-interface Loopback0 <br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>AAA authentication max attempts less or equal to 5</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Access to device</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Exec timeout <=5 minutes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line con 0<br/> exec-timeout 5 0<br/>line vty 0 4<br/> exec-timeout 5 0<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>AUX connection input disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>AUX no execution set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line aux 0<br/> no exec<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Remote output connections disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line con 0<br/> transport output none<br/>line aux 0<br/> transport output none<br/>line vty 0 4<br/> transport output none<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Local user database with encrypted password</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>username admin secret 5 $1$gYU0$93lIuGg5QupQM5RQS5qHe1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Local user database with plaintext password disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>Enable password encrypted</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>enable secret 5 $1$Ve1D$/DENeadgROMNj6GVED.Al1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>Enable password plaintext disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>Local login to virtual terminal disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>Restrict login to device - IPv4 ACL</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line vty 0 4<br/> access-class IPV4_VTY_ACL in<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>ACL specified for VTY access is created</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for managing devices with these commands: <br/>ip access-list standard &ltacl name&gt<br/> remark Permiting managemnt device <br/> permit &ltip address&gt &ltwildcard mask&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>Log login to device on failure</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>login on-failure log<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>Log login to device on success</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>login on-success log<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>Login quiet mode</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>login quiet-mode access-class IPV4_VTY_ACL<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>ACL exists for specified login quiet mode</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for managing devices with these commands: <br/>ip access-list standard &ltacl name&gt<br/> remark Permiting managemnt device <br/> permit &ltip address&gt &ltwildcard mask&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>One user change config at time</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>configuration mode exclusive<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>Legal banner MOTD</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>banner motd ^C Unauthorized access will be prosecuted!! ^C<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>Legal banner exec</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>banner exec ^C Unauthorized access will be prosecuted!! ^C<br/>banner login ^C Unauthorized access will be prosecuted!! ^C<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>Legal banner login</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>banner login ^C Unauthorized access will be prosecuted!! ^C<br/>banner motd ^C Unauthorized access will be prosecuted!! ^C<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>Session timeout</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line con 0<br/> session-timeout 30 <br/>line aux 0<br/> session-timeout 30 <br/>line vty 0 4<br/> session-timeout 30 <br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>AUX exec timeout one second</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line aux 0<br/> exec-timeout 0 1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>Restrict login to device - IPv6 ACL</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line vty 0 4<br/> ipv6 access-class IPV6_VTY_ACL in<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>ACL IPv6 specified for VTY access is created</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for managing devices with these commands: <br/>ipv6 access-list &ltacl name&gt<br/> remark Permiting managemnt device <br/> permit ip &ltip address&gt &ltwildcard mask&gt any</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>Login DOS block for</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>login block-for 120 attempts 3 within 30<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>SSH</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SSH enable on management connection</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line vty 0 4<br/> transport input ssh<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>SSH version 2</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip ssh version 2<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>SSH timeout</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip ssh time-out 30<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>SSH max 3 retries</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>SSH source interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip ssh source-interface Loopback0<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>SSH not default port</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip ssh port 2223 rotary 1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>SSH not default port applied</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>line vty 0 4<br/> rotary 1<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Device identification</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Hostname set</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>hostname Dist_Router<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Domain name set</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip domain name thesis-test.cz<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>All interfaces have description</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Ethernet0/0<br/> description uplink<br/></td>
+</tr>
+<tr><td><br/><b>Found port(s) with error: </b><br/>Loopback0<br/>Tunnel0<br/>Ethernet0/1<br/>Ethernet0/1.50<br/>Ethernet0/1.60<br/>Ethernet0/2<br/>Ethernet0/3<br/>Ethernet1/0<br/>Ethernet1/1<br/>Ethernet1/2<br/>Ethernet1/3<br/>Serial2/0<br/>Serial2/1<br/>Serial2/2<br/>Serial2/3<br/>Serial3/0<br/>Serial3/1<br/>Serial3/2<br/>Serial3/3<br/></td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Set interface descrtiption with command: <br/> interface &ltinterface name&gt<br/> description &ltdescription of interface&gt</td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>Fixing commands suppressed due to manual need of manual chenage and name determination.</td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>SNMP</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SNMP v2 write disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>SNMP v2 read without ACL disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>SNMP v2 read with ACL disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>SNMP v1 trap host disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>SNMP v2 trap host disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>SNMP v3 read [authnopriv|noauth|authpriv without ACL] or write disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>SNMP v3 read authpriv with ACL enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server group SNMP_V3_GRP v3 priv read READVIEWv3 access SNMP_V3<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>SNMP v3 read authpriv with IPv6 ACL enabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server group SNMP_V3_GRP_IPV6 v3 priv read READVIEWv3 access ipv6 SNMP_V3_ACL6<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>SNMP user v1|v2c or v3 [noauth|authnopriv|no sha|no aes|without ACL] disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>SNMP trap source interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server trap-source Loopback0<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>SNMP server location</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server location GNS3LAB<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>SNMP v3 traps priv</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server host 192.168.60.11 version 3 priv SNMPv3USER <br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>SNMP traps v3 read [authnopriv|noauth] or v1|v2 disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>SNMP traps enabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>ACL is created for SNMPv3</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for receiving SNMP with these commands: <br/>ip access-list standard &ltacl name&gt<br/> remark Permiting SNMP <br/> permit &ltip address&gt &ltwildcard mask&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>ACL IPv6 is created for SNMPv3</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically!</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Cannot be fixed automatically! If search is not successful create ACL, which permits only needed end stations for receiving SNMP with these commands: <br/>ipv6 access-list &ltacl name&gt<br/> remark Permiting managemnt device <br/> permit ip &ltip address&gt &ltwildcard mask&gt any</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>SNMP interface index persist enabled globally</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server ifindex persist<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>SNMP interface index persist enabled per interface</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Matched by equivalent <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module was marked as matched by equivalent by module 05_20_snmp_ifindex_persist_globally.yaml</td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Syslog</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Syslog server enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging host 192.168.60.11<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Syslog server IPv6 enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 06_02_syslog_server_ipv6.yaml configured to run after 06_01_syslog_server.yaml with status error but that module has not run yet with specified cmd_match_status, 06_02_syslog_server_ipv6.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Syslog source interface</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging source-interface Loopback0<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Syslog format</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>service timestamps log datetime msec<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Syslog critical alerts to console</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging console critical<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Syslog send informational traps</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>Syslog buffer set with severity</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging buffered 40960 informational<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>Syslog local backup</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>logging persistent url unix:/<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>Syslog sequence numbers added</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>service sequence-numbers<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>NTP</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>NTP server set</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ntp server 192.168.60.11<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>NTP source interface</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ntp source Loopback0<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>NTP authentication key</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ntp authentication-key 1 md5 11070D152713181F132E7A767B 7<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>NTP trusted key</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ntp trusted-key 1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>NTP authenticate</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ntp authenticate<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>High load</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>SNMP traps for CPU load</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>snmp-server enable traps cpu threshold<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>Threshold for CPU load</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>process cpu threshold type total rising 70 interval 5<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Statistics entry for CPU load</td>
+<td type='sever_col'>Low</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>process cpu statistics limit entry-percentage 70<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Reserve memory for critical notification</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>memory reserve critical 1000<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>Minimum CPU memory notification</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>memory free low-watermark processor 2000<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Minimum IO memory notification</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>memory free low-watermark io 2000<br/><br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Network Mapping</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>CDP globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no cdp run<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>CDP disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Matched by equivalent <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module was marked as matched by equivalent by module 11_01_cdp_run_disabled.yaml</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>LLDP globally disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>LLDP receive disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 11_04_lldp_receive.yaml configured to run after 11_03_lldp_run_disabled.yaml with status error but that module has not run yet with specified cmd_match_status, 11_04_lldp_receive.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>LLDP transmit disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 11_05_lldp_transmit.yaml configured to run after 11_03_lldp_run_disabled.yaml with status error but that module has not run yet with specified cmd_match_status, 11_05_lldp_transmit.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>Proxy ARP disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Loopback0<br/> no ip proxy-arp<br/>interface Tunnel0<br/> no ip proxy-arp<br/>interface Ethernet0/0<br/> no ip proxy-arp<br/>interface Ethernet0/1<br/> no ip proxy-arp<br/>interface Ethernet0/1.50<br/> no ip proxy-arp<br/>interface Ethernet0/1.60<br/> no ip proxy-arp<br/>interface Ethernet0/2<br/> no ip proxy-arp<br/>interface Ethernet0/3<br/> no ip proxy-arp<br/>interface Ethernet1/0<br/> no ip proxy-arp<br/>interface Ethernet1/1<br/> no ip proxy-arp<br/>interface Ethernet1/2<br/> no ip proxy-arp<br/>interface Ethernet1/3<br/> no ip proxy-arp<br/>interface Serial2/0<br/> no ip proxy-arp<br/>interface Serial2/1<br/> no ip proxy-arp<br/>interface Serial2/2<br/> no ip proxy-arp<br/>interface Serial2/3<br/> no ip proxy-arp<br/>interface Serial3/0<br/> no ip proxy-arp<br/>interface Serial3/1<br/> no ip proxy-arp<br/>interface Serial3/2<br/> no ip proxy-arp<br/>interface Serial3/3<br/> no ip proxy-arp<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>ICMP Unreachable disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Loopback0<br/> no ip unreachables<br/>interface Tunnel0<br/> no ip unreachables<br/>interface Ethernet0/0<br/> no ip unreachables<br/>interface Ethernet0/1<br/> no ip unreachables<br/>interface Ethernet0/1.50<br/> no ip unreachables<br/>interface Ethernet0/1.60<br/> no ip unreachables<br/>interface Ethernet0/2<br/> no ip unreachables<br/>interface Ethernet0/3<br/> no ip unreachables<br/>interface Ethernet1/0<br/> no ip unreachables<br/>interface Ethernet1/1<br/> no ip unreachables<br/>interface Ethernet1/2<br/> no ip unreachables<br/>interface Ethernet1/3<br/> no ip unreachables<br/>interface Serial2/0<br/> no ip unreachables<br/>interface Serial2/1<br/> no ip unreachables<br/>interface Serial2/2<br/> no ip unreachables<br/>interface Serial2/3<br/> no ip unreachables<br/>interface Serial3/0<br/> no ip unreachables<br/>interface Serial3/1<br/> no ip unreachables<br/>interface Serial3/2<br/> no ip unreachables<br/>interface Serial3/3<br/> no ip unreachables<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>ICMPv6 Unreachable disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Loopback0<br/> no ipv6 unreachables<br/>interface Tunnel0<br/> no ipv6 unreachables<br/>interface Ethernet0/0<br/> no ipv6 unreachables<br/>interface Ethernet0/1<br/> no ipv6 unreachables<br/>interface Ethernet0/1.50<br/> no ipv6 unreachables<br/>interface Ethernet0/1.60<br/> no ipv6 unreachables<br/>interface Ethernet0/2<br/> no ipv6 unreachables<br/>interface Ethernet0/3<br/> no ipv6 unreachables<br/>interface Ethernet1/0<br/> no ipv6 unreachables<br/>interface Ethernet1/1<br/> no ipv6 unreachables<br/>interface Ethernet1/2<br/> no ipv6 unreachables<br/>interface Ethernet1/3<br/> no ipv6 unreachables<br/>interface Serial2/0<br/> no ipv6 unreachables<br/>interface Serial2/1<br/> no ipv6 unreachables<br/>interface Serial2/2<br/> no ipv6 unreachables<br/>interface Serial2/3<br/> no ipv6 unreachables<br/>interface Serial3/0<br/> no ipv6 unreachables<br/>interface Serial3/1<br/> no ipv6 unreachables<br/>interface Serial3/2<br/> no ipv6 unreachables<br/>interface Serial3/3<br/> no ipv6 unreachables<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>ICMP Mask Reply disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>Directed broadcast disabled on interface(s)</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>ICMP Redirects disabled on interface(s)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Loopback0<br/> no ip redirects<br/>interface Tunnel0<br/> no ip redirects<br/>interface Ethernet0/0<br/> no ip redirects<br/>interface Ethernet0/1<br/> no ip redirects<br/>interface Ethernet0/1.50<br/> no ip redirects<br/>interface Ethernet0/1.60<br/> no ip redirects<br/>interface Ethernet0/2<br/> no ip redirects<br/>interface Ethernet0/3<br/> no ip redirects<br/>interface Ethernet1/0<br/> no ip redirects<br/>interface Ethernet1/1<br/> no ip redirects<br/>interface Ethernet1/2<br/> no ip redirects<br/>interface Ethernet1/3<br/> no ip redirects<br/>interface Serial2/0<br/> no ip redirects<br/>interface Serial2/1<br/> no ip redirects<br/>interface Serial2/2<br/> no ip redirects<br/>interface Serial2/3<br/> no ip redirects<br/>interface Serial3/0<br/> no ip redirects<br/>interface Serial3/1<br/> no ip redirects<br/>interface Serial3/2<br/> no ip redirects<br/>interface Serial3/3<br/> no ip redirects<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Routing</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>OSPF IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>router ospf 1<br/> router-id 1.1.1.1<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>OSPF IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospf ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>OSPFv3 Address Family General Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>OSPFv3 Address Family IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>OSPFv3 Address Family IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>EIGRP IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv4 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>EIGRP IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>EIGRP Named IPv4 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>router eigrp EIGRP_NAMED<br/>address-family ipv4 unicast autonomous-system 1<br/>  eigrp router-id 2.2.2.2<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>EIGRP Named IPv6 Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>router eigrp EIGRP_NAMED<br/>address-family ipv6 unicast autonomous-system 1<br/>  eigrp router-id 10.10.10.2<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>BGP Router ID</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>OSPF IPv4 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>OSPF IPv6 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospf ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>OSPFv3 Address Family IPv6 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>OSPFv3 Address Family IPv4 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>OSPFv3 Address Family IPv6 Log adjacency changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function ospfv3 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>EIGRP IPv4 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv4 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>EIGRP IPv6 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>EIGRP Named IPv4 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>EIGRP Named IPv6 Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>BGP Log neighbor changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>RIP auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>router rip<br/> no auto-summary<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>EIGRP IPv4 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv4 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>EIGRP IPv6 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function eigrp ipv6 not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>EIGRP Named IPv4 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>25</td>
+<td type='name_col'>EIGRP Named IPv6 Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>26</td>
+<td type='name_col'>BGP Auto summary disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>27</td>
+<td type='name_col'>BGP Multihop disabled or TTL security used</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function bgp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>28</td>
+<td type='name_col'>IP Source routing (IP Options) disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Filtering</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>IP Options disabled</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip options drop<br/></td>
+</tr>
+</tbody></table>
+<table><tbody>
+<tr><h3>Other</h3></tr>
+<tr>
+<th type='no_col'>No.</th>
+<th type='name_col'>Name</th>
+<th type='sever_col'>Severity</th>
+<th type='elim_col'>Skipped</th>
+<th type='deter_col'>Cannot determine search/fix</th>
+<th type='stat_col'>Status</th>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>1</td>
+<td type='name_col'>Servis PAD disabled (Packet assembler disassembler)</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no service pad<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>2</td>
+<td type='name_col'>BOOTP server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no ip bootp server<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>3</td>
+<td type='name_col'>Ident protocol disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>4</td>
+<td type='name_col'>Finger protocol disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>5</td>
+<td type='name_col'>HTTP server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>6</td>
+<td type='name_col'>HTTPS server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>7</td>
+<td type='name_col'>TCP small server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>8</td>
+<td type='name_col'>UDP small server disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>9</td>
+<td type='name_col'>MOP protocol disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Ethernet0/0<br/> no mop enabled<br/>interface Ethernet0/1<br/> no mop enabled<br/>interface Ethernet0/2<br/> no mop enabled<br/>interface Ethernet0/3<br/> no mop enabled<br/>interface Ethernet1/0<br/> no mop enabled<br/>interface Ethernet1/1<br/> no mop enabled<br/>interface Ethernet1/2<br/> no mop enabled<br/>interface Ethernet1/3<br/> no mop enabled<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>10</td>
+<td type='name_col'>IP domain lookup disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no ip domain lookup<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>11</td>
+<td type='name_col'>Gratuitous ARPs generation disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no ip gratuitous-arps<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>12</td>
+<td type='name_col'>Gratuitous ARPs reject enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip arp gratuitous none<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>13</td>
+<td type='name_col'>Netflow is disabled</td>
+<td type='sever_col'>Notice</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>By default fix is ignored due to disablement of traffic monitoring. Consider whether port mirroring is neccesary for monitoring</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>14</td>
+<td type='name_col'>Netflow version 9 used</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 15_14_netflow_version_9.yaml configured to run after 15_13_netflow.yaml with status error but that module has not run yet with specified cmd_match_status, 15_14_netflow_version_9.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>15</td>
+<td type='name_col'>Netflow traffic analyze disabled on interface(s)</td>
+<td type='sever_col'>Notice</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 15_15_netflow_interface.yaml configured to run after 15_13_netflow.yaml with status error but that module has not run yet with specified cmd_match_status, 15_15_netflow_interface.yaml will not run</td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>By default fix is ignored due to disablement of traffic monitoring. Consider whether port mirroring is neccesary for monitoring</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>16</td>
+<td type='name_col'>Port mirroring disabled on interface(s)</td>
+<td type='sever_col'>Notice</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Fix ignore comment: </b><br/>By default fix is ignored due to disablement of traffic monitoring. Consider whether port mirroring is neccesary for monitoring</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>17</td>
+<td type='name_col'>Set always "UP" Loopback interface with IP address</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>interface Loopback0<br/> ip address 1.1.1.1 255.255.255.0<br/> no ip redirects<br/> no ip unreachables<br/> no ip proxy-arp<br/> no ipv6 redirects<br/> no ipv6 unreachables<br/> snmp ifindex persist<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>18</td>
+<td type='name_col'>Notification on memory IO leak/overflow</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>exception memory ignore overflow io<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>19</td>
+<td type='name_col'>Notification on memory CPU leak/overflow</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Generated fix: </b><br/>exception memory ignore overflow processor<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>20</td>
+<td type='name_col'>Network boot disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>21</td>
+<td type='name_col'>Network config load disabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>22</td>
+<td type='name_col'>SCP server enabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>ip scp server enable<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>23</td>
+<td type='name_col'>SCP alias copy instead of TFTP</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>24</td>
+<td type='name_col'>Protection of configuration deletion</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>secure boot-config<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>25</td>
+<td type='name_col'>Archive and log config changes</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>archive<br/> log config<br/>  logging enable<br/>  notify syslog contenttype plaintext<br/>  hidekeys<br/> path unix:<br/> maximum 5<br/> time-period 60<br/>memory reserve critical 1000<br/>memory free low-watermark processor 2000<br/>username admin secret 5 $1$gYU0$93lIuGg5QupQM5RQS5qHe1<br/>secure boot-config<br/><br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>26</td>
+<td type='name_col'>Terminate hanged inbound TCP connection to device</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>service tcp-keepalives-in<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>27</td>
+<td type='name_col'>Terminate hanged outbound TCP connection to device</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>service tcp-keepalives-out<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>28</td>
+<td type='name_col'>Encrypt all saved passwords in configuration</td>
+<td type='sever_col'>Critical</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Successful <span style='color:green;font-size:16pt;'> &#10004;</span></td>
+</tr>
+<tr><td><br/><b>Right configuration setting found in: </b><br/>no service password-encryption<br/></td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>29</td>
+<td type='name_col'>First Hop Redundancy Protocol used</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Error <span style='color:red;font-size:16pt;'> &#10008;</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Cannot be fixed automatically! Cannot automatically determine which interface is sutable for deployment of FHRP protocols! Issue one of commands: <br/>interface &ltinterface name&gt <br/> vrrp &ltgroup id&gt ip &ltip address&gt<br/>  vrrp priority &ltvalue&gt <br/> vrrp &ltgroup id&gt authentication md5 key-string &ltkey&gt <br/>fhrp version vrrp v3 <br/> or <br/>interface &ltinterface name&gt <br/> standby &ltgroup id&gt ip &ltip address&gt <br/>  standby priority &ltvalue&gt <br/>  standby &ltgroup id&gt preempt <br/> standby &ltgroup id&gt authentication md5 key-string &ltkey&gt <br/> or <br/> interface &ltinterface name&gt <br/> glbp &ltgroup id&gt ip &ltip address&gt<br/>  glbp priority &ltvalue&gt <br/>  glbp &ltgroup id&gt preempt <br/> glbp &ltgroup id&gt authentication md5 key-string &ltkey&gt</td>
+</tr>
+<tr><td><br/><b>Fix notice: </b><br/>Issue one of these command for FHRP in interface which should act as default gateway: <br/>interface &ltinterface name&gt<br/>  standby &ltid&gt ip &ltip address&gt <br/><br/>  vrrp &ltid&gt ip &ltip address&gt <br/><br/>  glbp &ltid&gt ip &ltip address&gt</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>30</td>
+<td type='name_col'>VRRP version 3 used</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function vrrp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>31</td>
+<td type='name_col'>FHRP plaintext authentication disabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 15_31_fhrp_plain_auth.yaml configured to run after 15_29_fhrp_used.yaml with status successful but that module has not run yet with specified cmd_match_status, 15_31_fhrp_plain_auth.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>32</td>
+<td type='name_col'>FHRP MD5 authentication enabled</td>
+<td type='sever_col'>High</td>
+<td type='elim_col'>False</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Module 15_32_fhrp_md5_auth.yaml configured to run after 15_29_fhrp_used.yaml with status successful but that module has not run yet with specified cmd_match_status, 15_32_fhrp_md5_auth.yaml will not run</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>33</td>
+<td type='name_col'>HSRP/GLBP preemption enabled</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function hsrp not configured on device. Everything is OK.</td>
+</tr>
+<tr type='module_info'>
+<td type='no_col'>34</td>
+<td type='name_col'>HSRP version 2 used</td>
+<td type='sever_col'>Medium</td>
+<td type='elim_col'>True</th>
+<td type='deter_col'>False</td>
+<td type='stat_col'>Not relevant<span style='color:green;font-size:16pt;text-decoration:none;'> &#10004</span></td>
+</tr>
+<tr><td><br/><b>Comment: </b><br/>Skipped, required function hsrp not configured on device. Everything is OK.</td>
+</tr>
+</tbody></table>
+        </tbody>
+      </table>
+    </page>
+  </body>
+</html>

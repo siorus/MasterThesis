@@ -17,7 +17,7 @@ enable_password: ""
 ipv4_acl_vty_name: ""
 ipv6_acl_vty_name: ""
 quiet_mode_acl: ""
-login_block_for: "120"
+login_block_for_time: "120"
 login_block_for_attempts: "3"
 login_block_for_within: "30"
 banner_motd: ""
@@ -54,6 +54,7 @@ minimum_cpu_memory_notification: "2000" #Default:2000 (kB)
 minimum_io_memory_notification: "2000" #Default:2000 (kB)
 native_vlan_id: ""
 allowed_vlan_on_trunk: "" #Separated by comma
+blackhole_vlan: ""
 network_mapping_acl: ""
 network_mapping_acl_ipv6: ""
 ospf_router_id: ""
